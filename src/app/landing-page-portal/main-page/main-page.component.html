@@ -1,0 +1,144 @@
+<section class="main-bg">
+  <div class="wrap">
+    <div class="search">
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="How can we help you today?"
+      />
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="about-us">
+  <div class="container">
+    <div class="one">
+      <h1>About us</h1>
+    </div>
+    <div class="row row-about">
+      <div
+        class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container right"
+      >
+        <img
+          src="../../../assets/images/undraw_browsing_online_re_umsa.svg"
+          alt=""
+        />
+      </div>
+      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 mission-desc">
+        <h3>Mission</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate
+          blanditiis dolorem unde repudiandae cumque dolor eos quia nostrum,
+          quos distinctio dolore esse. Hic, illo. Saepe, neque ducimus? Eos
+          delectus fugit deleniti, corrupti ut dolore nisi saepe corporis
+          perspiciatis quidem fugiat quas tempora, obcaecati impedit nulla vel
+          dicta officiis nobis beatae?
+        </p>
+      </div>
+    </div>
+    <div class="row row-about">
+      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 vision-desc">
+        <h3>Vision</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate
+          blanditiis dolorem unde repudiandae cumque dolor eos quia nostrum,
+          quos distinctio dolore esse. Hic, illo. Saepe, neque ducimus? Eos
+          delectus fugit deleniti, corrupti ut dolore nisi saepe corporis
+          perspiciatis quidem fugiat quas tempora, obcaecati impedit nulla vel
+          dicta officiis nobis beatae?
+        </p>
+      </div>
+      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container">
+        <img src="../../../assets/images/undraw_pitching_re_fpgk.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mayor-bg">
+  <div class="container">
+    <div class="one">
+      <h1>Mayors's message</h1>
+    </div>
+    <div class="row">
+      <div class="col-7 text-wrapper">
+        <p class="mayor-msg">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
+          repudiandae aspernatur ducimus tenetur fugit architecto amet
+          consectetur! Nostrum laboriosam porro temporibus autem assumenda quis
+          expedita consequuntur neque sapiente unde, natus blanditiis nesciunt
+          dolor voluptatem. Blanditiis soluta id consectetur modi dolor libero
+          harum, magnam deleniti officiis quibusdam? Ab ipsum cum assumenda?
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam ab
+          facilis itaque, quisquam modi doloremque doloribus voluptatibus fugit
+          cum dolore.
+        </p>
+        <div style="margin-top: 0.7rem" class="mayor-info">
+          <p><b>Virgilio L. De Guzman Jr.</b></p>
+        </div>
+        <div class="mayor-info">
+          <p style="font-size: 12px; color: #6f6f6f">Municipal Mayor</p>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card card-main">
+          <div class="card-body img-card">
+            <img
+              src="../../../assets/images/mayor-img.png"
+              class="img-fluid mayor-img"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="public-servants">
+  <div class="container-fluid">
+    <div class="one">
+      <h1>Public servants</h1>
+    </div>
+    <div class="row">
+      <div class="col-4" *ngFor="let servant of _publicServants">
+        <div class="card d-block w-100">
+          <div class="card-body card-content">
+            <div class="row">
+              <div class="col-3 img-container">
+                <img [src]="servant.img" alt="" />
+              </div>
+              <div class="col-9 servant-info">
+                <h3>{{ servant.name }}</h3>
+                <p class="pos">{{ servant.position }}</p>
+                <p class="prop">{{ servant.proposition }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-us">
+  <div class="container">
+    <div class="two">
+      <h1 style="color: #fff">Contact us</h1>
+    </div>
+    <div class="row main-content">
+      <div class="col-6">
+        <div id="map"></div>
+      </div>
+      <div class="col-6">
+        <div class="contact-wrapper" *ngFor="let contact of _contacts">
+          <h3><i [class]="contact.icon"></i>&nbsp; {{ contact.number }}</h3>
+          <p>{{ contact.place }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

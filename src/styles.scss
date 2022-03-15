@@ -1,1 +1,115 @@
 /* You can add global styles to this file, and also import other style files */
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Poppins", sans-serif !important;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+p,
+span,
+small,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Poppins", sans-serif !important;
+}
+.local-nav {
+  background: #fff;
+}
+
+// .header-title {
+//   font-size: 29px;
+//   color: #565656;
+//   letter-spacing: 0.2rem;
+//   font-weight: 600;
+//   text-transform: uppercase;
+//   text-align: center;
+// }
+h1 {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #565656;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+h1 span {
+  display: block;
+  font-size: 15px;
+  line-height: 1;
+}
+h1 em {
+  font-size: 15px;
+  font-weight: 600;
+}
+.one h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.one h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #05bbe8;
+}
+.one h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 15px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #05bbe8;
+}
+
+.two h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.two h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #fff;
+}
+.two h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 15px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #fff;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";

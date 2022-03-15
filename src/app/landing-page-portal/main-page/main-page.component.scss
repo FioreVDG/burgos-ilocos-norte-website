@@ -1,0 +1,278 @@
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.search:hover {
+  transition: 0.2s ease-in;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #fff;
+  border-right: none;
+  padding: 5px;
+  height: "auto";
+  //   border-radius: 28px 0 0 28px;
+  outline: none;
+  font-size: 18px;
+  background: rgb(255, 255, 255);
+}
+
+.searchTerm:hover {
+  transition: 0.1s ease-in;
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.218);
+}
+
+.searchTerm:focus {
+  color: #565656;
+  font-size: 18px;
+  border: 1.5px solid #05bbe8;
+}
+
+.searchButton {
+  width: "auto";
+  height: "auto";
+  border: 1px solid #05bbe8;
+  background: #05bbe8;
+  text-align: center;
+  color: #fff;
+  //   border-radius: 0 28px 28px 0;
+  cursor: pointer;
+  font-size: 35px;
+  padding: 0.5rem 1.5rem;
+}
+
+.searchButton:hover {
+  background: #08809e;
+}
+
+.wrap {
+  width: 45%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+
+.main-bg {
+  background-image: url("../../../assets/images/main-bg.jpg");
+  background-size: cover;
+  height: 85vh;
+  background-position: center center;
+}
+
+//FOR ABOUT US
+.about-us {
+  padding: 2rem 0rem;
+  background: #fff;
+
+  .row-about {
+    width: 75%;
+    margin: auto;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+    .mission-desc {
+      h3 {
+        font-size: 28px;
+        color: #565656;
+        border-left: #05bbe8 4px solid;
+        padding-left: 0.5rem;
+      }
+      p {
+        color: #686767;
+        text-align: justify;
+        font-size: 17px;
+      }
+    }
+    .vision-desc {
+      h3 {
+        font-size: 28px;
+        color: #565656;
+        border-right: #05bbe8 4px solid;
+        padding-right: 0.5rem;
+        text-align: right;
+      }
+      p {
+        color: #686767;
+        text-align: justify;
+        font-size: 17px;
+      }
+    }
+  }
+  .about-img-container {
+    img {
+      width: 75%;
+    }
+  }
+  .right {
+    flex-direction: flex-end;
+    justify-content: flex-end;
+    display: flex;
+  }
+}
+
+//FOR MAYOR'S MESSAGE
+.mayor-bg {
+  background: linear-gradient(90deg, #f9f8fd94 73%, #05bbe892 60%),
+    url("./../../../assets/images/mosaic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 75vh;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.mayor-img {
+  width: 60%;
+  height: inherit;
+}
+
+.img-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //   width: 25%;
+}
+
+.card-main {
+  width: 80%;
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+  border: none;
+}
+
+.text-wrapper {
+  display: flex;
+  //   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .mayor-msg {
+    font-size: 18px;
+    color: #565656;
+    text-align: justify;
+  }
+  .mayor-msg:first-letter {
+    text-transform: capitalize;
+    font-size: 320%;
+    font-weight: 700;
+    color: #05bbe8;
+    line-height: 0;
+  }
+
+  .mayor-info {
+    flex-direction: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    // flex-direction: column;
+    p {
+      margin: 0;
+      text-align: center;
+    }
+  }
+}
+
+//FOR PUBLIC SERVANTS
+.public-servants {
+  padding: 3rem 0rem;
+  background: linear-gradient(to bottom, #fff 57%, #05bbe8 50%);
+  .card {
+    border: none;
+    margin: 1rem 0rem;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.218);
+  }
+  .card:hover {
+    // box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.218);
+    // cursor: pointer;
+  }
+  .card-content {
+    background: linear-gradient(-120deg, #f9f8fd 80%, #05bbe8 40%);
+    .img-container {
+      img {
+        width: 120%;
+        border-radius: 50%;
+      }
+    }
+    .servant-info {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      h3,
+      p {
+        margin: 0;
+        color: #565656;
+      }
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .pos {
+        color: #05bbe8;
+        font-weight: 600;
+        font-style: italic;
+      }
+      .prop {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+//FOR CONTACT US
+
+.contact-us {
+  padding: 3rem 0rem;
+  background-color: #05bbe8;
+
+  .main-content {
+    padding: 3rem 0rem;
+    .contact-wrapper {
+      margin: 1rem;
+      margin-bottom: 2rem;
+      h3 {
+        color: #fff;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: 0.2rem;
+        margin-bottom: 0;
+      }
+      p {
+        color: #7b7b7b;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: 0.1rem;
+        margin: 0;
+        padding-left: 3.5rem;
+      }
+    }
+  }
+}
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+  /* The width is the width of the web page */
+}
+
+//FOR MOBILE DEVICE
+@media only screen and (max-width: 600px) {
+  .wrap {
+    width: 80%;
+  }
+  .searchTerm {
+    font-size: 15px;
+  }
+
+  .searchButton {
+    font-size: 20px;
+    padding: 0.5rem 0.7rem;
+  }
+}
