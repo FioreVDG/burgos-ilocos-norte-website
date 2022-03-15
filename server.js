@@ -3,7 +3,7 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.static("./dist/icertify-web"));
+app.use(express.static("./dist/burgos-ilocos-norte-website"));
 
 app.get("*/", (req, res) =>
   res.sendFile("index.html", { root: "dist/burgos-ilocos-norte-website/" })
