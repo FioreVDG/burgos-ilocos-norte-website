@@ -126,6 +126,15 @@
   height: 75vh;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mayor-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mayor-img {
@@ -174,6 +183,10 @@
       text-align: center;
     }
   }
+
+  .card-main-upper {
+    display: none;
+  }
 }
 
 //FOR PUBLIC SERVANTS
@@ -192,6 +205,9 @@
   .card-content {
     background: linear-gradient(-120deg, #f9f8fd 80%, #05bbe8 40%);
     .img-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       img {
         width: 120%;
         border-radius: 50%;
@@ -340,6 +356,118 @@
     .small {
       text-align: center;
       margin-bottom: 0;
+    }
+  }
+  //ABOUT US
+  .about-us {
+    .row-about {
+      width: 95%;
+      margin-top: 4rem;
+      margin-bottom: 4rem;
+
+      .mission-desc {
+        h3 {
+          margin-top: 1.5rem;
+          font-size: 22px;
+        }
+        p {
+          font-size: 14px;
+          margin-bottom: 0;
+        }
+      }
+
+      .vision-desc {
+        h3 {
+          font-size: 22px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    .about-img-container {
+      img {
+        width: 65%;
+        margin: auto;
+        display: block;
+      }
+    }
+  }
+  //FOR MAYOR
+  .mayor-bg {
+    background-image: url("./../../../assets/images/mosaic.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mayor-main {
+      width: 95%;
+      margin: auto;
+    }
+  }
+  .text-wrapper {
+    .mayor-msg {
+      font-size: 14px;
+      margin-top: 1rem;
+    }
+    .mayor-msg:first-letter {
+      font-size: 25px;
+    }
+    .card-main-upper {
+      display: block;
+      width: 100%;
+      margin: auto;
+      .mayor-img {
+        width: 37%;
+      }
+    }
+  }
+  .card-main {
+    display: none;
+  }
+
+  //FOR PUBLIC SERVENTS
+  .public-servants {
+    .card-content {
+      .img-container {
+        img {
+          width: 135%;
+        }
+      }
+      .servant-info {
+        h3 {
+          font-size: 15px;
+        }
+        .pos {
+          font-size: 12px;
+        }
+        .prop {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  //FOR CONTACT US
+
+  .contact-us {
+    .main-content {
+      .contact-wrapper {
+        h3 {
+          font-size: 20px;
+        }
+        p {
+          font-size: 12px;
+        }
+      }
     }
   }
 }
