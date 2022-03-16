@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare let google: any;
+import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  @ViewChild('top') top!: ElementRef;
+  faChevronCircleUp = faChevronCircleUp;
+  element: any;
   _publicServants = [
     {
       img: '../../../assets/images/profile-sample.jpg',
@@ -45,6 +50,8 @@ export class MainPageComponent implements OnInit {
     },
   ];
 
+  windowScrolled: boolean = false;
+
   _contacts = [
     {
       icon: 'bi bi-droplet-half',
@@ -63,28 +70,74 @@ export class MainPageComponent implements OnInit {
     },
   ];
 
+  bubblesArr: any = [];
+
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: false,
+    navSpeed: 700,
+    margin: 15,
+    autoplay: true,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 2,
+      },
+      740: {
+        items: 4,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: false,
+  };
+
   constructor() {}
 
   ngOnInit(): void {
     this.initMap();
+    let word = 'bubble';
+    for (let i = 0; i <= 49; i++) {
+      this.bubblesArr.push(word);
+    }
   }
-
   initMap(): void {
     // The location of sanNicolas
-    const sanNicolas = { lat: 18.1471, lng: 120.5855 };
-    // The map, centered at sanNicolas
+    const burgos = { lat: 18.516111, lng: 120.646111 };
+    // The map, centered at burgos
     const map = new google.maps.Map(
       document.getElementById('map') as HTMLElement,
       {
         zoom: 12,
-        center: sanNicolas,
+        center: burgos,
       }
     );
 
-    // The marker, positioned at sanNicolas
+    // The marker, positioned at burgos
     const marker = new google.maps.Marker({
-      position: sanNicolas,
+      position: burgos,
       map: map,
     });
+  }
+
+  //FOR AUTOSCROLLING ON SELECTED ROUTES
+  doSomething(event: any) {
+    switch (event) {
+      case 'about-us':
+        this.scrollToLocation(event);
+        break;
+    }
+  }
+
+  scrollToLocation(loc: any) {
+    this.element = document.getElementById(loc);
+    this.element.scrollIntoView();
   }
 }

@@ -1,6 +1,7 @@
 <app-navigation></app-navigation>
-<!-- <div
-  [class]="router.url === '/landing-page/landing-page-main' ? '' : 'container'"
-> -->
-<router-outlet></router-outlet>
-<!-- </div> -->
+
+<div [class]="router.url === '/landing-page-main' ? '' : 'container'">
+  <router-outlet></router-outlet>
+</div>
+<app-scroll-top></app-scroll-top>
+<app-footer></app-footer>

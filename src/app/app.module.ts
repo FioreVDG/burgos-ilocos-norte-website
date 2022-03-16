@@ -9,6 +9,8 @@ import {
   WavesModule,
 } from 'angular-bootstrap-md';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CollapseModule.forRoot(),
     WavesModule.forRoot(),
     NgbModule,
+    BrowserAnimationsModule,
+    CarouselModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

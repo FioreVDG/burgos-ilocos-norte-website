@@ -1,3 +1,54 @@
+<nav class="navbar sticky-top navbar-expand-lg nav-list">
+  <div class="container">
+    <button
+      class="navbar-toggler justify-content-end custom-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="border-color: #fff"
+    >
+      <span style="border-color: #fff" class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="nav nav-responsive justify-content-center collapse navbar-collapse"
+      id="navbarTogglerDemo03"
+    >
+      <ul class="nav nav-responsive justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="doSomething('about-us')">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/legislative">Legislative</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/transparency">Tranparency</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tourism">Tourism</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Citizen's Charter</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Announcement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Career</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Emergency Hotline</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 <section class="main-bg">
   <div class="wrap">
     <div class="search">
@@ -13,7 +64,26 @@
   </div>
 </section>
 
-<section class="about-us">
+<section class="pinned-announcement">
+  <div class="bubbles">
+    <div *ngFor="let i of bubblesArr" [class]="i"></div>
+    <div class="two">
+      <h1 style="color: #fff; text-shadow: 1px -1px 5px rgba(0, 0, 0, 0.55)">
+        Pinned Announcement
+      </h1>
+    </div>
+    <div class="container">
+      <h3>
+        "WHO Director-General's opening remarks at the media briefing on
+        COVID-19."
+      </h3>
+      <h4>11 March 2020</h4>
+      <p href="#">READ FULL DETAILS HERE</p>
+    </div>
+  </div>
+</section>
+
+<section id="about-us" class="about-us">
   <div class="container">
     <div class="one">
       <h1>About us</h1>
@@ -115,25 +185,26 @@
       <h1>Public servants</h1>
     </div>
     <div class="row">
-      <div
-        class="col-lg-4 col-xl-4 col-sm-12 col-md-6"
-        *ngFor="let servant of _publicServants"
-      >
-        <div class="card d-block w-100">
-          <div class="card-body card-content">
-            <div class="row">
-              <div class="col-3 img-container">
-                <img [src]="servant.img" alt="" />
-              </div>
-              <div class="col-9 servant-info">
-                <h3>{{ servant.name }}</h3>
-                <p class="pos">{{ servant.position }}</p>
-                <p class="prop">{{ servant.proposition }}</p>
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let servant of _publicServants">
+          <ng-template carouselSlide style="margin: 0rem 0.2rem">
+            <div class="card">
+              <div class="card-body card-content">
+                <div class="row">
+                  <div class="col-3 img-container">
+                    <img [src]="servant.img" alt="" />
+                  </div>
+                  <div class="col-9 servant-info">
+                    <h3>{{ servant.name }}</h3>
+                    <p class="pos">{{ servant.position }}</p>
+                    <p class="prop">{{ servant.proposition }}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
     </div>
   </div>
 </section>
@@ -155,63 +226,5 @@
       </div>
     </div>
   </div>
-</section>
-
-<section class="footer">
-  <div class="container footer-upper">
-    <div class="row">
-      <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-        <img
-          src="../../../assets/images/republika-ng-pilipinas.png"
-          class="img-fluid"
-          alt=""
-        />
-      </div>
-      <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-        <p class="header">About</p>
-        <p class="content">Mayor's message</p>
-        <p class="content">Public servants</p>
-        <p class="content">Announcements</p>
-        <p class="content">Careers</p>
-        <p class="content">Departments</p>
-        <p class="content">About us</p>
-      </div>
-      <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-        <p class="header">Contact Us</p>
-        <p class="content">
-          <i class="bi bi-telephone-fill"></i>&nbsp;+(63) 9287 754 8952
-        </p>
-        <p class="content">
-          <i class="bi bi-envelope-fill"></i>&nbsp;burgos@ilocosnorte.ph
-        </p>
-        <p class="content">
-          <i class="bi bi-geo-alt-fill"></i>&nbsp;Burgos, Ilocos norte,
-          Philippines
-        </p>
-      </div>
-    </div>
-    <hr />
-    <div class="container-fluid">
-      <div class="container footer-low">
-        <div class="row">
-          <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-            <p class="small">
-              ©2022 Municipality of Burgos, Province of Ilocos Norte
-            </p>
-          </div>
-          <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-            <div class="icon-wrapper">
-              <i class="bi bi-facebook icon-list"></i
-              ><i class="bi bi-instagram icon-list"></i>
-              <i class="bi bi-twitter icon-list"></i
-              ><i class="bi bi-youtube icon-list"></i>
-            </div>
-          </div>
-          <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
-            <p class="small">Powered by LGUSuite Inc.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="container-fluid"></div>
 </section>

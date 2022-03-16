@@ -17,6 +17,25 @@ const routes: Routes = [
         loadChildren: () =>
           import('./main-page/main-page.module').then((m) => m.MainPageModule),
       },
+      {
+        path: 'legislative',
+        loadChildren: () =>
+          import('./legislative/legislative.module').then(
+            (m) => m.LegislativeModule
+          ),
+      },
+      {
+        path: 'transparency',
+        loadChildren: () =>
+          import('./transparency/transparency.module').then(
+            (m) => m.TransparencyModule
+          ),
+      },
+      {
+        path: 'tourism',
+        loadChildren: () =>
+          import('./tourism/tourism.module').then((m) => m.TourismModule),
+      },
     ],
   },
 ];

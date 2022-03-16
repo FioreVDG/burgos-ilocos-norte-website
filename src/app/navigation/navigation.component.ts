@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {} from '@fortawesome/free-solid-svg-icons';
 
@@ -7,7 +8,9 @@ import {} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  constructor() {}
+  constructor(public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.router.url);
+  }
 }

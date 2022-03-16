@@ -28,7 +28,10 @@
     </div>
   </div>
 </div>
-<nav class="navbar sticky-top navbar-expand-lg nav-list">
+<nav
+  class="navbar sticky-top navbar-expand-lg nav-list"
+  *ngIf="router.url !== '/landing-page-main'"
+>
   <div class="container">
     <button
       class="navbar-toggler justify-content-end custom-toggler"
@@ -51,19 +54,26 @@
           <a class="nav-link" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Legislative</a>
+          <a class="nav-link" routerLink="/legislative">Legislative</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tranparency</a>
+          <a class="nav-link" routerLink="/transparency">Tranparency</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tourism</a>
+          <a class="nav-link" routerLink="/tourism">Tourism</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Citizen's Charter</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Announcement</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Career</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Emergency Hotline</a>
         </li>
       </ul>
     </div>

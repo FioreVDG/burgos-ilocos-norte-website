@@ -1,3 +1,43 @@
+.nav-list {
+  background-color: #05bbe8;
+  color: #fff;
+  background-image: linear-gradient(
+      90deg,
+      rgba(68, 189, 230, 0.511) 0%,
+      #05bbe8b8 100%
+    ),
+    url("../../../assets/images/mosaic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  // position: sticky;
+  // top: 0;
+  .nav-item {
+    .nav-link {
+      color: #fff;
+      font-weight: 500;
+    }
+    .nav-link:hover {
+      background-color: #1f91ae;
+      font-weight: 500;
+      border-radius: 5px;
+    }
+  }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+.show-scrollTop {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
 .search {
   width: 100%;
   position: relative;
@@ -192,7 +232,7 @@
 //FOR PUBLIC SERVANTS
 .public-servants {
   padding: 3rem 0rem;
-  background: linear-gradient(to bottom, #fff 57%, #05bbe8 50%);
+  background: linear-gradient(to bottom, #fff 57%, #05bbe8c6 50%);
   .card {
     border: none;
     margin: 1rem 0rem;
@@ -204,12 +244,17 @@
   }
   .card-content {
     background: linear-gradient(-120deg, #f9f8fd 80%, #05bbe8 40%);
+    height: 19vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     .img-container {
       display: flex;
       align-items: center;
       justify-content: center;
       img {
-        width: 120%;
+        width: 125%;
         border-radius: 50%;
       }
     }
@@ -224,26 +269,143 @@
         color: #565656;
       }
       h3 {
-        font-size: 20px;
+        font-size: 17px;
         font-weight: 700;
       }
       .pos {
         color: #05bbe8;
         font-weight: 600;
+        font-size: 13.5px;
         font-style: italic;
       }
       .prop {
-        font-size: 14px;
+        font-size: 12px;
       }
     }
   }
 }
 
+//FOR PINNED ANNOUNCEMENT
+.pinned-announcement {
+  //   padding: 3rem 0rem;
+  background-color: #05bbe8;
+
+  h3 {
+    color: #fff;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    font-size: 24px;
+  }
+  h4 {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  p {
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  p:hover {
+    color: #f4f4f4;
+  }
+
+  $bubble-count: 50;
+  $sway-type: "sway-left-to-right", "sway-right-to-left";
+
+  @function random_range($min, $max) {
+    $rand: random();
+    $random_range: $min + floor($rand * (($max - $min) + 1));
+    @return $random_range;
+  }
+
+  @function sample($list) {
+    @return nth($list, random(length($list)));
+  }
+
+  .bubbles {
+    position: relative;
+    width: 100%;
+    // height: 100vh;
+    height: auto;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    padding: 3rem 0rem;
+  }
+
+  .bubble {
+    position: absolute;
+    left: var(--bubble-left-offset);
+    bottom: -75%;
+    display: block;
+    width: var(--bubble-radius);
+    height: var(--bubble-radius);
+    border-radius: 50%;
+    animation: float-up var(--bubble-float-duration) var(--bubble-float-delay)
+      ease-in infinite;
+
+    &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: hsla(183, 94%, 76%, 0.3);
+      border-radius: inherit;
+      animation: var(--bubble-sway-type) var(--bubble-sway-duration)
+        var(--bubble-sway-delay) ease-in-out alternate infinite;
+    }
+
+    @for $i from 0 through $bubble-count {
+      &:nth-child(#{$i}) {
+        --bubble-left-offset: #{random_range(0vw, 100vw)};
+        --bubble-radius: #{random_range(1vw, 10vw)};
+        --bubble-float-duration: #{random_range(6s, 12s)};
+        --bubble-sway-duration: #{random_range(4s, 6s)};
+        --bubble-float-delay: #{random_range(0s, 4s)};
+        --bubble-sway-delay: #{random_range(0s, 4s)};
+        --bubble-sway-type: #{sample($sway-type)};
+      }
+    }
+  }
+
+  @keyframes float-up {
+    to {
+      transform: translateY(-175vh);
+    }
+  }
+
+  @keyframes sway-left-to-right {
+    from {
+      transform: translateX(-100%);
+    }
+
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes sway-right-to-left {
+    from {
+      transform: translateX(100%);
+    }
+
+    to {
+      transform: translateX(-100%);
+    }
+  }
+}
 //FOR CONTACT US
 
 .contact-us {
   padding: 3rem 0rem;
-  background-color: #05bbe8;
+  background-color: #05bbe8c6;
 
   .main-content {
     padding: 3rem 0rem;
@@ -276,59 +438,6 @@
   width: 100%;
   box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
   /* The width is the width of the web page */
-}
-
-//FOR FOOTER
-.footer {
-  padding-top: 3rem;
-  padding-bottom: 1rem;
-  background-color: #f9f8fd;
-
-  img {
-    width: 35%;
-  }
-
-  .header {
-    color: #565656;
-    font-weight: 600;
-    letter-spacing: 0.1rem;
-    border-bottom: 4px solid #05bbe8;
-    width: 30%;
-  }
-  .content {
-    font-size: 13px;
-    color: #727272;
-    margin: 0.5rem 0rem;
-  }
-  .content:hover {
-    font-size: 13px;
-    color: #05bbe8;
-    cursor: pointer;
-  }
-  .footer-low {
-    .small {
-      color: #6f6f6f;
-      font-size: 13px;
-      margin-bottom: 0;
-    }
-  }
-  .icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .icon-list {
-      font-size: 23px;
-      cursor: pointer;
-      margin-left: 0.7rem;
-      color: #565656;
-    }
-
-    .icon-list:hover {
-      color: #05bbe8;
-      transition: 0.1s ease-in;
-    }
-  }
 }
 
 //FOR MOBILE DEVICE
@@ -470,4 +579,21 @@
       }
     }
   }
+}
+@media only screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+  }
+  .upper-nav {
+    display: none;
+  }
+} /* Set the border color */
+
+.custom-toggler.navbar-toggler {
+  border-color: #fff;
+}
+/* Setting the stroke to green using rgb values (0, 128, 0) */
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
