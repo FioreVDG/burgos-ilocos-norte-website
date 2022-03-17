@@ -20,8 +20,7 @@ export class LandingPagePortalComponent implements OnInit {
       this.loading = false;
     }, 1500);
     console.log(this.router.url);
-    if (this.router.url === '/')
-      this.router.navigate(['landing-page/landing-page-main']);
+    if (this.router.url === '/') this.router.navigate(['welcome']);
   }
 
   changeRoute() {

@@ -1,0 +1,37 @@
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  "
+>
+  <form [formGroup]="loginForm">
+    <mat-form-field appearance="fill" style="display: block">
+      <mat-label>Username</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="username"
+        placeholder="meow01"
+        required
+      />
+
+      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+        Please enter your email
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="display: block">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" required />
+
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+        Please enter your password
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-button color="primary" (click)="onLoginClick()">Login</button>
+  </form>
+</div>

@@ -10,10 +10,10 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'landing-page-main',
+        redirectTo: 'welcome',
       },
       {
-        path: 'landing-page-main',
+        path: 'welcome',
         loadChildren: () =>
           import('./main-page/main-page.module').then((m) => m.MainPageModule),
       },
