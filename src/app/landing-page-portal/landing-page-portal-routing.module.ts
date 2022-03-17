@@ -36,6 +36,37 @@ const routes: Routes = [
         loadChildren: () =>
           import('./tourism/tourism.module').then((m) => m.TourismModule),
       },
+      {
+        path: 'emergency-hotline',
+        loadChildren: () =>
+          import('./emergency-hotline/emergency-hotline.module').then(
+            (m) => m.EmergencyHotlineModule
+          ),
+      },
+      {
+        path: 'citizen-charter',
+        loadChildren: () =>
+          import('./citizen-charter/citizen-charter.module').then(
+            (m) => m.CitizenCharterModule
+          ),
+      },
+      {
+        path: 'career',
+        loadChildren: () =>
+          import('./career/career.module').then((m) => m.CareerModule),
+      },
+      {
+        path: 'announcement',
+        loadChildren: () =>
+          import('./announcement/announcement.module').then(
+            (m) => m.AnnouncementModule
+          ),
+      },
+      {
+        path: 'about-us',
+        loadChildren: () =>
+          import('./about-us/about-us.module').then((m) => m.AboutUsModule),
+      },
     ],
   },
 ];

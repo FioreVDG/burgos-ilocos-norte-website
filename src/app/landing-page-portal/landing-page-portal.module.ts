@@ -1,3 +1,10 @@
+import { NoContentModule } from './../no-content/no-content.module';
+import { LoadingModule } from './../loading/loading.module';
+import { AboutUsModule } from './about-us/about-us.module';
+import { AnnouncementModule } from './announcement/announcement.module';
+import { CareerModule } from './career/career.module';
+import { CitizenCharterModule } from './citizen-charter/citizen-charter.module';
+import { EmergencyHotlineModule } from './emergency-hotline/emergency-hotline.module';
 import { TourismModule } from './tourism/tourism.module';
 import { TransparencyModule } from './transparency/transparency.module';
 import { FooterModule } from './../footer/footer.module';
@@ -23,6 +30,13 @@ import { LandingPagePortalComponent } from './landing-page-portal.component';
     LegislativeModule,
     TransparencyModule,
     TourismModule,
+    EmergencyHotlineModule,
+    CitizenCharterModule,
+    CareerModule,
+    AnnouncementModule,
+    AboutUsModule,
+    LoadingModule,
+    NoContentModule,
   ],
 })
 export class LandingPagePortalModule {}

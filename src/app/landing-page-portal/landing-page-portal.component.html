@@ -1,7 +1,10 @@
-<app-navigation></app-navigation>
+<div *ngIf="!loading">
+  <app-navigation></app-navigation>
 
-<div [class]="router.url === '/landing-page-main' ? '' : 'container'">
-  <router-outlet></router-outlet>
+  <div [class]="router.url === '/landing-page-main' ? '' : 'container'">
+    <router-outlet></router-outlet>
+  </div>
+  <app-scroll-top></app-scroll-top>
+  <app-footer></app-footer>
 </div>
-<app-scroll-top></app-scroll-top>
-<app-footer></app-footer>
+<app-loading *ngIf="loading"></app-loading>

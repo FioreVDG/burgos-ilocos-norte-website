@@ -14,5 +14,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CarouselModule,
     FontAwesomeModule,
   ],
+  exports: [MainPageComponent],
 })
 export class MainPageModule {}

@@ -1,54 +1,3 @@
-<nav class="navbar sticky-top navbar-expand-lg nav-list">
-  <div class="container">
-    <button
-      class="navbar-toggler justify-content-end custom-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarTogglerDemo03"
-      aria-controls="navbarTogglerDemo03"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      style="border-color: #fff"
-    >
-      <span style="border-color: #fff" class="navbar-toggler-icon"></span>
-    </button>
-    <div
-      class="nav nav-responsive justify-content-center collapse navbar-collapse"
-      id="navbarTogglerDemo03"
-    >
-      <ul class="nav nav-responsive justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="doSomething('about-us')">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/legislative">Legislative</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/transparency">Tranparency</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/tourism">Tourism</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Citizen's Charter</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Announcement</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Career</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Emergency Hotline</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 <section class="main-bg">
   <div class="wrap">
     <div class="search">
@@ -69,7 +18,7 @@
     <div *ngFor="let i of bubblesArr" [class]="i"></div>
     <div class="two">
       <h1 style="color: #fff; text-shadow: 1px -1px 5px rgba(0, 0, 0, 0.55)">
-        Pinned Announcement
+        Announcement
       </h1>
     </div>
     <div class="container">
