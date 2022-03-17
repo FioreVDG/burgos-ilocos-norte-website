@@ -1,0 +1,82 @@
+.upper {
+  height: 0.3rem;
+  background: #05bbe8;
+}
+
+.upper-nav {
+  .text-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    .sm-upper {
+      margin: 0;
+      font-weight: 300;
+      color: #565656;
+      font-size: 13px;
+    }
+    h3 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 20px;
+      color: #565656;
+    }
+  }
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .icon-list {
+      font-size: 23px;
+      cursor: pointer;
+      margin-left: 0.7rem;
+      color: #565656;
+    }
+
+    .icon-list:hover {
+      color: #05bbe8;
+      transition: 0.1s ease-in;
+    }
+  }
+}
+
+.img-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0;
+  .navbar-brand {
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    img {
+      width: 82%;
+      display: block;
+      margin: auto;
+    }
+  }
+}
+
+.content {
+  background-color: #f9f8fd;
+  height: 100%;
+}
+@media only screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+  }
+  .upper-nav {
+    display: none;
+  }
+} /* Set the border color */
+
+.custom-toggler.navbar-toggler {
+  border-color: #fff;
+}
+/* Setting the stroke to green using rgb values (0, 128, 0) */
+
+.custom-toggler .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}

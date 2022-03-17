@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -13,24 +14,27 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private auth: AuthService, private fb: FormBuilder) {}
+  constructor(
+    private auth: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   loginForm: FormGroup = this.fb.group({
     username: new FormControl('mevistacorps1', [Validators.required]),
     password: new FormControl('Password123!', [Validators.required]),
   });
 
-  ngOnInit(): void {
-    this.auth.login('mevistacorps1', 'Password123!').subscribe((res) => {
-      console.log(res);
-    });
-  }
+  ngOnInit(): void {}
 
   onLoginClick() {
     const { username, password } = this.loginForm.getRawValue();
 
-    this.auth.login(username, password).subscribe((res) => {
+    this.auth.login(username, password).subscribe((res: any) => {
       console.log(res);
+      if (res) {
+        this.router.navigate(['/content-management/add-announcement']);
+      }
     });
   }
 }

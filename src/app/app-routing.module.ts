@@ -17,9 +17,17 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'login',
+    path: 'admin-login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),
+  },
+
+  {
+    path: 'content-management',
+    loadChildren: () =>
+      import(
+        './landing-page-content-mngmnt/landing-page-content-mngmnt.module'
+      ).then((m) => m.LandingPageContentMngmntModule),
   },
 ];
 

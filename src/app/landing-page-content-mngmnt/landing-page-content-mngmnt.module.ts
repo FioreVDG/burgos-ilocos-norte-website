@@ -1,17 +1,16 @@
+import { MaterialModule } from './../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { LandingPageContentMngmntRoutingModule } from './landing-page-content-mngmnt-routing.module';
 import { LandingPageContentMngmntComponent } from './landing-page-content-mngmnt.component';
 
-
 @NgModule({
-  declarations: [
-    LandingPageContentMngmntComponent
-  ],
+  declarations: [LandingPageContentMngmntComponent],
   imports: [
     CommonModule,
-    LandingPageContentMngmntRoutingModule
-  ]
+    LandingPageContentMngmntRoutingModule,
+    MaterialModule,
+  ],
 })
-export class LandingPageContentMngmntModule { }
+export class LandingPageContentMngmntModule {}
