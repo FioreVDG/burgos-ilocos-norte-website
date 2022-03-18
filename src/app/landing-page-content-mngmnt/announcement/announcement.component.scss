@@ -1,0 +1,35 @@
+.add-announcement {
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 38vh;
+  h3 {
+    font-size: 18px;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    .icon {
+      font-size: 1000%;
+      color: #8d8d8d;
+    }
+  }
+}
+.add-announcement:hover {
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+  transition: 0.2s;
+  transform: translateY(-0.25rem);
+  .content {
+    .icon {
+      color: #05bbe8;
+    }
+  }
+}

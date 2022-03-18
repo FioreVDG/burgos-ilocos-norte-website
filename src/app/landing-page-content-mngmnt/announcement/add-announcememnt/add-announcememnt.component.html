@@ -1,0 +1,58 @@
+<h3 mat-dialog-title>Add Announcement</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<div mat-dialog-content>
+  <div class="container main">
+    <div class="img-container"></div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <form [formGroup]="announcementForm">
+          <mat-form-field appearance="fill" style="display: block">
+            <mat-label>Title</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="title"
+              placeholder="Enter title"
+              required
+            />
+
+            <mat-error
+              *ngIf="announcementForm.get('title')?.hasError('required')"
+            >
+              Please enter a title
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field style="display: block" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea
+              matInput
+              formControlName="description"
+              required
+              placeholder="Enter description..."
+              rows="7"
+            ></textarea
+            ><mat-error
+              *ngIf="announcementForm.get('description')?.hasError('required')"
+            >
+              Please enter a description
+            </mat-error>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="center">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="announcementForm.invalid"
+  >
+    Save
+  </button>
+</div>

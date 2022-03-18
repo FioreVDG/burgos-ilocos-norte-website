@@ -1,1 +1,24 @@
-<p>announcement works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="one">
+      <h1>Manage Announcements</h1>
+    </div>
+    <div class="container">
+      <div class="row" *ngIf="announcementArr.length">
+        <div *ngFor="let item of announcementArr" class="col-3">
+          <div class="card add-announcement">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div (click)="addAnnouncement()" class="card add-announcement">
+            <div class="card-body content">
+              <i class="bi bi-plus-square-dotted icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

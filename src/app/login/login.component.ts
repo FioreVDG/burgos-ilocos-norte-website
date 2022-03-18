@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     this.auth.login(username, password).subscribe((res: any) => {
       console.log(res);
       if (res) {
+        localStorage.setItem('SESSION_CSURF_TOKEN', res.session_token);
+        localStorage.setItem('SESSION_AUTH', res.token);
         this.router.navigate(['/content-management/add-announcement']);
       }
     });

@@ -27,14 +27,6 @@ h5 {
   background: #fff;
 }
 
-// .header-title {
-//   font-size: 29px;
-//   color: #565656;
-//   letter-spacing: 0.2rem;
-//   font-weight: 600;
-//   text-transform: uppercase;
-//   text-align: center;
-// }
 h1 {
   position: relative;
   padding: 0;
@@ -113,8 +105,22 @@ h1 em {
   background-color: #fff;
 }
 
+.mat-dialog-actions {
+  border-top: 1px solid rgb(223, 223, 223);
+}
+.mat-dialog-title {
+  border-bottom: 1px solid rgb(223, 223, 223);
+  padding-bottom: 0.5rem;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

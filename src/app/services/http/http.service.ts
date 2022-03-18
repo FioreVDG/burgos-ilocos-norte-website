@@ -18,7 +18,7 @@ export class HttpService {
   constructor(public http: HttpClient) {}
 
   getHeaders() {
-    var session_token = localStorage.getItem('SESSION_TOKEN');
+    var session_token = localStorage.getItem('SESSION_CSURF_TOKEN');
     var bearer_token = localStorage.getItem('SESSION_AUTH');
 
     var headers = new HttpHeaders({

@@ -62,14 +62,16 @@
 .content {
   background-color: #f9f8fd;
   height: 100%;
+  padding: 2rem 1rem;
+  color: #565656;
 }
 @media only screen and (max-width: 600px) {
   .nav {
     flex-direction: column;
   }
-  .upper-nav {
-    display: none;
-  }
+  //   .upper-nav {
+  //     display: none;
+  //   }
 } /* Set the border color */
 
 .custom-toggler.navbar-toggler {
