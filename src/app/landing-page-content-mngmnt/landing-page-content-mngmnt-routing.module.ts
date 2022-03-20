@@ -19,6 +19,11 @@ const routes: Routes = [
             (m) => m.AnnouncementModule
           ),
       },
+      {
+        path: 'add-career',
+        loadChildren: () =>
+          import('./career/career.module').then((m) => m.CareerModule),
+      },
     ],
   },
 ];

@@ -13,7 +13,7 @@
   </div>
 </section>
 
-<section class="pinned-announcement">
+<section *ngIf="pinnedAnnouncement" class="pinned-announcement">
   <div class="bubbles">
     <div *ngFor="let i of bubblesArr" [class]="i"></div>
     <div class="two">
@@ -22,11 +22,8 @@
       </h1>
     </div>
     <div class="container">
-      <h3>
-        "WHO Director-General's opening remarks at the media briefing on
-        COVID-19."
-      </h3>
-      <h4>11 March 2020</h4>
+      <h3>"{{ pinnedAnnouncement.title }}"</h3>
+      <h4>{{ pinnedAnnouncement.createdAt | date: "longDate" }}</h4>
       <p href="#">READ FULL DETAILS HERE</p>
     </div>
   </div>

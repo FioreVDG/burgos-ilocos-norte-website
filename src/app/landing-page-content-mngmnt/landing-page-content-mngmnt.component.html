@@ -1,6 +1,6 @@
-<section style="height: 88vh">
+<section style="height: 100%; overflow-x: hidden; background-color: #f9f8fd">
   <div class="container-fluid upper"></div>
-  <div class="container upper-nav">
+  <div class="container-fluid sticky-top upper-nav">
     <div class="row">
       <div class="col-4">
         <div class="row">
@@ -24,13 +24,25 @@
       <div class="col-5 icon-wrapper">
         <ul class="nav nav-responsive justify-content-center">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/add-announcement">Announcement</a>
+            <a
+              class="nav-link"
+              routerLink="/content-management/add-announcement"
+              >Announcement</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/content-management/add-career"
+              >Career</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="container-fluid content">
+  <div style="overscroll-behavior-x: hidden" class="container-fluid content">
     <router-outlet></router-outlet>
   </div>
 </section>

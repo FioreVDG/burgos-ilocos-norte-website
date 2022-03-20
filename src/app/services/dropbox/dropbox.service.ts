@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+declare var require: any;
 
 @Injectable({
   providedIn: 'root',
 })
 export class DropboxService {
   accessToken =
-    'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
+    'sl.BEAXY8vaPF7ujOYcqUTb78NahB00fo12zVMqk4J-DIrY6CwLN8f8zD0YeUtrBM0BqumHYYKHaZ9M6_8pq8885jPmWFLk6SHa2NsxuFKse-LohLDLHz-q-sMP2W_kTOFfvMy8-1b-';
   dbx: any;
 
   constructor() {

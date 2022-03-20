@@ -1,3 +1,5 @@
+import { QueryParams } from './../../models/queryparams.interface';
+import { AnnouncementService } from './../../services/announcement/announcement.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare let google: any;
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
@@ -8,6 +10,8 @@ import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  pinnedAnnouncement: any;
+  loading: boolean = false;
   @ViewChild('top') top!: ElementRef;
   faChevronCircleUp = faChevronCircleUp;
   element: any;
@@ -99,14 +103,38 @@ export class MainPageComponent implements OnInit {
     nav: false,
   };
 
-  constructor() {}
+  constructor(private announcement: AnnouncementService) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.initMap();
     let word = 'bubble';
     for (let i = 0; i <= 49; i++) {
       this.bubblesArr.push(word);
     }
+    let query: QueryParams = {
+      find: [
+        {
+          field: 'isPinned',
+          operator: '[ne]=',
+          value: false,
+        },
+      ],
+    };
+    this.announcement.getAll(query).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res) {
+          this.loading = false;
+          this.pinnedAnnouncement = res.env.announcements[0];
+          console.log(this.pinnedAnnouncement);
+        }
+      },
+      (err) => {
+        console.log(err);
+        this.loading = false;
+      }
+    );
   }
   initMap(): void {
     // The location of sanNicolas

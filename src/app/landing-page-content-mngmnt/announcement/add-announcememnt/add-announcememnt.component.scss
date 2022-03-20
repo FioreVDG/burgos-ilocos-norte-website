@@ -5,14 +5,111 @@
   cursor: pointer;
 }
 .main {
-  margin: auto;
-  padding-bottom: 2;
+  height: 17.5rem;
   width: 100%;
+  //   padding: 1rem;
   .img-container {
-    width: 40%;
-    height: 25vh;
-    background-color: #f9f8fd;
-    margin: auto;
-    margin-bottom: 2rem;
+    border: 2px solid #56565650;
+    border-radius: 10px;
+    height: inherit;
+    width: inherit;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+.primary {
+  background-color: #05bbe8;
+  color: #fff;
+}
+
+.wrapper {
+  border: 3px dashed #05bbe8;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+button {
+  color: #000;
+  //   border: 3px solid #fff;
+  outline: none;
+  border-radius: 5px;
+  background: transparent;
+  height: 3rem;
+  width: auto;
+  transition: 0.1s ease-in;
+  cursor: pointer;
+}
+button:hover {
+  background: #098bac;
+  //   color: #26184a;
+}
+.loader {
+  width: 175px;
+  height: 80px;
+  display: block;
+  margin: auto;
+  background-image: radial-gradient(
+      circle 25px at 25px 25px,
+      rgb(172, 172, 172) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 50px at 50px 50px,
+      rgb(172, 172, 172) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 25px at 25px 25px,
+      rgb(172, 172, 172) 100%,
+      transparent 0
+    ),
+    linear-gradient(rgb(172, 172, 172) 50px, transparent 0);
+  background-size: 50px 50px, 100px 76px, 50px 50px, 120px 40px;
+  background-position: 0px 30px, 37px 0px, 122px 30px, 25px 40px;
+  background-repeat: no-repeat;
+  position: relative;
+  box-sizing: border-box;
+}
+.loader::after {
+  content: "";
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%, 0);
+  position: absolute;
+  border: 15px solid transparent;
+  border-bottom-color: #26184a;
+  box-sizing: border-box;
+  animation: fadePull 1s linear infinite;
+}
+.loader::before {
+  content: "";
+  left: 50%;
+  bottom: 15px;
+  transform: translate(-50%, 0);
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #26184a;
+  box-sizing: border-box;
+  animation: fadePull 1s linear infinite;
+}
+
+@keyframes fadePull {
+  0% {
+    transform: translate(-50%, 15px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, 0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -15px);
+    opacity: 0;
   }
 }

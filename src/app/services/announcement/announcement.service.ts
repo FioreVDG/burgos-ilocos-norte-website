@@ -1,5 +1,11 @@
+import {
+  GetAnnouncementsResponse,
+  UpsertAnnouncementResponse,
+  AnnouncementBody,
+} from './../../models/api/announcement-service.interface';
 import { Inject, Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
+import { QueryParams } from 'src/app/models/queryparams.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -7,15 +13,32 @@ import { HttpService } from '../http/http.service';
 export class AnnouncementService {
   constructor(@Inject(HttpService) private http: HttpService) {}
 
-  create(body: Object) {
-    return this.http.start('post', '/annoucements', body);
+  create(body: AnnouncementBody) {
+    return this.http.start<UpsertAnnouncementResponse>(
+      'post',
+      '/annoucements',
+      body
+    );
   }
 
-  getAll(query: any) {
-    return this.http.start('get', '/annoucements', {}, query);
+  getAll(query: QueryParams) {
+    return this.http.start<GetAnnouncementsResponse>(
+      'get',
+      '/annoucements',
+      {},
+      query
+    );
   }
 
-  update(body: Object, id: String) {
-    return this.http.start('put', `/annoucements/${id}`, body);
+  update(body: AnnouncementBody, id: string) {
+    return this.http.start<UpsertAnnouncementResponse>(
+      'put',
+      `/annoucements/${id}`,
+      body
+    );
+  }
+
+  markAsPinned(id: string) {
+    return this.http.start('patch', `/annoucements/pinned/${id}`);
   }
 }
