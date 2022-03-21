@@ -1,7 +1,7 @@
 <div *ngIf="!loading">
   <app-navigation></app-navigation>
 
-  <div [class]="router.url === '/welcome' ? '' : 'container'">
+  <div>
     <router-outlet></router-outlet>
   </div>
   <app-scroll-top></app-scroll-top>
