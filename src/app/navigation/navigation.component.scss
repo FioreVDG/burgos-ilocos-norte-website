@@ -86,61 +86,29 @@
   }
 }
 
-/* stroke */
-// .nav-list {
-//   .nav-item {
-//     .nav-link {
-//       position: relative;
-//       transition: 0.5s;
-//     }
-//   }
-// }
+.dropdown-menu {
+  background-color: #05bbe88b;
+  color: #fff;
 
-// .nav-list {
-//   .nav-item {
-//     .nav-link:after {
-//       position: absolute;
-//       bottom: 0;
-//       left: 0;
-//       right: 0;
-//       margin: auto;
-//       width: 0%;
-//       content: ".";
-//       color: transparent;
-//       background: #aaa;
-//       height: 1px;
-//     }
-//   }
-// }
+  background-image: linear-gradient(
+      90deg,
+      rgba(68, 189, 230, 0.511) 0%,
+      #05bbe8b8 100%
+    ),
+    url("./../../assets/images/mosaic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
 
-// .nav-list {
-//   .nav-item {
-//     .nav-link:hover:after {
-//       width: 100%;
-//     }
-//   }
-// }
-
-// .nav-item.nav-link ul li a,
-// nav.fill ul li a {
-//   position: relative;
-// }
-// .nav-item.nav-link ul li a:after,
-// nav.fill ul li a:after {
-//   position: absolute;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   margin: auto;
-//   width: 0%;
-//   content: ".";
-//   color: transparent;
-//   background: #aaa;
-//   height: 1px;
-// }
-// .nav-item.nav-link ul li a:hover:after {
-//   width: 100%;
-// }
+  .dropdown-item {
+    padding: 0.6rem 0.5rem;
+    color: #fff;
+  }
+  .dropdown-item:hover {
+    background-color: #1f91ae;
+  }
+}
 
 @media only screen and (max-width: 600px) {
   .nav {
