@@ -39,6 +39,6 @@ export class AnnouncementService {
   }
 
   markAsPinned(id: string) {
-    return this.http.start('patch', `/annoucements/pinned/${id}`);
+    return this.http.start('patch', `/annoucements/${id}/pin`);
   }
 }

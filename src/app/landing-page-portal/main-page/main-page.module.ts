@@ -1,3 +1,5 @@
+import { PublicServantsModule } from './public-servants/public-servants.module';
+import { PublicServantsComponent } from './public-servants/public-servants.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainPageRoutingModule,
     CarouselModule,
     FontAwesomeModule,
+    PublicServantsModule,
   ],
   exports: [MainPageComponent],
 })

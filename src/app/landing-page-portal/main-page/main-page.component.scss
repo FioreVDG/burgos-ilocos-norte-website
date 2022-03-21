@@ -85,6 +85,13 @@
         text-align: justify;
         font-size: 17px;
       }
+      li::marker {
+        color: #05bbe8;
+        font-size: 17px;
+      }
+      li {
+        color: #686767;
+      }
     }
     .vision-desc {
       h3 {
@@ -187,54 +194,37 @@
 
 //FOR PUBLIC SERVANTS
 .public-servants {
-  padding: 3rem 0rem;
-  background: linear-gradient(to bottom, #fff 57%, #05bbe8c6 50%);
-  .card {
-    border: none;
-    margin: 1rem 0rem;
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.218);
-  }
-  .card-content {
-    background: linear-gradient(-120deg, #f9f8fd 80%, #05bbe8 40%);
-    height: 19vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    .img-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      img {
-        width: 125%;
-        border-radius: 50%;
-      }
-    }
-    .servant-info {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-      h3,
-      p {
-        margin: 0;
-        color: #565656;
-      }
-      h3 {
-        font-size: 17px;
-        font-weight: 700;
-      }
-      .pos {
-        color: #05bbe8;
-        font-weight: 600;
-        font-size: 13.5px;
-        font-style: italic;
-      }
-      .prop {
-        font-size: 12px;
-      }
-    }
-  }
+  padding: 4rem 0rem;
+  // background: linear-gradient(to bottom, #fff 57%, #05bbe8c6 50%);
+  // background-color: #f9f8fd;
+
+  background: linear-gradient(90deg, #f9f8fd94 73%, #f9f8fd94 60%),
+    url("./../../../assets/images/mosaic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  // opacity: 0.1;
+  // .main {
+  //   padding: 3rem 0rem;
+  //   position: relative;
+  // }
+  // .main-content {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   z-index: -1;
+  //   left: 0;
+  //   bottom: 0;
+  //   // background-image: linear-gradient(45deg, #20c0bb84, #156abea5);
+  //   background-image: url("../../../assets/images/mosaic.jpg");
+  //   background-repeat: no-repeat;
+  //   background-attachment: fixed;
+  //   background-position: center center;
+  //   background-size: cover;
+  //   opacity: 0.1;
+  //   // transform: skewY(-11deg);
+  // }
 }
 
 //FOR PINNED ANNOUNCEMENT
@@ -355,37 +345,66 @@
 
 .contact-us {
   padding: 3rem 0rem;
-  background-color: #05bbe8c6;
+  // background-color: #05bbe8c6;
+  background: linear-gradient(-90deg, #f9f8fd94 68%, #05bbe892 63%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
 
   .main-content {
     padding: 3rem 0rem;
-    .contact-wrapper {
-      margin: 1rem;
-      margin-bottom: 2rem;
+    // display: flex;
+    // align-items: flex-start;
+    // justify-content: flex-start;
+    .header {
+      padding-bottom: 1rem;
+      .icons {
+        font-size: 28px;
+        color: #05bbe8;
+      }
       h3 {
-        color: #fff;
-        font-weight: 700;
-        font-size: 30px;
-        letter-spacing: 0.2rem;
-        margin-bottom: 0;
+        font-size: 16px;
+        color: #6f6f6f;
+        font-weight: 600;
       }
       p {
-        color: #7b7b7b;
-        text-align: left;
-        font-weight: 600;
-        font-size: 14px;
-        letter-spacing: 0.1rem;
-        margin: 0;
-        padding-left: 3.5rem;
+        margin: 0.3rem;
+        color: #808080;
+        font-size: 13px;
+      }
+      b {
+        color: #08809e;
       }
     }
+    // .contact-wrapper {
+    //   margin: 1rem;
+    //   margin-bottom: 2rem;
+    //   h3 {
+    //     color: #fff;
+    //     font-weight: 700;
+    //     font-size: 26px;
+    //     letter-spacing: 0.2rem;
+    //     margin-bottom: 0;
+    //   }
+    //   p {
+    //     color: #7b7b7b;
+    //     text-align: left;
+    //     font-weight: 600;
+    //     font-size: 13px;
+    //     letter-spacing: 0.1rem;
+    //     margin: 0;
+    //     padding-left: 3.5rem;
+    //   }
+    // }
   }
 }
 /* Set the size of the div element that contains the map */
 #map {
-  height: 400px;
+  height: 100%;
   /* The height is 400 pixels */
-  width: 100%;
+  width: 90%;
+  margin: auto;
   box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
   /* The width is the width of the web page */
 }

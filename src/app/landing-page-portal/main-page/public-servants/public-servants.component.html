@@ -1,0 +1,20 @@
+<div class="content">
+  <ng-container *ngFor="let item of _servant">
+    <div class="grid-1">
+      <div *ngFor="let servant of item.content" class="col-3">
+        <div class="row cards">
+          <div class="col-4 img-container">
+            <img [src]="servant.img" alt="" />
+          </div>
+          <div class="col-8 servants">
+            <h3>{{ servant.name }}</h3>
+            <p>{{ servant.position }}</p>
+          </div>
+        </div>
+        <div *ngIf="servant.misc" class="bottom-cards">
+          <p>{{ servant.misc }}</p>
+        </div>
+      </div>
+    </div></ng-container
+  >
+</div>
