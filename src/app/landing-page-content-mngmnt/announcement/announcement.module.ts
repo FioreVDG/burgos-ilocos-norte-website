@@ -7,6 +7,7 @@ import { AnnouncementRoutingModule } from './announcement-routing.module';
 import { AnnouncementComponent } from './announcement.component';
 import { AddAnnouncememntComponent } from './add-announcememnt/add-announcememnt.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { ModalsModule } from 'src/app/shared/modals/modals.module';
 
 @NgModule({
   declarations: [AnnouncementComponent, AddAnnouncememntComponent],
@@ -17,6 +18,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
+    ModalsModule,
   ],
 })
 export class AnnouncementModule {}

@@ -16,6 +16,31 @@
               class="bi bi-pin-angle-fill icon-pin"
               style="font-size: 40px; flex-direction: flex-end; cursor: pointer"
             ></i>
+
+            <div style="position: absolute; top: 10px; right: 10px">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="cardOptions"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+              <mat-menu #cardOptions="matMenu">
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="onUpdateAnnouncement(item)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button mat-menu-item color="warn" (click)="onDelete(item)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+
             <div class="card-body content">
               <h3>
                 {{
