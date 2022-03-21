@@ -95,9 +95,19 @@
           </div>
           <div class="col-6">
             <div class="container main">
+              <div
+                class="remove-icon"
+                *ngIf="imageFile"
+                (click)="onRemoveImage()"
+              >
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
               <div class="img-container">
-                <img *ngIf="imageFile" [src]="imageB64" alt="" />
-                <p *ngIf="!imageFile">No Image uploaded</p>
+                <img *ngIf="imageB64" [src]="imageB64" alt="" />
+                <p *ngIf="!imageB64">No Image uploaded</p>
               </div>
             </div>
           </div>

@@ -38,6 +38,10 @@ export class AnnouncementService {
     );
   }
 
+  delete(id: string) {
+    return this.http.start<null>('patch', `/annoucements/${id}`);
+  }
+
   markAsPinned(id: string) {
     return this.http.start('patch', `/annoucements/${id}/pin`);
   }

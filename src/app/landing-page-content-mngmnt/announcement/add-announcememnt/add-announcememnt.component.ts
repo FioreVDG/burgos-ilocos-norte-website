@@ -9,6 +9,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
+import {
+  Announcement,
+  AnnouncementBody,
+  GetTempLinkDropBox,
+  UploadFileDropBox,
+} from 'src/app/models/api/announcement-service.interface';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-announcememnt',
@@ -19,7 +26,7 @@ export class AddAnnouncememntComponent implements OnInit {
   isLinear = true;
   acceptedDocs: string = '.png, .jpeg, .jpg';
   allowedFileTypes = ['png', 'jpeg', 'jpg'];
-  imageFile: File;
+  imageFile: File | null;
   imageB64: string = '';
 
   announcementForm: FormGroup = this.fb.group({
@@ -33,18 +40,32 @@ export class AddAnnouncememntComponent implements OnInit {
   saving: boolean = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: Announcement,
     public dialogRef: MatDialogRef<AddAnnouncememntComponent>,
     private fb: FormBuilder,
     private announcement: AnnouncementService,
     private dropbox: DropboxService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.data) {
+      this.announcementForm.controls['title'].setValue(this.data.title);
+      this.announcementForm.controls['description'].setValue(
+        this.data.description
+      );
+
+      if (this.data.image)
+        this.dropbox
+          .getTempLink(this.data.image.path_lower!)
+          .pipe(map((response: GetTempLinkDropBox) => response.result.link))
+          .subscribe((link: string) => {
+            this.imageB64 = link;
+          });
+    }
+  }
 
   dropped(files: NgxFileDropEntry[]) {
     const selectedFirstFile = files[0];
-    console.log('selected File', selectedFirstFile);
 
     if (selectedFirstFile) {
       if (selectedFirstFile.fileEntry.isFile) {
@@ -59,8 +80,8 @@ export class AddAnnouncememntComponent implements OnInit {
 
           reader.readAsDataURL(file);
 
-          console.log('fileentry file', file);
           const fileType = file.type.split('/')[1];
+          console.log(fileType);
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');
@@ -69,8 +90,42 @@ export class AddAnnouncememntComponent implements OnInit {
     }
   }
 
+  onRemoveImage() {
+    this.imageFile = null;
+    this.imageB64 = '';
+  }
+
+  updateAnnouncement(announcement: AnnouncementBody) {
+    this.announcement.update(announcement, this.data._id).subscribe(
+      (_) => {
+        this.saving = false;
+        this.dialogRef.close(true);
+      },
+      (err) => {
+        console.error(err);
+        this.saving = false;
+        this.dialogRef.close(true);
+      }
+    );
+  }
+
+  createAnnouncement(announcement: AnnouncementBody) {
+    this.announcement.create(announcement).subscribe(
+      (_) => {
+        this.saving = false;
+        this.dialogRef.close(true);
+      },
+      (err) => {
+        console.error(err);
+        this.saving = false;
+        this.dialogRef.close(true);
+      }
+    );
+  }
+
   save() {
     this.saving = true;
+
     if (this.imageFile) {
       const path = '/burgos-ilocosnorte/announcements/';
       const fileType = this.imageFile.type.split('/')[1];
@@ -80,39 +135,26 @@ export class AddAnnouncememntComponent implements OnInit {
 
       this.dropbox
         .uploadFile(path, fileName, this.imageFile)
-        .subscribe((res: any) => {
+        .subscribe((res: UploadFileDropBox) => {
           const imageData = res.result;
           this.announcementImageForm.controls['image'].setValue(imageData);
 
           const image = this.announcementImageForm.getRawValue();
           const annoucement = this.announcementForm.getRawValue();
 
-          const announcementData = { ...image, ...annoucement };
+          const announcementData: AnnouncementBody = {
+            ...image,
+            ...annoucement,
+          };
 
-          this.announcement.create(announcementData).subscribe(
-            (res: any) => {
-              console.log(res);
-            },
-            (err) => {
-              console.log(err);
-            }
-          );
+          if (this.data) this.updateAnnouncement(announcementData);
+          else this.createAnnouncement(announcementData);
         });
     } else {
-      let announcementData = this.announcementForm.getRawValue();
-      this.announcement.create(announcementData).subscribe(
-        (res: any) => {
-          console.log(res);
-          this.saving = false;
-          this.dialogRef.close(true);
-        },
-        (err) => {
-          console.log(err);
-          this.saving = false;
+      const annoucement = this.announcementForm.getRawValue();
 
-          this.dialogRef.close(true);
-        }
-      );
+      if (this.data) this.updateAnnouncement(annoucement);
+      else this.createAnnouncement(annoucement);
     }
   }
 }

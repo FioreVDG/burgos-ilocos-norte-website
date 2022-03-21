@@ -29,3 +29,15 @@ export interface Announcement extends AnnouncementBody {
   _createdBy: string;
   isPinned: boolean;
 }
+
+export interface GetTempLinkDropBox {
+  headers: Headers;
+  result: files.GetTemporaryLinkResult;
+  status: number;
+}
+
+export interface UploadFileDropBox {
+  headers: Headers;
+  result: files.FileMetadata;
+  status: number;
+}
