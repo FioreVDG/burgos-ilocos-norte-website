@@ -46,25 +46,20 @@
       <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 mission-desc">
         <h3>Mission</h3>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate
-          blanditiis dolorem unde repudiandae cumque dolor eos quia nostrum,
-          quos distinctio dolore esse. Hic, illo. Saepe, neque ducimus? Eos
-          delectus fugit deleniti, corrupti ut dolore nisi saepe corporis
-          perspiciatis quidem fugiat quas tempora, obcaecati impedit nulla vel
-          dicta officiis nobis beatae?
+          Burgos shall improve the quality of life of every Burgoseño through:
         </p>
+        <ul *ngFor="let item of missions">
+          <li>{{ item }}</li>
+        </ul>
       </div>
     </div>
     <div class="row row-about">
       <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 vision-desc">
         <h3>Vision</h3>
         <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate
-          blanditiis dolorem unde repudiandae cumque dolor eos quia nostrum,
-          quos distinctio dolore esse. Hic, illo. Saepe, neque ducimus? Eos
-          delectus fugit deleniti, corrupti ut dolore nisi saepe corporis
-          perspiciatis quidem fugiat quas tempora, obcaecati impedit nulla vel
-          dicta officiis nobis beatae?
+          The renewable energy and tourism capital of the North with balanced
+          and climate-resilient community under the stewardship of firm and
+          committed leaders inhabited by empowered and God-fearing citizenry.
         </p>
       </div>
       <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container">
@@ -126,48 +121,54 @@
 </section>
 
 <section class="public-servants">
-  <div class="container-fluid">
+  <div class="row">
     <div class="one">
       <h1>Public servants</h1>
     </div>
-    <div class="row">
-      <owl-carousel-o [options]="customOptions">
-        <ng-container *ngFor="let servant of _publicServants">
-          <ng-template carouselSlide style="margin: 0rem 0.2rem">
-            <div class="card">
-              <div class="card-body card-content">
-                <div class="row">
-                  <div class="col-3 img-container">
-                    <img [src]="servant.img" alt="" />
-                  </div>
-                  <div class="col-9 servant-info">
-                    <h3>{{ servant.name }}</h3>
-                    <p class="pos">{{ servant.position }}</p>
-                    <p class="prop">{{ servant.proposition }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ng-template>
-        </ng-container>
-      </owl-carousel-o>
+    <div class="main">
+      <div class="main-content"></div>
+      <app-public-servants></app-public-servants>
     </div>
   </div>
 </section>
 
 <section class="contact-us">
   <div class="container">
-    <div class="two">
-      <h1 style="color: #fff">Contact us</h1>
+    <div class="one">
+      <h1>Contact us</h1>
     </div>
     <div class="row main-content">
       <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
         <div id="map"></div>
       </div>
       <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
-        <div class="contact-wrapper" *ngFor="let contact of _contacts">
-          <h3><i [class]="contact.icon"></i>&nbsp; {{ contact.number }}</h3>
-          <p>{{ contact.place }}</p>
+        <div class="header">
+          <i class="bi bi-bank icons"></i>
+          <h3>OFFFICE OF THE MAYOR</h3>
+          <p>
+            Location: <b>Municipal Hall, Poblacion, Burgos, Ilocos Norte</b>
+          </p>
+          <p>
+            Email Address:
+            <b>moburgosilocosnorte@gmail.com / moburgosilocosnorte@yahoo.com</b>
+          </p>
+          <p>Contact Number: <b>0915-434-9313 / 0970-814-8413</b></p>
+        </div>
+        <div class="header">
+          <i class="bi bi-geo-alt-fill icons"></i>
+          <h3>TOURISM OFFICE</h3>
+          <p>
+            Location: <b>Municipal Hall, Poblacion, Burgos, Ilocos Norte</b>
+          </p>
+          <p>
+            Email Address:
+            <b>tourismofficeburgosin@gmail.com</b>
+          </p>
+        </div>
+        <div class="header">
+          <i class="bi bi-facebook icons"></i>
+          <h3>FACEBOOK PAGE</h3>
+          <p><b>facebook.com/inburgosilocosnorte </b></p>
         </div>
       </div>
     </div>

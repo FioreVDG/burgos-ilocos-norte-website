@@ -15,6 +15,14 @@ export class MainPageComponent implements OnInit {
   @ViewChild('top') top!: ElementRef;
   faChevronCircleUp = faChevronCircleUp;
   element: any;
+  missions: any = [
+    'Industrialization;',
+    'Tourism;',
+    'Agriculture;',
+    'Environmental management and disaster resilience;',
+    'People empowerment; and',
+    'Institutional development',
+  ];
   _publicServants = [
     {
       img: '../../../assets/images/profile-sample.jpg',
