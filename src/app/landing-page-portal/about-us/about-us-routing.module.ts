@@ -6,6 +6,32 @@ const routes: Routes = [
   {
     path: '',
     component: AboutUsComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'history',
+      },
+      {
+        path: 'history',
+        loadChildren: () =>
+          import('./history/history.module').then((m) => m.HistoryModule),
+      },
+      {
+        path: 'logo-meaning',
+        loadChildren: () =>
+          import('./logo-meaning/logo-meaning.module').then(
+            (m) => m.LogoMeaningModule
+          ),
+      },
+      {
+        path: 'geographic-info',
+        loadChildren: () =>
+          import('./geographic-info/geographic-info.module').then(
+            (m) => m.GeographicInfoModule
+          ),
+      },
+    ],
   },
 ];
 

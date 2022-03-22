@@ -5,3 +5,25 @@
   </div>
   <p>Loading Announcements...</p>
 </div>
+<div class="container wrapper" *ngIf="!loading && announcements.length">
+  <div class="row">
+    <ng-container *ngFor="let item of announcements">
+      <div class="col-3">
+        <div class="card">
+          <img
+            src="../../../assets/images/empty-image.png"
+            alt=""
+            class="card-img-top"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ item.title }}</h5>
+            <p class="card-text">{{ item.createdAt | date: "longDate" }}</p>
+            <a style="color: #05bbe8; font-size: 13.5px; font-weight: 600"
+              >READ MORE</a
+            >
+          </div>
+        </div>
+      </div></ng-container
+    >
+  </div>
+</div>

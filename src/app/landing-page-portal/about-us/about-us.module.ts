@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -7,7 +8,12 @@ import { NoContentModule } from 'src/app/no-content/no-content.module';
 
 @NgModule({
   declarations: [AboutUsComponent],
-  imports: [CommonModule, AboutUsRoutingModule, NoContentModule],
+  imports: [
+    CommonModule,
+    AboutUsRoutingModule,
+    NoContentModule,
+    MaterialModule,
+  ],
   exports: [AboutUsComponent],
 })
 export class AboutUsModule {}
