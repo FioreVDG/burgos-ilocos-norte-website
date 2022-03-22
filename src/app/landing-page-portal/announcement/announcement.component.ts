@@ -1,3 +1,6 @@
+import { ViewAnnouncementComponent } from './view-announcement/view-announcement.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DropboxService } from './../../services/dropbox/dropbox.service';
 import { AnnouncementService } from './../../services/announcement/announcement.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +21,11 @@ export class AnnouncementComponent implements OnInit {
     pageNumber: 1,
     totalDocuments: 0,
   };
-  constructor(private announcement: AnnouncementService) {}
+  constructor(
+    private announcement: AnnouncementService,
+    private dbx: DropboxService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -35,6 +42,9 @@ export class AnnouncementComponent implements OnInit {
       this.loading = false;
       this.announcements = res.env.announcements;
       this.pagination.totalDocuments = res.total_docs;
+      this.announcements.forEach(async (el: any) => {
+        el.imgUrl = await this.getTempLink(el.image?.path_display);
+      });
     });
   }
 
@@ -52,6 +62,21 @@ export class AnnouncementComponent implements OnInit {
       console.log(res);
       this.announcements = res.env.announcements;
       this.pagination.totalDocuments = res.total_docs;
+    });
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
+  }
+
+  readMore(event: any) {
+    console.log(event);
+    this.dialog.open(ViewAnnouncementComponent, {
+      height: 'auto',
+      width: '60%',
+      data: event,
     });
   }
 }

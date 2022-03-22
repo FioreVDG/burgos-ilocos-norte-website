@@ -18,7 +18,9 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">{{ item.createdAt | date: "longDate" }}</p>
-            <a style="color: #05bbe8; font-size: 13.5px; font-weight: 600"
+            <a
+              (click)="readMore(item)"
+              style="color: #05bbe8; font-size: 13.5px; font-weight: 600"
               >READ MORE</a
             >
           </div>
