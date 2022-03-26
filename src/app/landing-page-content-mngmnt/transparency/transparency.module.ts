@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { TransparencyRoutingModule } from './transparency-routing.module';
 import { TransparencyComponent } from './transparency.component';
 import { AddTransparencyComponent } from './add-transparency/add-transparency.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [TransparencyComponent, AddTransparencyComponent],
@@ -17,6 +18,7 @@ import { AddTransparencyComponent } from './add-transparency/add-transparency.co
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
+    AngularEditorModule,
   ],
 })
 export class TransparencyModule {}

@@ -169,6 +169,10 @@ export class MainPageComponent implements OnInit {
       case 'about-us':
         this.scrollToLocation(event);
         break;
+
+      case 'pinned':
+        this.scrollToLocation(event);
+        break;
     }
   }
 

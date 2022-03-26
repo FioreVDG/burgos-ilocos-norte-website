@@ -4,23 +4,17 @@
   <div class="one">
     <h1>Transparencies</h1>
   </div>
-  <ng-container *ngFor="let item of transparencies">
-    <!-- <div class="legislative-content">
-      <h3>{{ item.title }}</h3>
-      <p class="sub-header">
-        Posted in {{ item.createdAt | date: "Y" }} {{ item.legislativeType }}
-      </p>
-      <div #temp id="temp" [innerHTML]="item.layout"></div>
-    </div>
-    <hr /> -->
-    <div class="row">
-      <div class="col-3">
-        <div class="card">
+  <div class="row">
+    <ng-container *ngFor="let item of transparencies">
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+        <div class="card transparency" (click)="viewTransparency(item)">
           <div class="card-body">
             <h4 class="card-text">{{ item.transparencyType }}</h4>
           </div>
+          <div class="arrow"></div>
+          <p>Read more</p>
         </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>

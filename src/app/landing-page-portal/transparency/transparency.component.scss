@@ -84,3 +84,40 @@
     font-size: 14px;
   }
 }
+
+.transparency {
+  height: 25vh;
+  width: 100%;
+  border: none;
+  background-color: #f9f8fd;
+  margin: 1.5rem 0rem;
+  .card-body {
+    background: linear-gradient(to bottom, #47c2d7, #279eb2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h4 {
+      color: #fff;
+    }
+  }
+  .arrow {
+    margin: auto;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-top: 20px solid #279eb2;
+  }
+  p {
+    margin: auto;
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.218);
+    p {
+      font-weight: 500;
+      color: #05bbe8;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-<h3 mat-dialog-title>Add Legislative</h3>
+<h3 mat-dialog-title>Add Transparency</h3>
 <mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
   >close</mat-icon
 >
@@ -22,8 +22,9 @@
             *ngIf="transparencyForm.get('title')?.hasError('required')"
           >
             Please enter a title
-          </mat-error> </mat-form-field
-        ><mat-form-field style="display: block" appearance="fill">
+          </mat-error>
+        </mat-form-field>
+        <!-- <mat-form-field style="display: block" appearance="fill">
           <mat-label>Description</mat-label>
           <textarea
             matInput
@@ -37,7 +38,7 @@
           >
             Please enter a description
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         <mat-form-field style="display: block" appearance="fill">
           <mat-label>Transparency Type</mat-label>
           <mat-select required formControlName="transparencyType">
@@ -52,6 +53,12 @@
             Please select type
           </mat-error>
         </mat-form-field>
+
+        <angular-editor
+          formControlName="description"
+          required
+          [config]="config"
+        ></angular-editor>
         <div>
           <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>

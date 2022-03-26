@@ -30,7 +30,7 @@ export class LandingPagePortalComponent implements OnInit {
       this.currentURL = this.router.url;
       const routeEvent = this.router.events.subscribe(
         (event: NavigationEvent) => {
-          if (event instanceof NavigationStart && ev == true) {
+          if (event instanceof NavigationStart) {
           } else if (event instanceof NavigationEnd) {
             routeEvent.unsubscribe();
             setTimeout(() => {

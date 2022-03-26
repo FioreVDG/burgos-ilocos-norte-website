@@ -1,0 +1,53 @@
+@use "~@angular/material" as mat;
+@import "~@angular/material/theming";
+@include mat-core();
+
+$primary: (
+  300: #05bbe8,
+  500: #05bbe8,
+  900: #05bbe8,
+  contrast: (
+    300: #fff,
+    500: #fff,
+    900: #fff,
+  ),
+);
+
+$accent: (
+  300: #1d1d1d,
+  500: #1d1d1d,
+  900: #1d1d1d,
+  contrast: (
+    300: #fff,
+    500: #fff,
+    900: #fff,
+  ),
+);
+
+$warn: (
+  300: #e55353,
+  500: #e55353,
+  900: #e55353,
+  contrast: (
+    300: #fff,
+    500: #fff,
+    900: #fff,
+  ),
+);
+
+$burgos-primary: mat-palette($primary);
+$burgos-accent: mat-palette($accent);
+$burgos-warn: mat-palette($warn);
+
+$burgos-theme: mat-light-theme(
+  (
+    color: (
+      primary: $burgos-primary,
+      accent: $burgos-accent,
+      warn: $burgos-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($burgos-theme);
+@include mat.all-component-themes($burgos-theme);

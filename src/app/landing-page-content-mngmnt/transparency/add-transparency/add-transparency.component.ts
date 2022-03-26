@@ -11,6 +11,7 @@ import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TransparencyService } from 'src/app/services/transparency/transparency.service';
 import { GetTempLinkDropBox } from 'src/app/models/api/announcement-service.interface';
 import { map } from 'rxjs/operators';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-transparency',
@@ -45,6 +46,37 @@ export class AddTransparencyComponent implements OnInit {
   transparencyFileForm: FormGroup = this.fb.group({
     image: new FormControl(''),
   });
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '25rem',
+    placeholder: 'Enter description here...',
+    translate: 'no',
+    defaultParagraphSeparator: '',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['backgroundColor', 'htmlCode', 'insertImage', 'insertVideo', 'htmlCode'],
+    ],
+    customClasses: [
+      {
+        name: 'For Heading 1',
+        class: 'titleText',
+        tag: 'h1',
+      },
+      {
+        name: 'For Heading 2',
+        class: 'titleText',
+        tag: 'h2',
+      },
+      {
+        name: 'For Heading 3',
+        class: 'titleText',
+        tag: 'h3',
+      },
+    ],
+  };
 
   saving: boolean = false;
   constructor(

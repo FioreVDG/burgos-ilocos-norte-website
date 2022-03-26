@@ -1,3 +1,5 @@
+import { ViewTransparencyComponent } from './view-transparency/view-transparency.component';
+import { MatDialog } from '@angular/material/dialog';
 import { TransparencyService } from './../../services/transparency/transparency.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 export class TransparencyComponent implements OnInit {
   transparencies: any = [];
   loading: boolean = false;
-  constructor(private transparency: TransparencyService) {}
+  constructor(
+    private transparency: TransparencyService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -21,6 +26,15 @@ export class TransparencyComponent implements OnInit {
       console.log(res);
       this.transparencies = res.env.transparencies;
       this.loading = false;
+    });
+  }
+
+  viewTransparency(view: any) {
+    console.log(view);
+    this.dialog.open(ViewTransparencyComponent, {
+      width: 'auto',
+      height: 'auto',
+      data: view,
     });
   }
 }
