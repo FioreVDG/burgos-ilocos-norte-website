@@ -1,0 +1,178 @@
+<h3 mat-dialog-title>Add Legislative</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<mat-dialog-content>
+  <form [formGroup]="careerForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Title</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="title"
+            placeholder="Enter title"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('title')?.hasError('required')">
+            Please enter a title
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Pay Grade</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="payGrade"
+            placeholder="Enter payGrade"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('payGrade')?.hasError('required')">
+            Please enter a Pay Grade
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Department</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="department"
+            placeholder="Enter department"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('department')?.hasError('required')">
+            Please enter a Department
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Monthly Salary</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="monthlySalary"
+            placeholder="Enter monthlySalary"
+            required
+          />
+
+          <mat-error
+            *ngIf="careerForm.get('monthlySalary')?.hasError('required')"
+          >
+            Please enter a Monthly Salary
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Education</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="education"
+            placeholder="Enter education"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('education')?.hasError('required')">
+            Please enter Education
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Training</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="training"
+            placeholder="Enter training"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('training')?.hasError('required')">
+            Please enter Training
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Experience</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="experience"
+            placeholder="Enter experience"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('experience')?.hasError('required')">
+            Please enter Experience
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Eligibility</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="eligibility"
+            placeholder="Enter eligibility"
+            required
+          />
+
+          <mat-error
+            *ngIf="careerForm.get('eligibility')?.hasError('required')"
+          >
+            Please enter Eligibility
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Competency</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="competency"
+            placeholder="Enter competency"
+            required
+          />
+
+          <mat-error *ngIf="careerForm.get('competency')?.hasError('required')">
+            Please enter Competency
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button
+    *ngIf="!data"
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="careerForm.invalid || saving"
+  >
+    {{ saving ? "Saving . . ." : "Create Career" }}
+  </button>
+  <button
+    *ngIf="data"
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="careerForm.invalid || saving"
+  >
+    {{ saving ? "Saving . . ." : "Update Career" }}
+  </button></mat-dialog-actions
+>

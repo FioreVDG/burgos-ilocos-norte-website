@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -8,9 +8,12 @@ import {} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+  @Output() changeNavigation: any = new EventEmitter<any>();
   constructor(public router: Router) {}
 
-  ngOnInit(): void {
-    console.log(this.router.url);
+  ngOnInit(): void {}
+
+  changeRoute(route: any) {
+    this.changeNavigation.emit({ loading: true, route: route });
   }
 }

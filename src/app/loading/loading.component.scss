@@ -1,88 +1,254 @@
-// Colors variables
-$primary: #05bbe8;
-$accent: #c0c0c0;
+// // Colors variables
+// $primary: #05bbe8;
+// $accent: #c0c0c0;
 
-// Container and shapes dimentions
-$containerDimentions: 30px;
-$shapeDimentions: 12px;
-//shape translate amount
-$amount: 18px;
+// // Container and shapes dimentions
+// $containerDimentions: 30px;
+// $shapeDimentions: 12px;
+// //shape translate amount
+// $amount: 18px;
 
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+// .centered {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+// // custom translation for each shape in an animation
+// @mixin customTranslate($shape, $tx, $ty) {
+//   @if $shape == 1 {
+//     transform: translate($tx, $ty);
+//   } @else if $shape == 2 {
+//     transform: translate(-$ty, $tx);
+//   } @else if $shape == 3 {
+//     transform: translate($ty, -$tx);
+//   } @else if $shape == 4 {
+//     transform: translate(-$tx, -$ty);
+//   }
+// }
+
+// .wrapper {
+//   height: 100%;
+//   width: 100vw;
+// }
+
+// h3 {
+//   text-align: center;
+//   color: #646464;
+//   font-weight: 600;
+//   letter-spacing: 0.1rem;
+//   font-size: 15px;
+// }
+
+// b {
+//   color: #05bbe8;
+//   text-transform: uppercase;
+// }
+
+// .containerss {
+//   position: relative;
+//   width: $containerDimentions;
+//   height: $containerDimentions;
+//   animation: rotation 1s infinite;
+
+//   .shape {
+//     position: absolute;
+//     width: $shapeDimentions;
+//     height: $shapeDimentions;
+//     border-radius: 2px;
+//     &.shape-1 {
+//       left: 0;
+//       background-color: $primary;
+//     }
+//     &.shape-2 {
+//       right: 0;
+//       background-color: $accent;
+//     }
+//     &.shape-3 {
+//       bottom: 0;
+//       background-color: $accent;
+//     }
+//     &.shape-4 {
+//       bottom: 0;
+//       right: 0;
+//       background-color: $primary;
+//     }
+//   }
+//   @for $i from 1 through 4 {
+//     .shape-#{$i} {
+//       animation: shape#{$i} 2s linear infinite;
+//     }
+//   }
+// }
+
+// @keyframes rotation {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+
+// @for $i from 1 through 4 {
+//   @keyframes shape#{$i} {
+//     0% {
+//       transform: translate(0, 0);
+//     }
+//     25% {
+//       @include customTranslate($i, 0, $amount);
+//     }
+//     50% {
+//       @include customTranslate($i, $amount, $amount);
+//     }
+//     75% {
+//       @include customTranslate($i, $amount, 0);
+//     }
+//   }
+// }
+.body {
+  background-color: #f9f8fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
-
-// custom translation for each shape in an animation
-@mixin customTranslate($shape, $tx, $ty) {
-  @if $shape == 1 {
-    transform: translate($tx, $ty);
-  } @else if $shape == 2 {
-    transform: translate(-$ty, $tx);
-  } @else if $shape == 3 {
-    transform: translate($ty, -$tx);
-  } @else if $shape == 4 {
-    transform: translate(-$tx, -$ty);
-  }
+p {
+  margin-top: 8rem;
+  margin-bottom: 0;
 }
-
-.wrapper {
-  height: 100%;
-  width: 100vw;
-}
-
-h3 {
-  text-align: center;
-  color: #646464;
-  font-weight: 600;
-  letter-spacing: 0.1rem;
-  font-size: 15px;
-}
-
-b {
-  color: #05bbe8;
-  text-transform: uppercase;
-}
-
-.containerss {
+.containers {
   position: relative;
-  width: $containerDimentions;
-  height: $containerDimentions;
-  animation: rotation 1s infinite;
-
-  .shape {
-    position: absolute;
-    width: $shapeDimentions;
-    height: $shapeDimentions;
-    border-radius: 2px;
-    &.shape-1 {
-      left: 0;
-      background-color: $primary;
-    }
-    &.shape-2 {
-      right: 0;
-      background-color: $accent;
-    }
-    &.shape-3 {
-      bottom: 0;
-      background-color: $accent;
-    }
-    &.shape-4 {
-      bottom: 0;
-      right: 0;
-      background-color: $primary;
-    }
-  }
-  @for $i from 1 through 4 {
-    .shape-#{$i} {
-      animation: shape#{$i} 2s linear infinite;
-    }
-  }
 }
 
-@keyframes rotation {
+.windmill {
+  position: relative;
+}
+
+// .line {
+//   position: absolute;
+//   width: 300px;
+//   height: 5px;
+//   border-radius: 10px;
+//   background-color: #333;
+//   left: -150px;
+//   top: 100px;
+//   z-index: 1;
+// }
+
+// .line:before {
+//   content: "";
+//   position: absolute;
+//   background-color: #6a994e;
+//   width: 100px;
+//   height: 50px;
+//   border-radius: 50px 50px 0 0;
+//   top: -50px;
+//   left: 50px;
+//   box-shadow: 100px 0 #a7c957;
+// }
+
+// .line:after {
+//   content: "";
+//   position: absolute;
+//   background-color: #6a994e;
+//   width: 50px;
+//   height: 25px;
+//   border-radius: 50px 50px 0 0;
+//   top: -25px;
+//   left: 10px;
+//   box-shadow: 50px 0 #a7c957, 105px 0 #6a994e, 195px 0 #6a994e, 225px 0 #a7c957;
+// }
+
+.mill {
+  position: absolute;
+  border-bottom: 130px solid #333;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+  width: 10px;
+  height: 0;
+  top: -28px;
+  left: -17px;
+  z-index: 2;
+}
+
+// .mill:before {
+//   position: absolute;
+//   content: "";
+//   border-bottom: 120px solid #ab3428;
+//   border-right: 22px solid transparent;
+//   border-left: 22px solid transparent;
+//   width: 70px;
+//   height: 0;
+//   top: 7px;
+//   left: -16.5px;
+// }
+
+// .mill:after {
+//   position: absolute;
+//   content: "";
+//   background-color: #333;
+//   width: 20px;
+//   height: 5px;
+//   border-radius: 10px;
+//   left: -2px;
+//   top: 20px;
+//   box-shadow: 20px 40px #333, -10px 80px #333, 65px 5px #333, 70px 20px #333,
+//     50px 80px #333, 55px 90px #333, 15px 95px #333, 10px 30px #333;
+// }
+
+// .door {
+//   position: absolute;
+//   background-color: #621708;
+//   width: 25px;
+//   height: 40px;
+//   border-radius: 30px 30px 0 0;
+//   border: 5px solid #333;
+//   box-shadow: inset 1px 7px rgba(0, 0, 0, 0.2);
+//   top: 55px;
+//   left: -10px;
+//   z-index: 3;
+// }
+
+// .door:before {
+//   position: absolute;
+//   content: "";
+//   border-bottom: 65px solid #333;
+//   border-right: 65px solid transparent;
+//   border-left: 65px solid transparent;
+//   height: 0;
+//   width: 0;
+//   top: -145px;
+//   left: -55px;
+// }
+
+// .door:after {
+//   position: absolute;
+//   content: "";
+//   border-bottom: 50px solid #2d728f;
+//   border-right: 50px solid transparent;
+//   border-left: 50px solid transparent;
+//   height: 0;
+//   width: 0;
+//   top: -136px;
+//   left: -40px;
+// }
+
+.fan {
+  position: absolute;
+  background-color: #333;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  left: -7px;
+  top: -55px;
+  z-index: 4;
+  animation: spin 1.2s infinite linear;
+}
+
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -91,19 +257,70 @@ b {
   }
 }
 
-@for $i from 1 through 4 {
-  @keyframes shape#{$i} {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      @include customTranslate($i, 0, $amount);
-    }
-    50% {
-      @include customTranslate($i, $amount, $amount);
-    }
-    75% {
-      @include customTranslate($i, $amount, 0);
-    }
+.wingOne,
+.wingTwo,
+.wingThree,
+.wingFour {
+  position: absolute;
+  width: 5px;
+  border: 5px solid #333;
+  height: 25px;
+  background-color: #e6e6ea;
+  border-radius: 10px;
+}
+
+.wingOne:before,
+.wingTwo:before,
+.wingThree:before,
+.wingFour:before {
+  position: absolute;
+  content: "";
+  background-color: #3b8ea5;
+  box-shadow: inset -5px 0 #05bbe8;
+  border: 5px solid #333;
+  width: 15px;
+  height: 65px;
+  top: 17px;
+  left: -10px;
+}
+
+.wingOne {
+  left: 5px;
+  top: 15px;
+}
+
+.wingTwo {
+  transform: rotate(90deg);
+  top: -5px;
+  left: -15px;
+}
+
+.wingThree {
+  transform: rotate(-90deg);
+  top: -5px;
+  left: 25px;
+}
+
+.wingFour {
+  transform: rotate(180deg);
+  top: -25px;
+  left: 5px;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-30px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(30px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

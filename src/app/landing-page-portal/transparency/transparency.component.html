@@ -1,1 +1,26 @@
-<app-no-content></app-no-content>
+<app-no-content *ngIf="!loading && !transparencies?.length"></app-no-content>
+<div class="container loading-wrap" *ngIf="loading"></div>
+<div *ngIf="!loading" class="container">
+  <div class="one">
+    <h1>Transparencies</h1>
+  </div>
+  <ng-container *ngFor="let item of transparencies">
+    <!-- <div class="legislative-content">
+      <h3>{{ item.title }}</h3>
+      <p class="sub-header">
+        Posted in {{ item.createdAt | date: "Y" }} {{ item.legislativeType }}
+      </p>
+      <div #temp id="temp" [innerHTML]="item.layout"></div>
+    </div>
+    <hr /> -->
+    <div class="row">
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-text">{{ item.transparencyType }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

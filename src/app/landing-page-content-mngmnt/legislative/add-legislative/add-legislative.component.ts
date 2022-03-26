@@ -9,6 +9,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { LegislativeService } from 'src/app/services/legislative/legislative.service';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
+import { GetTempLinkDropBox } from 'src/app/models/api/announcement-service.interface';
+import { map } from 'rxjs/operators';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-add-legislative',
@@ -33,6 +36,37 @@ export class AddLegislativeComponent implements OnInit {
     image: new FormControl(''),
   });
 
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '25rem',
+    placeholder: 'Enter description here...',
+    translate: 'no',
+    defaultParagraphSeparator: '',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['backgroundColor', 'htmlCode', 'insertImage', 'insertVideo', 'htmlCode'],
+    ],
+    customClasses: [
+      {
+        name: 'For Heading 1',
+        class: 'titleText',
+        tag: 'h1',
+      },
+      {
+        name: 'For Heading 2',
+        class: 'titleText',
+        tag: 'h2',
+      },
+      {
+        name: 'For Heading 3',
+        class: 'titleText',
+        tag: 'h3',
+      },
+    ],
+  };
+
   saving: boolean = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -42,7 +76,26 @@ export class AddLegislativeComponent implements OnInit {
     private dropbox: DropboxService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+    if (this.data) {
+      this.legislativeForm.controls['title'].setValue(this.data.title);
+      this.legislativeForm.controls['description'].setValue(
+        this.data.description
+      );
+      this.legislativeForm.controls['legislativeType'].setValue(
+        this.data.legislativeType
+      );
+
+      if (this.data.file)
+        this.dropbox
+          .getTempLink(this.data.file.path_lower!)
+          .pipe(map((response: GetTempLinkDropBox) => response.result.link))
+          .subscribe((link: string) => {
+            this.imageB64 = link;
+          });
+    }
+  }
 
   createLegislative(legislative: any) {
     this.legislative.create(legislative).subscribe(
@@ -85,6 +138,25 @@ export class AddLegislativeComponent implements OnInit {
     }
   }
 
+  onRemoveImage() {
+    this.imageFile = null;
+    this.imageB64 = '';
+  }
+
+  updateLegislative(legislative: any) {
+    this.legislative.update(legislative, this.data._id).subscribe(
+      (res: any) => {
+        this.saving = false;
+        this.dialogRef.close(true);
+      },
+      (err) => {
+        console.log(err);
+        this.saving = false;
+        this.dialogRef.close(true);
+      }
+    );
+  }
+
   save() {
     this.saving = true;
     if (this.imageFile) {
@@ -110,8 +182,8 @@ export class AddLegislativeComponent implements OnInit {
             yearPosted,
           };
 
-          if (this.data) {
-          } else this.createLegislative(legislativeData);
+          if (this.data) this.updateLegislative(legislativeData);
+          else this.createLegislative(legislativeData);
         });
     } else {
       const legislative = this.legislativeForm.getRawValue();
@@ -122,8 +194,8 @@ export class AddLegislativeComponent implements OnInit {
         yearPosted,
       };
 
-      if (this.data) {
-      } else this.createLegislative(legislativeData);
+      if (this.data) this.updateLegislative(legislativeData);
+      else this.createLegislative(legislativeData);
     }
   }
 }

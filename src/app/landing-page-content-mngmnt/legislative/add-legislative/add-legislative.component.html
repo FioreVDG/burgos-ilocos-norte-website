@@ -20,20 +20,6 @@
 
           <mat-error *ngIf="legislativeForm.get('title')?.hasError('required')">
             Please enter a title
-          </mat-error> </mat-form-field
-        ><mat-form-field style="display: block" appearance="fill">
-          <mat-label>Description</mat-label>
-          <textarea
-            matInput
-            formControlName="description"
-            required
-            placeholder="Enter description..."
-            rows="7"
-          ></textarea
-          ><mat-error
-            *ngIf="legislativeForm.get('description')?.hasError('required')"
-          >
-            Please enter a description
           </mat-error>
         </mat-form-field>
         <mat-form-field style="display: block" appearance="fill">
@@ -48,6 +34,30 @@
             Please select type
           </mat-error>
         </mat-form-field>
+        <!-- <mat-form-field style="display: block" appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            required
+            placeholder="Enter description..."
+            rows="7"
+          ></textarea
+          ><mat-error
+            *ngIf="legislativeForm.get('description')?.hasError('required')"
+          >
+            Please enter a description
+          </mat-error>
+        </mat-form-field> -->
+        <angular-editor
+          formControlName="description"
+          required
+          [config]="config"
+        ></angular-editor
+        >\
+        <div class="html">
+          {{ legislativeForm.value.description }}
+        </div>
         <div>
           <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
@@ -116,12 +126,22 @@
       <ng-template matStepLabel>Done</ng-template>
       <div mat-dialog-actions align="center">
         <button
+          *ngIf="!data"
           mat-flat-button
           color="primary"
           (click)="save()"
           [disabled]="legislativeForm.invalid || saving"
         >
           {{ saving ? "Saving . . ." : "Create Legislative" }}
+        </button>
+        <button
+          *ngIf="data"
+          mat-flat-button
+          color="primary"
+          (click)="save()"
+          [disabled]="legislativeForm.invalid || saving"
+        >
+          {{ saving ? "Saving . . ." : "Update Legislative" }}
         </button>
       </div>
     </mat-step>

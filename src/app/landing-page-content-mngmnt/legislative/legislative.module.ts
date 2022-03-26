@@ -7,6 +7,7 @@ import { LegislativeRoutingModule } from './legislative-routing.module';
 import { LegislativeComponent } from './legislative.component';
 import { AddLegislativeComponent } from './add-legislative/add-legislative.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [LegislativeComponent, AddLegislativeComponent],
@@ -17,6 +18,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     FormsModule,
     ReactiveFormsModule,
     NgxFileDropModule,
+    AngularEditorModule,
   ],
 })
 export class LegislativeModule {}

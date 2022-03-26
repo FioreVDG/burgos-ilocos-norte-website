@@ -1,1 +1,22 @@
-<app-no-content></app-no-content>
+<app-no-content *ngIf="!loading && !legislatives?.length"></app-no-content>
+<div class="container loading-wrap" *ngIf="loading">
+  <div class="scale-in-center">
+    <i class="bi bi-megaphone-fill icon"></i>
+  </div>
+  <p>Loading Legislatives...</p>
+</div>
+<div *ngIf="!loading" class="container">
+  <div class="one">
+    <h1>Legislatives</h1>
+  </div>
+  <ng-container *ngFor="let item of legislatives">
+    <div class="legislative-content">
+      <h3>{{ item.title }}</h3>
+      <p class="sub-header">
+        Posted in {{ item.createdAt | date: "Y" }} {{ item.legislativeType }}
+      </p>
+      <div #temp id="temp" [innerHTML]="item.layout"></div>
+    </div>
+    <hr />
+  </ng-container>
+</div>

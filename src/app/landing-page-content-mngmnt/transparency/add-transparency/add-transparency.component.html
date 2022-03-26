@@ -1,0 +1,143 @@
+<h3 mat-dialog-title>Add Legislative</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<mat-dialog-content>
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper
+    ><div style="padding: 1rem"></div>
+    <mat-step [stepControl]="transparencyForm">
+      <form [formGroup]="transparencyForm">
+        <ng-template matStepLabel>Legislative Information</ng-template>
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Title</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="title"
+            placeholder="Enter title"
+            required
+          />
+
+          <mat-error
+            *ngIf="transparencyForm.get('title')?.hasError('required')"
+          >
+            Please enter a title
+          </mat-error> </mat-form-field
+        ><mat-form-field style="display: block" appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            formControlName="description"
+            required
+            placeholder="Enter description..."
+            rows="7"
+          ></textarea
+          ><mat-error
+            *ngIf="transparencyForm.get('description')?.hasError('required')"
+          >
+            Please enter a description
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field style="display: block" appearance="fill">
+          <mat-label>Transparency Type</mat-label>
+          <mat-select required formControlName="transparencyType">
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{ type }}
+            </mat-option> </mat-select
+          ><mat-error
+            *ngIf="
+              transparencyForm.get('transparencyType')?.hasError('required')
+            "
+          >
+            Please select type
+          </mat-error>
+        </mat-form-field>
+        <div>
+          <button mat-flat-button class="primary" matStepperNext>
+            Next &nbsp;<mat-icon>fast_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="transparencyFileForm">
+      <ng-template matStepLabel>Select File or Image (Optional)</ng-template>
+      <div style="padding: 1rem"></div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-6">
+            <div class="wrapper" align="center">
+              <ngx-file-drop
+                dropZoneClassName="drop-zone"
+                contentClassName="drop-zone-content"
+                browseBtnClassName="drop-zone-btn"
+                dropZoneLabel="Drop files here"
+                (onFileDrop)="dropped($event)"
+              >
+                <ng-template
+                  ngx-file-drop-content-tmp
+                  let-openFileSelector="openFileSelector"
+                >
+                  <ng-container>
+                    <div class="d-none d-md-block">
+                      <mat-icon
+                        color="primary"
+                        style="font-size: 40px; color: #05bbe8"
+                        >cloud_upload</mat-icon
+                      >
+                      <h3 style="margin: 0">Drop file to upload</h3>
+                      <p>or</p>
+                    </div>
+
+                    <button
+                      mat-flat-button
+                      class="primary"
+                      (click)="openFileSelector()"
+                    >
+                      Browse File
+                    </button>
+
+                    <p style="margin-top: 1rem">
+                      Accepted Format/s: {{ acceptedDocs }}
+                    </p>
+                  </ng-container>
+                </ng-template>
+              </ngx-file-drop>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="container main"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="padding: 1rem">
+        <button mat-flat-button class="primary" matStepperNext>
+          Next &nbsp;<mat-icon>fast_forward</mat-icon>
+        </button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div mat-dialog-actions align="center">
+        <button
+          *ngIf="!data"
+          mat-flat-button
+          color="primary"
+          (click)="save()"
+          [disabled]="transparencyForm.invalid || saving"
+        >
+          {{ saving ? "Saving . . ." : "Create Transparency" }}
+        </button>
+        <button
+          *ngIf="data"
+          mat-flat-button
+          color="primary"
+          (click)="save()"
+          [disabled]="transparencyForm.invalid || saving"
+        >
+          {{ saving ? "Saving . . ." : "Update Transparency" }}
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>

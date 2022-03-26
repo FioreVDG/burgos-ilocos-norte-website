@@ -5,9 +5,10 @@ import { CommonModule } from '@angular/common';
 import { CareerRoutingModule } from './career-routing.module';
 import { CareerComponent } from './career.component';
 import { MaterialModule } from 'src/app/material/material.module';
+import { AddCareerComponent } from './add-career/add-career.component';
 
 @NgModule({
-  declarations: [CareerComponent],
+  declarations: [CareerComponent, AddCareerComponent],
   imports: [
     CommonModule,
     CareerRoutingModule,

@@ -1,1 +1,83 @@
-<p>tourism works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="one">
+      <h1>Manage Tourist Spots</h1>
+    </div>
+    <div *ngIf="!loading" class="container">
+      <div class="row">
+        <div *ngFor="let item of tourisms" class="col-3">
+          <div class="card add-announcement">
+            <div style="position: absolute; top: 10px; right: 10px">
+              <button
+                mat-icon-button
+                [matMenuTriggerFor]="cardOptions"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+              <mat-menu #cardOptions="matMenu">
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="onUpdateTouristSpot(item)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button mat-menu-item color="warn" (click)="onDelete(item._id)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+
+            <div class="card-body content">
+              <h3>
+                {{
+                  item.title.slice(0, 20) +
+                    (item.title.length > 18 ? "..." : "") || ""
+                }}
+              </h3>
+              <p>
+                {{
+                  item.location.slice(0, 30) +
+                    (item.location.length > 27 ? "..." : "") || ""
+                }}
+              </p>
+              <p>
+                {{
+                  item.description.slice(0, 30) +
+                    (item.description.length > 27 ? "..." : "") || ""
+                }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div (click)="addTouristSpot()" class="card add-announcement">
+            <div class="card-body content">
+              <i class="bi bi-plus-square-dotted icon"></i>
+              <h3 style="text-align: center">Add Tourist Spots</h3>
+            </div>
+          </div>
+        </div>
+
+        <mat-paginator
+          [length]="pagination.totalDocuments"
+          [pageSize]="pagination.pageSize"
+          [pageSizeOptions]="[10, 25, 100, 200, 500]"
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+    <div class="container loading-wrap" *ngIf="loading">
+      <div class="scale-in-center">
+        <i class="bi bi-bank2 icon"></i>
+      </div>
+      <p>Loading Tourist Spots...</p>
+    </div>
+  </div>
+</div>

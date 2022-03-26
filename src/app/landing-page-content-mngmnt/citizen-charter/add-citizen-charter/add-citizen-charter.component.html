@@ -1,0 +1,38 @@
+<h3 mat-dialog-title>Add Legislative</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<mat-dialog-content>
+  <form [formGroup]="citizenCharterForm">
+    <angular-editor
+      formControlName="description"
+      required
+      [config]="config"
+    ></angular-editor>
+  </form>
+  <div class="html">
+    {{ citizenCharterForm.value.description }}
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div mat-dialog-actions align="center">
+    <button
+      *ngIf="!data"
+      mat-flat-button
+      color="primary"
+      (click)="save()"
+      [disabled]="citizenCharterForm.invalid || saving"
+    >
+      {{ saving ? "Saving . . ." : "Create Legislative" }}
+    </button>
+    <!-- <button
+          *ngIf="data"
+          mat-flat-button
+          color="primary"
+          (click)="save()"
+          [disabled]="citizenCharterForm.invalid || saving"
+        >
+          {{ saving ? "Saving . . ." : "Update Legislative" }}
+        </button> -->
+  </div>
+</mat-dialog-actions>

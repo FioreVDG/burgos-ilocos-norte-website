@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueryParams } from 'src/app/models/queryparams.interface';
 import { PageEvent } from '@angular/material/paginator';
 import { AddLegislativeComponent } from './add-legislative/add-legislative.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-legislative',
@@ -21,7 +22,8 @@ export class LegislativeComponent implements OnInit {
 
   constructor(
     private legislative: LegislativeService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sb: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -62,10 +64,34 @@ export class LegislativeComponent implements OnInit {
 
   onUpdateLegislative(event: any) {
     console.log(event);
+    this.dialog
+      .open(AddLegislativeComponent, {
+        width: '100%',
+        height: 'auto',
+        disableClose: true,
+        data: event,
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) this.fetchData();
+      });
   }
 
-  onDelete(event: any) {
-    console.log(event);
+  onDelete(id: any) {
+    console.log(id);
+    let message = 'Deleting legislative';
+    this._showSnackBar(message);
+    this.legislative.delete(id).subscribe(
+      () => {
+        message = 'Announcement successfully deleted!';
+        this.fetchData();
+        this._showSnackBar(message, 'Okay');
+      },
+      (err) => {
+        console.error(err);
+        this._showSnackBar(err.error.message);
+      }
+    );
   }
 
   addLegislative() {
@@ -79,5 +105,11 @@ export class LegislativeComponent implements OnInit {
       .subscribe((res: any) => {
         if (res) this.fetchData();
       });
+  }
+
+  private _showSnackBar(message: string, action: string = '') {
+    this.sb.open(message, action, {
+      duration: 1500,
+    });
   }
 }

@@ -11,30 +11,35 @@ import {
   styleUrls: ['./landing-page-portal.component.scss'],
 })
 export class LandingPagePortalComponent implements OnInit {
-  loading: boolean = false;
+  loading: any = false;
+  currentURL: any;
   constructor(public router: Router) {}
 
   ngOnInit(): void {
+    this.currentURL = this.router.url;
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-    }, 1500);
-    console.log(this.router.url);
+    }, 1000);
     if (this.router.url === '/') this.router.navigate(['landing-page/welcome']);
   }
 
-  changeRoute() {
-    const routeEvent = this.router.events.subscribe(
-      (event: NavigationEvent) => {
-        if (event instanceof NavigationStart) {
-          this.loading = true;
-        } else if (event instanceof NavigationEnd) {
-          routeEvent.unsubscribe();
-          setTimeout(() => {
-            this.loading = false;
-          }, 1000);
+  changeRoute(ev: any) {
+    if (this.router.url !== ev.route) {
+      this.loading = ev.loading;
+      this.currentURL = this.router.url;
+      const routeEvent = this.router.events.subscribe(
+        (event: NavigationEvent) => {
+          if (event instanceof NavigationStart && ev == true) {
+          } else if (event instanceof NavigationEnd) {
+            routeEvent.unsubscribe();
+            setTimeout(() => {
+              ev.loading = false;
+              this.loading = ev.loading;
+            }, 1000);
+          }
         }
-      }
-    );
+      );
+    }
   }
 }
