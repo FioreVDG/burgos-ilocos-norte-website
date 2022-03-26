@@ -13,6 +13,8 @@ export class MainPageComponent implements OnInit {
   pinnedAnnouncement: any;
   loading: boolean = false;
   @ViewChild('top') top!: ElementRef;
+
+  @ViewChild('vid') vid: any;
   faChevronCircleUp = faChevronCircleUp;
   element: any;
   missions: any = [
@@ -83,6 +85,7 @@ export class MainPageComponent implements OnInit {
   ];
 
   bubblesArr: any = [];
+  video = '../../../assets/images/BURGOS-BG-VID.mp4';
 
   customOptions: OwlOptions = {
     loop: true,

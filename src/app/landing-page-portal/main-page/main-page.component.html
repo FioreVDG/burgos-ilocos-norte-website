@@ -1,10 +1,26 @@
 <section class="main-bg">
   <video
-    src="../../../assets/images/BURGOS-BG-VID.mp4"
-    autoplay
-    muted
     loop
-  ></video>
+    muted
+    autoplay
+    oncanplay="this.play()"
+    onloadedmetadata="this.muted = true"
+  >
+    <source [src]="video" type="video/mp4" />
+  </video>
+
+  <!-- <div class="wrap">
+    <div class="search">
+      <input
+        type="text"
+        class="searchTerm"
+        placeholder="How can we help you today?"
+      />
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div> -->
   <div class="content">
     <h2><i>"Naragsak nga Isasanbay!"</i></h2>
     <h1>
