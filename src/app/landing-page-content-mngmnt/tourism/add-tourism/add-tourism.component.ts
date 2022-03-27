@@ -82,7 +82,7 @@ export class AddTourismComponent implements OnInit {
 
       if (this.data.image)
         this.dropbox
-          .getTempLink(this.data.file.path_lower!)
+          .getTempLink(this.data.image.path_display)
           .pipe(map((response: GetTempLinkDropBox) => response.result.link))
           .subscribe((link: string) => {
             this.imageB64 = link;
@@ -153,7 +153,7 @@ export class AddTourismComponent implements OnInit {
   save() {
     this.saving = true;
     if (this.imageFile) {
-      const path = '/burgos-ilocosnorte/announcements/';
+      const path = '/burgos-ilocosnorte/tourism/';
       const fileType = this.imageFile.type.split('/')[1];
       const dateNow = Date.now();
       const name = this.imageFile.name.split('.')[0];

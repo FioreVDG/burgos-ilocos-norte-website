@@ -20,7 +20,7 @@ export class LandingPagePortalComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
-    }, 1000);
+    }, 1500);
     if (this.router.url === '/') this.router.navigate(['landing-page/welcome']);
   }
 

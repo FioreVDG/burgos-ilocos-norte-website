@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row" style="margin: auto">
+    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+      <h3>Where to Go</h3>
+      <h2>See Burgos beautiful destinations</h2>
+    </div>
+    <div class="col-xl-2 col-md-12 col-lg-12 col-sm-12 btn">
+      <button (click)="router.navigate(['/tourism'])">View More</button>
+    </div>
+  </div>
+  <div class="row img-wrap" *ngIf="!loading">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template
+        carouselSlide
+        *ngFor="let item of touristSpots; let i = index"
+      >
+        <div class="img-cards">
+          <img
+            [src]="
+              item.imgUrl && item.loaded
+                ? item.imgUrl
+                : '../../../../assets/images/empty-image.png'
+            "
+            (load)="imageLoaded(i)"
+            alt=""
+          />
+          <p>{{ item.title }}</p>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>

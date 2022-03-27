@@ -7,7 +7,7 @@ declare var require: any;
 })
 export class DropboxService {
   accessToken =
-    'sl.BEMGLk9DeyoVSjGX1g8G97QBUulm3rKqWYt-WsfTbRgBewMoo0pMCZyNa0kQr3uF4lKMyqMkDJLj2V0T-dP6lb1cY0OS9USqE7Z_apn028B5Nyrcxvh6yNiMcvyW2zWDQ5EB5zEo';
+    'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
 
   constructor() {

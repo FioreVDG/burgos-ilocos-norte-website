@@ -136,14 +136,14 @@ export class MainPageComponent implements OnInit {
       (res: any) => {
         console.log(res);
         if (res) {
-          this.loading = false;
+          // this.loading = false;
           this.pinnedAnnouncement = res.env.announcements[0];
           console.log(this.pinnedAnnouncement);
         }
       },
       (err) => {
         console.log(err);
-        this.loading = false;
+        // this.loading = false;
       }
     );
   }

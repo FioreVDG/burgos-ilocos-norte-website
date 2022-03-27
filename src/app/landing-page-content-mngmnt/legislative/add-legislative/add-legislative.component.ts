@@ -89,7 +89,7 @@ export class AddLegislativeComponent implements OnInit {
 
       if (this.data.file)
         this.dropbox
-          .getTempLink(this.data.file.path_lower!)
+          .getTempLink(this.data.file.path_display)
           .pipe(map((response: GetTempLinkDropBox) => response.result.link))
           .subscribe((link: string) => {
             this.imageB64 = link;
@@ -160,7 +160,7 @@ export class AddLegislativeComponent implements OnInit {
   save() {
     this.saving = true;
     if (this.imageFile) {
-      const path = '/burgos-ilocosnorte/announcements/';
+      const path = '/burgos-ilocosnorte/legislatives/';
       const fileType = this.imageFile.type.split('/')[1];
       const dateNow = Date.now();
       const name = this.imageFile.name.split('.')[0];
