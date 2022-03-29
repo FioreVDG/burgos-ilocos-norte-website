@@ -10,18 +10,6 @@
     <source [src]="video" type="video/mp4" />
   </video>
 
-  <!-- <div class="wrap">
-    <div class="search">
-      <input
-        type="text"
-        class="searchTerm"
-        placeholder="How can we help you today?"
-      />
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
-  </div> -->
   <div class="content">
     <h2><i>"Naragsak nga Isasanbay!"</i></h2>
     <h1>
@@ -29,28 +17,12 @@
       in Burgos<b>.</b>
     </h1>
 
-    <p (click)="doSomething('pinned')">
+    <p (click)="doSomething('news')">
       <b><i class="bi bi-mouse icon"></i></b>&nbsp;&nbsp;<span
         class="home-scroll-name"
         >Scroll Down</span
       >&nbsp;&nbsp;<i class="bi bi-arrow-down icons"></i>
     </p>
-  </div>
-</section>
-
-<section id="pinned" *ngIf="pinnedAnnouncement" class="pinned-announcement">
-  <div class="bubbles">
-    <div *ngFor="let i of bubblesArr" [class]="i"></div>
-    <div class="two">
-      <h1 style="color: #fff; text-shadow: 1px -1px 5px rgba(0, 0, 0, 0.55)">
-        Announcement
-      </h1>
-    </div>
-    <div class="container">
-      <h3>"{{ pinnedAnnouncement.title }}"</h3>
-      <h4>{{ pinnedAnnouncement.createdAt | date: "longDate" }}</h4>
-      <p href="#">READ FULL DETAILS HERE</p>
-    </div>
   </div>
 </section>
 
@@ -94,58 +66,60 @@
   </div>
 </section>
 
+<section id="news" class="news">
+  <app-news></app-news>
+</section>
+
+<section id="announcement" class="announcement">
+  <div class="container">
+    <app-announcement></app-announcement>
+  </div>
+</section>
+
 <section class="where-to-go">
   <app-where-to-go></app-where-to-go>
 </section>
 
 <section class="mayor-bg">
   <div class="container">
-    <div class="one">
-      <h1>Mayors's message</h1>
-    </div>
-    <div class="mayor-main">
-      <div class="row">
-        <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12 text-wrapper">
-          <div class="card card-main-upper">
-            <div class="card-body img-card">
-              <img
-                src="../../../assets/images/mayor-img.png"
-                class="img-fluid mayor-img"
-                alt=""
-              />
-            </div>
-          </div>
-          <p class="mayor-msg">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
-            repudiandae aspernatur ducimus tenetur fugit architecto amet
-            consectetur! Nostrum laboriosam porro temporibus autem assumenda
-            quis expedita consequuntur neque sapiente unde, natus blanditiis
-            nesciunt dolor voluptatem. Blanditiis soluta id consectetur modi
-            dolor libero harum, magnam deleniti officiis quibusdam? Ab ipsum cum
-            assumenda? Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Aperiam ab facilis itaque, quisquam modi doloremque doloribus
-            voluptatibus fugit cum dolore.
-          </p>
-          <div style="margin-top: 0.7rem" class="mayor-info">
-            <p><b>Virgilio L. De Guzman Jr.</b></p>
-          </div>
-          <div class="mayor-info">
-            <p style="font-size: 12px; color: #6f6f6f">Municipal Mayor</p>
-          </div>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let item of mayorConf">
+        <div class="one">
+          <h1>{{ item.section }}</h1>
         </div>
-        <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
-          <div class="card card-main">
-            <div class="card-body img-card">
-              <img
-                src="../../../assets/images/mayor-img.png"
-                class="img-fluid mayor-img"
-                alt=""
-              />
+        <div class="mayor-main">
+          <div class="row">
+            <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12 text-wrapper">
+              <div class="card card-main-upper">
+                <div class="card-body img-card">
+                  <img [src]="item.img" class="img-fluid mayor-img" alt="" />
+                </div>
+              </div>
+              <p class="mayor-msg" *ngFor="let msg of item.messages">
+                {{ msg }}
+              </p>
+              <div style="margin-top: 0.7rem" class="mayor-info">
+                <p>
+                  <b>{{ item.name }}</b>
+                </p>
+              </div>
+              <div class="mayor-info">
+                <p style="font-size: 12px; color: #6f6f6f">
+                  {{ item.position }}
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
+              <div class="card card-main">
+                <div class="card-body img-card">
+                  <img [src]="item.img" class="img-fluid mayor-img" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </ng-template>
+    </owl-carousel-o>
   </div>
 </section>
 

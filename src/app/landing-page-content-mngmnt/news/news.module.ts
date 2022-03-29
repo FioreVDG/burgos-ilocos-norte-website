@@ -3,18 +3,18 @@ import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AnnouncementRoutingModule } from './announcement-routing.module';
-import { AnnouncementComponent } from './announcement.component';
-import { AddAnnouncememntComponent } from './add-announcememnt/add-announcememnt.component';
+import { NewsRoutingModule } from './news-routing.module';
+import { NewsComponent } from './news.component';
+import { AddNewsComponent } from './add-news/add-news.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { ModalsModule } from 'src/app/shared/modals/modals.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
-  declarations: [AnnouncementComponent, AddAnnouncememntComponent],
+  declarations: [NewsComponent, AddNewsComponent],
   imports: [
     CommonModule,
-    AnnouncementRoutingModule,
+    NewsRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -22,5 +22,6 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ModalsModule,
     AngularEditorModule,
   ],
+  exports: [NewsComponent],
 })
-export class AnnouncementModule {}
+export class NewsModule {}

@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row" style="margin: auto; padding-bottom: 1.5rem">
+    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+      <h3>Announcements</h3>
+      <h2>Know what's up and new</h2>
+    </div>
+    <div
+      *ngIf="announcements.length"
+      class="col-xl-2 col-md-12 col-lg-12 col-sm-12 btn"
+    >
+      <button (click)="router.navigate(['/announcements'])">View All</button>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="!loading">
+  <div *ngIf="featuredAnnouncement" class="row featured-wrapper">
+    <div class="col-8 desc-wrapper">
+      <p class="feat">Featured Announcement</p>
+      <h2>{{ featuredAnnouncement.title }}</h2>
+      <p class="date">
+        {{ featuredAnnouncement.createdAt | date: "longDate" }}
+      </p>
+      <p
+        *ngIf="featuredDesc"
+        [innerHTML]="
+          featuredDesc.slice(0, 500) + (featuredDesc.length > 497 ? '....' : '')
+        "
+      ></p>
+      <a>Read more</a>
+    </div>
+    <div class="col-4 img-wrap">
+      <img [src]="featuredImage" alt="" />
+    </div>
+  </div>
+  <div *ngIf="announcements.length" class="row news-list">
+    <div class="container">
+      <h3>Other Announcements</h3>
+      <div class="row">
+        <div *ngFor="let item of announcements" class="col-3">
+          <div class="card news-list-card" style="height: 26.5rem">
+            <img
+              [src]="item.imgUrl"
+              style="height: 12rem"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <p class="card-title">
+                <b>{{
+                  item.title.slice(0, 50) +
+                    (item.title.length > 47 ? ". . . ." : "")
+                }}</b>
+              </p>
+              <p style="color: #777777; font-weight: 500">
+                {{ item.createdAt | date: "mediumDate" }}
+              </p>
+              <p
+                class="card-text"
+                [innerHTML]="
+                  item?.layout?.slice(0, 75) +
+                  (item.layout?.length > 72 ? '. . . . . . .' : '')
+                "
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

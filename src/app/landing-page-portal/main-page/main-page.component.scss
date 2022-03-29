@@ -190,7 +190,18 @@
 
 //WHERE TO GO
 .where-to-go {
-  background: linear-gradient(to top, #f9f8fd94 50%, #05bbe8 45%);
+  background: linear-gradient(to top, #f9f8fd94 50%, #05bbe8d4 45%);
+  padding: 1.5rem 0rem;
+}
+
+.news {
+  background-color: #f9f8fd;
+  padding: 2rem 0rem;
+}
+
+.announcement {
+  background-color: #05bbe8d4;
+  padding: 2rem 0rem;
 }
 
 //FOR MAYOR'S MESSAGE
@@ -202,7 +213,7 @@
   background-position: center center;
   background-size: cover;
   width: 100%;
-  height: 75vh;
+  height: auto;
   padding-top: 2rem;
   padding-bottom: 2rem;
   display: flex;
@@ -218,7 +229,6 @@
 
 .mayor-img {
   width: 60%;
-  height: inherit;
 }
 
 .img-card {
@@ -238,17 +248,17 @@
   justify-content: center;
   flex-direction: column;
   .mayor-msg {
-    font-size: 18px;
+    font-size: 16px;
     color: #565656;
     text-align: justify;
   }
-  .mayor-msg:first-letter {
-    text-transform: capitalize;
-    font-size: 320%;
-    font-weight: 700;
-    color: #05bbe8;
-    line-height: 0;
-  }
+  // .mayor-msg:first-letter {
+  //   text-transform: capitalize;
+  //   font-size: 320%;
+  //   font-weight: 700;
+  //   color: #05bbe8;
+  //   line-height: 0;
+  // }
 
   .mayor-info {
     flex-direction: flex-end;

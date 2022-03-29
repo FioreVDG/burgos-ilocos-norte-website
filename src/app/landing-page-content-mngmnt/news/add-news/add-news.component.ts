@@ -1,41 +1,37 @@
-import { DropboxService } from './../../../services/dropbox/dropbox.service';
-import { AnnouncementService } from './../../../services/announcement/announcement.service';
+import { UploadFileDropBox } from './../../../models/api/announcement-service.interface';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {
-  FormBuilder,
-  FormControl,
   FormGroup,
+  FormControl,
   Validators,
+  FormBuilder,
 } from '@angular/forms';
-import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
-import {
-  Announcement,
-  AnnouncementBody,
-  GetTempLinkDropBox,
-  UploadFileDropBox,
-} from 'src/app/models/api/announcement-service.interface';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
+import { GetTempLinkDropBox } from 'src/app/models/api/announcement-service.interface';
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
+import { NewsService } from 'src/app/services/news/news.service';
+import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
-  selector: 'app-add-announcememnt',
-  templateUrl: './add-announcememnt.component.html',
-  styleUrls: ['./add-announcememnt.component.scss'],
+  selector: 'app-add-news',
+  templateUrl: './add-news.component.html',
+  styleUrls: ['./add-news.component.scss'],
 })
-export class AddAnnouncememntComponent implements OnInit {
+export class AddNewsComponent implements OnInit {
   isLinear = true;
   acceptedDocs: string = '.png, .jpeg, .jpg';
   allowedFileTypes = ['png', 'jpeg', 'jpg'];
   imageFile: File | null;
   imageB64: string = '';
 
-  announcementForm: FormGroup = this.fb.group({
+  newsForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
 
-  announcementImageForm: FormGroup = this.fb.group({
+  newsImageForm: FormGroup = this.fb.group({
     image: new FormControl(''),
   });
   saving: boolean = false;
@@ -70,21 +66,18 @@ export class AddAnnouncememntComponent implements OnInit {
       },
     ],
   };
-
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Announcement,
-    public dialogRef: MatDialogRef<AddAnnouncememntComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<AddNewsComponent>,
     private fb: FormBuilder,
-    private announcement: AnnouncementService,
+    private news: NewsService,
     private dropbox: DropboxService
   ) {}
 
   ngOnInit(): void {
     if (this.data) {
-      this.announcementForm.controls['title'].setValue(this.data.title);
-      this.announcementForm.controls['description'].setValue(
-        this.data.description
-      );
+      this.newsForm.controls['title'].setValue(this.data.title);
+      this.newsForm.controls['description'].setValue(this.data.description);
 
       if (this.data.image)
         this.dropbox
@@ -127,28 +120,29 @@ export class AddAnnouncememntComponent implements OnInit {
     this.imageB64 = '';
   }
 
-  updateAnnouncement(announcement: AnnouncementBody) {
-    this.announcement.update(announcement, this.data._id).subscribe(
-      (_) => {
+  updateNews(news: any) {
+    this.news.update(news, this.data._id).subscribe(
+      (res: any) => {
         this.saving = false;
+        console.log(res);
         this.dialogRef.close(true);
       },
       (err) => {
-        console.error(err);
+        console.log(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
     );
   }
 
-  createAnnouncement(announcement: AnnouncementBody) {
-    this.announcement.create(announcement).subscribe(
-      (_) => {
+  createNews(news: any) {
+    this.news.create(news).subscribe(
+      (res: any) => {
         this.saving = false;
         this.dialogRef.close(true);
       },
       (err) => {
-        console.error(err);
+        console.log(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -159,7 +153,7 @@ export class AddAnnouncememntComponent implements OnInit {
     this.saving = true;
 
     if (this.imageFile) {
-      const path = '/burgos-ilocosnorte/announcements/';
+      const path = '/burgos-ilocosnorte/news/';
       const fileType = this.imageFile.type.split('/')[1];
       const dateNow = Date.now();
       const name = this.imageFile.name.split('.')[0];
@@ -169,24 +163,23 @@ export class AddAnnouncememntComponent implements OnInit {
         .uploadFile(path, fileName, this.imageFile)
         .subscribe((res: UploadFileDropBox) => {
           const imageData = res.result;
-          this.announcementImageForm.controls['image'].setValue(imageData);
+          this.newsImageForm.controls['image'].setValue(imageData);
 
-          const image = this.announcementImageForm.getRawValue();
-          const annoucement = this.announcementForm.getRawValue();
+          const image = this.newsImageForm.getRawValue();
+          const news = this.newsForm.getRawValue();
 
-          const announcementData: AnnouncementBody = {
+          const newsData: any = {
             ...image,
-            ...annoucement,
+            ...news,
           };
 
-          if (this.data) this.updateAnnouncement(announcementData);
-          else this.createAnnouncement(announcementData);
+          if (this.data) this.updateNews(newsData);
+          else this.createNews(newsData);
         });
     } else {
-      const annoucement = this.announcementForm.getRawValue();
-
-      if (this.data) this.updateAnnouncement(annoucement);
-      else this.createAnnouncement(annoucement);
+      const news = this.newsForm.getRawValue();
+      if (this.data) this.updateNews(news);
+      else this.createNews(news);
     }
   }
 }

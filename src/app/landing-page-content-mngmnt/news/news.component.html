@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="row">
+    <div class="one">
+      <h1>Manage News</h1>
+    </div>
+    <div *ngIf="!loading" class="container">
+      <div class="row">
+        <div class="col-3">
+          <div (click)="addNews()" class="card add-news">
+            <div class="card-body">
+              <i class="bi bi-plus-square-dotted icon"></i>
+              <h3 style="text-align: center">Add News</h3>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let item of newsArr" class="col-3">
+          <div
+            class="card"
+            style="
+              width: 90%;
+              margin: auto;
+              height: 26.5rem;
+              margin: 1.5rem 0;
+              position: relative;
+            "
+            [ngStyle]="{ border: item.isPinned ? '3px solid #05bbe8' : '' }"
+          >
+            <div style="position: absolute; top: 6px; right: 6px">
+              <button
+                mat-icon-button
+                class="icn-top"
+                [matMenuTriggerFor]="cardOptions"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #cardOptions="matMenu">
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="onUpdateNews(item)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button
+                  mat-menu-item
+                  color="warn"
+                  (click)="deleteNews(item._id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="markAsFeatured(item._id)"
+                >
+                  <mat-icon>history_edu</mat-icon>
+                  <span>Mark as Featured</span>
+                </button>
+              </mat-menu>
+            </div>
+            <img
+              [src]="item.imgUrl"
+              style="height: 10rem"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <p class="card-title">
+                <b>{{
+                  item.title.slice(0, 50) +
+                    (item.title.length > 47 ? ". . . ." : "")
+                }}</b>
+              </p>
+              <p>{{ item.createdAt | date: "mediumDate" }}</p>
+
+              <p
+                class="card-text"
+                [innerHTML]="
+                  item?.layout?.slice(0, 75) +
+                  (item.layout?.length > 72 ? '. . . . . . .' : '')
+                "
+              ></p>
+            </div>
+          </div>
+        </div>
+        <mat-paginator
+          style="background-color: #f9f8fd; margin-bottom: 2rem; color: #05bbe8"
+          [length]="pagination.totalDocuments"
+          [pageSize]="pagination.pageSize"
+          [pageSizeOptions]="[10, 25, 100, 200, 500]"
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+    <div class="container loading-wrap" *ngIf="loading">
+      <div class="scale-in-center">
+        <i class="bi bi-megaphone-fill icon"></i>
+      </div>
+      <p>Loading News...</p>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@ export class PublicServantsComponent implements OnInit {
     {
       content: [
         {
-          img: './../../../../assets/images/profile-sample-2.jpg',
+          img: './../../../../assets/images/mayor-img-sm.jpg',
           name: 'HON. CRESCENTE N. GARCIA',
           position: 'Municipal Mayor',
           misc: 'OFFICE OF THE MAYOR',
@@ -20,7 +20,7 @@ export class PublicServantsComponent implements OnInit {
     {
       content: [
         {
-          img: './../../../../assets/images/profile-sample.jpg',
+          img: '../../../../assets/images/Blank-Profile.png',
           name: 'HON. RODOLFO L. GARCIA',
           position: 'Municipal Vice Mayor',
           misc: 'OFFICE OF THE SANGGUNIANG BAYAN',

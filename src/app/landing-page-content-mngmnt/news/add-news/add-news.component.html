@@ -4,11 +4,10 @@
 >
 <mat-dialog-content>
   <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
-    <!-- INFORMATION -->
-    <mat-step [stepControl]="announcementForm">
+    <mat-step [stepControl]="newsForm">
       <div style="padding: 1rem"></div>
-      <form [formGroup]="announcementForm">
-        <ng-template matStepLabel>Announcement Information*</ng-template>
+      <form [formGroup]="newsForm">
+        <ng-template matStepLabel>News Information</ng-template>
         <mat-form-field appearance="fill" style="display: block">
           <mat-label>Title</mat-label>
           <input
@@ -19,9 +18,7 @@
             required
           />
 
-          <mat-error
-            *ngIf="announcementForm.get('title')?.hasError('required')"
-          >
+          <mat-error *ngIf="newsForm.get('title')?.hasError('required')">
             Please enter a title
           </mat-error>
         </mat-form-field>
@@ -35,10 +32,8 @@
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
           </button>
         </div>
-      </form>
-    </mat-step>
-    <!-- IMAGE -->
-    <mat-step [stepControl]="announcementImageForm">
+      </form> </mat-step
+    ><mat-step [stepControl]="newsImageForm">
       <ng-template matStepLabel>Select Image (Optional)</ng-template>
       <div style="padding: 1rem"></div>
       <div class="container-fluid">
@@ -114,14 +109,23 @@
       <ng-template matStepLabel>Done</ng-template>
       <div mat-dialog-actions align="center">
         <button
+          *ngIf="!data"
           mat-flat-button
           color="primary"
           (click)="save()"
-          [disabled]="announcementForm.invalid || saving"
+          [disabled]="newsForm.invalid || saving"
         >
-          {{ saving ? "Saving . . ." : "Create Announcement" }}
+          {{ saving ? "Saving . . ." : "Create News" }}</button
+        ><button
+          *ngIf="data"
+          mat-flat-button
+          color="primary"
+          (click)="save()"
+          [disabled]="newsForm.invalid || saving"
+        >
+          {{ saving ? "Saving . . ." : "Update News" }}
         </button>
       </div>
-    </mat-step>
-  </mat-stepper>
+    </mat-step></mat-stepper
+  >
 </mat-dialog-content>

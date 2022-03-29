@@ -50,6 +50,12 @@ const routes: Routes = [
             (m) => m.CitizenCharterModule
           ),
       },
+
+      {
+        path: 'add-news',
+        loadChildren: () =>
+          import('./news/news.module').then((m) => m.NewsModule),
+      },
     ],
   },
 ];

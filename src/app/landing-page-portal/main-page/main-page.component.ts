@@ -4,6 +4,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare let google: any;
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
+import { MAYOR_MSG } from './mayor-config';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -17,6 +18,7 @@ export class MainPageComponent implements OnInit {
   @ViewChild('vid') vid: any;
   faChevronCircleUp = faChevronCircleUp;
   element: any;
+  mayorConf = MAYOR_MSG;
   missions: any = [
     'Industrialization;',
     'Tourism;',
@@ -89,26 +91,28 @@ export class MainPageComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: false,
-    navSpeed: 700,
-    margin: 15,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
     autoplay: true,
-    navText: ['', ''],
+    navSpeed: 700,
+    navText: [
+      '<i class="bi bi-caret-left-fill"></i>',
+      '<i class="bi bi-caret-right-fill"></i>',
+    ],
     responsive: {
       0: {
         items: 1,
       },
       400: {
-        items: 2,
+        items: 1,
       },
       740: {
-        items: 4,
+        items: 1,
       },
       940: {
-        items: 4,
+        items: 1,
       },
     },
     nav: false,
@@ -173,7 +177,7 @@ export class MainPageComponent implements OnInit {
         this.scrollToLocation(event);
         break;
 
-      case 'pinned':
+      case 'news':
         this.scrollToLocation(event);
         break;
     }
