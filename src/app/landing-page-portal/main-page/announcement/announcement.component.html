@@ -12,9 +12,12 @@
     </div>
   </div>
 </div>
-<div class="row" *ngIf="!loading">
+<div class="row" style="margin: auto; width: 100%" *ngIf="!loading">
   <div *ngIf="featuredAnnouncement" class="row featured-wrapper">
-    <div class="col-8 desc-wrapper">
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 img-wrap">
+      <img [src]="featuredImage" alt="" />
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 desc-wrapper">
       <p class="feat">Featured Announcement</p>
       <h2>{{ featuredAnnouncement.title }}</h2>
       <p class="date">
@@ -28,15 +31,15 @@
       ></p>
       <a>Read more</a>
     </div>
-    <div class="col-4 img-wrap">
-      <img [src]="featuredImage" alt="" />
-    </div>
   </div>
   <div *ngIf="announcements.length" class="row news-list">
     <div class="container">
       <h3>Other Announcements</h3>
       <div class="row">
-        <div *ngFor="let item of announcements" class="col-3">
+        <div
+          *ngFor="let item of announcements"
+          class="col-lg-3 col-xl-3 col-md-6 col-sm-12"
+        >
           <div class="card news-list-card" style="height: 26.5rem">
             <img
               [src]="item.imgUrl"

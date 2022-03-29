@@ -1,4 +1,4 @@
-<div class="container" style="width: 90%; margin: auto">
+<div class="container" style="width: 100%; margin: auto">
   <div class="row" style="margin: auto; padding-bottom: 1.5rem">
     <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
       <h3>News and updates</h3>
@@ -12,12 +12,12 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="!loading">
+  <div class="row" style="margin: auto; width: 100%" *ngIf="!loading">
     <div *ngIf="featuredNews" class="row featured-wrapper">
-      <div class="col-4 img-wrap">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 img-wrap">
         <img [src]="featuredImage" alt="" />
       </div>
-      <div class="col-8 desc-wrapper">
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 desc-wrapper">
         <p class="feat">Featured News</p>
         <h2>{{ featuredNews.title }}</h2>
         <p class="date">{{ featuredNews.createdAt | date: "longDate" }}</p>
@@ -35,7 +35,10 @@
       <div class="container">
         <h3>Other News</h3>
         <div class="row">
-          <div *ngFor="let item of newsArr" class="col-3">
+          <div
+            *ngFor="let item of newsArr"
+            class="col-lg-3 col-xl-3 col-md-6 col-sm-12"
+          >
             <div class="card news-list-card" style="height: 26.5rem">
               <img
                 [src]="item.imgUrl"

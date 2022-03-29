@@ -68,3 +68,51 @@
   width: 100%;
   margin: 0.8rem 0rem;
 }
+
+.mobile-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #05bbe825;
+  height: 16rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  img {
+    width: 90%;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-size: 13.5px;
+    text-align: center;
+  }
+  p {
+    font-size: 11px;
+    text-align: center;
+  }
+}
+
+.bottom-cards-mobile {
+  width: 100%;
+  height: 3.8vh;
+  background-color: #05bbe8a7;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 3px;
+  box-shadow: -2px 4px 17px -8px rgba(0, 0, 0, 0.44);
+  border-bottom-right-radius: 3px;
+  margin-bottom: 0.5rem;
+  p {
+    text-align: center;
+    font-size: 11px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    line-height: 0.7rem;
+  }
+}

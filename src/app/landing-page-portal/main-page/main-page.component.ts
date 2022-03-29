@@ -5,12 +5,14 @@ declare let google: any;
 import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
 import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { MAYOR_MSG } from './mayor-config';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
+  isMobile: boolean = false;
   pinnedAnnouncement: any;
   loading: boolean = false;
   @ViewChild('top') top!: ElementRef;
@@ -27,64 +29,8 @@ export class MainPageComponent implements OnInit {
     'People empowerment; and',
     'Institutional development',
   ];
-  _publicServants = [
-    {
-      img: '../../../assets/images/profile-sample.jpg',
-      name: 'Virgilio L. De Guzman Jr.',
-      position: 'Vice Mayor',
-      proposition: '"An apple a day, keeps the doctor away"',
-    },
-    {
-      img: '../../../assets/images/profile-sample-2.jpg',
-      name: 'Trafalgar D. Law',
-      position: 'Councilor',
-      proposition: `"You can't bring back what you've lost, focus on what you have"`,
-    },
-    {
-      img: '../../../assets/images/profile-sample.jpg',
-      name: 'Portgas D. Ace',
-      position: 'Brgy. Captain',
-      proposition: '"Ang mamatay nang dahil sayo."',
-    },
-    {
-      img: '../../../assets/images/profile-sample-2.jpg',
-      name: 'Trafalgar D. Law',
-      position: 'Councilor',
-      proposition: `"You can't bring back what you've lost, focus on what you have"`,
-    },
-    {
-      img: '../../../assets/images/profile-sample.jpg',
-      name: 'Virgilio L. De Guzman Jr.',
-      position: 'Vice Mayor',
-      proposition: '"An apple a day, keeps the doctor away"',
-    },
-    {
-      img: '../../../assets/images/profile-sample-2.jpg',
-      name: 'Trafalgar D. Law',
-      position: 'Councilor',
-      proposition: `"You can't bring back what you've lost, focus on what you have"`,
-    },
-  ];
 
   windowScrolled: boolean = false;
-
-  _contacts = [
-    {
-      icon: 'bi bi-droplet-half',
-      number: '02-XXX-XXXX',
-      place: 'Fire Department',
-    },
-    {
-      icon: 'bi bi-bandaid-fill',
-      number: '02-XXX-XXXX',
-      place: 'Sample General Hospital',
-    },
-    {
-      icon: 'bi bi-telephone-fill',
-      number: '8128-XXXX',
-      place: 'Burgos, Ilocos Norte Trunkline',
-    },
-  ];
 
   bubblesArr: any = [];
   video = '../../../assets/images/BURGOS-BG-VID.mp4';
@@ -118,7 +64,10 @@ export class MainPageComponent implements OnInit {
     nav: false,
   };
 
-  constructor(private announcement: AnnouncementService) {}
+  constructor(
+    private announcement: AnnouncementService,
+    public bo: BreakpointObserver
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -150,6 +99,15 @@ export class MainPageComponent implements OnInit {
         // this.loading = false;
       }
     );
+    this.bo
+      .observe(['(min-width: 600px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isMobile = false;
+        } else {
+          this.isMobile = true;
+        }
+      });
   }
   initMap(): void {
     // The location of sanNicolas

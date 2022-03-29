@@ -1,5 +1,5 @@
-<div class="content">
-  <ng-container *ngFor="let item of _servant">
+<div *ngIf="!isMobile" class="content">
+  <ng-container *ngFor="let item of _servantDesktop">
     <div class="grid-1">
       <div *ngFor="let servant of item.content" class="col-3">
         <div class="row cards">
@@ -12,6 +12,22 @@
           </div>
         </div>
         <div *ngIf="servant.misc" class="bottom-cards">
+          <p>{{ servant.misc }}</p>
+        </div>
+      </div>
+    </div></ng-container
+  >
+</div>
+<div *ngIf="isMobile" class="content">
+  <ng-container *ngFor="let item of _servantMobile">
+    <div class="grid-1">
+      <div *ngFor="let servant of item.content" class="col-6">
+        <div class="row mobile-cards">
+          <img [src]="servant.img" alt="" />
+          <h3>{{ servant.name }}</h3>
+          <p>{{ servant.position }}</p>
+        </div>
+        <div *ngIf="servant.misc" class="bottom-cards-mobile">
           <p>{{ servant.misc }}</p>
         </div>
       </div>

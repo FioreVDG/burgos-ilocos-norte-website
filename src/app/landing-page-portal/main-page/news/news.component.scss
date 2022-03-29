@@ -40,6 +40,8 @@ button {
 
 .featured-wrapper {
   //   height: 20vh;
+  width: 100%;
+  margin: auto;
   .img-wrap {
     display: flex;
     align-items: center;
@@ -78,12 +80,17 @@ button {
 }
 
 .news-list {
+  margin: auto;
   h3 {
     text-align: center;
     color: #05bbe8;
     margin: 1.5rem 0rem;
     font-size: 25px;
   }
+}
+
+.news-list-card {
+  margin-bottom: 0.8rem;
 }
 
 .news-list-card:hover {
@@ -96,10 +103,10 @@ button {
 @media only screen and (max-width: 600px) {
   .container {
     h2 {
-      font-size: 18px;
+      font-size: 20px;
     }
     h3 {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
   button {
@@ -109,5 +116,33 @@ button {
   .img-wrap {
     width: 95%;
     margin: auto;
+  }
+
+  .featured-wrapper {
+    .desc-wrapper {
+      .feat {
+        color: #05bbe8;
+        text-align: center;
+      }
+      .date {
+        color: #919191;
+        font-weight: 500;
+        font-size: 14px;
+      }
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #22859e;
+      }
+      a {
+        outline: none;
+        background-color: #22859e;
+        color: #fff;
+        border: none;
+        padding: 0.6rem 1rem;
+        border-radius: 5px;
+        margin-top: 1rem;
+      }
+    }
   }
 }

@@ -1,4 +1,6 @@
+import { servantMobile, servantDesktop } from './public-servants.config';
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-public-servants',
@@ -6,92 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-servants.component.scss'],
 })
 export class PublicServantsComponent implements OnInit {
-  _servant: any = [
-    {
-      content: [
-        {
-          img: './../../../../assets/images/mayor-img-sm.jpg',
-          name: 'HON. CRESCENTE N. GARCIA',
-          position: 'Municipal Mayor',
-          misc: 'OFFICE OF THE MAYOR',
-        },
-      ],
-    },
-    {
-      content: [
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. RODOLFO L. GARCIA',
-          position: 'Municipal Vice Mayor',
-          misc: 'OFFICE OF THE SANGGUNIANG BAYAN',
-        },
-      ],
-    },
-    {
-      content: [
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. JELSON G. ESPEJO',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/profile-female.jpg',
-          name: 'HON. SUSAN G. SANTIAGO',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. RAPONSEL G. JIMENEZ',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. FLORENTINO A. CAMPAÑANO',
-          position: 'Sangguniang Bayan Member',
-        },
-      ],
-    },
-    {
-      content: [
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. KERVIN G. GUINTO',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. RODEL T. DALO',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. EFREN A. SAGUITGUIT',
-          position: 'Sangguniang Bayan Member',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. ARISTEDES M. PANTE',
-          position: 'Sangguniang Bayan Member',
-        },
-      ],
-    },
-    {
-      content: [
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. CELERINO D. ABAD',
-          position: 'Ex-Officio Member/Liga ng Mga Barangay President',
-        },
-        {
-          img: '../../../../assets/images/Blank-Profile.png',
-          name: 'HON. RODEL T. DALO',
-          position: 'Ex-Officio Member/Liga ng Mga Barangay President',
-        },
-      ],
-    },
-  ];
+  isMobile: boolean = false;
+  _servantMobile: any = servantMobile;
+  _servantDesktop: any = servantDesktop;
 
-  constructor() {}
+  constructor(public bo: BreakpointObserver) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.bo
+      .observe(['(min-width: 600px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isMobile = false;
+        } else {
+          this.isMobile = true;
+        }
+      });
+  }
 }

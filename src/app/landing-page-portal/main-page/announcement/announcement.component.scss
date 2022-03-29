@@ -40,6 +40,8 @@ button {
 
 .featured-wrapper {
   //   height: 20vh;
+  width: 100%;
+  margin: auto;
   .img-wrap {
     display: flex;
     align-items: center;
@@ -78,6 +80,7 @@ button {
 }
 
 .news-list {
+  margin: auto;
   h3 {
     text-align: center;
     color: #f9f8fd;
@@ -88,6 +91,7 @@ button {
 
 .news-list-card {
   background-color: #f9f8fd;
+  margin-bottom: 0.8rem;
 }
 
 .news-list-card:hover {
@@ -99,10 +103,10 @@ button {
 @media only screen and (max-width: 600px) {
   .container {
     h2 {
-      font-size: 18px;
+      font-size: 20px;
     }
     h3 {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
   button {
@@ -112,5 +116,21 @@ button {
   .img-wrap {
     width: 95%;
     margin: auto;
+  }
+
+  .featured-wrapper {
+    .desc-wrapper {
+      .feat {
+        text-align: center;
+      }
+      .date {
+        font-weight: 500;
+        font-size: 14px;
+      }
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
   }
 }

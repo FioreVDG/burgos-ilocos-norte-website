@@ -135,16 +135,16 @@
   </div>
 </section>
 
-<section class="contact-us">
+<section [class]="!isMobile ? 'contact-us' : 'contact-us-mobile'">
   <div class="container">
     <div class="one">
       <h1>Contact us</h1>
     </div>
     <div class="row main-content">
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
+      <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
         <div id="map"></div>
       </div>
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
+      <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
         <div class="header">
           <i class="bi bi-bank icons"></i>
           <h3>OFFFICE OF THE MAYOR</h3>

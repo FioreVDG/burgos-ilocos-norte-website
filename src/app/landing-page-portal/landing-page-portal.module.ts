@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 
 import { LandingPagePortalRoutingModule } from './landing-page-portal-routing.module';
 import { LandingPagePortalComponent } from './landing-page-portal.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [LandingPagePortalComponent],
@@ -37,6 +38,7 @@ import { LandingPagePortalComponent } from './landing-page-portal.component';
     AboutUsModule,
     LoadingModule,
     NoContentModule,
+    LayoutModule,
   ],
 })
 export class LandingPagePortalModule {}
