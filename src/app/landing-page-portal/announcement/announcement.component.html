@@ -1,5 +1,6 @@
 <app-no-content *ngIf="!loading && !announcements?.length"></app-no-content>
-<section *ngIf="!loading">
+<app-spinner *ngIf="loading"></app-spinner>
+<section *ngIf="!loading && announcements.length">
   <div class="container">
     <div class="row" style="margin: auto; padding-bottom: 1.5rem">
       <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">

@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { MaterialModule } from './../../material/material.module';
 import { NoContentModule } from './../../no-content/no-content.module';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { ViewAnnouncementComponent } from './view-announcement/view-announcement
     AnnouncementRoutingModule,
     NoContentModule,
     MaterialModule,
+    SpinnerModule,
   ],
   exports: [AnnouncementComponent],
 })

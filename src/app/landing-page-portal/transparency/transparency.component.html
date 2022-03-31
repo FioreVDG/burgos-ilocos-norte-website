@@ -1,6 +1,6 @@
 <app-no-content *ngIf="!loading && !transparencies?.length"></app-no-content>
-<div class="container loading-wrap" *ngIf="loading"></div>
-<div *ngIf="!loading" class="container">
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="!loading && transparencies.length" class="container">
   <div class="one">
     <h1>Transparencies</h1>
   </div>

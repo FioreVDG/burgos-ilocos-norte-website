@@ -1,16 +1,12 @@
 <app-no-content *ngIf="!loading && !legislatives?.length"></app-no-content>
-<div class="container loading-wrap" *ngIf="loading">
-  <div class="scale-in-center">
-    <i class="bi bi-bank2 icon"></i>
-  </div>
-  <p>Loading Legislatives...</p>
-</div>
+<app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="!loading && legislatives.length" class="container">
   <div class="one">
     <h1>Legislatives</h1>
   </div>
   <div class="container legislative">
-    <ng-container *ngFor="let item of legislatives">
+    <ng-container *ngFor="let item of legislatives; let i = index">
+      <hr *ngIf="i !== 0" />
       <div class="row">
         <div class="col-sm-12 col-xl-4 col-lg-4 col-md-4">
           <img [src]="item.imgUrl" alt="" />
@@ -26,8 +22,6 @@
           </div>
         </div>
       </div>
-
-      <hr *ngIf="legislatives.length > 1" />
     </ng-container>
   </div>
 </div>

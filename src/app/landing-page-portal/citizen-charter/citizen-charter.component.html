@@ -17,10 +17,5 @@
     </div>
   </div>
 </div>
-<div class="container loading-wrap" *ngIf="loading">
-  <div class="scale-in-center">
-    <i class="bi bi-bank2 icon"></i>
-  </div>
-  <p>Loading Citizen's Charter...</p>
-</div>
 <app-no-content *ngIf="!loading && !citizens?.length"></app-no-content>
+<app-spinner *ngIf="loading"></app-spinner>

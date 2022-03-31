@@ -44,6 +44,7 @@
     "ngx-doc-viewer": "^2.1.2",
     "ngx-file-drop": "^13.0.0",
     "ngx-owl-carousel-o": "^7.0.2",
+    "ngx-skeleton-loader": "^5.0.0",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "swiper": "^8.0.7",

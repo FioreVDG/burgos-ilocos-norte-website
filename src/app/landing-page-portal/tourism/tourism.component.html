@@ -1,10 +1,5 @@
 <app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
-<div class="container loading-wrap" *ngIf="loading">
-  <div class="scale-in-center">
-    <i class="bi bi-megaphone-fill icon"></i>
-  </div>
-  <p>Loading Tourist Spots...</p>
-</div>
+<app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="!loading" class="container">
   <div class="one">
     <h1>Tourist Spots</h1>

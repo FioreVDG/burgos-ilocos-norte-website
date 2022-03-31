@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../spinner/spinner.module';
 import { NewsModule } from './main-page/news/news.module';
 import { NoContentModule } from './../no-content/no-content.module';
 import { LoadingModule } from './../loading/loading.module';
@@ -19,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { LandingPagePortalRoutingModule } from './landing-page-portal-routing.module';
 import { LandingPagePortalComponent } from './landing-page-portal.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [LandingPagePortalComponent],
@@ -41,6 +43,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     NoContentModule,
     LayoutModule,
     NewsModule,
+    NgxSkeletonLoaderModule,
+    SpinnerModule,
   ],
 })
 export class LandingPagePortalModule {}

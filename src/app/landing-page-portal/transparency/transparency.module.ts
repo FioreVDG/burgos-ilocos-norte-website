@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { MaterialModule } from './../../material/material.module';
 import { ViewTransparencyComponent } from './view-transparency/view-transparency.component';
 import { NoContentModule } from './../../no-content/no-content.module';
@@ -16,6 +17,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     NoContentModule,
     NgxDocViewerModule,
     MaterialModule,
+    SpinnerModule,
   ],
   exports: [TransparencyComponent],
 })

@@ -25,7 +25,9 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.fetchData();
+    setTimeout(() => {
+      this.fetchData();
+    }, 1500);
   }
   fetchData() {
     this.news.getAll({}).subscribe(async (res: any) => {
