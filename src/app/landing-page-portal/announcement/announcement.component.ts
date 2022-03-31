@@ -15,7 +15,10 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class AnnouncementComponent implements OnInit {
   loading: boolean = false;
-  announcements: Array<Announcement> = [];
+  announcements: Array<any> = [];
+  featuredAnnouncement: any;
+  featuredImage: any;
+  featuredDesc: any;
   pagination = {
     pageSize: 10,
     pageNumber: 1,
@@ -32,19 +35,28 @@ export class AnnouncementComponent implements OnInit {
   }
   fetchData() {
     this.loading = true;
-    const query: QueryParams = {
-      find: [],
-      limit: this.pagination.pageSize,
-      page: this.pagination.pageNumber,
-    };
-    this.announcement.getAll(query).subscribe((res: any) => {
-      console.log(res);
-      this.loading = false;
+    this.announcement.getAll({}).subscribe(async (res: any) => {
       this.announcements = res.env.announcements;
-      this.pagination.totalDocuments = res.total_docs;
       this.announcements.forEach(async (el: any) => {
-        el.imgUrl = await this.getTempLink(el.image?.path_display);
+        el.imgUrl = await this.getTempLink(el?.image?.path_display);
+        el.layout = await this.stringToHTMLconverter(el.description);
       });
+      this.featuredAnnouncement = this.announcements.find(
+        (o: any) => o.isPinned === true
+      );
+      this.featuredImage = await this.getTempLink(
+        this.featuredAnnouncement?.image?.path_display
+      );
+      this.featuredDesc = await this.stringToHTMLconverter(
+        this.featuredAnnouncement?.description
+      );
+      this.announcements = this.announcements.filter(
+        (o: any) => o.isPinned === false
+      );
+      this.loading = false;
+      console.log(this.featuredAnnouncement);
+      console.log(this.announcements);
+      console.log(this.featuredImage);
     });
   }
 
@@ -78,5 +90,11 @@ export class AnnouncementComponent implements OnInit {
       width: '60%',
       data: event,
     });
+  }
+
+  async stringToHTMLconverter(str: any) {
+    let dom = document.createElement('p');
+    dom.innerHTML = str;
+    return dom.textContent || dom.innerText || '';
   }
 }

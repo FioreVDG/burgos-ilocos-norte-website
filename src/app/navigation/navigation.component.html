@@ -97,22 +97,6 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            (click)="changeRoute('/legislative')"
-            routerLink="/legislative"
-            >Legislative</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="changeRoute('/transparency')"
-            routerLink="/transparency"
-            >Transparency</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
             (click)="changeRoute('/tourism')"
             routerLink="/tourism"
             >Tourism</a
@@ -127,29 +111,57 @@
           >
         </li>
         <li class="nav-item">
+          <a class="nav-link" (click)="changeRoute('/news')" routerLink="/news"
+            >News & Updates</a
+          >
+        </li>
+        <li class="nav-item">
           <a
             class="nav-link"
             (click)="changeRoute('/announcement')"
             routerLink="/announcement"
-            >Announcement</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="changeRoute('/career')"
-            routerLink="/career"
-            >Career</a
+            >Announcements</a
           >
         </li>
 
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="changeRoute('/emergency-hotline')"
-            routerLink="/emergency-hotline"
-            >Emergency Hotline</a
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+            >Others</a
           >
+          <ul class="dropdown-menu">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                (click)="changeRoute('/legislative')"
+                routerLink="/legislative"
+                >Legislative</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                (click)="changeRoute('/transparency')"
+                routerLink="/transparency"
+                >Transparency</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                (click)="changeRoute('/career')"
+                routerLink="/career"
+                >Career</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                (click)="changeRoute('/emergency-hotline')"
+                routerLink="/emergency-hotline"
+                >Emergency Hotline</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
     </div>

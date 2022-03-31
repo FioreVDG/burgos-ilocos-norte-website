@@ -42,6 +42,7 @@ export class NewsComponent implements OnInit {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
       this.loading = false;
+      this.pagination.totalDocuments = res.total_docs;
     });
   }
 

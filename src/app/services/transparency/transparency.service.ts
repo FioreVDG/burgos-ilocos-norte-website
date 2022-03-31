@@ -25,6 +25,6 @@ export class TransparencyService {
   }
 
   getByType() {
-    return this.http.start('get', 'transparencies/types');
+    return this.http.start('get', '/transparencies/types');
   }
 }

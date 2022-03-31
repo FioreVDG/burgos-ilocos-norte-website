@@ -1,3 +1,4 @@
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { LegislativeService } from './../../services/legislative/legislative.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class LegislativeComponent implements OnInit {
   legislatives: any = [];
   loading: boolean = false;
-  constructor(private legislative: LegislativeService) {}
+  constructor(
+    private legislative: LegislativeService,
+    private dbx: DropboxService
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -23,12 +27,16 @@ export class LegislativeComponent implements OnInit {
       this.legislatives = res.env.legislatives;
       this.legislatives.forEach(async (el: any) => {
         el.layout = await this.stringToHTMLconverter(el.description);
-        // let e: HTMLDivElement = el.layout;
-        // console.log(document.getElementById('temp'));
-        // document.getElementById('temp')?.appendChild(el.layout);
+        el.imgUrl = await this.getTempLink(el.file.path_display);
       });
     });
     console.log(this.legislatives);
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
   }
 
   async stringToHTMLconverter(str: any) {

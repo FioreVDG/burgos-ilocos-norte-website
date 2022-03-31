@@ -5,6 +5,7 @@ import { QueryParams } from 'src/app/models/queryparams.interface';
 import { PageEvent } from '@angular/material/paginator';
 import { AddLegislativeComponent } from './add-legislative/add-legislative.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 
 @Component({
   selector: 'app-legislative',
@@ -23,7 +24,8 @@ export class LegislativeComponent implements OnInit {
   constructor(
     private legislative: LegislativeService,
     private dialog: MatDialog,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dbx: DropboxService
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +41,13 @@ export class LegislativeComponent implements OnInit {
     };
     this.legislative.getAll(query).subscribe((res: any) => {
       console.log(res);
-      this.loading = false;
       this.legislatives = res.env.legislatives;
+      this.legislatives.forEach(async (el: any) => {
+        el.imgUrl = await this.getTempLink(el?.file?.path_display);
+        el.layout = await this.stringToHTMLconverter(el?.description);
+      });
       this.pagination.totalDocuments = res.total_docs;
+      this.loading = false;
     });
   }
 
@@ -111,5 +117,17 @@ export class LegislativeComponent implements OnInit {
     this.sb.open(message, action, {
       duration: 1500,
     });
+  }
+
+  async stringToHTMLconverter(str: any) {
+    let dom = document.createElement('p');
+    dom.innerHTML = str;
+    return dom.textContent || dom.innerText || '';
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
   }
 }

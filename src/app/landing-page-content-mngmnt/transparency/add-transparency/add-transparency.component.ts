@@ -44,7 +44,7 @@ export class AddTransparencyComponent implements OnInit {
   });
 
   transparencyFileForm: FormGroup = this.fb.group({
-    image: new FormControl(''),
+    file: new FormControl(''),
   });
 
   config: AngularEditorConfig = {
@@ -181,7 +181,7 @@ export class AddTransparencyComponent implements OnInit {
         .uploadFile(path, fileName, this.imageFile)
         .subscribe((res: any) => {
           const imageData = res.result;
-          this.transparencyFileForm.controls['image'].setValue(imageData);
+          this.transparencyFileForm.controls['file'].setValue(imageData);
 
           const file = this.transparencyFileForm.getRawValue();
           const legislative = this.transparencyForm.getRawValue();
@@ -194,7 +194,7 @@ export class AddTransparencyComponent implements OnInit {
             ...thumbnail,
             year,
           };
-
+          console.log(legislativeData);
           if (this.data) this.updateTransparency(legislativeData);
           else this.createTransparency(legislativeData);
         });

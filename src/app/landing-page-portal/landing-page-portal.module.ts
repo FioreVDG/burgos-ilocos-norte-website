@@ -1,3 +1,4 @@
+import { NewsModule } from './main-page/news/news.module';
 import { NoContentModule } from './../no-content/no-content.module';
 import { LoadingModule } from './../loading/loading.module';
 import { AboutUsModule } from './about-us/about-us.module';
@@ -39,6 +40,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     LoadingModule,
     NoContentModule,
     LayoutModule,
+    NewsModule,
   ],
 })
 export class LandingPagePortalModule {}

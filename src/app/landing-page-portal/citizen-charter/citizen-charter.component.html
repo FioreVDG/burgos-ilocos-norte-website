@@ -1,1 +1,26 @@
-
+<div class="container" *ngIf="!loading && citizens.length">
+  <div class="one">
+    <h1>citizens Charter</h1>
+  </div>
+  <div *ngFor="let item of citizens">
+    <div (click)="viewFile(item.imgUrl)" class="row citizen-wrap">
+      <div class="col-12">
+        <div class="row">
+          <div class="col-2 img-wrap">
+            <img src="../../../assets/images/pdf-file (1).png" alt="" />
+          </div>
+          <div class="col desc">
+            <p>{{ item.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container loading-wrap" *ngIf="loading">
+  <div class="scale-in-center">
+    <i class="bi bi-bank2 icon"></i>
+  </div>
+  <p>Loading Citizen's Charter...</p>
+</div>
+<app-no-content *ngIf="!loading && !citizens?.length"></app-no-content>

@@ -4,10 +4,17 @@ import { CommonModule } from '@angular/common';
 
 import { CitizenCharterRoutingModule } from './citizen-charter-routing.module';
 import { CitizenCharterComponent } from './citizen-charter.component';
+import { DocViewerComponent } from './doc-viewer/doc-viewer.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
-  declarations: [CitizenCharterComponent],
-  imports: [CommonModule, CitizenCharterRoutingModule, NoContentModule],
+  declarations: [CitizenCharterComponent, DocViewerComponent],
+  imports: [
+    CommonModule,
+    CitizenCharterRoutingModule,
+    NoContentModule,
+    NgxDocViewerModule,
+  ],
   exports: [CitizenCharterComponent],
 })
 export class CitizenCharterModule {}

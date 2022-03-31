@@ -98,6 +98,7 @@
     justify-content: center;
     h4 {
       color: #fff;
+      text-align: center;
     }
   }
   .arrow {
@@ -119,5 +120,12 @@
       font-weight: 500;
       color: #05bbe8;
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 95%;
+    margin: auto;
   }
 }

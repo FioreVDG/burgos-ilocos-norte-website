@@ -1,11 +1,82 @@
 <app-no-content *ngIf="!loading && !announcements?.length"></app-no-content>
-<div class="container loading-wrap" *ngIf="loading">
+<section *ngIf="!loading">
+  <div class="container">
+    <div class="row" style="margin: auto; padding-bottom: 1.5rem">
+      <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+        <h3>Announcements</h3>
+        <h2>Know what's up and new</h2>
+      </div>
+    </div>
+
+    <div class="row" style="margin: auto; width: 100%" *ngIf="!loading">
+      <div *ngIf="featuredAnnouncement" class="row featured-wrapper">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 img-wrap">
+          <img [src]="featuredImage" alt="" />
+        </div>
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 desc-wrapper">
+          <p class="feat">Featured Announcement</p>
+          <h2>{{ featuredAnnouncement.title }}</h2>
+          <p class="date">
+            {{ featuredAnnouncement.createdAt | date: "longDate" }}
+          </p>
+          <p
+            *ngIf="featuredDesc"
+            [innerHTML]="
+              featuredDesc.slice(0, 500) +
+              (featuredDesc.length > 497 ? '....' : '')
+            "
+          ></p>
+          <a>Read more</a>
+        </div>
+      </div>
+      <div *ngIf="announcements.length" class="row news-list">
+        <div class="container">
+          <h3>Other Announcements</h3>
+          <div class="row">
+            <div
+              *ngFor="let item of announcements"
+              class="col-lg-3 col-xl-3 col-md-6 col-sm-12"
+            >
+              <div class="card news-list-card" style="height: 26.5rem">
+                <img
+                  [src]="item.imgUrl"
+                  style="height: 12rem"
+                  class="card-img-top"
+                  alt=""
+                />
+                <div class="card-body">
+                  <p class="card-title">
+                    <b>{{
+                      item.title.slice(0, 50) +
+                        (item.title.length > 47 ? ". . . ." : "")
+                    }}</b>
+                  </p>
+                  <p style="color: #777777; font-weight: 500">
+                    {{ item.createdAt | date: "mediumDate" }}
+                  </p>
+                  <p
+                    class="card-text"
+                    [innerHTML]="
+                      item?.layout?.slice(0, 75) +
+                      (item.layout?.length > 72 ? '. . . . . . .' : '')
+                    "
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <div class="container loading-wrap" *ngIf="loading">
   <div class="scale-in-center">
     <i class="bi bi-megaphone-fill icon"></i>
   </div>
   <p>Loading Announcements...</p>
-</div>
-<div class="container wrapper" *ngIf="!loading && announcements.length">
+</div> -->
+<!-- <div class="container wrapper" *ngIf="!loading && announcements.length">
   <div class="row">
     <ng-container *ngFor="let item of announcements">
       <div class="col-3">
@@ -28,4 +99,4 @@
       </div></ng-container
     >
   </div>
-</div>
+</div> -->

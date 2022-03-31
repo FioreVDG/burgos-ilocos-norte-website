@@ -44,12 +44,12 @@
                     (item.legislativeType.length > 27 ? "..." : "") || ""
                 }}
               </p>
-              <p>
-                {{
-                  item.description.slice(0, 30) +
-                    (item.description.length > 27 ? "..." : "") || ""
-                }}
-              </p>
+              <p
+                [innerHTML]="
+                  item?.layout?.slice(0, 30) +
+                    (item?.layout?.length > 27 ? '...' : '') || ''
+                "
+              ></p>
             </div>
           </div>
         </div>

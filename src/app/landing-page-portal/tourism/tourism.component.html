@@ -9,14 +9,20 @@
   <div class="one">
     <h1>Tourist Spots</h1>
   </div>
+  <p>The best and most beautiful places here in Burgos, Ilocos Norte</p>
   <div class="row">
     <ng-container *ngFor="let item of touristSpots">
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12">
-        <div class="img-hover-zoom">
-          <img src="../../../assets/images/windmill.jpg" alt="" />
+      <div class="img-cards col-lg-4 col-xl-4 col-md-6 col-sm-12">
+        <img
+          [src]="
+            item.imgUrl ? item.imgUrl : '../../../assets/images/empty-image.png'
+          "
+          alt=""
+        />
+        <div class="desc">
+          <p class="title">{{ item.title }}</p>
+          <p class="loc">{{ item.location }}</p>
         </div>
-        <h4>{{ item.title }}</h4>
-        <p class="loc"><b>LOCATION:</b> {{ item.location }}</p>
       </div>
     </ng-container>
   </div>

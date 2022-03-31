@@ -1,0 +1,73 @@
+<div class="container" style="width: 100%; margin: auto">
+  <div class="row" style="margin: auto; padding-bottom: 1.5rem">
+    <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
+      <h3>News and updates</h3>
+      <h2>What's happening now?</h2>
+    </div>
+    <div
+      *ngIf="newsArr.length"
+      class="col-xl-2 col-md-12 col-lg-12 col-sm-12 btn"
+    >
+      <button (click)="router.navigate(['/news'])">View All</button>
+    </div>
+  </div>
+
+  <div class="row" style="margin: auto; width: 100%" *ngIf="!loading">
+    <div *ngIf="featuredNews" class="row featured-wrapper">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 img-wrap">
+        <img [src]="featuredImage" alt="" />
+      </div>
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 desc-wrapper">
+        <p class="feat">Featured News</p>
+        <h2>{{ featuredNews.title }}</h2>
+        <p class="date">{{ featuredNews.createdAt | date: "longDate" }}</p>
+        <p
+          *ngIf="featuredDesc"
+          [innerHTML]="
+            featuredDesc.slice(0, 500) +
+            (featuredDesc.length > 497 ? '....' : '')
+          "
+        ></p>
+        <a>Read more</a>
+      </div>
+    </div>
+    <div *ngIf="newsArr.length" class="row news-list">
+      <div class="container">
+        <h3>Other News</h3>
+        <div class="row">
+          <div
+            *ngFor="let item of newsArr"
+            class="col-lg-3 col-xl-3 col-md-6 col-sm-12"
+          >
+            <div class="card news-list-card" style="height: 26.5rem">
+              <img
+                [src]="item.imgUrl"
+                style="height: 12rem"
+                class="card-img-top"
+                alt=""
+              />
+              <div class="card-body">
+                <p class="card-title">
+                  <b>{{
+                    item.title.slice(0, 50) +
+                      (item.title.length > 47 ? ". . . ." : "")
+                  }}</b>
+                </p>
+                <p style="color: #777777; font-weight: 500">
+                  {{ item.createdAt | date: "mediumDate" }}
+                </p>
+                <p
+                  class="card-text"
+                  [innerHTML]="
+                    item?.layout?.slice(0, 75) +
+                    (item.layout?.length > 72 ? '. . . . . . .' : '')
+                  "
+                ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

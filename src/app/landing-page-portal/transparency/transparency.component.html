@@ -4,7 +4,7 @@
   <div class="one">
     <h1>Transparencies</h1>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="!loading && transparencies.length">
     <ng-container *ngFor="let item of transparencies">
       <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
         <div class="card transparency" (click)="viewTransparency(item)">

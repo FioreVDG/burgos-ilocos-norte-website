@@ -1,0 +1,44 @@
+.container {
+  padding: 1.5rem 0rem;
+  .citizen-wrap {
+    width: 50%;
+    margin: auto;
+    padding: 1rem 0rem;
+    cursor: pointer;
+    transition: 0.2s ease-in;
+    .img-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      img {
+        width: 40%;
+      }
+    }
+    &:hover {
+      background-color: #56565649;
+    }
+  }
+}
+@media only screen and(max-width: 600px) {
+  .container {
+    .citizen-wrap {
+      width: 90%;
+      .img-wrap {
+        img {
+          width: 120%;
+        }
+      }
+      .desc {
+        padding-left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+      }
+    }
+    p {
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+  }
+}

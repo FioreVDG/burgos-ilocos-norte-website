@@ -33,7 +33,7 @@ export class AddLegislativeComponent implements OnInit {
   });
 
   legislativeFileForm: FormGroup = this.fb.group({
-    image: new FormControl(''),
+    file: new FormControl(''),
   });
 
   config: AngularEditorConfig = {
@@ -170,14 +170,14 @@ export class AddLegislativeComponent implements OnInit {
         .uploadFile(path, fileName, this.imageFile)
         .subscribe((res: any) => {
           const imageData = res.result;
-          this.legislativeFileForm.controls['image'].setValue(imageData);
+          this.legislativeFileForm.controls['file'].setValue(imageData);
 
-          const image = this.legislativeFileForm.getRawValue();
+          const file = this.legislativeFileForm.getRawValue();
           const legislative = this.legislativeForm.getRawValue();
           const yearPosted = new Date().getFullYear();
 
           const legislativeData: any = {
-            ...image,
+            ...file,
             ...legislative,
             yearPosted,
           };

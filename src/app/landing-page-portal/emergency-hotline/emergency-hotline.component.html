@@ -1,1 +1,15 @@
-<app-no-content></app-no-content>
+<div class="container">
+  <div class="one">
+    <h1>Emergency Hotlines</h1>
+  </div>
+  <div class="row" *ngFor="let item of hotlines">
+    <div class="col-12">
+      <p>
+        <b>{{ item.label }}:</b> &nbsp;<span
+          style="color: #616161; font-weight: 500"
+          >{{ item.contact }}</span
+        >
+      </p>
+    </div>
+  </div>
+</div>

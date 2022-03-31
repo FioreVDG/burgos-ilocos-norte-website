@@ -5,18 +5,29 @@
   </div>
   <p>Loading Legislatives...</p>
 </div>
-<div *ngIf="!loading" class="container">
+<div *ngIf="!loading && legislatives.length" class="container">
   <div class="one">
     <h1>Legislatives</h1>
   </div>
-  <ng-container *ngFor="let item of legislatives">
-    <div class="legislative-content">
-      <h3>{{ item.title }}</h3>
-      <p class="sub-header">
-        Posted in {{ item.createdAt | date: "Y" }} {{ item.legislativeType }}
-      </p>
-      <div #temp id="temp" [innerHTML]="item.layout"></div>
-    </div>
-    <hr />
-  </ng-container>
+  <div class="container legislative">
+    <ng-container *ngFor="let item of legislatives">
+      <div class="row">
+        <div class="col-sm-12 col-xl-4 col-lg-4 col-md-4">
+          <img [src]="item.imgUrl" alt="" />
+        </div>
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+          <div class="legislative-content">
+            <h3>{{ item.title }}</h3>
+            <p class="sub-header">
+              Posted in {{ item.createdAt | date: "Y" }}
+              {{ item.legislativeType }}
+            </p>
+            <div #temp id="temp" [innerHTML]="item.layout"></div>
+          </div>
+        </div>
+      </div>
+
+      <hr *ngIf="legislatives.length > 1" />
+    </ng-container>
+  </div>
 </div>
