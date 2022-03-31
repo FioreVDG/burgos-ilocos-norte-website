@@ -39,3 +39,13 @@
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 90%;
+    margin: auto;
+    ul {
+      margin-left: 1.5rem;
+    }
+  }
+}

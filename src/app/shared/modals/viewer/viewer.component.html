@@ -1,0 +1,11 @@
+<i (click)="dialogRef.close()" class="bi bi-arrow-left-square-fill back"></i>
+<div class="img-wrap">
+  <img [src]="data.imgUrl" alt="" />
+</div>
+<div class="container">
+  <div class="desc-wrap">
+    <h3>{{ data.title }}</h3>
+    <span>{{ data.createdAt | date: "mediumDate" }}</span>
+    <p [innerHTML]="data.layout"></p>
+  </div>
+</div>

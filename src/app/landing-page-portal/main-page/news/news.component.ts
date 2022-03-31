@@ -1,3 +1,5 @@
+import { ViewerComponent } from './../../../shared/modals/viewer/viewer.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NewsService } from './../../../services/news/news.service';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
@@ -17,7 +19,8 @@ export class NewsComponent implements OnInit {
   constructor(
     private dbx: DropboxService,
     private news: NewsService,
-    public router: Router
+    public router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +61,15 @@ export class NewsComponent implements OnInit {
     let dom = document.createElement('p');
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
+  }
+
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }

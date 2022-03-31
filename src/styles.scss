@@ -135,3 +135,11 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.dialog-no-padding {
+  mat-dialog-container {
+    padding: 0;
+    border-radius: 0;
+    // overflow: hidden;
+  }
+}

@@ -2,6 +2,8 @@ import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { AnnouncementService } from './../../../services/announcement/announcement.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 
 @Component({
   selector: 'app-announcement',
@@ -17,7 +19,8 @@ export class AnnouncementComponent implements OnInit {
   constructor(
     public router: Router,
     private announcement: AnnouncementService,
-    private dbx: DropboxService
+    private dbx: DropboxService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -63,5 +66,15 @@ export class AnnouncementComponent implements OnInit {
     let dom = document.createElement('p');
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
+  }
+
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }

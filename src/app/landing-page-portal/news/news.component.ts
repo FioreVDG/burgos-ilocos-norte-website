@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { NewsService } from 'src/app/services/news/news.service';
+import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 
 @Component({
   selector: 'app-news',
@@ -17,7 +19,8 @@ export class NewsComponent implements OnInit {
   constructor(
     private dbx: DropboxService,
     private news: NewsService,
-    public router: Router
+    public router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +42,7 @@ export class NewsComponent implements OnInit {
         this.featuredNews?.description
       );
       this.newsArr = this.newsArr.filter((o: any) => o.isPinned === false);
-      if (this.newsArr.length > 4) {
-        this.newsArr.length = 4;
-      }
+
       this.loading = false;
       console.log(this.featuredNews);
       console.log(this.featuredImage);
@@ -58,5 +59,15 @@ export class NewsComponent implements OnInit {
     let dom = document.createElement('p');
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
+  }
+
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }

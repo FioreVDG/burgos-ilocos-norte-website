@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { QueryParams } from 'src/app/models/queryparams.interface';
 import { Announcement } from 'src/app/models/api/announcement-service.interface';
 import { PageEvent } from '@angular/material/paginator';
+import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 
 @Component({
   selector: 'app-announcement',
@@ -83,18 +84,19 @@ export class AnnouncementComponent implements OnInit {
     return response.result.link;
   }
 
-  readMore(event: any) {
-    console.log(event);
-    this.dialog.open(ViewAnnouncementComponent, {
-      height: 'auto',
-      width: '60%',
-      data: event,
-    });
-  }
-
   async stringToHTMLconverter(str: any) {
     let dom = document.createElement('p');
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
+  }
+
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }

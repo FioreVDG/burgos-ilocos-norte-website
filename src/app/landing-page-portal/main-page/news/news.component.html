@@ -28,7 +28,7 @@
             (featuredDesc.length > 497 ? '....' : '')
           "
         ></p>
-        <a>Read more</a>
+        <a (click)="showMore(featuredNews)">Read more</a>
       </div>
     </div>
     <div *ngIf="newsArr.length" class="row news-list">
@@ -39,7 +39,11 @@
             *ngFor="let item of newsArr"
             class="col-lg-3 col-xl-3 col-md-6 col-sm-12"
           >
-            <div class="card news-list-card" style="height: 26.5rem">
+            <div
+              (click)="showMore(item)"
+              class="card news-list-card"
+              style="height: 26.5rem"
+            >
               <img
                 [src]="item.imgUrl"
                 style="height: 12rem"

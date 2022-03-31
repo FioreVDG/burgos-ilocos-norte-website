@@ -14,7 +14,7 @@
         carouselSlide
         *ngFor="let item of touristSpots; let i = index"
       >
-        <div class="img-cards">
+        <div class="img-cards" (click)="showMore(item)">
           <img
             [src]="
               item.imgUrl && item.loaded

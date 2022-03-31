@@ -1,6 +1,8 @@
+import { MatDialog } from '@angular/material/dialog';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TourismService } from './../../services/tourism/tourism.service';
 import { Component, OnInit } from '@angular/core';
+import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 
 @Component({
   selector: 'app-tourism',
@@ -10,7 +12,11 @@ import { Component, OnInit } from '@angular/core';
 export class TourismComponent implements OnInit {
   touristSpots: any = [];
   loading: boolean = false;
-  constructor(private tourist: TourismService, private dbx: DropboxService) {}
+  constructor(
+    private tourist: TourismService,
+    private dbx: DropboxService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
@@ -23,6 +29,7 @@ export class TourismComponent implements OnInit {
       this.touristSpots = res.env.tourist_spots;
       this.touristSpots.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
+        el.layout = await this.stringToHTMLconverter(el.description);
       });
       this.loading = false;
     });
@@ -38,5 +45,14 @@ export class TourismComponent implements OnInit {
     let dom = document.createElement('p');
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
+  }
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }

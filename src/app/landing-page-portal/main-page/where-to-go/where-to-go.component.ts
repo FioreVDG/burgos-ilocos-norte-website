@@ -3,6 +3,8 @@ import { TourismService } from './../../../services/tourism/tourism.service';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 
 @Component({
   selector: 'app-where-to-go',
@@ -44,7 +46,8 @@ export class WhereToGoComponent implements OnInit {
   constructor(
     private dbx: DropboxService,
     private tourist: TourismService,
-    public router: Router
+    public router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +62,7 @@ export class WhereToGoComponent implements OnInit {
         this.touristSpots = res.env.tourist_spots;
         this.touristSpots.forEach(async (el: any) => {
           el.imgUrl = await this.getTempLink(el?.image?.path_display);
+          el.layout = await this.stringToHTMLconverter(el.description);
         });
         console.log(this.touristSpots);
         this.loading = false;
@@ -72,7 +76,23 @@ export class WhereToGoComponent implements OnInit {
     return response.result.link;
   }
 
+  async stringToHTMLconverter(str: any) {
+    let dom = document.createElement('p');
+    dom.innerHTML = str;
+    return dom.textContent || dom.innerText || '';
+  }
+
   imageLoaded(index: number) {
     this.touristSpots[index].loaded = true;
+  }
+
+  showMore(data: any) {
+    console.log(data);
+    this.dialog.open(ViewerComponent, {
+      minWidth: '100vw',
+      height: '100%',
+      data: data,
+      panelClass: 'dialog-no-padding',
+    });
   }
 }
