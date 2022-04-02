@@ -18,7 +18,9 @@ export class NavigationComponent implements OnInit {
   width: any;
   constructor(public router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.router.url);
+  }
 
   changeRoute(route: any) {
     this.changeNavigation.emit({ loading: true, route: route });

@@ -169,8 +169,9 @@
   </div>
 </nav>
 <div
-  style="position: sticky; top: 55px; z-index: 9999"
+  style="position: sticky; top: 55px; z-index: 999"
   class="progress-container"
+  *ngIf="router.url === '/welcome'"
 >
   <div class="progress-bar" [style]="'width:' + width + '%'" id="myBar"></div>
 </div>
