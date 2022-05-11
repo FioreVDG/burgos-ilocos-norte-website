@@ -4,10 +4,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertAreYouSureComponent } from './alert-are-you-sure/alert-are-you-sure.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ViewerComponent } from './viewer/viewer.component';
+import { FileViewerComponent } from './file-viewer/file-viewer.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 @NgModule({
-  declarations: [AlertAreYouSureComponent, ViewerComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule],
+  declarations: [
+    AlertAreYouSureComponent,
+    ViewerComponent,
+    FileViewerComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    NgxDocViewerModule,
+  ],
   exports: [],
 })
 export class ModalsModule {}

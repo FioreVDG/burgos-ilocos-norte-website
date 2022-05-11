@@ -79,6 +79,18 @@ const routes: Routes = [
         loadChildren: () =>
           import('./news/news.module').then((m) => m.NewsModule),
       },
+      {
+        path: 'services',
+        loadChildren: () =>
+          import('./services/services.module').then((m) => m.ServicesModule),
+      },
+      {
+        path: 'bids-awards',
+        loadChildren: () =>
+          import('./bids-awards/bids-awards.module').then(
+            (m) => m.BidsAwardsModule
+          ),
+      },
     ],
   },
 ];

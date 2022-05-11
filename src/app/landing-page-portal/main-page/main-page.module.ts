@@ -1,3 +1,4 @@
+import { MayorModule } from './mayor/mayor.module';
 import { MainModule } from './main/main.module';
 import { AnnouncementModule } from './announcement/announcement.module';
 import { NewsModule } from './news/news.module';
@@ -21,6 +22,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     WhereToGoModule,
     NewsModule,
     AnnouncementModule,
+    MayorModule,
     CarouselModule,
     MainModule,
   ],

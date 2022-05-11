@@ -1,0 +1,19 @@
+.service-wrap {
+  margin-bottom: 1rem;
+  .btns {
+    color: #05bbe8;
+    background-color: transparent;
+    outline: none;
+    font-size: 11px;
+    text-decoration: underline;
+    margin-top: 0;
+    cursor: pointer;
+    &:hover {
+      transition: 0.2s ease;
+      color: #0298bd;
+    }
+  }
+}
+.container {
+  padding: 2rem 0rem;
+}

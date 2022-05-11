@@ -16,8 +16,11 @@ export class DepartmentComponent implements OnInit {
     this.department.getAll({}).subscribe((res: any) => {
       console.log(res);
       this.departments = res.env.departments;
-      this.departments.forEach((el: any) => {});
+      this.departments.forEach(async (el: any) => {
+        el.layout = await this.stringToHTMLconverter(el.description);
+      });
       this.loading = false;
+      console.log(this.departments);
     });
   }
 

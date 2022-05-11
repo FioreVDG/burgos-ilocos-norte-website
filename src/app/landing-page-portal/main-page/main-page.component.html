@@ -73,19 +73,10 @@
   <app-news></app-news>
 </section>
 
-<!-- <section id="announcement" class="announcement">
-  <div class="container">
-    <app-announcement></app-announcement>
-  </div>
-</section> -->
-
-<section class="where-to-go">
-  <app-where-to-go></app-where-to-go>
-</section>
-
 <section class="mayor-bg">
-  <div class="container">
-    <!-- <owl-carousel-o [options]="customOptions"> -->
+  <app-mayor></app-mayor>
+  <!-- <div class="container">
+    <owl-carousel-o [options]="customOptions">
     <ng-container carouselSlide *ngFor="let item of mayorConf">
       <div class="one">
         <h1>{{ item.section }}</h1>
@@ -122,8 +113,18 @@
         </div>
       </div>
     </ng-container>
-    <!-- </owl-carousel-o> -->
+    </owl-carousel-o>
+  </div> -->
+</section>
+
+<!-- <section id="announcement" class="announcement">
+  <div class="container">
+    <app-announcement></app-announcement>
   </div>
+</section> -->
+
+<section class="where-to-go">
+  <app-where-to-go></app-where-to-go>
 </section>
 
 <section class="public-servants">

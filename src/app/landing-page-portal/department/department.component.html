@@ -1,11 +1,17 @@
-<div class="container">
-  <!-- <ng-container *ngFor="let dept of departments"
-    ><h3>{{ dept.title }}</h3>
-    
-    </ng-container
-  > -->
-
+<app-spinner *ngIf="loading"></app-spinner>
+<app-no-content *ngIf="!departments.length && !loading"></app-no-content>
+<div *ngIf="!loading && departments.length" class="container">
   <div class="wrapper">
+    <div *ngFor="let dept of departments">
+      <h3>{{ dept.title }}</h3>
+      <p class="subt" *ngIf="dept.person">
+        {{ dept.person }} <i>({{ dept.position }})</i> - {{ dept.number }}
+      </p>
+      <div style="margin-top: 1.2rem" [innerHTML]="dept.layout"></div>
+    </div>
+  </div>
+
+  <!-- <div class="wrapper">
     <h3>Office of the Mayor</h3>
     <p>
       The Local Chief Executive heads the office of the Mayor. It is composed of
@@ -517,5 +523,5 @@
         </table>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

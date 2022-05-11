@@ -44,10 +44,10 @@
         <span style="border-color: #fff" class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="nav nav-responsive justify-content-center collapse navbar-collapse"
+        class="nav nav-responsive collapse navbar-collapse"
         id="navbarTogglerDemo03"
       >
-        <ul class="nav nav-responsive justify-content-center">
+        <ul class="nav nav-responsive">
           <!-- <li class="nav-item">
           <a
             class="nav-link"
@@ -61,7 +61,7 @@
               class="nav-link dropdown-toggle"
               href="#"
               data-bs-toggle="dropdown"
-              >About Us</a
+              >About</a
             >
             <ul class="dropdown-menu">
               <li>
@@ -111,15 +111,15 @@
               </li>
             </ul>
           </li>
-          <!-- <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="changeRoute('/department')"
-            routerLink="/department"
-            routerLinkActive="router-active"
-            >Departments</a
-          >
-        </li> -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="changeRoute('/news')"
+              routerLink="/news"
+              routerLinkActive="router-active"
+              >News</a
+            >
+          </li>
           <li class="nav-item">
             <a
               class="nav-link"
@@ -127,6 +127,16 @@
               routerLink="/tourism"
               routerLinkActive="router-active"
               >Tourism</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="changeRoute('/services')"
+              routerLink="/services"
+              routerLinkActive="router-active"
+              >Services</a
             >
           </li>
           <li class="nav-item">
@@ -141,17 +151,9 @@
           <li class="nav-item">
             <a
               class="nav-link"
-              (click)="changeRoute('/news')"
-              routerLink="/news"
-              routerLinkActive="router-active"
-              >News & Updates</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
               (click)="changeRoute('/legislative')"
               routerLink="/legislative"
+              routerLinkActive="router-active"
               >Issuances</a
             >
           </li>
@@ -160,6 +162,7 @@
               class="nav-link"
               (click)="changeRoute('/career')"
               routerLink="/career"
+              routerLinkActive="router-active"
               >Career</a
             >
           </li>
@@ -168,7 +171,17 @@
               class="nav-link"
               (click)="changeRoute('/transparency')"
               routerLink="/transparency"
+              routerLinkActive="router-active"
               >Transparency</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              (click)="changeRoute('/bids-awards')"
+              routerLink="/bids-awards"
+              routerLinkActive="router-active"
+              >Bids & Awards</a
             >
           </li>
           <li class="nav-item">

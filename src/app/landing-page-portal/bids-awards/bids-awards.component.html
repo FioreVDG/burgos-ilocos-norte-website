@@ -1,0 +1,31 @@
+<app-no-content *ngIf="!loading && !bids.length"></app-no-content>
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="container" *ngIf="!loading && bids.length">
+  <div class="one">
+    <h1>Bids & Awards Committee</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <ng-container *ngFor="let item of bids; let i = index">
+        <hr *ngIf="i !== 0" />
+        <h3>{{ item.id }}</h3>
+        <p class="type">{{ item.type }}</p>
+
+        <p class="desc">{{ item.description }}</p>
+        <ng-container *ngFor="let file of item.files">
+          <ul>
+            <li (click)="openFile(file.url, file.file.path_display)">
+              {{ file.title }}
+            </li>
+          </ul>
+        </ng-container>
+        <p class="date">
+          Posted on:
+          <i
+            ><b>{{ item.createdAt | date: "medium" }}</b></i
+          >
+        </p>
+      </ng-container>
+    </div>
+  </div>
+</div>

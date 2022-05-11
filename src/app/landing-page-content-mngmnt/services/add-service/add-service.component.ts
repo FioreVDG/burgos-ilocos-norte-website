@@ -23,8 +23,8 @@ import { map } from 'rxjs/operators';
 })
 export class AddServiceComponent implements OnInit {
   isLinear = true;
-  acceptedDocs: string = '.png, .jpeg, .jpg';
-  allowedFileTypes = ['png', 'jpeg', 'jpg'];
+  acceptedDocs: string = '.png, .jpeg, .jpg, .pdf';
+  allowedFileTypes = ['png', 'jpeg', 'jpg', 'pdf'];
   imageFile: File | null;
   imageB64: string = '';
   serviceForm: FormGroup = this.fb.group({

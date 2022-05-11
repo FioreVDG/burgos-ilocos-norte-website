@@ -51,6 +51,22 @@ h1 {
   transition: all 0.4s ease 0s;
 }
 
+ul {
+  margin-left: 6.5rem;
+  font-size: 15px;
+  color: #767676;
+}
+
+li::marker {
+  color: #05bbe8;
+  font-size: 17px;
+}
+
+li {
+  font-size: 15px;
+  color: #767676;
+}
+
 h1 span {
   display: block;
   font-size: 15px;
