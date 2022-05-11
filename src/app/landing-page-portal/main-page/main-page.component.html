@@ -85,44 +85,44 @@
 
 <section class="mayor-bg">
   <div class="container">
-    <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide *ngFor="let item of mayorConf">
-        <div class="one">
-          <h1>{{ item.section }}</h1>
-        </div>
-        <div class="mayor-main">
-          <div class="row">
-            <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12 text-wrapper">
-              <div class="card card-main-upper">
-                <div class="card-body img-card">
-                  <img [src]="item.img" class="img-fluid mayor-img" alt="" />
-                </div>
-              </div>
-              <p class="mayor-msg" *ngFor="let msg of item.messages">
-                {{ msg }}
-              </p>
-              <div style="margin-top: 0.7rem" class="mayor-info">
-                <p>
-                  <b>{{ item.name }}</b>
-                </p>
-              </div>
-              <div class="mayor-info">
-                <p style="font-size: 12px; color: #6f6f6f">
-                  {{ item.position }}
-                </p>
+    <!-- <owl-carousel-o [options]="customOptions"> -->
+    <ng-container carouselSlide *ngFor="let item of mayorConf">
+      <div class="one">
+        <h1>{{ item.section }}</h1>
+      </div>
+      <div class="mayor-main">
+        <div class="row">
+          <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12 text-wrapper">
+            <div class="card card-main-upper">
+              <div class="card-body img-card">
+                <img [src]="item.img" class="img-fluid mayor-img" alt="" />
               </div>
             </div>
-            <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
-              <div class="card card-main">
-                <div class="card-body img-card">
-                  <img [src]="item.img" class="img-fluid mayor-img" alt="" />
-                </div>
+            <p class="mayor-msg" *ngFor="let msg of item.messages">
+              {{ msg }}
+            </p>
+            <div style="margin-top: 0.7rem" class="mayor-info">
+              <p>
+                <b>{{ item.name }}</b>
+              </p>
+            </div>
+            <div class="mayor-info">
+              <p style="font-size: 12px; color: #6f6f6f">
+                {{ item.position }}
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
+            <div class="card card-main">
+              <div class="card-body img-card">
+                <img [src]="item.img" class="img-fluid mayor-img" alt="" />
               </div>
             </div>
           </div>
         </div>
-      </ng-template>
-    </owl-carousel-o>
+      </div>
+    </ng-container>
+    <!-- </owl-carousel-o> -->
   </div>
 </section>
 

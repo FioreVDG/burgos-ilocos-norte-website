@@ -27,15 +27,15 @@ export const MAYOR_MSG = [
     name: 'HON. CRESCENTE N. GARCIA',
     position: 'Municipal Mayor',
   },
-  {
-    section: `Vice Mayor's Message`,
-    img: `../../../assets/images/vice-mayor-img.jpg`,
-    messages: [
-      `In support to the implementation of the Anti-Red Tape Act, a Charter of the Local Government of Burgos, Ilocos Norte was created.`,
-      `May I salute the Citizen’s Charter Implementation Team (CCIT) for painstakingly formulated, scrutinized, and edited the said Charter.`,
-      `Hopefully, with the prominent display of this document in every office, the clienteles will be guided properly so that unnecessary delay in the delivery of frontline services in the LGU will be eliminated. After all, they deserve the best.`,
-    ],
-    name: `HON. RODOLFO L. GARCIA`,
-    position: 'Municipal Vice Mayor',
-  },
+  // {
+  //   section: `Vice Mayor's Message`,
+  //   img: `../../../assets/images/vice-mayor-img.jpg`,
+  //   messages: [
+  //     `In support to the implementation of the Anti-Red Tape Act, a Charter of the Local Government of Burgos, Ilocos Norte was created.`,
+  //     `May I salute the Citizen’s Charter Implementation Team (CCIT) for painstakingly formulated, scrutinized, and edited the said Charter.`,
+  //     `Hopefully, with the prominent display of this document in every office, the clienteles will be guided properly so that unnecessary delay in the delivery of frontline services in the LGU will be eliminated. After all, they deserve the best.`,
+  //   ],
+  //   name: `HON. RODOLFO L. GARCIA`,
+  //   position: 'Municipal Vice Mayor',
+  // },
 ];

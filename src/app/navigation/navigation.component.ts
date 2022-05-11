@@ -35,8 +35,8 @@ export class NavigationComponent implements OnInit {
       document.documentElement.scrollTop || document.body.scrollTop || 0;
     const scrolled = (offset / height) * 100;
     this.width = scrolled;
-    console.log(offset);
-    console.log(height);
-    console.log(this.width);
+    // console.log(offset);
+    // console.log(height);
+    // console.log(this.width);
   }
 }
