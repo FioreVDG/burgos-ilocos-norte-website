@@ -81,6 +81,16 @@
               Please enter a Latitude
             </mat-error>
           </mat-form-field>
+          <mat-form-field style="display: block" appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select required formControlName="type">
+              <mat-option *ngFor="let type of types" [value]="type">
+                {{ type }}
+              </mat-option> </mat-select
+            ><mat-error *ngIf="touristForm.get('type')?.hasError('required')">
+              Please select type
+            </mat-error>
+          </mat-form-field>
           <angular-editor
             formControlName="description"
             required

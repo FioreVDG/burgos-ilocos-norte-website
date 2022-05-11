@@ -35,6 +35,7 @@ export class AddTourismComponent implements OnInit {
     location: new FormControl('', [Validators.required]),
     longitude: new FormControl('', [Validators.required]),
     latitude: new FormControl('', [Validators.required]),
+    type: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
   touristImageForm: FormGroup = this.fb.group({
@@ -42,6 +43,7 @@ export class AddTourismComponent implements OnInit {
   });
   saving: boolean = false;
   subImages: Array<any> = [];
+  types = ['Tourist Spot', 'Festival'];
 
   config: AngularEditorConfig = {
     editable: true,
@@ -88,6 +90,7 @@ export class AddTourismComponent implements OnInit {
       this.touristForm.controls['title'].setValue(this.data.title);
       this.touristForm.controls['description'].setValue(this.data.description);
       this.touristForm.controls['location'].setValue(this.data.location);
+      this.touristForm.controls['type'].setValue(this.data.type);
 
       if (this.data.image)
         this.dropbox
