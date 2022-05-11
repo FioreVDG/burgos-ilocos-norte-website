@@ -31,6 +31,13 @@ const routes: Routes = [
             (m) => m.GeographicInfoModule
           ),
       },
+      {
+        path: 'mission-vision',
+        loadChildren: () =>
+          import('./mission-vision/mission-vision.module').then(
+            (m) => m.MissionVisionModule
+          ),
+      },
     ],
   },
 ];

@@ -135,6 +135,7 @@ export class DropboxService {
 
   uploadFile(path: string, filename: string, file: any): Observable<any> {
     console.log(filename);
+    console.log(file);
     return Observable.create((observer: any) => {
       this.dbx
         .filesUpload({

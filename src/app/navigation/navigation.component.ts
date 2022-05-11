@@ -23,7 +23,7 @@ export class NavigationComponent implements OnInit {
   }
 
   changeRoute(route: any) {
-    this.changeNavigation.emit({ loading: true, route: route });
+    // this.changeNavigation.emit({ loading: true, route: route });
   }
 
   @HostListener('window:scroll', [])

@@ -8,9 +8,10 @@ import { CommonModule } from '@angular/common';
 import { TourismRoutingModule } from './tourism-routing.module';
 import { TourismComponent } from './tourism.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AddImageComponent } from './add-tourism/add-image/add-image.component';
 
 @NgModule({
-  declarations: [TourismComponent, AddTourismComponent],
+  declarations: [TourismComponent, AddTourismComponent, AddImageComponent],
   imports: [
     CommonModule,
     TourismRoutingModule,

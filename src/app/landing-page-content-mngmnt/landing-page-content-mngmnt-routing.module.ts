@@ -10,14 +10,17 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'announcement',
+        redirectTo: 'add-news',
       },
       {
-        path: 'add-announcement',
+        path: 'add-news',
         loadChildren: () =>
-          import('./announcement/announcement.module').then(
-            (m) => m.AnnouncementModule
-          ),
+          import('./news/news.module').then((m) => m.NewsModule),
+      },
+      {
+        path: 'content',
+        loadChildren: () =>
+          import('./contents/contents.module').then((m) => m.ContentsModule),
       },
       {
         path: 'add-career',
@@ -50,11 +53,22 @@ const routes: Routes = [
             (m) => m.CitizenCharterModule
           ),
       },
-
       {
-        path: 'add-news',
+        path: 'add-department',
         loadChildren: () =>
-          import('./news/news.module').then((m) => m.NewsModule),
+          import('./department/department.module').then(
+            (m) => m.DepartmentModule
+          ),
+      },
+      {
+        path: 'add-services',
+        loadChildren: () =>
+          import('./services/services.module').then((m) => m.ServicesModule),
+      },
+      {
+        path: 'add-bid',
+        loadChildren: () =>
+          import('./bids/bids.module').then((m) => m.BidsModule),
       },
     ],
   },

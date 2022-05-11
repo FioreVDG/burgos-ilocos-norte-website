@@ -1,0 +1,48 @@
+<h3 mat-dialog-title>Add Images</h3>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-5">
+      <ngx-file-drop
+        dropZoneClassName="drop-zone"
+        contentClassName="drop-zone-content"
+        browseBtnClassName="drop-zone-btn"
+        dropZoneLabel="Drop files here"
+        (onFileDrop)="dropped($event)"
+      >
+        <ng-template
+          ngx-file-drop-content-tmp
+          let-openFileSelector="openFileSelector"
+        >
+          <ng-container>
+            <button
+              mat-flat-button
+              class="primary"
+              (click)="openFileSelector()"
+            >
+              Browse File
+            </button>
+
+            <p style="margin-top: 1rem">
+              Accepted Format/s: {{ acceptedDocs }}
+            </p>
+          </ng-container>
+        </ng-template>
+      </ngx-file-drop>
+      <button (click)="addImage()">add</button>
+    </div>
+    <div class="col-7">
+      <div class="row">
+        <div class="col-4" *ngFor="let item of imagesArr">
+          <div *ngIf="imagesArr.length">
+            <img style="width: 100%" [src]="item.file" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-flat-button color="primary" (click)="proceedAdding()">
+    Proceed
+  </button>
+</mat-dialog-actions>

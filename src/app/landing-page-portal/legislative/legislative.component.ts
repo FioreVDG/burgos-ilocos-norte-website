@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class LegislativeComponent implements OnInit {
   legislatives: any = [];
   loading: boolean = false;
+  search: string = '';
   constructor(
     private legislative: LegislativeService,
     private dbx: DropboxService
@@ -31,6 +32,35 @@ export class LegislativeComponent implements OnInit {
       });
     });
     console.log(this.legislatives);
+  }
+
+  onSearch() {
+    console.log(this.search);
+    let query;
+    if (this.search === 'All')
+      query = {
+        find: [],
+      };
+    else
+      query = {
+        find: [
+          {
+            field: 'legislativeType',
+            operator: '=',
+            value: this.search,
+          },
+        ],
+      };
+    this.loading = true;
+    this.legislative.getAll(query).subscribe((res: any) => {
+      console.log(res);
+      this.legislatives = res.env.legislatives;
+      this.legislatives.forEach(async (el: any) => {
+        el.layout = await this.stringToHTMLconverter(el.description);
+        el.imgUrl = await this.getTempLink(el.file.path_display);
+      });
+      this.loading = false;
+    });
   }
 
   async getTempLink(data: any) {

@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <mat-form-field appearance="fill">
+        <mat-label>Paste Link here</mat-label>
+        <input [(ngModel)]="link" matInput required />
+      </mat-form-field>
+
+      <button
+        mat-flat-button
+        (click)="!resHolder.length ? set() : update()"
+        color="primary"
+      >
+        Set as background video
+      </button>
+    </div>
+    <div class="col-7">
+      <div *ngIf="hasLink && !loading" class="vid-wrap">
+        <iframe
+          width="855"
+          height="485"
+          [src]="secure(fLink)"
+          frameborder="0"
+          allowfullscreen
+          allow="autoplay"
+          style="
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 5px;
+          "
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>

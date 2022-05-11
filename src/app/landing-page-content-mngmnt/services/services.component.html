@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="one">
+      <h1>Manage Services</h1>
+    </div>
+    <div *ngIf="!loading" class="container">
+      <div class="row">
+        <div class="col-3">
+          <div (click)="addService()" class="card add-news">
+            <div class="card-body">
+              <i class="bi bi-plus-square-dotted icon"></i>
+              <h3 style="text-align: center">Add Service</h3>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let item of services" class="col-3">
+          <div
+            style="
+              width: 90%;
+              margin: auto;
+              height: 20rem;
+              margin: 1.5rem 0;
+              position: relative;
+            "
+            class="card"
+          >
+            <div style="position: absolute; top: 6px; right: 6px">
+              <button
+                mat-icon-button
+                class="icn-top"
+                [matMenuTriggerFor]="cardOptions"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #cardOptions="matMenu">
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="updateService(item)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button
+                  mat-menu-item
+                  color="warn"
+                  (click)="deleteService(item._id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      *ngIf="!loading"
+      mat-fab
+      color="primary"
+      class="bottom-right-button"
+      (click)="addService()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

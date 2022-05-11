@@ -8,6 +8,11 @@
   transition: 0.2s ease-in;
 }
 
+#main {
+  height: 100vh;
+  min-height: auto;
+}
+
 .searchTerm {
   width: 100%;
   border: 3px solid #fff;
@@ -468,7 +473,7 @@
   height: 100%;
   min-height: 400px;
   /* The height is 400 pixels */
-  width: 90%;
+  width: 100%;
   margin: auto;
   box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
   /* The width is the width of the web page */

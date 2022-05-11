@@ -2,7 +2,34 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="!loading && legislatives.length" class="container">
   <div class="one">
-    <h1>Legislatives</h1>
+    <h1>Issuances</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-4">
+        <mat-form-field style="display: block" appearance="fill">
+          <mat-label>Search by type</mat-label>
+          <mat-select [(ngModel)]="search" required="false">
+            <mat-option value="All">All</mat-option>
+            <mat-option value="Internal Procedure"
+              >Internal Procedure</mat-option
+            >
+            <mat-option value="Ordinance">Ordinance</mat-option>
+            <mat-option value="Resolution">Resolution</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <button
+          style="height: 70%"
+          mat-flat-button
+          color="primary"
+          (click)="onSearch()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
   </div>
   <div class="container legislative">
     <ng-container *ngFor="let item of legislatives; let i = index">

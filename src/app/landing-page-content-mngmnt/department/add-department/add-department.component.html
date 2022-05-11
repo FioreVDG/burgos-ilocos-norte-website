@@ -1,0 +1,71 @@
+<h3 mat-dialog-title>Add Department</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<mat-dialog-content>
+  <form [formGroup]="departmentForm">
+    <div class="row">
+      <mat-form-field class="col-6" appearance="fill" style="display: block">
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="title"
+          placeholder="Enter title"
+          required
+        />
+
+        <mat-error *ngIf="departmentForm.get('title')?.hasError('required')">
+          Please enter a title
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-6" appearance="fill" style="display: block">
+        <mat-label>Contact person</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="person"
+          placeholder="Enter Contact person"
+          required="false"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="col-6" appearance="fill" style="display: block">
+        <mat-label>Position</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="position"
+          placeholder="Enter position"
+          required="false"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="col-6" appearance="fill" style="display: block">
+        <mat-label>Number</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="number"
+          placeholder="Enter number"
+          required="false"
+        />
+      </mat-form-field>
+      <angular-editor
+        formControlName="description"
+        required
+        [config]="config"
+      ></angular-editor>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="departmentForm.invalid || saving"
+  >
+    {{ data ? "Update Department" : "Add Department" }}
+  </button>
+</mat-dialog-actions>

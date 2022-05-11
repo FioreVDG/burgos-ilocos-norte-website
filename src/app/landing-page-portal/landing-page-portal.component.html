@@ -1,5 +1,8 @@
 <div *ngIf="!loading">
-  <app-navigation (changeNavigation)="changeRoute($event)"></app-navigation>
+  <app-navigation
+    style="background-color: #fff; height: auto"
+    (changeNavigation)="changeRoute($event)"
+  ></app-navigation>
 
   <div style="overflow-x: hidden">
     <router-outlet></router-outlet>

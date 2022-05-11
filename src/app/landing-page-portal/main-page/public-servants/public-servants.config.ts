@@ -77,7 +77,7 @@ export const servantDesktop = [
       },
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. RODEL T. DALO',
+        name: 'HON. CARL EMIL A. CHUA',
         position: 'Ex-Officio Member/Liga ng Mga Barangay President',
       },
     ],
@@ -181,7 +181,7 @@ export const servantMobile = [
       },
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. RODEL T. DALO',
+        name: 'HON. CARL EMIL A. CHUA',
         position: 'Ex-Officio Member/Liga ng Mga Barangay President',
         class: 'mobile-cards-bot',
       },

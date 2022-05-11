@@ -5,15 +5,33 @@
     </div>
     <div *ngIf="!loading" class="container">
       <div class="row">
+        <div class="col-3">
+          <div (click)="addTouristSpot()" class="card add-news">
+            <div class="card-body">
+              <i class="bi bi-plus-square-dotted icon"></i>
+              <h3 style="text-align: center">Add Tourist Spot</h3>
+            </div>
+          </div>
+        </div>
         <div *ngFor="let item of tourisms" class="col-3">
-          <div class="card add-announcement">
-            <div style="position: absolute; top: 10px; right: 10px">
+          <div
+            class="card"
+            style="
+              width: 90%;
+              margin: auto;
+              height: 26.5rem;
+              margin: 1.5rem 0;
+              position: relative;
+            "
+          >
+            <div style="position: absolute; top: 6px; right: 6px">
               <button
                 mat-icon-button
+                class="icn-top"
                 [matMenuTriggerFor]="cardOptions"
                 aria-label="Example icon-button with a menu"
               >
-                <mat-icon>keyboard_arrow_down</mat-icon>
+                <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #cardOptions="matMenu">
                 <button
@@ -30,34 +48,28 @@
                 </button>
               </mat-menu>
             </div>
+            <img
+              [src]="item.imgUrl"
+              style="height: 10rem"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <p class="card-title">
+                <b>{{
+                  item.title.slice(0, 50) +
+                    (item.title.length > 47 ? ". . ." : "")
+                }}</b>
+              </p>
+              <p>{{ item.createdAt | date: "mediumDate" }}</p>
 
-            <div class="card-body content">
-              <h3>
-                {{
-                  item.title.slice(0, 20) +
-                    (item.title.length > 18 ? "..." : "") || ""
-                }}
-              </h3>
-              <p>
-                {{
-                  item.location.slice(0, 30) +
-                    (item.location.length > 27 ? "..." : "") || ""
-                }}
-              </p>
-              <p>
-                {{
-                  item.description.slice(0, 30) +
-                    (item.description.length > 27 ? "..." : "") || ""
-                }}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div (click)="addTouristSpot()" class="card add-announcement">
-            <div class="card-body content">
-              <i class="bi bi-plus-square-dotted icon"></i>
-              <h3 style="text-align: center">Add Tourist Spots</h3>
+              <p
+                class="card-text"
+                [innerHTML]="
+                  item?.layout?.slice(0, 175) +
+                  (item.layout?.length > 172 ? '. . . . . . .' : '')
+                "
+              ></p>
             </div>
           </div>
         </div>

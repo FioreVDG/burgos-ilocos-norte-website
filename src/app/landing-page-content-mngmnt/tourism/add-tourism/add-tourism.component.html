@@ -8,40 +8,85 @@
     <mat-step [stepControl]="touristForm">
       <form [formGroup]="touristForm">
         <ng-template matStepLabel>Tourist Spot Information</ng-template>
-        <mat-form-field appearance="fill" style="display: block">
-          <mat-label>Title</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="title"
-            placeholder="Enter title"
-            required
-          />
-
-          <mat-error *ngIf="touristForm.get('title')?.hasError('required')">
-            Please enter a title
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field style="display: block" appearance="fill">
-          <mat-label>Location</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="location"
-            placeholder="Enter Location"
-            required
-          /><mat-error
-            *ngIf="touristForm.get('location')?.hasError('required')"
+        <div class="row">
+          <mat-form-field
+            class="col-12"
+            appearance="fill"
+            style="display: block"
           >
-            Please enter a Location
-          </mat-error>
-        </mat-form-field>
-        <angular-editor
-          formControlName="description"
-          required
-          [config]="config"
-        ></angular-editor>
-        <div>
+            <mat-label>Title</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="title"
+              placeholder="Enter title"
+              required
+            />
+
+            <mat-error *ngIf="touristForm.get('title')?.hasError('required')">
+              Please enter a title
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            class="col-12"
+            style="display: block"
+            appearance="fill"
+          >
+            <mat-label>Location</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="location"
+              placeholder="Enter Location"
+              required
+            /><mat-error
+              *ngIf="touristForm.get('location')?.hasError('required')"
+            >
+              Please enter a Location
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            class="col-6"
+            style="display: block"
+            appearance="fill"
+          >
+            <mat-label>Longitude</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="longitude"
+              placeholder="Enter Location"
+              required
+            /><mat-error
+              *ngIf="touristForm.get('longitude')?.hasError('required')"
+            >
+              Please enter a Longitude
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            class="col-6"
+            style="display: block"
+            appearance="fill"
+          >
+            <mat-label>Latitude</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="latitude"
+              placeholder="Enter Location"
+              required
+            /><mat-error
+              *ngIf="touristForm.get('latitude')?.hasError('required')"
+            >
+              Please enter a Latitude
+            </mat-error>
+          </mat-form-field>
+          <angular-editor
+            formControlName="description"
+            required
+            [config]="config"
+          ></angular-editor>
+          <div></div>
           <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
           </button>
@@ -73,7 +118,7 @@
                         style="font-size: 40px; color: #05bbe8"
                         >cloud_upload</mat-icon
                       >
-                      <h3 style="margin: 0">Drop file to upload</h3>
+                      <h3 style="margin: 0">Upload main photo</h3>
                       <p>or</p>
                     </div>
 
@@ -112,6 +157,12 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div style="padding: 1rem">
+        <button (click)="addPhoto()" mat-flat-button class="primary">
+          Add Images &nbsp;<mat-icon>add_a_photo</mat-icon>
+        </button>
       </div>
 
       <div style="padding: 1rem">

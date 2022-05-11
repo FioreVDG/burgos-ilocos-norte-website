@@ -28,11 +28,6 @@ export class AddTransparencyComponent implements OnInit {
     'Annual Budget',
     'Full Disclosure Policy',
     'Annual Investment Plan',
-    'Statement of Debt Service',
-    'Annual GAD Accomplishment Report',
-    'Bids and Projects Results',
-    'Alternative Mode of Procurement',
-    'Annual Procurement Plan and Procurement List',
     'Programs and Projects',
     'Awards and Recognition',
   ];

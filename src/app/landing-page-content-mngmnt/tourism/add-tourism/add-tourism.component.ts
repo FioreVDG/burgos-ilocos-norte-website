@@ -5,13 +5,18 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TourismService } from 'src/app/services/tourism/tourism.service';
 import { GetTempLinkDropBox } from 'src/app/models/api/announcement-service.interface';
 import { map } from 'rxjs/operators';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { AddImageComponent } from './add-image/add-image.component';
 
 @Component({
   selector: 'app-add-tourism',
@@ -28,12 +33,15 @@ export class AddTourismComponent implements OnInit {
   touristForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
+    longitude: new FormControl('', [Validators.required]),
+    latitude: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
   touristImageForm: FormGroup = this.fb.group({
     image: new FormControl(''),
   });
   saving: boolean = false;
+  subImages: Array<any> = [];
 
   config: AngularEditorConfig = {
     editable: true,
@@ -70,7 +78,8 @@ export class AddTourismComponent implements OnInit {
     public dialogRef: MatDialogRef<AddTourismComponent>,
     private fb: FormBuilder,
     private tourist: TourismService,
-    private dropbox: DropboxService
+    private dropbox: DropboxService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -91,6 +100,7 @@ export class AddTourismComponent implements OnInit {
   }
 
   createTouristSpot(touristSpot: any) {
+    console.log(touristSpot);
     this.tourist.create(touristSpot).subscribe(
       (res: any) => {
         this.saving = false;
@@ -136,6 +146,18 @@ export class AddTourismComponent implements OnInit {
     this.imageB64 = '';
   }
 
+  addPhoto() {
+    this.dialog
+      .open(AddImageComponent, { width: '100%', height: 'auto' })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          console.log(res);
+          this.subImages = res;
+        }
+      });
+  }
+
   updateTouristSpot(touristSpot: any) {
     this.tourist.update(touristSpot, this.data._id).subscribe(
       (res: any) => {
@@ -171,14 +193,33 @@ export class AddTourismComponent implements OnInit {
           const touristData: any = {
             ...image,
             ...tourist,
+            subImages: [],
           };
 
-          if (this.data) this.updateTouristSpot(touristData);
-          else this.createTouristSpot(touristData);
+          if (this.subImages.length) {
+            this.subImages.forEach((el: any) => {
+              const name = el.img.name.split('.')[0];
+              const fileType = el.img.type.split('/')[1];
+              const fileName = `${name}-${dateNow}.${fileType}`;
+              this.dropbox
+                .uploadFile(path, fileName, el.img)
+                .subscribe((res: any) => {
+                  console.log(res);
+                  touristData.subImages.push({
+                    img: res.result,
+                  });
+                  if (this.subImages.length === touristData.subImages.length) {
+                    if (this.data) this.updateTouristSpot(touristData);
+                    else this.createTouristSpot(touristData);
+                  }
+                });
+            });
+          }
+
+          console.log(touristData);
         });
     } else {
       const tourist = this.touristForm.getRawValue();
-
       const touristData: any = {
         ...tourist,
       };

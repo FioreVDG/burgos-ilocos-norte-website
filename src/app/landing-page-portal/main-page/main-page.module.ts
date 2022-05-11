@@ -1,3 +1,4 @@
+import { MainModule } from './main/main.module';
 import { AnnouncementModule } from './announcement/announcement.module';
 import { NewsModule } from './news/news.module';
 import { WhereToGoModule } from './where-to-go/where-to-go.module';
@@ -21,6 +22,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NewsModule,
     AnnouncementModule,
     CarouselModule,
+    MainModule,
   ],
   exports: [MainPageComponent],
 })

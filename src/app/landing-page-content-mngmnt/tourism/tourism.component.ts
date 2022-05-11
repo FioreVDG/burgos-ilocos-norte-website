@@ -5,6 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QueryParams } from 'src/app/models/queryparams.interface';
 import { TourismService } from 'src/app/services/tourism/tourism.service';
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 
 @Component({
   selector: 'app-tourism',
@@ -23,7 +24,8 @@ export class TourismComponent implements OnInit {
   constructor(
     private tourism: TourismService,
     private dialog: MatDialog,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dbx: DropboxService
   ) {}
 
   ngOnInit(): void {
@@ -39,9 +41,14 @@ export class TourismComponent implements OnInit {
     };
     this.tourism.getAll(query).subscribe((res: any) => {
       console.log(res);
-      this.loading = false;
       this.tourisms = res.env.tourist_spots;
       this.pagination.totalDocuments = res.total_docs;
+      this.tourisms.forEach(async (el: any) => {
+        el.imgUrl = await this.getTempLink(el?.image?.path_display);
+        el.layout = await this.stringToHTMLconverter(el.description);
+      });
+      this.loading = false;
+      console.log(this.tourisms);
     });
   }
 
@@ -105,6 +112,18 @@ export class TourismComponent implements OnInit {
       .subscribe((res: any) => {
         if (res) this.fetchData();
       });
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
+  }
+
+  async stringToHTMLconverter(str: any) {
+    let dom = document.createElement('p');
+    dom.innerHTML = str;
+    return dom.textContent || dom.innerText || '';
   }
 
   private _showSnackBar(message: string, action: string = '') {

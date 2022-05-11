@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       if (res) {
         localStorage.setItem('SESSION_CSURF_TOKEN', res.session_token);
         localStorage.setItem('SESSION_AUTH', res.token);
-        this.router.navigate(['/content-management/add-announcement']);
+        this.router.navigate(['/content-management/add-news']);
       }
     });
   }

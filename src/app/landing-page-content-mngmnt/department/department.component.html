@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="one">
+      <h1>Manage Departments</h1>
+    </div>
+    <div *ngIf="!loading && departments.length" class="container">
+      <div class="row">
+        <div *ngFor="let item of departments" class="col-3">
+          <div class="card transparency">
+            <button
+              mat-icon-button
+              class="icn-top"
+              [matMenuTriggerFor]="cardOptions"
+              aria-label="Example icon-button with a menu"
+            >
+              <mat-icon>more_vert</mat-icon></button
+            ><mat-menu #cardOptions="matMenu">
+              <button
+                mat-menu-item
+                color="primary"
+                (click)="updateDepartment(item)"
+              >
+                <mat-icon>mode_edit</mat-icon>
+                <span>Update</span>
+              </button>
+              <button
+                mat-menu-item
+                color="warn"
+                (click)="deleteDepartment(item._id)"
+              >
+                <mat-icon>delete</mat-icon>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+            <div class="card-body">
+              <h4 class="card-text">{{ item.title }}</h4>
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+      </div>
+      <mat-paginator
+        [length]="pagination.totalDocuments"
+        [pageSize]="pagination.pageSize"
+        [pageSizeOptions]="[10, 25, 100, 200, 500]"
+        showFirstLastButtons
+        (page)="onPageChange($event)"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+    <div *ngIf="!loading && !departments.length">
+      <app-no-content></app-no-content>
+    </div>
+    <div *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+    <button
+      *ngIf="!loading"
+      mat-fab
+      color="primary"
+      class="bottom-right-button"
+      (click)="addDepartment()"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

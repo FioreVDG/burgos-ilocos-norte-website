@@ -1,0 +1,54 @@
+<h3 mat-dialog-title>Add Files</h3>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-5">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input
+          type="text"
+          [formControl]="fileTitle"
+          matInput
+          required="false"
+        />
+      </mat-form-field>
+      <ngx-file-drop
+        dropZoneClassName="drop-zone"
+        contentClassName="drop-zone-content"
+        browseBtnClassName="drop-zone-btn"
+        dropZoneLabel="Drop files here"
+        (onFileDrop)="dropped($event)"
+      >
+        <ng-template
+          ngx-file-drop-content-tmp
+          let-openFileSelector="openFileSelector"
+        >
+          <ng-container>
+            <button
+              mat-flat-button
+              class="primary"
+              (click)="openFileSelector()"
+            >
+              Browse File
+            </button>
+
+            <p style="margin-top: 1rem">
+              Accepted Format/s: {{ acceptedDocs }}
+            </p>
+          </ng-container>
+        </ng-template>
+      </ngx-file-drop>
+      <button (click)="addFile()">add</button>
+    </div>
+    <div class="col-7">
+      <ng-container *ngFor="let item of filesArr">
+        <section *ngIf="filesArr.length">
+          <p>{{ item.title }}</p>
+          <img style="width: 10%" [src]="item.file" alt="" />
+        </section>
+      </ng-container>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button (click)="proceedAdding()">Add</button>
+</mat-dialog-actions>

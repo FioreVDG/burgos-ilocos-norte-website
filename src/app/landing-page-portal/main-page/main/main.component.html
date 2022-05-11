@@ -1,0 +1,8 @@
+<div *ngIf="!loading" class="vid-containter">
+  <iframe
+    class="responsive-iframe"
+    [src]="link + '?autoplay=1&controls=0&showinfo=0&autohide=1' | safe"
+    frameborder="0"
+    allow="autoplay"
+  ></iframe>
+</div>

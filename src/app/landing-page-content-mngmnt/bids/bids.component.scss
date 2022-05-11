@@ -1,0 +1,46 @@
+.bottom-right-button {
+  position: absolute;
+  bottom: 2%;
+  right: 2%;
+}
+.card-title {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.add-news {
+  height: 20rem;
+  width: 90%;
+  margin: auto;
+  margin: 1.5rem 0;
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    .icon {
+      font-size: 400%;
+    }
+    &:hover {
+      color: #05bbe8;
+    }
+    h3 {
+      font-size: 18px;
+    }
+  }
+  &:hover {
+    box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+    transition: 0.2s;
+    cursor: pointer;
+  }
+}
+.icn-top {
+  background-color: #05bbe8;
+  color: #fff;
+}
+.icn-top:hover {
+  background-color: #12a5ca;
+  transition: 0.2s ease-in;
+}

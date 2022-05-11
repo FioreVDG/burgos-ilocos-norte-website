@@ -24,7 +24,6 @@ export class NewsComponent implements OnInit {
     private news: NewsService,
     private dialog: MatDialog,
     private dbx: DropboxService,
-
     private sb: MatSnackBar
   ) {}
 

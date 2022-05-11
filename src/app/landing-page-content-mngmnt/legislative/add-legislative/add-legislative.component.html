@@ -1,4 +1,4 @@
-<h3 mat-dialog-title>Add Legislative</h3>
+<h3 mat-dialog-title>Add Issuances</h3>
 <mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
   >close</mat-icon
 >
@@ -23,7 +23,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field style="display: block" appearance="fill">
-          <mat-label>Legislative Type</mat-label>
+          <mat-label>Issuances Type</mat-label>
           <mat-select required formControlName="legislativeType">
             <mat-option *ngFor="let type of types" [value]="type">
               {{ type }}

@@ -10,8 +10,8 @@
       <div *ngFor="let item of careers" class="career-wrap">
         <h3>{{ item.title }}</h3>
         <div style="margin-bottom: 0.6rem">
-          <span>{{ item.payGrade }}</span>
-          <span style="margin-left: 1.5rem">{{ item.department }}</span>
+          <span>•{{ item.payGrade }}</span>
+          <span style="margin-left: 1.5rem">•{{ item.department }}</span>
         </div>
         <p class="pay">
           {{ item.monthlySalary | currency: "₱ ":"symbol" }}

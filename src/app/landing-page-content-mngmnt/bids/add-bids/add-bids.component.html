@@ -1,0 +1,64 @@
+<h3 mat-dialog-title>Add Service</h3>
+<mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
+  >close</mat-icon
+>
+<mat-dialog-content>
+  <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="bidForm">
+      <div style="padding: 1rem"></div>
+      <form [formGroup]="bidForm">
+        <ng-template matStepLabel>Service Information</ng-template>
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>ID</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="id"
+            placeholder="Enter id"
+            required
+          />
+
+          <mat-error *ngIf="bidForm.get('id')?.hasError('required')">
+            Please enter ID
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Description</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="description"
+            placeholder="Enter id"
+            required
+          />
+
+          <mat-error *ngIf="bidForm.get('description')?.hasError('required')">
+            Please enter Description
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Type</mat-label>
+          <mat-select type="select" formControlName="type" required>
+            <mat-option *ngFor="let i of types" [value]="i">
+              {{ i }}
+            </mat-option> </mat-select
+          ><mat-error *ngIf="bidForm.get('type')?.hasError('required')">
+            Please select Type
+          </mat-error> </mat-form-field
+        ><button mat-flat-button class="primary" matStepperNext>
+          Next &nbsp;<mat-icon>fast_forward</mat-icon>
+        </button>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Upload Files</ng-template>
+      <div style="padding: 1rem"></div>
+      <button (click)="addFile()" mat-flat-button color="primary">
+        <mat-icon>add</mat-icon>Add File
+      </button>
+    </mat-step>
+  </mat-stepper>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-flat-button (click)="save()">Save</button>
+</mat-dialog-actions>
