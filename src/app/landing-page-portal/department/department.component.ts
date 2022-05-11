@@ -13,6 +13,7 @@ export class DepartmentComponent implements OnInit {
   ngOnInit(): void {
     this.department.getAll({}).subscribe((res: any) => {
       console.log(res);
+      this.departments = res.env.departments;
     });
   }
 }

@@ -19,7 +19,10 @@ export class MainComponent implements OnInit {
     this.loading = true;
     this.content.getAll({}).subscribe((res: any) => {
       if (res) {
-        this.link = res.env.backgrounds[0].link;
+        this.link =
+          res.env.backgrounds[0].link +
+          '?autoplay=1&controls=0&showinfo=0&autohide=1';
+        this;
         this.loading = false;
         console.log(this.link);
       }
