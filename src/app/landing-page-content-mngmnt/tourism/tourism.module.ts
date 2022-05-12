@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { AddTourismComponent } from './add-tourism/add-tourism.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ import { AddImageComponent } from './add-tourism/add-image/add-image.component';
     ReactiveFormsModule,
     NgxFileDropModule,
     AngularEditorModule,
+    SpinnerModule,
   ],
 })
 export class TourismModule {}

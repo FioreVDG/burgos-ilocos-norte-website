@@ -6,32 +6,44 @@
     flex-direction: column;
     width: 100vw;
     height: 100vh;
+    background-image: url(../../assets/images/main-bg.jpg);
+    background-size: cover;
+    background-repeat: none;
   "
 >
-  <form [formGroup]="loginForm">
-    <mat-form-field appearance="fill" style="display: block">
-      <mat-label>Username</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="username"
-        placeholder="meow01"
-        required
-      />
+  <div class="row">
+    <div class="col-xl-10 col-lg-10 col-md-8 col-sm-12 glass-login">
+      <img src="../../assets/images/burgos-logo.png" alt="" />
+      <h3>Welcome,</h3>
+      <p>Login to your account</p>
+      <form [formGroup]="loginForm">
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Username</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="username"
+            placeholder="meow01"
+            required
+          />
 
-      <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-        Please enter your email
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field appearance="fill" style="display: block">
-      <mat-label>Password</mat-label>
-      <input type="password" matInput formControlName="password" required />
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Please enter your email
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" required />
 
-      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-        Please enter your password
-      </mat-error>
-    </mat-form-field>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Please enter your password
+          </mat-error>
+        </mat-form-field>
 
-    <button mat-button color="primary" (click)="onLoginClick()">Login</button>
-  </form>
+        <button mat-button color="primary" (click)="onLoginClick()">
+          {{ loading ? "Logging in" : "Login" }}
+        </button>
+      </form>
+    </div>
+  </div>
 </div>

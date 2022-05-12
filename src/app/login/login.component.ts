@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  loading: boolean = false;
   constructor(
     private auth: AuthService,
     private fb: FormBuilder,
@@ -28,11 +29,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onLoginClick() {
+    this.loading = true;
     const { username, password } = this.loginForm.getRawValue();
 
     this.auth.login(username, password).subscribe((res: any) => {
       console.log(res);
       if (res) {
+        this.loading = false;
         localStorage.setItem('SESSION_CSURF_TOKEN', res.session_token);
         localStorage.setItem('SESSION_AUTH', res.token);
         this.router.navigate(['/content-management/add-news']);

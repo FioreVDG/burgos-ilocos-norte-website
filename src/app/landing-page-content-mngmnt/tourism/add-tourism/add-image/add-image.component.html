@@ -28,7 +28,13 @@
           </ng-container>
         </ng-template>
       </ngx-file-drop>
-      <button (click)="addImage()">add</button>
+      <button
+        mat-stroked-button
+        [disabled]="imageB64 === ''"
+        (click)="addImage()"
+      >
+        add
+      </button>
     </div>
     <div class="col-7">
       <div class="row">
@@ -42,7 +48,12 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-flat-button color="primary" (click)="proceedAdding()">
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!imagesArr.length"
+    (click)="proceedAdding()"
+  >
     Proceed
   </button>
 </mat-dialog-actions>

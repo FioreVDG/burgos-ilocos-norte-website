@@ -6,3 +6,30 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.glass-login {
+  // width: 100%;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 3rem 3rem;
+
+  img {
+    width: 25%;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: #565656;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  p {
+    color: #565656;
+    margin-bottom: 2.5rem;
+  }
+  button {
+    background-color: #05bbe8;
+    color: #fff;
+    width: 30%;
+  }
+}

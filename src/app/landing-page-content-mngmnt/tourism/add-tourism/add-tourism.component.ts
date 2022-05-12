@@ -25,7 +25,7 @@ import { AddImageComponent } from './add-image/add-image.component';
 })
 export class AddTourismComponent implements OnInit {
   isLinear = true;
-  acceptedDocs: string = '.png, .jpeg, .jpg, ';
+  acceptedDocs: string = '.png, .jpeg, .jpg';
   allowedFileTypes = ['png', 'jpeg', 'jpg'];
   imageFile: File | null;
   imageB64: string = '';
@@ -162,10 +162,12 @@ export class AddTourismComponent implements OnInit {
   }
 
   updateTouristSpot(touristSpot: any) {
+    console.log(touristSpot);
     this.tourist.update(touristSpot, this.data._id).subscribe(
       (res: any) => {
         this.saving = false;
         this.dialogRef.close(true);
+        console.log(res);
       },
       (err) => {
         console.log(err);

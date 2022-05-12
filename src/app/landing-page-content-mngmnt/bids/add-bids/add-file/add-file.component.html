@@ -37,7 +37,13 @@
           </ng-container>
         </ng-template>
       </ngx-file-drop>
-      <button (click)="addFile()">add</button>
+      <button
+        mat-stroked-button
+        [disabled]="imageB64 === ''"
+        (click)="addFile()"
+      >
+        add
+      </button>
     </div>
     <div class="col-7">
       <ng-container *ngFor="let item of filesArr">
@@ -50,5 +56,12 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button (click)="proceedAdding()">Add</button>
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!filesArr.length"
+    (click)="proceedAdding()"
+  >
+    Add
+  </button>
 </mat-dialog-actions>
