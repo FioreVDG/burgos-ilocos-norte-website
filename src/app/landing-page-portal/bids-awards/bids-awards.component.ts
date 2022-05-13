@@ -39,6 +39,10 @@ export class BidsAwardsComponent implements OnInit {
     return response.result.link;
   }
 
+  search() {
+    // this.
+  }
+
   openFile(url: string, ext: any) {
     this.dialog.open(FileViewerComponent, {
       width: '100%',

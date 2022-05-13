@@ -1,3 +1,5 @@
+import { NoContentModule } from './../../no-content/no-content.module';
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
@@ -18,6 +20,8 @@ import { NgxFileDropModule } from 'ngx-file-drop';
     ReactiveFormsModule,
     MaterialModule,
     NgxFileDropModule,
+    SpinnerModule,
+    NoContentModule,
   ],
 })
 export class BidsModule {}

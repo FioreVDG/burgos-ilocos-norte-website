@@ -36,6 +36,7 @@ export class AddBidsComponent implements OnInit {
 
   files: Array<any> = [];
   filesArr: Array<any> = [];
+  loading: boolean = false;
 
   bidImageForm: FormGroup = this.fb.group({});
   constructor(
@@ -47,11 +48,34 @@ export class AddBidsComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let temp: any = [];
+    if (this.data) {
+      this.loading = true;
+      this.bidForm.controls['id'].setValue(this.data.id);
+      this.bidForm.controls['description'].setValue(this.data.description);
+      this.bidForm.controls['type'].setValue(this.data.type);
+
+      if (this.data.files.length) {
+        for (let i of this.data.files) {
+          this.dropbox
+            .getTempLink(i.file.path_display)
+            .subscribe((res: any) => {
+              temp.push({ link: res.result });
+              if (temp.length === this.data.files.length) {
+                this.loading = false;
+              }
+            });
+        }
+      }
+    }
+  }
 
   addFile() {
+    let data: any;
+    this.data ? (data = this.data.files) : null;
     this.dialog
-      .open(AddFileComponent, { width: '100%', height: 'auto' })
+      .open(AddFileComponent, { width: '100%', height: 'auto', data: data })
       .afterClosed()
       .subscribe((res: any) => {
         console.log(res);

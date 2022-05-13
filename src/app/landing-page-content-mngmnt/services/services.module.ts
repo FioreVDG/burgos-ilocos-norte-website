@@ -1,3 +1,5 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
+import { NoContentModule } from './../../no-content/no-content.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
@@ -21,6 +23,8 @@ import { AddServiceComponent } from './add-service/add-service.component';
     NgxFileDropModule,
     ModalsModule,
     AngularEditorModule,
+    NoContentModule,
+    SpinnerModule,
   ],
 })
 export class ServicesModule {}

@@ -44,3 +44,17 @@
   background-color: #12a5ca;
   transition: 0.2s ease-in;
 }
+.desc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  text-align: center;
+  .top {
+    font-weight: 600;
+  }
+  .type {
+    font-size: 12px;
+  }
+}

@@ -6,6 +6,21 @@
   </div>
   <div class="container">
     <div class="row">
+      <div style="padding-right: 0" class="col-3">
+        <form class="form-inline">
+          <input
+            class="form-control"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+        </form>
+      </div>
+      <div style="padding-left: 0" class="col">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </div>
+    </div>
+    <div class="row">
       <ng-container *ngFor="let item of bids; let i = index">
         <hr *ngIf="i !== 0" />
         <h3>{{ item.id }}</h3>

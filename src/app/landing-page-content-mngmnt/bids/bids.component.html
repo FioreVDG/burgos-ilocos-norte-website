@@ -13,7 +13,54 @@
             </div>
           </div>
         </div>
+        <div class="col-3" *ngFor="let item of bids">
+          <div
+            style="
+              width: 90%;
+              margin: auto;
+              height: 20rem;
+              margin: 1.5rem 0;
+              position: relative;
+            "
+            class="card"
+          >
+            <div style="position: absolute; top: 6px; right: 6px">
+              <button
+                mat-icon-button
+                class="icn-top"
+                [matMenuTriggerFor]="cardOptions"
+                aria-label="Example icon-button with a menu"
+              >
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #cardOptions="matMenu">
+                <button
+                  mat-menu-item
+                  color="primary"
+                  (click)="updateBids(item)"
+                >
+                  <mat-icon>mode_edit</mat-icon>
+                  <span>Update</span>
+                </button>
+                <button
+                  mat-menu-item
+                  color="warn"
+                  (click)="deleteBid(item._id)"
+                >
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+            <div class="desc">
+              <p class="top">{{ item.description }}</p>
+              <p class="type">({{ item.type }})</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <app-spinner *ngIf="loading"></app-spinner>
+    <app-no-content *ngIf="!loading && !bids.length"></app-no-content>
   </div>
 </div>

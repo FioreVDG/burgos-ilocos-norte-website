@@ -29,7 +29,9 @@ export class AddFileComponent implements OnInit {
     public dialogRef: MatDialogRef<AddFileComponent>
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.data);
+  }
 
   dropped(files: NgxFileDropEntry[]) {
     const selectedFirstFile = files[0];
