@@ -8,6 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class FileViewerComponent implements OnInit {
   extension: any;
+  isLoaded: boolean = false;
   img = ['jpg', 'jpeg', 'png'];
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -16,7 +17,11 @@ export class FileViewerComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
-    this.extension = this.data.ext.split('.')[1];
-    console.log(this.extension);
+    // this.extension = this.data.ext.split('.')[1];
+    // console.log(this.extension);
+  }
+  imageLoaded() {
+    console.log('ssss');
+    this.isLoaded = true;
   }
 }

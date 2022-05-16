@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     ReactiveFormsModule,
     MaterialModule,
     NgxDocViewerModule,
+    SpinnerModule,
   ],
   exports: [],
 })

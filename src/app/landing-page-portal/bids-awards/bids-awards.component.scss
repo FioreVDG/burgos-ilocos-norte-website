@@ -1,24 +1,77 @@
-.type {
-  font-size: 13px;
-  font-weight: bold;
-}
-h3 {
-  margin-bottom: 0;
-}
-
-ul {
-  margin-left: 1.5rem;
-  margin-bottom: 6px;
-}
-li {
-  text-decoration: underline;
-  cursor: pointer;
-  font-weight: bold;
-  &:hover {
-    color: #05bbe8;
-    transition: 0.2s ease;
+#bids {
+  background-image: linear-gradient(
+      90deg,
+      #05bbe842 5%,
+      #05bbe842 42%,
+      #05bbe842 100%
+    ),
+    url("../../../assets/images/wind_mill.jpg");
+  background-size: cover;
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
   }
 }
-.date {
-  font-size: 11px;
+.tbl-header {
+  margin-top: 1rem;
+  color: #fff;
+  background-color: #05bbe8;
+  font-weight: 600;
+  padding: 1rem 0.5rem;
+}
+.tbl-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  p {
+    margin: 0;
+  }
+  b {
+    cursor: pointer;
+    &:hover {
+      color: #05bbe8;
+    }
+  }
+}
+.type-nav {
+  margin-top: 1rem;
+  .navs {
+    width: 100%;
+    color: #fff;
+    background-color: #05bbe8;
+    margin: 0.1rem;
+    border-radius: 2px;
+    padding: 0.8rem 0.7rem;
+    cursor: pointer;
+
+    &:hover {
+      transition: 0.1s ease;
+      background: #0983a1;
+    }
+    &:focus {
+      background: #0983a1;
+    }
+  }
+  .navs-selected {
+    width: 100%;
+    color: #fff;
+    background-color: #0983a1;
+    margin: 0.1rem;
+    border-radius: 2px;
+    padding: 0.8rem 0.7rem;
+    cursor: pointer;
+  }
+}
+
+.tbl-dt {
+  margin: 0.5rem 0rem;
 }

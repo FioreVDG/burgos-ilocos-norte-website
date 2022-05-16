@@ -19,6 +19,7 @@ export class ServicesComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   search: string = '';
   searching: boolean = false;
+  activeService: any;
 
   constructor(
     private service: ServiceService,
@@ -36,13 +37,31 @@ export class ServicesComponent implements OnInit {
     this.service.getAll({}).subscribe((res: any) => {
       console.log(res);
       this.services = res.env.services;
+      console.log(this.activeService);
       console.log(this.services);
       this.loading = false;
       this.services.forEach(async (el: any) => {
+        el.selected = false;
         el.layout = await this.stringToHTMLconverter(el.description);
         el.tempFile = await this.getTempLink(el?.file?.path_display);
       });
+      console.log(this.services);
+      this.activeService = res.env.services[0];
+      this.activeService.selected = true;
     });
+  }
+
+  onSelect(value: string) {
+    console.log(value);
+    for (let i of this.services) {
+      i.selected = false;
+    }
+    let findActive: any = this.services.find((o: any) => o.title === value);
+    if (findActive) {
+      console.log(findActive);
+      this.activeService = findActive;
+      findActive.selected = true;
+    }
   }
 
   _filter(value: any) {

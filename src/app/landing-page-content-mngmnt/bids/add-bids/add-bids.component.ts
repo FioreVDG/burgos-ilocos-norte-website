@@ -26,6 +26,7 @@ export class AddBidsComponent implements OnInit {
     id: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
+    bidStatus: new FormControl(''),
   });
   types = [
     'Invitation to Bid',
@@ -33,7 +34,7 @@ export class AddBidsComponent implements OnInit {
     'Notice of Award',
     'Notice to proceed',
   ];
-
+  bidStatus = ['Close for bidding', 'Open for bidding'];
   files: Array<any> = [];
   filesArr: Array<any> = [];
   loading: boolean = false;
@@ -115,6 +116,11 @@ export class AddBidsComponent implements OnInit {
     const dateNow = Date.now();
     console.log(bid);
     this.saving = true;
+    const toSave: any = {
+      ...bid,
+      files: [],
+    };
+    console.log(toSave.files.length, this.files.length);
     if (this.files.length) {
       console.log(this.files);
       this.files.forEach((el: any) => {
@@ -126,19 +132,18 @@ export class AddBidsComponent implements OnInit {
           .uploadFile(path, fileName, el.imgFile)
           .subscribe((res: any) => {
             console.log(res);
-            delete el.imgFile;
-            delete el.file;
-            el.file = res.result;
-            console.log(this.filesArr);
+            // delete el.imgFile;
+            // delete el.file;
+            // el.file = res.result;
+            // console.log(this.filesArr);
+            toSave.files.push({ title: el.title, file: res.result });
+            if (this.files.length === toSave.files.length) {
+              console.log(toSave);
+              if (this.data) {
+              } else this.createBid(toSave);
+            }
           });
       });
-
-      setTimeout(() => {
-        const toSave = { ...bid, files: this.files };
-        console.log(toSave);
-        if (this.data) {
-        } else this.createBid(toSave);
-      }, 3000);
     } else {
       const toSave = { ...bid, files: this.files };
       console.log(toSave);

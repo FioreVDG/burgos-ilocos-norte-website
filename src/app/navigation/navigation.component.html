@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <nav class="navbar sticky-top navbar-expand-lg nav-list">
+  <nav class="navbar sticky-top justify-content-end navbar-expand-lg nav-list">
     <div class="container">
       <button
         class="navbar-toggler justify-content-end custom-toggler"
@@ -47,15 +47,7 @@
         class="nav nav-responsive collapse navbar-collapse"
         id="navbarTogglerDemo03"
       >
-        <ul class="nav nav-responsive">
-          <!-- <li class="nav-item">
-          <a
-            class="nav-link"
-            (click)="changeRoute('/welcome')"
-            routerLink="/welcome"
-            >Home</a
-          >
-        </li> -->
+        <ul class="nav nav-responsive justify-content-center">
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -100,9 +92,9 @@
                   >Mission/Vision</a
                 >
               </li>
-              <li class="nav-item">
+              <li>
                 <a
-                  class="nav-link"
+                  class="dropdown-item"
                   (click)="changeRoute('/department')"
                   routerLink="/department"
                   routerLinkActive="router-active"
@@ -139,15 +131,6 @@
               >Services</a
             >
           </li>
-          <!-- <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/citizen-charter')"
-              routerLink="/citizen-charter"
-              routerLinkActive="router-active"
-              >Citizen's Charter</a
-            >
-          </li> -->
           <li class="nav-item">
             <a
               class="nav-link"

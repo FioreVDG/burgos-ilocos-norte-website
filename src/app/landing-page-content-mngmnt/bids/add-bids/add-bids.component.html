@@ -46,8 +46,23 @@
               </mat-option> </mat-select
             ><mat-error *ngIf="bidForm.get('type')?.hasError('required')">
               Please select Type
-            </mat-error> </mat-form-field
-          ><button mat-flat-button class="primary" matStepperNext>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            *ngIf="bidForm.value.type === 'Invitation to Bid'"
+            appearance="fill"
+            style="display: block"
+          >
+            <mat-label>Type</mat-label>
+            <mat-select type="select" formControlName="bidStatus" required>
+              <mat-option *ngFor="let i of bidStatus" [value]="i">
+                {{ i }}
+              </mat-option> </mat-select
+            ><mat-error *ngIf="bidForm.get('bidStatus')?.hasError('required')">
+              Please select Bid Status
+            </mat-error>
+          </mat-form-field>
+          <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
           </button>
         </form>

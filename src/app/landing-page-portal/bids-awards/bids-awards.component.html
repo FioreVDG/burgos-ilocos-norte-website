@@ -1,60 +1,85 @@
-<div class="container">
-  <div class="one">
-    <h1>Bids & Awards Committee</h1>
-  </div>
-  <div class="container">
+<section *ngIf="!loading">
+  <section id="bids">
+    <div class="container">
+      <h1>Bids & Awards Commitee</h1>
+    </div>
+  </section>
+  <div style="padding: 1.5rem 0rem; padding-bottom: 2rem" class="container">
     <div class="row">
-      <div class="col-3">
-        <mat-form-field style="display: block" appearance="fill">
-          <mat-label>Search by type</mat-label>
-          <mat-select [(ngModel)]="search" required="false">
-            <mat-option value="All">All</mat-option>
-            <mat-option value="Invitation to Bid">Invitation to Bid</mat-option>
-            <mat-option value="Request for Quotation"
-              >Request for Quotation</mat-option
-            >
-            <mat-option value="Notice of Award">Notice of Award</mat-option>
-            <mat-option value="Notice to proceed">Notice to proceed</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col">
-        <button
-          style="height: 70%; background-color: #05bbe8"
-          mat-flat-button
-          color="primary"
-          (click)="onSearch()"
-        >
-          Search
-        </button>
-      </div>
-    </div>
-    <div class="row" *ngIf="!loading && bids?.length && !searching">
-      <ng-container *ngFor="let item of bids; let i = index">
-        <hr *ngIf="i !== 0" />
-        <h3>{{ item.id }}</h3>
-        <p class="type">{{ item.type }}</p>
+      <div class="col-9">
+        <div class="row tbl-header" *ngIf="!searching">
+          <div class="col-1">No.</div>
+          <div class="col-7">Description</div>
+          <div class="col-2">Date Posted</div>
+          <div class="col-2" *ngIf="!isBidSelected">Type</div>
+          <div class="col-2" *ngIf="isBidSelected">Status</div>
+        </div>
+        <section *ngIf="bids.length && !searching">
+          <ng-container *ngFor="let item of bids">
+            <div class="row tbl-dt">
+              <div class="col-1 tbl-row">
+                <p>{{ item.id }}</p>
+              </div>
+              <div [matMenuTriggerFor]="openFile" class="col-7 tbl-row">
+                <p
+                  matTooltip="Show files for {{ item.id }}"
+                  matTooltipPosition="right"
+                >
+                  <b>{{ item.description }}</b>
+                </p>
+                <mat-menu #openFile="matMenu">
+                  <ng-container *ngFor="let i of item.files">
+                    <button
+                      (click)="
+                        openSelectedFile(i.url, i.file.name.split('.')[1])
+                      "
+                      mat-menu-item
+                    >
+                      <mat-icon>description</mat-icon><span>{{ i.title }}</span>
+                    </button></ng-container
+                  >
+                </mat-menu>
+              </div>
+              <div class="col-2 tbl-row">
+                <p>{{ item.date | date: "mediumDate" }}</p>
+              </div>
+              <div *ngIf="!isBidSelected" class="col-2 tbl-row">
+                <p>{{ item.type }}</p>
+              </div>
+              <div *ngIf="isBidSelected" class="col-2 tbl-row">
+                <p>{{ item.bidStatus }}</p>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </ng-container>
+        </section>
+        <section *ngIf="!bids.length && !searching">
+          <p style="text-align: center; margin: 0.5rem">No data yet.</p>
+        </section>
 
-        <p class="desc">{{ item.description }}</p>
-        <ng-container *ngFor="let file of item.files">
-          <ul>
-            <li (click)="openFile(file.url, file.file.path_display)">
-              {{ file.title }}
-            </li>
-          </ul>
-        </ng-container>
-        <p class="date">
-          Posted on:
-          <i
-            ><b>{{ item.createdAt | date: "medium" }}</b></i
+        <app-spinner *ngIf="searching"></app-spinner>
+        <mat-paginator
+          *ngIf="bids.length && !searching"
+          [length]="pagination.totalDocuments"
+          [pageSize]="pagination.pageSize"
+          [pageSizeOptions]="[10, 25, 100, 200, 500]"
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+      <div class="col-3 type-nav">
+        <ng-container *ngFor="let type of bidTypes">
+          <p
+            (click)="findType(type.type)"
+            [class]="type.selected ? 'navs-selected' : 'navs'"
           >
-        </p>
-      </ng-container>
-    </div>
-    <div class="row" *ngIf="searching">
-      <app-spinner></app-spinner>
+            <b><i class="bi bi-chevron-right"></i>&nbsp;{{ type.type }}</b>
+          </p>
+        </ng-container>
+      </div>
     </div>
   </div>
-</div>
+</section>
 <app-spinner *ngIf="loading"></app-spinner>
-<app-no-content *ngIf="!loading && !bids?.length"></app-no-content>
