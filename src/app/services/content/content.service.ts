@@ -19,4 +19,16 @@ export class ContentService {
   update(body: Object, id: string) {
     return this.http.start('put', `/background/${id}`, body);
   }
+
+  createMission(body: Object) {
+    return this.http.start('post', '/missions', body);
+  }
+
+  getAllMission(query: QueryParams) {
+    return this.http.start('get', '/missions', {}, query);
+  }
+
+  updateMission(body: Object, id: string) {
+    return this.http.start('put', `/background/${id}`, body);
+  }
 }

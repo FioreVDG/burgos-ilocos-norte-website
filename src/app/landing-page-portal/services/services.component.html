@@ -4,7 +4,43 @@
   <div class="one">
     <h1>Services</h1>
   </div>
-  <div class="container">
+
+  <div class="row">
+    <div class="col-3">
+      <form class="example-form">
+        <mat-form-field style="width: 100%" appearance="fill">
+          <mat-label>Search</mat-label>
+          <input
+            type="text"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+            required="false"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option.title"
+            >
+              {{ option.title }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="col">
+      <button
+        style="height: 70%; background-color: #05bbe8"
+        mat-flat-button
+        color="primary"
+        (click)="onSearch()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <app-spinner *ngIf="searching"></app-spinner>
+  <div class="container" *ngIf="!searching">
     <div class="row">
       <div class="col-12">
         <div class="service-wrap" *ngFor="let item of services">

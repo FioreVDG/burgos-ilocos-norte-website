@@ -5,6 +5,7 @@ import { ContentsRoutingModule } from './contents-routing.module';
 import { ContentsComponent } from './contents.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material/material.module';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [ContentsComponent],
@@ -14,6 +15,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularEditorModule,
   ],
 })
 export class ContentsModule {}

@@ -1,11 +1,31 @@
-<app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="!loading" class="container">
+<div class="container">
   <div class="one">
     <h1>Tourist Spots</h1>
   </div>
   <p>The best and most beautiful places here in Burgos, Ilocos Norte</p>
   <div class="row">
+    <div class="col-3">
+      <mat-form-field style="display: block" appearance="fill">
+        <mat-label>Search by type</mat-label>
+        <mat-select [(ngModel)]="search" required="false">
+          <mat-option value="All">All</mat-option>
+          <mat-option value="Tourist Spot">Tourist Spot</mat-option>
+          <mat-option value="Festival">Festival</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <button
+        style="height: 70%; background-color: #05bbe8"
+        mat-flat-button
+        color="primary"
+        (click)="onSearch()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <div *ngIf="!loading && !searching" class="row">
     <ng-container *ngFor="let item of touristSpots">
       <div
         (click)="showMore(item)"
@@ -24,4 +44,7 @@
       </div>
     </ng-container>
   </div>
+  <app-spinner *ngIf="searching"></app-spinner>
 </div>
+<app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
+<app-spinner *ngIf="loading"></app-spinner>
