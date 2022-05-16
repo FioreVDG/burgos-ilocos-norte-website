@@ -1,49 +1,73 @@
-<div
-  style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    background-image: url(../../assets/images/main-bg.jpg);
-    background-size: cover;
-    background-repeat: none;
-  "
->
+<div class="main-container">
   <div class="row">
     <div class="col-xl-10 col-lg-10 col-md-8 col-sm-12 glass-login">
-      <img src="../../assets/images/burgos-logo.png" alt="" />
-      <h3>Welcome,</h3>
-      <p>Login to your account</p>
-      <form [formGroup]="loginForm">
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Username</mat-label>
-          <input
-            type="text"
-            matInput
-            formControlName="username"
-            placeholder="meow01"
-            required
-          />
+      <div class="row">
+        <div class="col-3" style="padding: 2rem">
+          <div class="row">
+            <div class="col-3 img-wrap">
+              <img
+                src="../../assets/images/burgos-logo.png"
+                alt="Burgos Ilocos Norte logo"
+                class="img-fluid"
+              />
+            </div>
 
-          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
-            Please enter your email
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Password</mat-label>
-          <input type="password" matInput formControlName="password" required />
+            <div class="col-9 text-wrapper">
+              <p class="sm-upper">Republic of the Philippines</p>
+              <h3>Municipality of Burgos</h3>
+              <p class="sm-upper">Ilocos Norte, Philippines</p>
+            </div>
+          </div>
 
-          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
-            Please enter your password
-          </mat-error>
-        </mat-form-field>
+          <p>Login Your Admin Account</p>
+          <form [formGroup]="loginForm">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Username</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="username"
+                placeholder="meow01"
+                required
+              />
 
-        <button mat-button color="primary" (click)="onLoginClick()">
-          {{ loading ? "Logging in" : "Login" }}
-        </button>
-      </form>
+              <mat-error
+                *ngIf="loginForm.get('username')?.hasError('required')"
+              >
+                Please enter your email
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Password</mat-label>
+              <input
+                type="password"
+                matInput
+                formControlName="password"
+                required
+              />
+
+              <mat-error
+                *ngIf="loginForm.get('password')?.hasError('required')"
+              >
+                Please enter your password
+              </mat-error>
+            </mat-form-field>
+
+            <button
+              mat-button
+              color="primary"
+              (click)="onLoginClick()"
+              style="width: 100%"
+            >
+              {{ loading ? "Logging in" : "Login" }}
+            </button>
+          </form>
+        </div>
+
+        <div class="col-9" style="padding: 0">
+          <img src="./../../assets/images/main-bg.jpg" class="img-login" />
+        </div>
+      </div>
     </div>
   </div>
 </div>
