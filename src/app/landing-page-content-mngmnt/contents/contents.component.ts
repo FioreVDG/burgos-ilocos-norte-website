@@ -1,6 +1,7 @@
 import { ContentService } from './../../services/content/content.service';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-contents',
@@ -14,6 +15,71 @@ export class ContentsComponent implements OnInit {
   loading: boolean = false;
   id: string = '';
   resHolder: Array<any> = [];
+  mission: string = '';
+  vision: string = '';
+  abouts: Array<any> = [];
+
+  configMission: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '25rem',
+    placeholder: 'Enter description here...',
+    translate: 'no',
+    defaultParagraphSeparator: '',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['backgroundColor', 'htmlCode', 'insertImage', 'insertVideo', 'htmlCode'],
+    ],
+    customClasses: [
+      {
+        name: 'For Heading 1',
+        class: 'titleText',
+        tag: 'h1',
+      },
+      {
+        name: 'For Heading 2',
+        class: 'titleText',
+        tag: 'h2',
+      },
+      {
+        name: 'For Heading 3',
+        class: 'titleText',
+        tag: 'h3',
+      },
+    ],
+  };
+
+  configVision: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    minHeight: '25rem',
+    placeholder: 'Enter description here...',
+    translate: 'no',
+    defaultParagraphSeparator: '',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['backgroundColor', 'htmlCode', 'insertImage', 'insertVideo', 'htmlCode'],
+    ],
+    customClasses: [
+      {
+        name: 'For Heading 1',
+        class: 'titleText',
+        tag: 'h1',
+      },
+      {
+        name: 'For Heading 2',
+        class: 'titleText',
+        tag: 'h2',
+      },
+      {
+        name: 'For Heading 3',
+        class: 'titleText',
+        tag: 'h3',
+      },
+    ],
+  };
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -36,6 +102,19 @@ export class ContentsComponent implements OnInit {
         }
       }
     });
+  }
+
+  getAbouts() {
+    this.content.getAllMission({}).subscribe(
+      (res: any) => {
+        if (res.env.mission_vision.length) {
+          this.abouts = res.env.mission_vision;
+          this.mission = res.env.mission_vision[0].mission;
+          this.vision = res.env.mission_vision[0].vision;
+        }
+      },
+      (err) => console.log(err)
+    );
   }
 
   set() {
@@ -84,5 +163,15 @@ export class ContentsComponent implements OnInit {
 
   secure(url: string) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  missionVision() {
+    const toAddData = { mission: this.mission, vision: this.vision };
+    this.content.createMission(toAddData).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err) => console.log(err)
+    );
   }
 }

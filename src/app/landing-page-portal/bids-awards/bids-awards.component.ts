@@ -12,6 +12,8 @@ import { Component, OnInit } from '@angular/core';
 export class BidsAwardsComponent implements OnInit {
   bids: any = [];
   loading: boolean = false;
+  search: string = '';
+  searching: boolean = false;
   constructor(
     private bid: BidService,
     private dbx: DropboxService,
@@ -39,8 +41,34 @@ export class BidsAwardsComponent implements OnInit {
     return response.result.link;
   }
 
-  search() {
-    // this.
+  onSearch() {
+    console.log(this.search);
+    let query;
+    if (this.search === 'All')
+      query = {
+        find: [],
+      };
+    else
+      query = {
+        find: [
+          {
+            field: 'type',
+            operator: '=',
+            value: this.search,
+          },
+        ],
+      };
+    this.searching = true;
+    this.bid.getAll(query).subscribe((res: any) => {
+      console.log(res);
+      this.bids = res.env.bidsawards;
+      this.bids.forEach((el: any) => {
+        el.files.forEach(async (e: any) => {
+          e.url = await this.getTempLink(e.file.path_display);
+        });
+      });
+      this.searching = false;
+    });
   }
 
   openFile(url: string, ext: any) {

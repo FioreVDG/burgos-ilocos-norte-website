@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SpinnerModule } from './../../spinner/spinner.module';
 import { NoContentModule } from './../../no-content/no-content.module';
 import { ModalsModule } from 'src/app/shared/modals/modals.module';
@@ -16,6 +17,7 @@ import { BidsAwardsComponent } from './bids-awards.component';
     MaterialModule,
     ModalsModule,
     NoContentModule,
+    FormsModule,
     SpinnerModule,
   ],
 })

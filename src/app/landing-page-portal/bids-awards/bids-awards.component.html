@@ -1,26 +1,35 @@
-<app-no-content *ngIf="!loading && !bids.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
-<div class="container" *ngIf="!loading && bids.length">
+<div class="container">
   <div class="one">
     <h1>Bids & Awards Committee</h1>
   </div>
   <div class="container">
     <div class="row">
-      <div style="padding-right: 0" class="col-3">
-        <form class="form-inline">
-          <input
-            class="form-control"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </form>
+      <div class="col-3">
+        <mat-form-field style="display: block" appearance="fill">
+          <mat-label>Search by type</mat-label>
+          <mat-select [(ngModel)]="search" required="false">
+            <mat-option value="All">All</mat-option>
+            <mat-option value="Invitation to Bid">Invitation to Bid</mat-option>
+            <mat-option value="Request for Quotation"
+              >Request for Quotation</mat-option
+            >
+            <mat-option value="Notice of Award">Notice of Award</mat-option>
+            <mat-option value="Notice to proceed">Notice to proceed</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
-      <div style="padding-left: 0" class="col">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <div class="col">
+        <button
+          style="height: 70%; background-color: #05bbe8"
+          mat-flat-button
+          color="primary"
+          (click)="onSearch()"
+        >
+          Search
+        </button>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="!loading && bids?.length && !searching">
       <ng-container *ngFor="let item of bids; let i = index">
         <hr *ngIf="i !== 0" />
         <h3>{{ item.id }}</h3>
@@ -42,5 +51,10 @@
         </p>
       </ng-container>
     </div>
+    <div class="row" *ngIf="searching">
+      <app-spinner></app-spinner>
+    </div>
   </div>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>
+<app-no-content *ngIf="!loading && !bids?.length"></app-no-content>

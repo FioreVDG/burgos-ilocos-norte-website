@@ -12,6 +12,8 @@ import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 export class TourismComponent implements OnInit {
   touristSpots: any = [];
   loading: boolean = false;
+  search: string = '';
+  searching: boolean = false;
   constructor(
     private tourist: TourismService,
     private dbx: DropboxService,
@@ -53,6 +55,35 @@ export class TourismComponent implements OnInit {
       height: '100%',
       data: data,
       panelClass: 'dialog-no-padding',
+    });
+  }
+
+  onSearch() {
+    console.log(this.search);
+    let query;
+    if (this.search === 'All')
+      query = {
+        find: [],
+      };
+    else
+      query = {
+        find: [
+          {
+            field: 'type',
+            operator: '=',
+            value: this.search,
+          },
+        ],
+      };
+    this.searching = true;
+    this.tourist.getAll(query).subscribe((res: any) => {
+      console.log(res);
+      this.touristSpots = res.env.tourist_spots;
+      this.touristSpots.forEach(async (el: any) => {
+        el.imgUrl = await this.getTempLink(el?.image?.path_display);
+        el.layout = await this.stringToHTMLconverter(el.description);
+      });
+      this.searching = false;
     });
   }
 }

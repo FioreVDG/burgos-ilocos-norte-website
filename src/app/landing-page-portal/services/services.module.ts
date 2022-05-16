@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { ModalsModule } from './../../shared/modals/modals.module';
 import { NoContentModule } from './../../no-content/no-content.module';
 import { SpinnerModule } from './../../spinner/spinner.module';
@@ -17,6 +18,7 @@ import { ServicesComponent } from './services.component';
     SpinnerModule,
     NoContentModule,
     ModalsModule,
+    ReactiveFormsModule,
   ],
 })
 export class ServicesModule {}
