@@ -102,15 +102,17 @@ export class ContentsComponent implements OnInit {
         }
       }
     });
+    this.getAbouts();
   }
 
   getAbouts() {
     this.content.getAllMission({}).subscribe(
       (res: any) => {
-        if (res.env.mission_vision.length) {
-          this.abouts = res.env.mission_vision;
-          this.mission = res.env.mission_vision[0].mission;
-          this.vision = res.env.mission_vision[0].vision;
+        if (res.env.mission_visions.length) {
+          console.log(res);
+          this.abouts = res.env.mission_visions;
+          this.mission = res.env.mission_visions[0].mission;
+          this.vision = res.env.mission_visions[0].vision;
         }
       },
       (err) => console.log(err)
@@ -167,7 +169,23 @@ export class ContentsComponent implements OnInit {
 
   missionVision() {
     const toAddData = { mission: this.mission, vision: this.vision };
-    this.content.createMission(toAddData).subscribe(
+    if (this.abouts.length) this.updateMission(toAddData);
+    else this.addMission(toAddData);
+  }
+
+  updateMission(mission: any) {
+    this.content.updateMission(mission, this.abouts[0]._id).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  addMission(mission: any) {
+    this.content.createMission(mission).subscribe(
       (res: any) => {
         console.log(res);
       },
