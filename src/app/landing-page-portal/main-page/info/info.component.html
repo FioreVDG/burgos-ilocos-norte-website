@@ -1,0 +1,42 @@
+<section id="info">
+  <div style="height: 100%" class="container">
+    <div style="height: 100%; margin: auto" class="row">
+      <div
+        *ngFor="let i of _infos"
+        style="display: flex; align-items: center; justify-content: center"
+        class="col-xl-4 col-lg-4 col-md-4 col-sm-12 wrs"
+      >
+        <div class="row cont">
+          <div
+            style="
+              padding: 0;
+              display: flex;
+              align-items: flex-end;
+              justify-content: center;
+              flex-direction: column;
+            "
+            class="col-4"
+          >
+            <img [src]="i.img" alt="" />
+          </div>
+          <div
+            style="
+              padding: 0;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              flex-direction: column;
+            "
+            class="col-8"
+          >
+            <p class="label">{{ i.label }}</p>
+            <p *ngIf="i.label !== 'AREA COVERED'" class="data">{{ i.data }}</p>
+            <p *ngIf="i.label === 'AREA COVERED'" class="data">
+              {{ i.data }}<sup>2</sup>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
