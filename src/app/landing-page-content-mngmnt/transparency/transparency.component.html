@@ -5,15 +5,33 @@
     </div>
     <div *ngIf="!loading" class="container">
       <div class="row">
-        <div *ngFor="let item of transparencies" class="col-3">
-          <div class="card add-announcement">
-            <div style="position: absolute; top: 10px; right: 10px">
+        <div class="col-3">
+          <div (click)="addTransparency()" class="card add-news">
+            <div class="card-body">
+              <i class="bi bi-plus-square-dotted icon"></i>
+              <h3 style="text-align: center">Add Transparency</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-3" *ngFor="let item of transparencies">
+          <div
+            style="
+              width: 90%;
+              margin: auto;
+              height: 20rem;
+              margin: 1.5rem 0;
+              position: relative;
+            "
+            class="card"
+          >
+            <div style="position: absolute; top: 6px; right: 6px">
               <button
                 mat-icon-button
+                class="icn-top"
                 [matMenuTriggerFor]="cardOptions"
                 aria-label="Example icon-button with a menu"
               >
-                <mat-icon>keyboard_arrow_down</mat-icon>
+                <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #cardOptions="matMenu">
                 <button
@@ -30,38 +48,12 @@
                 </button>
               </mat-menu>
             </div>
-
-            <div class="card-body content">
-              <h3>
-                {{
-                  item.title.slice(0, 20) +
-                    (item.title.length > 18 ? "..." : "") || ""
-                }}
-              </h3>
-              <p>
-                {{
-                  item.transparencyType.slice(0, 30) +
-                    (item.transparencyType.length > 27 ? "..." : "") || ""
-                }}
-              </p>
-              <p>
-                {{
-                  item.description.slice(0, 30) +
-                    (item.description.length > 27 ? "..." : "") || ""
-                }}
-              </p>
+            <div class="desc">
+              <p class="top">{{ item.title }}</p>
+              <p class="type">{{ item.transparencyType }}</p>
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div (click)="addTransparency()" class="card add-announcement">
-            <div class="card-body content">
-              <i class="bi bi-plus-square-dotted icon"></i>
-              <h3 style="text-align: center">Add Transparency</h3>
-            </div>
-          </div>
-        </div>
-
         <mat-paginator
           [length]="pagination.totalDocuments"
           [pageSize]="pagination.pageSize"
@@ -73,11 +65,6 @@
         </mat-paginator>
       </div>
     </div>
-    <div class="container loading-wrap" *ngIf="loading">
-      <div class="scale-in-center">
-        <i class="bi bi-bank2 icon"></i>
-      </div>
-      <p>Loading Transparencies...</p>
-    </div>
+    <app-spinner *ngIf="loading"></app-spinner>
   </div>
 </div>

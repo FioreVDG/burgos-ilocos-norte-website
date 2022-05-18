@@ -5,59 +5,58 @@
     </div>
     <div *ngIf="!loading" class="container">
       <div class="row">
-        <div *ngFor="let item of legislatives" class="col-3">
-          <div class="card add-announcement">
-            <div style="position: absolute; top: 10px; right: 10px">
-              <button
-                mat-icon-button
-                [matMenuTriggerFor]="cardOptions"
-                aria-label="Example icon-button with a menu"
-              >
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-              <mat-menu #cardOptions="matMenu">
-                <button
-                  mat-menu-item
-                  color="primary"
-                  (click)="onUpdateLegislative(item)"
-                >
-                  <mat-icon>mode_edit</mat-icon>
-                  <span>Update</span>
-                </button>
-                <button mat-menu-item color="warn" (click)="onDelete(item._id)">
-                  <mat-icon>delete</mat-icon>
-                  <span>Delete</span>
-                </button>
-              </mat-menu>
-            </div>
-
-            <div class="card-body content">
-              <h3>
-                {{
-                  item.title.slice(0, 20) +
-                    (item.title.length > 18 ? "..." : "") || ""
-                }}
-              </h3>
-              <p>
-                {{
-                  item.legislativeType.slice(0, 30) +
-                    (item.legislativeType.length > 27 ? "..." : "") || ""
-                }}
-              </p>
-              <p
-                [innerHTML]="
-                  item?.layout?.slice(0, 30) +
-                    (item?.layout?.length > 27 ? '...' : '') || ''
-                "
-              ></p>
+        <div class="row">
+          <div class="col-3">
+            <div (click)="addLegislative()" class="card add-news">
+              <div class="card-body">
+                <i class="bi bi-plus-square-dotted icon"></i>
+                <h3 style="text-align: center">Add Issuance</h3>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-3">
-          <div (click)="addLegislative()" class="card add-announcement">
-            <div class="card-body content">
-              <i class="bi bi-plus-square-dotted icon"></i>
-              <h3 style="text-align: center">Add Issuances</h3>
+          <div *ngFor="let item of legislatives" class="col-3">
+            <div
+              style="
+                width: 90%;
+                margin: auto;
+                height: 20rem;
+                margin: 1.5rem 0;
+                position: relative;
+              "
+              class="card"
+            >
+              <div style="position: absolute; top: 6px; right: 6px">
+                <button
+                  mat-icon-button
+                  class="icn-top"
+                  [matMenuTriggerFor]="cardOptions"
+                  aria-label="Example icon-button with a menu"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #cardOptions="matMenu">
+                  <button
+                    mat-menu-item
+                    color="primary"
+                    (click)="onUpdateLegislative(item)"
+                  >
+                    <mat-icon>mode_edit</mat-icon>
+                    <span>Update</span>
+                  </button>
+                  <button
+                    mat-menu-item
+                    color="warn"
+                    (click)="onDelete(item._id)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </div>
+              <div class="desc">
+                <p class="top">{{ item.title }}</p>
+                <p class="type">({{ item.legislativeType }})</p>
+              </div>
             </div>
           </div>
         </div>
@@ -73,11 +72,6 @@
         </mat-paginator>
       </div>
     </div>
-    <div class="container loading-wrap" *ngIf="loading">
-      <div class="scale-in-center">
-        <i class="bi bi-bank2 icon"></i>
-      </div>
-      <p>Loading Legislatives...</p>
-    </div>
+    <app-spinner *ngIf="loading"></app-spinner>
   </div>
 </div>

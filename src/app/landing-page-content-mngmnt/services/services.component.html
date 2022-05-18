@@ -57,16 +57,17 @@
             </div>
           </div>
         </div>
+        <mat-paginator
+          [length]="pagination.totalDocuments"
+          [pageSize]="pagination.pageSize"
+          [pageSizeOptions]="[10, 25, 100, 200, 500]"
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
       </div>
     </div>
-    <!-- <button
-      *ngIf="!loading"
-      mat-fab
-      color="primary"
-      class="bottom-right-button"
-      (click)="addService()"
-    >
-      <mat-icon>add</mat-icon>
-    </button> -->
+    <app-spinner *ngIf="loading"></app-spinner>
   </div>
 </div>

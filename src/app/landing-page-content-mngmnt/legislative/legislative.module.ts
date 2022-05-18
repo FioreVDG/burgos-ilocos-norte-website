@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './../../material/material.module';
 import { NgModule } from '@angular/core';
@@ -19,6 +20,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ReactiveFormsModule,
     NgxFileDropModule,
     AngularEditorModule,
+    SpinnerModule,
   ],
 })
 export class LegislativeModule {}

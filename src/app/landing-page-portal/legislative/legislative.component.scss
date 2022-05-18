@@ -1,102 +1,50 @@
-.loading-wrap {
-  height: 50vh;
-  width: 100%;
+#service {
+  background-image: linear-gradient(
+      90deg,
+      #05bbe842 5%,
+      #05bbe842 42%,
+      #05bbe842 100%
+    ),
+    url("../../../assets/images/wind_mill.jpg");
+  background-size: cover;
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-position: center;
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  .icon {
-    font-size: 600%;
-    color: #9e9e9e;
+  h1 {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
   }
+}
+.tbl-header {
+  margin-top: 1rem;
+  color: #fff;
+  background-color: #05bbe8;
+  font-weight: 600;
+  padding: 1rem 0.5rem;
+}
+.tbl-dt {
+  padding: 1rem 0rem;
+  &:nth-child(even) {
+    background-color: #05bbe818;
+  }
+}
+.tbl-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   p {
-    color: #9e9e9e;
+    margin: 0;
   }
-}
-.scale-in-center {
-  -webkit-animation: scale-in-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    infinite both;
-  animation: scale-in-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
-    both;
-}
-@-webkit-keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes scale-in-center {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.container {
-  padding: 2rem 0rem;
-}
-
-.legislative {
-  img {
-    width: 100%;
-    height: 17rem;
-    object-fit: cover;
-  }
-}
-
-.legislative-content {
-  //   background-color: #fff;
-  //   border-radius: 7px;
-
-  //   box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
-  //   width: 100%;
-  //   padding: 0.5rem;
-  margin-top: 2rem;
-  h3 {
-    color: #05bbe8;
-    font-size: 18px;
-    margin-bottom: 0;
-  }
-  .sub-header {
-    font-size: 14px;
-    color: #9e9e9e;
-  }
-
-  .titleText {
-    color: #05bbe8;
-    font-size: 18px;
-    margin-bottom: 0;
-  }
-}
-
-.titleText {
-  color: #05bbe8;
-  font-size: 18px;
-  margin-bottom: 0;
-}
-#temp {
-  p {
-    color: #9e9e9e;
-    font-size: 14px;
-  }
-}
-
-@media only screen and(max-width: 600px) {
-  .container {
-    padding: 2rem 0rem;
-    width: 90%;
-    margin: auto;
+  b {
+    cursor: pointer;
+    &:hover {
+      color: #05bbe8;
+    }
   }
 }

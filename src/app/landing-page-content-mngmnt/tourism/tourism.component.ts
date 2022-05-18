@@ -66,6 +66,10 @@ export class TourismComponent implements OnInit {
       console.log(res);
       this.tourisms = res.env.tourist_spots;
       this.pagination.totalDocuments = res.total_docs;
+      this.tourisms.forEach(async (el: any) => {
+        el.imgUrl = await this.getTempLink(el?.image?.path_display);
+        el.layout = await this.stringToHTMLconverter(el.description);
+      });
     });
   }
 
@@ -75,7 +79,7 @@ export class TourismComponent implements OnInit {
     this._showSnackBar(message);
     this.tourism.delete(id).subscribe(
       () => {
-        message = 'Announcement successfully deleted!';
+        message = 'Tourist Spot successfully deleted!';
         this.fetchData();
         this._showSnackBar(message, 'Okay');
       },

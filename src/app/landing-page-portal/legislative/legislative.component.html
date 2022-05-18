@@ -1,13 +1,16 @@
-<app-no-content *ngIf="!loading && !legislatives?.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="!loading && legislatives.length" class="container">
-  <div class="one">
-    <h1>Issuances</h1>
-  </div>
-  <div class="container">
+<section *ngIf="!loading">
+  <section id="service">
+    <div class="container">
+      <h1>Issuances</h1>
+    </div>
+  </section>
+  <div style="padding: 4rem 0rem" class="container">
     <div class="row">
-      <div class="col-4">
-        <mat-form-field style="display: block" appearance="fill">
+      <div style="padding: 0" class="col-3">
+        <mat-form-field
+          style="display: block; font-size: 12px"
+          appearance="fill"
+        >
           <mat-label>Search by type</mat-label>
           <mat-select [(ngModel)]="search" required="false">
             <mat-option value="All">All</mat-option>
@@ -19,36 +22,80 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div class="col">
+      <div style="padding-left: 0.3rem" class="col">
         <button
-          style="height: 70%; background-color: #05bbe8"
+          style="height: 72%; background-color: #05bbe8"
           mat-flat-button
           color="primary"
           (click)="onSearch()"
         >
-          Search
+          {{ searching ? "Searching" : "Search" }}
         </button>
       </div>
     </div>
-  </div>
-  <div class="container legislative">
-    <ng-container *ngFor="let item of legislatives; let i = index">
-      <hr *ngIf="i !== 0" />
-      <div class="row">
-        <div class="col-sm-12 col-xl-4 col-lg-4 col-md-4">
-          <img [src]="item.imgUrl" alt="" />
+    <div class="row">
+      <div class="col-12">
+        <div class="row tbl-header" *ngIf="!searching">
+          <div class="col-3">Title</div>
+          <div class="col-2">Type</div>
+          <div class="col-4">Descritpion</div>
+          <div class="col-2" style="text-align: center">Action</div>
         </div>
-        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
-          <div class="legislative-content">
-            <h3>{{ item.title }}</h3>
-            <p class="sub-header">
-              Posted in {{ item.createdAt | date: "Y" }}
-              {{ item.legislativeType }}
-            </p>
-            <div #temp id="temp" [innerHTML]="item.layout"></div>
-          </div>
-        </div>
+        <app-spinner *ngIf="searching"></app-spinner>
+        <section *ngIf="legislatives.length && !searching">
+          <ng-container *ngFor="let item of legislatives">
+            <div class="row tbl-dt">
+              <div class="col-3 tbl-row">
+                <p>
+                  <b>{{ item.title }}</b>
+                </p>
+              </div>
+              <div class="col-2 tbl-row">
+                <p>{{ item.legislativeType }}</p>
+              </div>
+              <div class="col-4 tbl-row">
+                <p
+                  [innerHTML]="
+                    item.layout.slice(0, 35) +
+                    (item.layout.length > 32 ? '...' : '')
+                  "
+                ></p>
+              </div>
+              <div class="col-3">
+                <a
+                  mat-flat-button
+                  style="margin-right: 0.3rem"
+                  color="primary"
+                  [href]="item.imgUrl"
+                >
+                  Download
+                </a>
+                <button
+                  (click)="preview(item.imgUrl, item.file.name.split('.')[1])"
+                  mat-flat-button
+                  color="accent"
+                >
+                  Preview
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </section>
+        <section *ngIf="!legislatives.length && !searching">
+          <p style="text-align: center; margin: 0.5rem">No data yet.</p>
+        </section>
+        <mat-paginator
+          *ngIf="legislatives.length && !searching"
+          [length]="pagination.totalDocuments"
+          [pageSize]="pagination.pageSize"
+          [pageSizeOptions]="[10, 25, 100, 200, 500]"
+          showFirstLastButtons
+          (page)="onPageChange($event)"
+          aria-label="Select page"
+        >
+        </mat-paginator>
       </div>
-    </ng-container>
+    </div>
   </div>
-</div>
+</section>
+<app-spinner *ngIf="loading"></app-spinner>
