@@ -83,7 +83,7 @@ export class CareerComponent implements OnInit {
     this._showSnackBar(message);
     this.career.delete(id).subscribe(
       () => {
-        message = 'Announcement successfully deleted!';
+        message = 'Career successfully deleted!';
         this.fetchData();
         this._showSnackBar(message, 'Okay');
       },

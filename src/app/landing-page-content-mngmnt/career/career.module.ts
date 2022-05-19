@@ -1,3 +1,4 @@
+import { SpinnerModule } from './../../spinner/spinner.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,6 +16,7 @@ import { AddCareerComponent } from './add-career/add-career.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SpinnerModule,
   ],
 })
 export class CareerModule {}
