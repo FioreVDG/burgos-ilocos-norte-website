@@ -24,7 +24,7 @@ export class AddLegislativeComponent implements OnInit {
   allowedFileTypes = ['png', 'jpeg', 'jpg', 'pdf'];
   imageFile: File | null;
   imageB64: string = '';
-  types = ['Internal Procedure', 'Ordinance', 'Resolution'];
+  types = ['Ordinance', 'Resolution', 'Executive Order'];
 
   legislativeForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
