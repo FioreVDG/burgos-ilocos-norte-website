@@ -78,7 +78,7 @@ export const servantDesktop = [
       {
         img: '../../../../assets/images/Blank-Profile.png',
         name: 'HON. CARL EMIL A. CHUA',
-        position: 'Ex-Officio Member/Liga ng Mga Barangay President',
+        position: 'Sangguniang Kabataan President',
       },
     ],
   },
@@ -182,7 +182,7 @@ export const servantMobile = [
       {
         img: '../../../../assets/images/Blank-Profile.png',
         name: 'HON. CARL EMIL A. CHUA',
-        position: 'Ex-Officio Member/Liga ng Mga Barangay President',
+        position: 'Sangguniang Kabataan President',
         class: 'mobile-cards-bot',
       },
     ],

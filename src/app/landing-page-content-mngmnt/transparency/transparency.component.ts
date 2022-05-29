@@ -1,3 +1,4 @@
+import { DropboxService } from './../../services/dropbox/dropbox.service';
 import { AddTransparencyComponent } from './add-transparency/add-transparency.component';
 import { PageEvent } from '@angular/material/paginator';
 import { QueryParams } from './../../models/queryparams.interface';
@@ -12,7 +13,7 @@ import { TransparencyService } from 'src/app/services/transparency/transparency.
   styleUrls: ['./transparency.component.scss'],
 })
 export class TransparencyComponent implements OnInit {
-  transparencies: any = [];
+  transparencies: Array<any> = [];
   pagination = {
     pageSize: 10,
     pageNumber: 1,
@@ -22,7 +23,8 @@ export class TransparencyComponent implements OnInit {
   constructor(
     private transparency: TransparencyService,
     private dialog: MatDialog,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dbx: DropboxService
   ) {}
 
   ngOnInit(): void {
@@ -38,9 +40,15 @@ export class TransparencyComponent implements OnInit {
     };
     this.transparency.getAll(query).subscribe((res: any) => {
       console.log(res);
-      this.loading = false;
       this.transparencies = res.env.transparencies;
       this.pagination.totalDocuments = res.total_docs;
+      console.log(this.transparencies);
+      this.transparencies.forEach((el: any) => {
+        el.files.forEach(async (f: any) => {
+          f.url = await this.getTempLink(f.file.path_display);
+        });
+      });
+      this.loading = false;
     });
   }
 
@@ -60,8 +68,7 @@ export class TransparencyComponent implements OnInit {
     });
   }
 
-  onUpdateTransparency(transparency: any) {
-    console.log(transparency);
+  onUpdateTransparency(transparency: Object) {
     this.dialog
       .open(AddTransparencyComponent, {
         width: '100%',
@@ -109,5 +116,11 @@ export class TransparencyComponent implements OnInit {
     this.sb.open(message, action, {
       duration: 1500,
     });
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
   }
 }

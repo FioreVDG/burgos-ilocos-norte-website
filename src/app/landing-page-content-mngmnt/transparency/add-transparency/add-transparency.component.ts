@@ -1,3 +1,4 @@
+import { AddTransparencyFileComponent } from './add-transparency-file/add-transparency-file.component';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -5,7 +6,11 @@ import {
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialog,
+} from '@angular/material/dialog';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TransparencyService } from 'src/app/services/transparency/transparency.service';
@@ -30,17 +35,16 @@ export class AddTransparencyComponent implements OnInit {
     'Annual Investment Plan',
     'Programs and Projects',
     'Awards and Recognition',
+    'Annual Procurement Plan',
   ];
 
   transparencyForm: FormGroup = this.fb.group({
-    title: new FormControl('', [Validators.required]),
+    // title: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     transparencyType: new FormControl('', [Validators.required]),
   });
 
-  transparencyFileForm: FormGroup = this.fb.group({
-    file: new FormControl(''),
-  });
+  files: Array<any> = [];
 
   config: AngularEditorConfig = {
     editable: true,
@@ -79,27 +83,22 @@ export class AddTransparencyComponent implements OnInit {
     public dialogRef: MatDialogRef<AddTransparencyComponent>,
     private fb: FormBuilder,
     private transparency: TransparencyService,
-    private dropbox: DropboxService
+    private dropbox: DropboxService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     console.log(this.data);
     if (this.data) {
-      this.transparencyForm.controls['title'].setValue(this.data.title);
+      // this.transparencyForm.controls['title'].setValue(this.data.title);
       this.transparencyForm.controls['description'].setValue(
         this.data.description
       );
-
       this.transparencyForm.controls['transparencyType'].setValue(
         this.data.transparencyType
       );
-      if (this.data.file)
-        this.dropbox
-          .getTempLink(this.data.file.path_display)
-          .pipe(map((response: GetTempLinkDropBox) => response.result.link))
-          .subscribe((link: string) => {
-            this.imageB64 = link;
-          });
+      this.files = this.data.files;
+      console.log(this.files);
     }
   }
 
@@ -118,35 +117,20 @@ export class AddTransparencyComponent implements OnInit {
     );
   }
 
-  dropped(files: NgxFileDropEntry[]) {
-    const selectedFirstFile = files[0];
-
-    if (selectedFirstFile) {
-      if (selectedFirstFile.fileEntry.isFile) {
-        const fileEntry = selectedFirstFile.fileEntry as FileSystemFileEntry;
-
-        fileEntry.file((file: File) => {
-          const reader = new FileReader();
-
-          reader.onload = () => {
-            this.imageB64 = reader.result as string;
-          };
-
-          reader.readAsDataURL(file);
-
-          const fileType = file.type.split('/')[1];
-          console.log(fileType);
-
-          if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
-          else alert('Invalid file type');
-        });
-      } else alert('Not a file');
-    }
-  }
-
-  onRemoveImage() {
-    this.imageFile = null;
-    this.imageB64 = '';
+  addFile() {
+    let data: any;
+    this.data ? (data = this.data.files) : null;
+    this.dialog
+      .open(AddTransparencyFileComponent, {
+        width: '100%',
+        height: 'auto',
+        data: data,
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        console.log(res);
+        this.files = res;
+      });
   }
 
   updateTransparency(transparency: any) {
@@ -164,46 +148,81 @@ export class AddTransparencyComponent implements OnInit {
   }
 
   save() {
+    const transparency = this.transparencyForm.getRawValue();
+    const path = '/burgos-ilocosnorte/transparencies/';
+    const dateNow = Date.now();
+    console.log(transparency);
     this.saving = true;
-    if (this.imageFile) {
-      const path = '/burgos-ilocosnorte/transparencies/';
-      const fileType = this.imageFile.type.split('/')[1];
-      const dateNow = Date.now();
-      const name = this.imageFile.name.split('.')[0];
-      const fileName = `${name}-${dateNow}.${fileType}`;
+    const toSave: any = {
+      ...transparency,
+      files: [],
+    };
 
-      this.dropbox
-        .uploadFile(path, fileName, this.imageFile)
-        .subscribe((res: any) => {
-          const imageData = res.result;
-          this.transparencyFileForm.controls['file'].setValue(imageData);
-
-          const file = this.transparencyFileForm.getRawValue();
-          const legislative = this.transparencyForm.getRawValue();
-          const year = new Date().getFullYear();
-          const thumbnail = file;
-
-          const legislativeData: any = {
-            ...file,
-            ...legislative,
-            ...thumbnail,
-            year,
-          };
-          console.log(legislativeData);
-          if (this.data) this.updateTransparency(legislativeData);
-          else this.createTransparency(legislativeData);
-        });
+    if (this.files.length && !this.data) {
+      console.log(this.files);
+      this.files.forEach((el: any) => {
+        console.log(el.imgFile);
+        let fileType = el.fileType;
+        let name = el.imgFile.name.split('.')[0];
+        const fileName = `${name}-${dateNow}.${fileType}`;
+        this.dropbox
+          .uploadFile(path, fileName, el.imgFile)
+          .subscribe((res: any) => {
+            console.log(res);
+            toSave.files.push({ title: el.title, file: res.result });
+            if (this.files.length === toSave.files.length) {
+              console.log(toSave);
+              this.createTransparency(toSave);
+            }
+          });
+      });
     } else {
-      const legislative = this.transparencyForm.getRawValue();
-      const year = new Date().getFullYear();
-
-      const legislativeData: any = {
-        ...legislative,
-        year,
-      };
-
-      if (this.data) this.updateTransparency(legislativeData);
-      else this.createTransparency(legislativeData);
+      const toSave = { ...transparency, files: this.files };
+      console.log(toSave);
+      if (this.data) this.updateTransparency(toSave);
+      else this.createTransparency(toSave);
     }
+
+    // this.saving = true;
+    // if (this.imageFile) {
+    //   const path = '/burgos-ilocosnorte/transparencies/';
+    //   const fileType = this.imageFile.type.split('/')[1];
+    //   const dateNow = Date.now();
+    //   const name = this.imageFile.name.split('.')[0];
+    //   const fileName = `${name}-${dateNow}.${fileType}`;
+
+    //   this.dropbox
+    //     .uploadFile(path, fileName, this.imageFile)
+    //     .subscribe((res: any) => {
+    //       const imageData = res.result;
+    //       this.transparencyFileForm.controls['file'].setValue(imageData);
+
+    //       const file = this.transparencyFileForm.getRawValue();
+    //       const legislative = this.transparencyForm.getRawValue();
+    //       const year = new Date().getFullYear();
+    //       const thumbnail = file;
+
+    //       const legislativeData: any = {
+    //         ...file,
+    //         ...legislative,
+    //         ...thumbnail,
+    //         year,
+    //       };
+    //       console.log(legislativeData);
+    //       if (this.data) this.updateTransparency(legislativeData);
+    //       else this.createTransparency(legislativeData);
+    //     });
+    // } else {
+    //   const legislative = this.transparencyForm.getRawValue();
+    //   const year = new Date().getFullYear();
+
+    //   const legislativeData: any = {
+    //     ...legislative,
+    //     year,
+    //   };
+
+    //   if (this.data) this.updateTransparency(legislativeData);
+    //   else this.createTransparency(legislativeData);
+    // }
   }
 }

@@ -1,0 +1,85 @@
+<h3 mat-dialog-title>Add Files</h3>
+<mat-dialog-content>
+  <div class="row main-container">
+    <div class="col-4">
+      <div class="file-wrap">
+        <mat-form-field style="width: 100%">
+          <mat-label>File name</mat-label>
+          <input
+            type="text"
+            [formControl]="fileTitle"
+            matInput
+            required="false"
+          />
+        </mat-form-field>
+        <ngx-file-drop
+          dropZoneClassName="drop-zone"
+          contentClassName="drop-zone-content"
+          browseBtnClassName="drop-zone-btn"
+          dropZoneLabel="Drop files here"
+          (onFileDrop)="dropped($event)"
+        >
+          <ng-template
+            ngx-file-drop-content-tmp
+            let-openFileSelector="openFileSelector"
+          >
+            <div>
+              <button
+                (click)="openFileSelector()"
+                mat-stroked-button
+                color="primary"
+                [disabled]="!fileTitle.value"
+              >
+                Browse File
+              </button>
+
+              <p style="margin-top: 1rem">
+                Accepted Format/s: {{ acceptedDocs }}
+              </p>
+            </div>
+          </ng-template>
+        </ngx-file-drop>
+        <button
+          mat-stroked-button
+          [disabled]="imageB64 === ''"
+          (click)="addFile()"
+          style="margin-bottom: 1rem"
+        >
+          Add File
+        </button>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <ng-container *ngFor="let item of filesArr">
+          <div class="col-4">
+            <section *ngIf="filesArr.length" class="cards">
+              <p>{{ item.title }}</p>
+              <img
+                *ngIf="item.fileType !== 'pdf'"
+                style="width: 10%"
+                [src]="item.file"
+                alt=""
+              />
+              <img
+                *ngIf="item.fileType === 'pdf'"
+                src="../../../../../assets/images/pdf-file (1).png"
+                style="width: 25%"
+              />
+            </section>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="!filesArr.length"
+    (click)="proceedAdding()"
+  >
+    Proceed adding files
+  </button>
+</mat-dialog-actions>
