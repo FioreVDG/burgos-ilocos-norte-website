@@ -1,14 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
-import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 
 @Component({
   selector: 'app-add-file',
@@ -16,21 +10,26 @@ import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
   styleUrls: ['./add-file.component.scss'],
 })
 export class AddFileComponent implements OnInit {
-  acceptedDocs: string = '.png, .jpeg, .jpg, .pdf';
-  allowedFileTypes = ['png', 'jpeg', 'jpg', 'pdf'];
+  acceptedDocs: string = '.pdf';
+  allowedFileTypes = ['pdf'];
   imageFile: File | null;
   imageB64: string = '';
   filesArr: Array<any> = [];
-
+  filesCopy: Array<any> = [];
   fileTitle = new FormControl('');
+  hasChanges: boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<AddFileComponent>
+    public dialogRef: MatDialogRef<AddFileComponent>,
+    private sb: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     console.log(this.data);
+    if (this.data) {
+      this.filesArr = this.data;
+    }
   }
 
   dropped(files: NgxFileDropEntry[]) {
@@ -60,22 +59,39 @@ export class AddFileComponent implements OnInit {
       } else alert('Not a file');
     }
   }
-
   addFile() {
-    this.filesArr.push({
-      title: this.fileTitle.value,
-      file: this.imageB64,
-      imgFile: this.imageFile,
-    });
+    let findExistingTitle: any = this.filesArr.find(
+      (o: any) => o.title === this.fileTitle.value
+    );
+    if (findExistingTitle)
+      this._showSnackBar('Title already exist! provide different title');
+    else {
+      this.filesArr.push({
+        title: this.fileTitle.value,
+        file: this.imageB64,
+        imgFile: this.imageFile,
+      });
 
-    this.fileTitle.setValue('');
-    this.imageB64 = '';
-
+      this.fileTitle.setValue('');
+      this.imageB64 = '';
+    }
     console.log(this.filesArr);
+  }
+
+  removeFile(item: any) {
+    console.log(item);
+    this.filesArr = this.filesArr.filter((el: any) => el.title !== item.title);
+    // console.log(this.filesArr);
   }
 
   proceedAdding() {
     console.log(this.filesArr);
     this.dialogRef.close(this.filesArr);
+  }
+
+  private _showSnackBar(message: string, action: string = '') {
+    this.sb.open(message, action, {
+      duration: 1500,
+    });
   }
 }

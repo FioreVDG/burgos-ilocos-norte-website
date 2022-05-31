@@ -40,6 +40,7 @@ export class BidsComponent implements OnInit {
     };
     this.bid.getAll(query).subscribe((res: any) => {
       this.bids = res.env.bidsawards;
+      this.pagination.totalDocuments = res.total_docs;
       this.loading = false;
       console.log(res);
     });

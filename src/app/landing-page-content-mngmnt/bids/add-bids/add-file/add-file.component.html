@@ -42,27 +42,39 @@
         mat-stroked-button
         [disabled]="imageB64 === ''"
         (click)="addFile()"
+        style="margin-bottom: 1rem"
       >
-        add
+        Add File
       </button>
     </div>
     <div class="col-8">
-      <ng-container *ngFor="let item of filesArr">
-        <section *ngIf="filesArr.length">
-          <p>{{ item.title }}</p>
-          <img style="width: 10%" [src]="item.file" alt="" />
-        </section>
-      </ng-container>
+      <p style="text-align: center" *ngIf="!filesArr.length">No Files Added.</p>
+      <div class="row">
+        <ng-container *ngFor="let item of filesArr; let i = index">
+          <div class="col-4" style="position: relative">
+            <section *ngIf="filesArr.length" class="cardss">
+              <p>{{ item.title }}</p>
+              <img
+                src="../../../../../assets/images/pdf-file (1).png"
+                style="width: 25%"
+              />
+              <p (click)="removeFile(item)" class="rem">
+                <u>Remove</u>
+              </p>
+            </section>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions align="center">
   <button
     mat-flat-button
     color="primary"
     [disabled]="!filesArr.length"
     (click)="proceedAdding()"
   >
-    Add
+    Proceed adding or removing files
   </button>
 </mat-dialog-actions>

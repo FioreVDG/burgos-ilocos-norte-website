@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 
 @Component({
@@ -20,16 +21,14 @@ export class AddTransparencyFileComponent implements OnInit {
   fileTitle = new FormControl('');
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<AddTransparencyFileComponent>
+    public dialogRef: MatDialogRef<AddTransparencyFileComponent>,
+    private sb: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     console.log(this.data);
     if (this.data) {
-      this.filesCopy = this.data;
-      console.log(this.filesCopy);
-      let comp = this.compareArr(this.data, this.data);
-      console.log(comp);
+      this.filesArr = this.data;
     }
   }
 
@@ -61,34 +60,40 @@ export class AddTransparencyFileComponent implements OnInit {
     }
   }
 
-  compareArr(arrCopy: any, arrExt: any) {
-    if (
-      arrCopy.length === arrExt.length &&
-      arrCopy.every((val: any, i: any) => val === arrCopy[i])
-    )
-      return false;
-    else return true;
-  }
-
   addFile() {
-    let fileType: any = this.imageFile?.name.split('.')[1];
-    this.filesArr.push({
-      title: this.fileTitle.value,
-      file: this.imageB64,
-      imgFile: this.imageFile,
-      fileType: fileType,
-    });
+    let findExistingTitle: any = this.filesArr.find(
+      (o: any) => o.title === this.fileTitle.value
+    );
+    if (findExistingTitle)
+      this._showSnackBar('Title already exist! provide different title');
+    else {
+      this.filesArr.push({
+        title: this.fileTitle.value,
+        file: this.imageB64,
+        imgFile: this.imageFile,
+      });
 
-    this.fileTitle.setValue('');
-    this.imageB64 = '';
+      this.fileTitle.setValue('');
+      this.imageB64 = '';
+    }
 
     console.log(this.filesArr);
-    this.hasChanges = this.compareArr(this.filesCopy, this.filesArr);
-    console.log(this.hasChanges);
+  }
+
+  removeFile(item: any) {
+    console.log(item);
+    this.filesArr = this.filesArr.filter((el: any) => el.title !== item.title);
+    // console.log(this.filesArr);
   }
 
   proceedAdding() {
     console.log(this.filesArr);
     this.dialogRef.close(this.filesArr);
+  }
+
+  private _showSnackBar(message: string, action: string = '') {
+    this.sb.open(message, action, {
+      duration: 1500,
+    });
   }
 }

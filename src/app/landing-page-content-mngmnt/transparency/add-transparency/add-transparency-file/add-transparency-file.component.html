@@ -50,22 +50,19 @@
       </div>
     </div>
     <div class="col-8">
+      <p style="text-align: center" *ngIf="!filesArr.length">No Files Added.</p>
       <div class="row">
         <ng-container *ngFor="let item of filesArr">
           <div class="col-4">
             <section *ngIf="filesArr.length" class="cards">
               <p>{{ item.title }}</p>
               <img
-                *ngIf="item.fileType !== 'pdf'"
-                style="width: 10%"
-                [src]="item.file"
-                alt=""
-              />
-              <img
-                *ngIf="item.fileType === 'pdf'"
                 src="../../../../../assets/images/pdf-file (1).png"
                 style="width: 25%"
               />
+              <p (click)="removeFile(item)" class="rem">
+                <u>Remove</u>
+              </p>
             </section>
           </div>
         </ng-container>
@@ -80,6 +77,6 @@
     [disabled]="!filesArr.length"
     (click)="proceedAdding()"
   >
-    Proceed adding files
+    Proceed adding or removing files
   </button>
 </mat-dialog-actions>

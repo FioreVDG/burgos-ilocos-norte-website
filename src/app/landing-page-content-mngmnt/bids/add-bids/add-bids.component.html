@@ -1,4 +1,6 @@
-<h3 mat-dialog-title>Add Service</h3>
+<h3 mat-dialog-title>
+  {{ data ? "Update Bids & Awards" : "Add Bids & Awards" }}
+</h3>
 <mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
   >close</mat-icon
 >
@@ -54,13 +56,15 @@
             style="display: block"
           >
             <mat-label>Type</mat-label>
-            <mat-select type="select" formControlName="bidStatus" required>
+            <mat-select
+              type="select"
+              formControlName="bidStatus"
+              required="false"
+            >
               <mat-option *ngFor="let i of bidStatus" [value]="i">
                 {{ i }}
-              </mat-option> </mat-select
-            ><mat-error *ngIf="bidForm.get('bidStatus')?.hasError('required')">
-              Please select Bid Status
-            </mat-error>
+              </mat-option>
+            </mat-select>
           </mat-form-field>
           <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
@@ -71,15 +75,46 @@
         <ng-template matStepLabel>Upload Files</ng-template>
         <div style="padding: 1rem"></div>
         <button (click)="addFile()" mat-flat-button color="primary">
-          <mat-icon>add</mat-icon>Add File
+          Add/Remove Files
         </button>
-        <ng-container *ngFor="let item of files"></ng-container>
+        <div style="padding: 1rem">
+          <p *ngIf="!files.length" style="text-align: center">No Files Added</p>
+          <div class="row" *ngIf="files.length">
+            <ng-container *ngFor="let item of files">
+              <div class="col-3">
+                <section class="cards">
+                  <p>{{ item.title }}</p>
+
+                  <img
+                    src="../../../../../assets/images/pdf-file (1).png"
+                    style="width: 25%"
+                  />
+                </section>
+              </div>
+            </ng-container>
+          </div>
+        </div>
       </mat-step>
     </mat-stepper>
   </section>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
-  <button mat-flat-button [disabled]="!bidForm.valid" (click)="save()">
-    Save
+  <button
+    *ngIf="!data"
+    mat-flat-button
+    color="primary"
+    [disabled]="!bidForm.valid"
+    (click)="save()"
+  >
+    {{ saving ? "Saving..." : "Save" }}
+  </button>
+  <button
+    *ngIf="data"
+    mat-flat-button
+    color="primary"
+    [disabled]="!bidForm.valid || !bidForm.dirty"
+    (click)="save()"
+  >
+    {{ saving ? "Updating..." : "Update" }}
   </button>
 </mat-dialog-actions>
