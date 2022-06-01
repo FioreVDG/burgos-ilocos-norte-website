@@ -80,7 +80,11 @@ export class AddBidsComponent implements OnInit {
     this.data ? (data = this.data.files) : null;
     let didChange: boolean = false;
     this.dialog
-      .open(AddFileComponent, { width: '100%', height: 'auto', data: data })
+      .open(AddFileComponent, {
+        width: '100%',
+        height: 'auto',
+        data: data,
+      })
       .afterClosed()
       .subscribe((res: any) => {
         if (res) {

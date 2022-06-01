@@ -1,4 +1,4 @@
-<h3 mat-dialog-title>Add Issuances</h3>
+<h3 mat-dialog-title>{{ data ? "Update Issuances" : "Add Issuances" }}</h3>
 <mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
   >close</mat-icon
 >
@@ -34,29 +34,6 @@
             Please select type
           </mat-error>
         </mat-form-field>
-        <!-- <mat-form-field style="display: block" appearance="fill">
-          <mat-label>Description</mat-label>
-          <textarea
-            matInput
-            formControlName="description"
-            required
-            placeholder="Enter description..."
-            rows="7"
-          ></textarea
-          ><mat-error
-            *ngIf="legislativeForm.get('description')?.hasError('required')"
-          >
-            Please enter a description
-          </mat-error>
-        </mat-form-field> -->
-        <angular-editor
-          formControlName="description"
-          required
-          [config]="config"
-        ></angular-editor>
-        <!-- <div class="html">
-          {{ legislativeForm.value.description }}
-        </div> -->
         <div>
           <button mat-flat-button class="primary" matStepperNext>
             Next &nbsp;<mat-icon>fast_forward</mat-icon>
@@ -65,7 +42,7 @@
       </form>
     </mat-step>
     <mat-step [stepControl]="legislativeFileForm">
-      <ng-template matStepLabel>Select File or Image (Optional)</ng-template>
+      <ng-template matStepLabel>Select File (Optional)</ng-template>
       <div style="padding: 1rem"></div>
       <div class="container-fluid">
         <div class="row">
@@ -122,7 +99,12 @@
               </div>
 
               <div class="img-container">
-                <img *ngIf="imageB64" [src]="imageB64" alt="" />
+                <img
+                  *ngIf="imageB64"
+                  src="../../../../assets/images/pdf-file (1).png"
+                  alt=""
+                />
+                <p>{{ imageFile?.name }}</p>
                 <p *ngIf="!imageB64">No Image uploaded</p>
               </div>
             </div>

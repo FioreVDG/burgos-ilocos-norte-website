@@ -75,7 +75,7 @@
         <ng-template matStepLabel>Upload Files</ng-template>
         <div style="padding: 1rem"></div>
         <button (click)="addFile()" mat-flat-button color="primary">
-          Add/Remove Files
+          Add or Remove Files
         </button>
         <div style="padding: 1rem">
           <p *ngIf="!files.length" style="text-align: center">No Files Added</p>
@@ -103,7 +103,7 @@
     *ngIf="!data"
     mat-flat-button
     color="primary"
-    [disabled]="!bidForm.valid"
+    [disabled]="!bidForm.valid || saving"
     (click)="save()"
   >
     {{ saving ? "Saving..." : "Save" }}
@@ -112,7 +112,7 @@
     *ngIf="data"
     mat-flat-button
     color="primary"
-    [disabled]="!bidForm.valid || !bidForm.dirty"
+    [disabled]="!bidForm.valid || !bidForm.dirty || saving"
     (click)="save()"
   >
     {{ saving ? "Updating..." : "Update" }}

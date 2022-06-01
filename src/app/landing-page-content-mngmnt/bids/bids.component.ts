@@ -83,7 +83,12 @@ export class BidsComponent implements OnInit {
   updateBids(bid: any) {
     console.log(bid);
     this.dialog
-      .open(AddBidsComponent, { width: '100%', height: 'auto', data: bid })
+      .open(AddBidsComponent, {
+        width: '100%',
+        height: 'auto',
+        data: bid,
+        disableClose: true,
+      })
       .afterClosed()
       .subscribe((res: any) => {
         if (res) this.fetchData();

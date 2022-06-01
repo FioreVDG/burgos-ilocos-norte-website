@@ -21,9 +21,9 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div style="padding-left: 0rem" class="col">
+      <div style="padding-right: 0" class="col">
         <button
-          style="height: 77%; background-color: #05bbe8"
+          style="height: 77%; background-color: #05bbe8; width: 100%"
           mat-flat-button
           color="primary"
           (click)="onSearch()"
@@ -35,30 +35,21 @@
     <div class="row">
       <div class="col-12">
         <div class="row tbl-header" *ngIf="!searching">
-          <div class="col-3">Title</div>
-          <div class="col-2">Type</div>
-          <div class="col-4">Description</div>
-          <div class="col-2" style="text-align: center">Action</div>
+          <div class="col-5">Title</div>
+          <div class="col-4">Type</div>
+          <div class="col-3" style="text-align: center">Action</div>
         </div>
         <app-spinner *ngIf="searching"></app-spinner>
         <section *ngIf="legislatives.length && !searching">
           <ng-container *ngFor="let item of legislatives">
             <div class="row tbl-dt">
-              <div class="col-3 tbl-row">
+              <div class="col-5 tbl-row">
                 <p>
                   <b>{{ item.title }}</b>
                 </p>
               </div>
-              <div class="col-2 tbl-row">
-                <p>{{ item.legislativeType }}</p>
-              </div>
               <div class="col-4 tbl-row">
-                <p
-                  [innerHTML]="
-                    item.layout.slice(0, 35) +
-                    (item.layout.length > 32 ? '...' : '')
-                  "
-                ></p>
+                <p>{{ item.legislativeType }}</p>
               </div>
               <div class="col-3">
                 <a

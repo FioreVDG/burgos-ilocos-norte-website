@@ -72,7 +72,11 @@ export class ServicesComponent implements OnInit {
 
   addService() {
     this.dialog
-      .open(AddServiceComponent, { width: 'auto', height: 'auto' })
+      .open(AddServiceComponent, {
+        width: 'auto',
+        height: 'auto',
+        disableClose: true,
+      })
       .afterClosed()
       .subscribe((res: any) => {
         if (res) this.fetchData();
