@@ -7,6 +7,7 @@ import {
   HostListener,
 } from '@angular/core';
 import {} from '@fortawesome/free-solid-svg-icons';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navigation',
@@ -15,12 +16,21 @@ import {} from '@fortawesome/free-solid-svg-icons';
 })
 export class NavigationComponent implements OnInit {
   @Output() changeNavigation: any = new EventEmitter<any>();
+  isMobile: boolean = false;
   width: any;
   showHeader: boolean = false;
-  constructor(public router: Router) {}
+  constructor(public router: Router, public bo: BreakpointObserver) {}
 
   ngOnInit(): void {
-    console.log(this.router.url);
+    this.bo
+      .observe(['(min-width: 600px)'])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.isMobile = false;
+        } else {
+          this.isMobile = true;
+        }
+      });
   }
 
   changeRoute(route: any) {

@@ -57,21 +57,18 @@ export class WhereToGoComponent implements OnInit {
   fetchData() {
     this.loading = true;
     this.tourist.getAll({}).subscribe((res: any) => {
-      console.log(res);
       if (res) {
         this.touristSpots = res.env.tourist_spots;
         this.touristSpots.forEach(async (el: any) => {
           el.imgUrl = await this.getTempLink(el?.image?.path_display);
           el.layout = await this.stringToHTMLconverter(el.description);
         });
-        console.log(this.touristSpots);
         this.loading = false;
       }
     });
   }
 
   async getTempLink(data: any) {
-    console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }
@@ -87,7 +84,6 @@ export class WhereToGoComponent implements OnInit {
   }
 
   showMore(data: any) {
-    console.log(data);
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',

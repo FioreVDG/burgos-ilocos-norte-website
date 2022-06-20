@@ -33,13 +33,16 @@
   [class]="router.url === '/welcome' ? 'main-nav' : 'headers'"
   [class.header]="showHeader"
 >
-  <nav class="navbar sticky-top navbar-expand-lg justify-content-between">
+  <nav class="p-0 navbar sticky-top navbar-expand-lg justify-content-between">
     <a class="navbar-brand" href="#">
       <img
-        src="../../assets/images/burgos-new-logo.png"
+        [src]="
+          isMobile
+            ? '../../assets/images/logo.png'
+            : '../../assets/images/burgos-logo-desc.png'
+        "
         alt=""
-        width="75"
-        height="75"
+        [width]="isMobile ? 70 : 285"
       />
       <!-- <span style="font-size: 32px" *ngIf="!isMobile">
           <b style="color: #fff">Bytelogs</b><b style="color: #5e5e5e">cbms</b>

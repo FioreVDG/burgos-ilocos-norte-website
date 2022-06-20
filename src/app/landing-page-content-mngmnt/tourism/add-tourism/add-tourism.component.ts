@@ -33,8 +33,8 @@ export class AddTourismComponent implements OnInit {
   touristForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
-    longitude: new FormControl('', [Validators.required]),
-    latitude: new FormControl('', [Validators.required]),
+    longitude: new FormControl(''),
+    latitude: new FormControl(''),
     type: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
@@ -228,6 +228,8 @@ export class AddTourismComponent implements OnInit {
                 });
             });
           }
+          if (this.data) this.updateTouristSpot(touristData);
+          else this.createTouristSpot(touristData);
           console.log(touristData);
         });
     } else {

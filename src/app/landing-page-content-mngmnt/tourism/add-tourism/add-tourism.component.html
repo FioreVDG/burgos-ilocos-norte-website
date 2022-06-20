@@ -56,12 +56,8 @@
               matInput
               formControlName="longitude"
               placeholder="Enter Location"
-              required
-            /><mat-error
-              *ngIf="touristForm.get('longitude')?.hasError('required')"
-            >
-              Please enter a Longitude
-            </mat-error>
+              required="false"
+            />
           </mat-form-field>
           <mat-form-field
             class="col-6"
@@ -74,12 +70,8 @@
               matInput
               formControlName="latitude"
               placeholder="Enter Location"
-              required
-            /><mat-error
-              *ngIf="touristForm.get('latitude')?.hasError('required')"
-            >
-              Please enter a Latitude
-            </mat-error>
+              required="false"
+            />
           </mat-form-field>
           <mat-form-field style="display: block" appearance="fill">
             <mat-label>Type</mat-label>

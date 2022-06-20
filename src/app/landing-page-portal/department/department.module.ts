@@ -1,3 +1,5 @@
+import { MaterialModule } from 'src/app/material/material.module';
+import { FormsModule } from '@angular/forms';
 import { NoContentModule } from './../../no-content/no-content.module';
 import { SpinnerModule } from './../../spinner/spinner.module';
 import { NgModule } from '@angular/core';
@@ -13,6 +15,8 @@ import { DepartmentComponent } from './department.component';
     DepartmentRoutingModule,
     SpinnerModule,
     NoContentModule,
+    FormsModule,
+    MaterialModule
   ],
   exports: [DepartmentComponent],
 })

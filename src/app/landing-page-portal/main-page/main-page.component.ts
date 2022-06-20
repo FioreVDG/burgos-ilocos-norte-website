@@ -101,7 +101,6 @@ export class MainPageComponent implements OnInit {
     };
     this.announcement.getAll(query).subscribe(
       (res: any) => {
-        console.log(res);
         if (res) {
           // this.loading = false;
           this.pinnedAnnouncement = res.env.announcements[0];

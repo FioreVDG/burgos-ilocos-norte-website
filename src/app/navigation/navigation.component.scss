@@ -1,10 +1,14 @@
 .main-nav {
   // padding: 0.5rem 3.8rem;
-  background-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    rgba(68, 190, 230, 0.751) 0%,
+    #05bbe8b8 100%
+  );
   position: sticky;
   top: 0;
   z-index: 99;
-  transition: all 0.2s ease-in;
+  padding: 0;
   .nav-item {
     .nav-link {
       color: #fff;
@@ -13,6 +17,7 @@
       cursor: pointer;
     }
   }
+  padding: 0rem 1rem;
 }
 .headers {
   background-image: linear-gradient(
@@ -31,6 +36,7 @@
       text-shadow: none;
     }
   }
+  padding: 0rem 1rem;
 }
 .header {
   background-image: linear-gradient(
@@ -246,9 +252,11 @@
 @media only screen and (max-width: 600px) {
   .main-nav {
     padding: 0;
+    padding: 0rem 1rem;
   }
   .header {
     padding: 0;
+    padding: 0rem 1rem;
   }
 } /* Set the border color */
 
