@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { ViewerComponent } from './viewer/viewer.component';
 import { FileViewerComponent } from './file-viewer/file-viewer.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     MaterialModule,
     NgxDocViewerModule,
     SpinnerModule,
+    LeafletModule,
   ],
   exports: [],
 })
