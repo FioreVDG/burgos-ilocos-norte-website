@@ -1,10 +1,10 @@
 .upper {
   height: 0.3rem;
-  background: #05bbe8;
+  background: var(--primary);
 }
 
 .upper-nav {
-  background-color: #fff;
+  background-color: var(--white);
   .text-wrapper {
     display: flex;
     align-items: flex-start;
@@ -13,14 +13,14 @@
     .sm-upper {
       margin: 0;
       font-weight: 300;
-      color: white;
+      color: var(--white);
       font-size: 13px;
     }
     h3 {
       margin: 0;
       font-weight: 700;
       font-size: 20px;
-      color: white;
+      color: var(--white);
     }
   }
   .icon-wrapper {
@@ -36,7 +36,7 @@
     }
 
     .icon-list:hover {
-      color: #05bbe8;
+      color: var(--primary);
       transition: 0.1s ease-in;
     }
   }
@@ -68,13 +68,13 @@
 }
 
 .nav-list {
-  background-color: #05bbe8;
-  color: #fff;
+  background-color: var(--primary);
+  color: var(--white);
 
   background-image: linear-gradient(
       90deg,
       rgba(68, 189, 230, 0.511) 0%,
-      #05bbe8b8 100%
+      var(--primary) b8 100%
     ),
     url("./../../assets/images/mosaic.jpg");
   background-repeat: no-repeat;
@@ -83,7 +83,7 @@
   background-size: cover;
   .nav-item {
     .nav-link {
-      color: #fff;
+      color: var(--white);
       font-weight: 500;
     }
     .nav-link:hover {
@@ -103,7 +103,7 @@
 } /* Set the border color */
 
 .custom-toggler.navbar-toggler {
-  border-color: #fff;
+  border-color: var(--white);
 }
 /* Setting the stroke to green using rgb values (0, 128, 0) */
 
@@ -111,7 +111,9 @@
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 .router-active {
-  background-color: #1f91ae;
+  // background-color: #1f91ae;
+  background-color: var(--accent);
+  color: var(--black) !important;
   font-weight: 500;
   border-radius: 5px;
 }

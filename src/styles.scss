@@ -3,6 +3,8 @@
 @import "swiper/scss";
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
+@import "./assets/scss/variables.scss";
+
 html,
 body {
   height: 100%;
@@ -32,7 +34,7 @@ h1,
 h2,
 h3 {
   font-size: 18px;
-  color: #05bbe8;
+  color: var(--primary);
 }
 .local-nav {
   background: #fff;
@@ -58,7 +60,7 @@ ul {
 }
 
 li::marker {
-  color: #05bbe8;
+  color: var(--primary);
   font-size: 17px;
 }
 
@@ -90,7 +92,7 @@ h1 em {
   bottom: 3px;
   left: 50%;
   margin-left: -14px;
-  background-color: #05bbe8;
+  background-color: var(--primary);
 }
 .one h1:after {
   width: 100px;
@@ -101,7 +103,7 @@ h1 em {
   margin-top: 15px;
   left: 50%;
   margin-left: -50px;
-  background-color: #05bbe8;
+  background-color: var(--primary);
 }
 
 .two h1 {

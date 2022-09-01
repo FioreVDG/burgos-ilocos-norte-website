@@ -18,9 +18,9 @@
   // position: absolute;
   // background-image: linear-gradient(
   //   90deg,
-  //   #05bbe808 5%,
-  //   #05bbe808 42%,
-  //   #05bbe808 100%
+  //   var(--primary)08 5%,
+  //   var(--primary)08 42%,
+  //   var(--primary)08 100%
   // );
   // width: 100%;
   // height: 100%;
@@ -29,7 +29,7 @@
 }
 .searchTerm {
   width: 100%;
-  border: 3px solid #fff;
+  border: 3px solid var(--white);
   border-right: none;
   padding: 5px;
   height: "auto";
@@ -47,16 +47,16 @@
 .searchTerm:focus {
   color: #565656;
   font-size: 18px;
-  border: 1.5px solid #05bbe8;
+  border: 1.5px solid var(--primary);
 }
 
 .searchButton {
   width: "auto";
   height: "auto";
-  border: 1px solid #05bbe8;
-  background: #05bbe8;
+  border: 1px solid var(--primary);
+  background: var(--primary);
   text-align: center;
-  color: #fff;
+  color: var(--white);
   cursor: pointer;
   font-size: 35px;
   padding: 0.5rem 1.5rem;
@@ -95,7 +95,7 @@
     width: 80%;
     margin: auto;
     h2 {
-      color: #fff;
+      color: var(--white);
       margin: 0%;
       font-weight: 500;
       font-size: 25px;
@@ -103,29 +103,29 @@
     }
     h1 {
       z-index: 999;
-      color: #fff;
+      color: var(--white);
       font-weight: 800;
       font-size: 70px;
       b {
-        color: #05bbe8;
+        color: var(--primary);
         font-size: 70px;
         font-weight: 800;
       }
     }
     p {
       z-index: 999;
-      color: #05bbe8;
+      color: var(--primary);
       font-size: 16.5px;
       font-weight: 700;
       cursor: pointer;
       .icon {
         font-size: 25px;
-        color: #fff;
+        color: var(--white);
         font-weight: 900;
       }
       .icons {
         font-size: 15px;
-        color: #fff;
+        color: var(--white);
         font-weight: 700;
       }
       &:hover {
@@ -139,7 +139,7 @@
   z-index: 777;
   content: "";
   position: absolute;
-  background-color: #05bbe842;
+  background-color: var(--primary) 42;
   width: 100%;
   height: 90%;
   top: 18%;
@@ -149,7 +149,7 @@
 //FOR ABOUT US
 .about-us {
   padding: 2rem 0rem;
-  background: #fff;
+  background: var(--white);
 
   .row-about {
     width: 75%;
@@ -160,7 +160,7 @@
       h3 {
         font-size: 28px;
         color: #565656;
-        border-left: #05bbe8 4px solid;
+        border-left: var(--primary) 4px solid;
         padding-left: 0.5rem;
       }
       p {
@@ -169,7 +169,7 @@
         font-size: 17px;
       }
       li::marker {
-        color: #05bbe8;
+        color: var(--primary);
         font-size: 17px;
       }
       li {
@@ -180,7 +180,7 @@
       h3 {
         font-size: 28px;
         color: #565656;
-        border-right: #05bbe8 4px solid;
+        border-right: var(--primary) 4px solid;
         padding-right: 0.5rem;
         text-align: right;
       }
@@ -205,25 +205,25 @@
 
 //WHERE TO GO
 .where-to-go {
-  background: linear-gradient(to top, #f9f8fd94 50%, #05bbe8d4 45%);
+  background: linear-gradient(to top, #f9f8fd94 50%, var(--primary-300) 45%);
   padding: 1.5rem 0rem;
 }
 
 .news {
   background-color: #f9f8fd;
-  padding: 2rem 0rem;
+  padding: 5rem 0rem;
   width: 100%;
   margin: auto;
 }
 
 .announcement {
-  background-color: #05bbe8d4;
+  background-color: var(--primary);
   padding: 2rem 0rem;
 }
 
 //FOR MAYOR'S MESSAGE
 .mayor-bg {
-  // background: linear-gradient(90deg, #f9f8fd94 73%, #05bbe892 60%),
+  // background: linear-gradient(90deg, #f9f8fd94 73%, var(--primary)92 60%),
   //   url("./../../../assets/images/mosaic.jpg");
   // background-repeat: no-repeat;
   // background-attachment: fixed;
@@ -299,24 +299,24 @@
 
 //FOR PINNED ANNOUNCEMENT
 .pinned-announcement {
-  background-color: #05bbe8;
+  background-color: var(--primary);
 
   h3 {
-    color: #fff;
+    color: var(--white);
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 0;
     font-size: 24px;
   }
   h4 {
-    color: #fff;
+    color: var(--white);
     text-align: center;
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 2rem;
   }
   p {
-    color: #fff;
+    color: var(--white);
     text-align: center;
     cursor: pointer;
     text-decoration: underline;
@@ -415,7 +415,7 @@
 
 .contact-us {
   padding: 3rem 0rem;
-  background: linear-gradient(-90deg, #fff 68%, #05bbe892 63%);
+  background: linear-gradient(-90deg, var(--white) 68%, var(--primary) 92 63%);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -427,7 +427,7 @@
       padding-bottom: 1rem;
       .icons {
         font-size: 28px;
-        color: #05bbe8;
+        color: var(--primary);
       }
       h3 {
         font-size: 16px;
@@ -448,7 +448,7 @@
 
 .contact-us-mobile {
   padding: 3rem 0rem;
-  background: #fff;
+  background: var(--white);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
@@ -462,8 +462,9 @@
       margin: auto;
       .icons {
         font-size: 28px;
-        color: #05bbe8;
+        color: var(--primary);
       }
+
       h3 {
         font-size: 14.5px;
         color: #6f6f6f;
@@ -682,7 +683,7 @@
 } /* Set the border color */
 
 .custom-toggler.navbar-toggler {
-  border-color: #fff;
+  border-color: var(--white);
 }
 /* Setting the stroke to green using rgb values (0, 128, 0) */
 

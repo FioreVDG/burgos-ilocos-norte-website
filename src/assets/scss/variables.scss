@@ -1,0 +1,56 @@
+:root {
+  //Primary
+  --primary-100: #86e8ff;
+  --primary-200: #3ccbee;
+  --primary-300: #0f8aa8;
+  --primary-400: #066c85;
+  --primary-500: #044e60;
+  --primary: var(--primary-300);
+
+  --primary-100-rgb: 134, 232, 255;
+  --primary-200-rgb: 58, 202, 238;
+  --primary-300-rgb: 15, 138, 168;
+  --primary-400-rgb: 6, 108, 133;
+  --primary-500-rgb: 4, 78, 96;
+  --primary-rgb: var(--primary-300-rgb);
+
+  //Accent
+  // --accent-100: #fff3cc;
+  // --accent-200: #fbe188;
+  // --accent-300: #f0d164;
+  // --accent-350: #e5c450;
+  // --accent-400: #d6b130;
+  // --accent-500: #a07e04;
+  // --accent: var(--accent-200);
+
+  // --accent-100-rgb: 255, 243, 204;
+  // --accent-200-rgb: 251, 225, 136;
+  // --accent-300-rgb: 240, 209, 100;
+  // --accent-350-rgb: 229, 196, 80;
+  // --accent-400-rgb: 214, 177, 48;
+  // --accent-500-rgb: 160, 126, 4;
+  // --accent-rgb: var(--accent-200-rgb);
+
+  --accent-100: #ffd8a9;
+  --accent-200: #ffbd6f;
+  --accent-300: #ffa438;
+  --accent-400: #e78716;
+  --accent-500: #c16900;
+  --accent: var(--accent-300);
+
+  --accent-100-rgb: 255, 216, 169;
+  --accent-200-rgb: 255, 189, 111;
+  --accent-300-rgb: 255, 164, 56;
+  --accent-400-rgb: 231, 135, 22;
+  --accent-500-rgb: 193, 105, 0;
+  --accent-rgb: var(--accent-300-rgb);
+
+  //Neutral
+  --neutral-100: #ffffff;
+  --neutral-200: #bcc0c1;
+  --neutral-300: #8d9496;
+  --neutral-400: #5f6a6d;
+  --neutral-500: #353e41;
+  --white: var(--neutral-100);
+  --black: var(--neutral-500);
+}

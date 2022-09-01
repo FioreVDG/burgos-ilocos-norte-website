@@ -12,7 +12,7 @@
     color: #565656;
     font-weight: 600;
     letter-spacing: 0.1rem;
-    border-bottom: 4px solid #05bbe8;
+    border-bottom: 4px solid var(--primary);
     width: 30%;
   }
   .content {
@@ -22,7 +22,7 @@
   }
   .content:hover {
     font-size: 13px;
-    color: #05bbe8;
+    color: var(--primary);
     cursor: pointer;
   }
   .footer-low {
@@ -45,7 +45,7 @@
     }
 
     .icon-list:hover {
-      color: #05bbe8;
+      color: var(--primary-100);
       transition: 0.1s ease-in;
     }
   }
