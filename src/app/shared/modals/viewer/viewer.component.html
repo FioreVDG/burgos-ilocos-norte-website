@@ -1,4 +1,6 @@
-<i (click)="dialogRef.close()" class="bi bi-arrow-left-square-fill back"></i>
+<div (click)="dialogRef.close()" class="back-button">
+  <i class="bi bi-arrow-left"></i>
+</div>
 <div class="img-wrap">
   <img [src]="data.imgUrl" alt="" />
 </div>
@@ -9,11 +11,13 @@
     <p [innerHTML]="data.layout"></p>
   </div>
   <div class="row" *ngIf="data.lon">
-    <div class="col-7"><div class="desc-wrap">
-    <h3>{{ data.title }}</h3>
-    <span>{{ data.createdAt | date: "mediumDate" }}</span>
-    <p [innerHTML]="data.layout"></p>
-  </div></div>
+    <div class="col-7">
+      <div class="desc-wrap">
+        <h3>{{ data.title }}</h3>
+        <span>{{ data.createdAt | date: "mediumDate" }}</span>
+        <p [innerHTML]="data.layout"></p>
+      </div>
+    </div>
     <div class="col-5"></div>
   </div>
 </div>

@@ -27,18 +27,32 @@
   }
 }
 
-.back {
+.back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 32px;
+  width: 32px;
+
+  padding: 24px;
   position: absolute;
+
   top: 0.7rem;
   left: 0.7rem;
-  font-size: 35px;
+
+  background-color: var(--primary-200);
+  border-radius: 50%;
+
+  font-size: 24px;
   cursor: pointer;
-  color: #05bbe8;
-  padding: 0.5rem 0.7rem;
-  border-radius: 5px;
-  background-color: #00000040;
+
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.33);
+
+  color: var(--white);
+
   &:hover {
-    color: #1aa6c9;
+    background-color: var(--primary-100);
   }
 }
 
