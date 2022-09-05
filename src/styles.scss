@@ -54,9 +54,13 @@ h1 {
 }
 
 ul {
-  margin-left: 6.5rem;
+  margin-left: 2rem;
   font-size: 15px;
   color: #767676;
+
+  @media screen and (max-width: 600px) {
+    margin-left: 0.4rem;
+  }
 }
 
 li::marker {

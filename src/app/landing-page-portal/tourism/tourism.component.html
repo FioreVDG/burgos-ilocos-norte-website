@@ -3,28 +3,32 @@
     <h1>Tourist Spots</h1>
   </div>
   <p>The best and most beautiful places here in Burgos, Ilocos Norte</p>
-  <div class="row">
-    <div class="col-8"></div>
-    <div class="col-3" style="padding-right: 0">
-      <mat-form-field style="display: block; font-size: 13px" appearance="fill">
-        <mat-label>Search by type</mat-label>
-        <mat-select [(ngModel)]="search" required="false">
-          <mat-option value="All">All</mat-option>
-          <mat-option value="Tourist Spot">Tourist Spot</mat-option>
-          <mat-option value="Festival">Festival</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="col">
-      <button
-        style="height: 70%; background-color: #05bbe8"
-        mat-flat-button
-        color="primary"
-        (click)="onSearch()"
-      >
-        Search
-      </button>
-    </div>
+
+  <div
+    class="d-flex w-100 justify-content-center justify-content-md-end align-items-center"
+  >
+    <mat-form-field style="display: block; font-size: 13px" appearance="fill">
+      <mat-label>Search by type</mat-label>
+      <mat-select [(ngModel)]="search" required="false">
+        <mat-option value="All">All</mat-option>
+        <mat-option value="Tourist Spot">Tourist Spot</mat-option>
+        <mat-option value="Festival">Festival</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      style="
+        height: 70%;
+        background-color: var(--primary-200);
+        margin-bottom: 17.49px;
+        margin-left: 16px;
+      "
+      mat-flat-button
+      color="primary"
+      (click)="onSearch()"
+    >
+      Search
+    </button>
   </div>
   <div *ngIf="!loading && !searching" class="row">
     <ng-container *ngFor="let item of touristSpots">

@@ -1,9 +1,9 @@
-#history{
-    background-image: linear-gradient(
-      90deg,
-      #05bbe842 5%,
-      #05bbe842 42%,
-      #05bbe842 100%
+#history {
+  background-image: linear-gradient(
+      360deg,
+      rgba(var(--primary-rgb), 0.83) 5%,
+      rgba(var(--primary-rgb), 0.32) 62%,
+      rgba(var(--primary-rgb), 0.14) 100%
     ),
     url("../../../../assets/images/light-hou.jpg");
   background-size: cover;
@@ -14,27 +14,49 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  h1 {
-    color: #fff;
-    text-align: center;
-    font-weight: 700;
-    font-size: 50px;
-}}
-.container {
-  padding: 2rem 0rem;
-  h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: #05bbe8;
-    font-size: 20px;
+  .container {
+    position: absolute;
+    padding: 0;
+    bottom: -6%;
+    left: 4%;
+
+    h1 {
+      color: var(--accent);
+      font-size: 96px;
+      font-weight: 700;
+      letter-spacing: calc(1em * 0.01618);
+      text-shadow: -3px 3px 8px rgba(var(--accent-200-rgb), 0.13333);
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.08);
+    }
   }
+}
+
+.floating-image {
+  float: left;
+  clear: both;
+  width: 40%;
+  margin: 24px 32px 24px 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    float: right;
+    height: 200px;
+  }
+}
+
+.indent {
+  text-indent: 2%;
+}
+
+.container {
+  padding: 3rem 0rem 2rem;
+
   p {
-    text-indent: 6%;
     font-size: 15px;
     color: #767676;
     text-align: justify;
-    margin-bottom: 1.7rem;
   }
 
   ul {
@@ -44,17 +66,177 @@
   }
 
   li::marker {
-    color: #05bbe8;
+    color: var(--primary);
     font-size: 17px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 3rem 0;
+    position: relative;
+
+    h3 {
+      margin: 0;
+      font-weight: 500;
+      color: var(--primary);
+      font-size: 36px;
+
+      position: relative;
+      width: auto;
+
+      &::after {
+        content: "";
+        position: absolute;
+        height: 45%;
+        width: 100.5%;
+        bottom: 5%;
+        left: 12px;
+        background-color: rgba(var(--accent-rgb), 0.45);
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.cards {
+  background-color: var(--white);
+  border-radius: 2px;
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 14vh;
+  margin: auto;
+
+  // background: linear-gradient(-120deg, var(--white) 72%, var(--primary) 42%);
+  .grid-1 {
+    width: 100%;
+    //   margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.mayor-container {
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 14vh;
+    min-width: 100%;
+
+    border-radius: 2px;
+    box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+
+    padding: 16px;
+    margin: 8px 0;
+
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: -65%;
+
+      background: var(--primary);
+      transform: skew(25deg);
+    }
+    // background: linear-gradient(-120deg, var(--white) 72%, var(--primary) 42%);
+
+    & > * {
+      z-index: 5;
+    }
+  }
+
+  &.current {
+    img {
+      display: block;
+      max-height: 256px;
+      max-width: 256px;
+      border-radius: 50%;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+      padding: 0;
+    }
+  }
+
+  .servants {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    .name {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 600;
+      display: block;
+      position: relative;
+      color: #302e2e;
+      font-size: 18px;
+      text-align: center;
+      width: 100%;
+      text-transform: uppercase;
+    }
+
+    .date {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      display: block;
+      color: var(--accent);
+      font-size: 14px;
+      text-align: center;
+      width: 100%;
+      text-transform: uppercase;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.timeline-container {
+  position: relative;
+  background: linear-gradient(90deg, #f9f8fd94 73%, #f9f8fd94 60%),
+    url("../../../../assets/images/mosaic.jpg");
+  background-attachment: fixed;
+}
+
+@media screen and (max-width: 900px) {
+  #history .container {
+    h1 {
+      font-size: 64px;
+    }
   }
 }
 
 @media only screen and (max-width: 600px) {
+  #history {
+    .container {
+      bottom: 0;
+      h1 {
+        font-size: 32px;
+        text-shadow: -3px 3px 8px rgba(var(--accent-200-rgb), 0.25);
+      }
+    }
+  }
   .container {
     width: 90%;
     margin: auto;
+    padding: 3rem 0rem;
+
     ul {
       margin-left: 1.5rem;
+    }
+
+    .title > h3::after {
+      height: 105%;
+      left: 16px;
+      bottom: 7%;
+      width: 90%;
     }
   }
 }

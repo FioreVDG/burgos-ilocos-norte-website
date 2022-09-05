@@ -2,14 +2,17 @@
   <div class="one">
     <h1>Emergency Hotlines</h1>
   </div>
-  <div class="row" *ngFor="let item of hotlines">
-    <div class="col-12">
-      <p>
-        <b>{{ item.label }}:</b> &nbsp;<span
-          style="color: #616161; font-weight: 500"
-          >{{ item.contact }}</span
-        >
+  <div class="row py-3 py-md-0" *ngFor="let item of hotlines">
+    <div class="col-12 col-md-4 offset-0 offset-md-2 d-flex align-items-center">
+      <p class="my-2">
+        <b>{{ item.label }}:</b> &nbsp;
       </p>
     </div>
+
+    <div class="col-12 col-md-2 offset-0 offset-md-1">
+      <span style="color: #616161; font-weight: 500">{{ item.contact }}</span>
+    </div>
+
+    <div class="d-none d-sm-block col-md-2"></div>
   </div>
 </div>

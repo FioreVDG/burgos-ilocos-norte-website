@@ -1,0 +1,15 @@
+<ng-container *ngIf="data.department">
+  <h5
+    mat-dialog-title
+    class="d-inline-flex w-100 justify-content-between align-items-center"
+  >
+    {{ data.department.title }}
+    <span
+      ><mat-icon (click)="dialogRef.close()" class="close-button"
+        >close</mat-icon
+      ></span
+    >
+  </h5>
+
+  <div mat-dialog-content [innerHtml]="data.department.layout"></div>
+</ng-container>

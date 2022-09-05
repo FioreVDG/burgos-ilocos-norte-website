@@ -12,15 +12,19 @@
     </section>
     <section *ngIf="!hasExistingMisVis">
       <div class="row row-about">
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 vision-desc">
-          <h3>Our Vision</h3>
-          <p>
+        <div
+          class="col-lg-5 col-xl-5 col-sm-12 order-last order-sm-last order-md-first col-md-12 vision-desc"
+        >
+          <h3 class="text-start text-md-end">OUR VISION</h3>
+          <p class="text-justify">
             The renewable energy and tourism capital of the North with balanced
             and climate-resilient community under the stewardship of firm and
             committed leaders inhabited by empowered and God-fearing citizenry.
           </p>
         </div>
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container">
+        <div
+          class="col-lg-7 col-xl-7 col-sm-12 col-md-12 my-4 my-sm-4 my-md-0 order-first order-sm-first order-md-last about-img-container"
+        >
           <img
             src="../../../../assets/images/undraw_pitching_re_fpgk.svg"
             alt=""
@@ -29,16 +33,18 @@
       </div>
       <div class="row row-about">
         <div
-          class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container right"
+          class="col-lg-6 col-xl-6 col-sm-12 order-first my-4 my-sm-4 my-md-0 col-md-12 about-img-container"
         >
           <img
             src="../../../../assets/images/undraw_browsing_online_re_umsa.svg"
             alt=""
           />
         </div>
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 mission-desc">
-          <h3>Our Mission</h3>
-          <p>
+        <div
+          class="col-lg-6 col-xl-6 col-sm-12 order-last col-md-12 mission-desc"
+        >
+          <h3 class="text-start">OUR MISSION</h3>
+          <p class="text-justify">
             Burgos shall improve the quality of life of every Burgoseño through:
           </p>
           <ul *ngFor="let item of missions">

@@ -42,11 +42,11 @@
       cursor: pointer;
       margin-left: 0.7rem;
       color: #565656;
-    }
 
-    .icon-list:hover {
-      color: var(--primary-100);
-      transition: 0.1s ease-in;
+      &:hover {
+        color: var(--primary);
+        transition: 0.1s ease-in;
+      }
     }
   }
 }

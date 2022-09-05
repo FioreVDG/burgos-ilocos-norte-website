@@ -1,0 +1,14 @@
+.close-button {
+  color: rgb(175, 37, 37);
+
+  transition: transform 150ms cubic-bezier(0.34, 0.81, 0.44, 0.91);
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.mat-dialog-title {
+  font-size: 24px;
+  color: var(--primary);
+}

@@ -9,10 +9,9 @@
     margin-bottom: 8rem;
     .mission-desc {
       h3 {
-        font-size: 28px;
-        color: #565656;
-        border-left: #05bbe8 4px solid;
-        padding-left: 0.5rem;
+        font-size: 32px;
+        color: var(--primary);
+        // border-left: var(--primary) 4px solid;
       }
       p {
         color: #686767;
@@ -20,7 +19,7 @@
         font-size: 17px;
       }
       li::marker {
-        color: #05bbe8;
+        color: var(--primary);
         font-size: 17px;
       }
       li {
@@ -29,11 +28,9 @@
     }
     .vision-desc {
       h3 {
-        font-size: 28px;
-        color: #565656;
-        border-right: #05bbe8 4px solid;
-        padding-right: 0.5rem;
-        text-align: right;
+        font-size: 32px;
+        color: var(--primary);
+        // border-right: var(--primary) 4px solid;
       }
       p {
         color: #686767;
@@ -43,14 +40,11 @@
     }
   }
   .about-img-container {
+    display: flex;
+    justify-content: center;
     img {
       width: 75%;
     }
-  }
-  .right {
-    flex-direction: flex-end;
-    justify-content: flex-end;
-    display: flex;
   }
 }
 
