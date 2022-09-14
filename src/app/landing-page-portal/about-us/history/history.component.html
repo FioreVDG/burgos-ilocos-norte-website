@@ -104,7 +104,24 @@
     </p>
   </div>
 
-  <div class="timeline-container container-fluid py-4">
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="center-line"></div>
+      <ng-container *ngFor="let mayor of BURGOS_MAYORS">
+        <div class="timeline-event">
+          <section>
+            <div class="timeline-dot"></div>
+            <div class="timeline-point-track-container">
+              <h5 class="name">{{ mayor.name }}</h5>
+              <p class="date">{{ mayor.date }}</p>
+            </div>
+          </section>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- <div class="timeline-container container-fluid py-4">
     <div class="grid px-5">
       <div class="row">
         <ng-container *ngFor="let mayor of BURGOS_MAYORS; let i = index">
@@ -143,5 +160,5 @@
         </ng-container>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

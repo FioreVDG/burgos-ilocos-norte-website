@@ -15,7 +15,7 @@ import {
 const animation = trigger('animation', [
   transition('void => vision', [
     style({ opacity: 0, height: 0, transform: 'translateY(-144px)' }),
-    animate('420ms cubic-bezier(.25,.46,.45,.94)'),
+    animate('500ms cubic-bezier(.25,.46,.45,.94)'),
   ]),
   transition('vision => mission', [
     group([
@@ -32,7 +32,7 @@ const animation = trigger('animation', [
         [
           style({ opacity: 0, height: 0, transform: 'translateY(144px)' }),
           animate(
-            '420ms cubic-bezier(.25,.46,.45,.94)',
+            '500ms cubic-bezier(.25,.46,.45,.94)',
             style({ opacity: 1, height: '*', transform: 'translateY(0)' })
           ),
         ],
@@ -55,7 +55,7 @@ const animation = trigger('animation', [
         [
           style({ opacity: 0, height: 0, transform: 'translateY(-144px)' }),
           animate(
-            '420ms cubic-bezier(.25,.46,.45,.94)',
+            '500ms cubic-bezier(.25,.46,.45,.94)',
             style({ opacity: 1, height: '*', transform: 'translateY(0)' })
           ),
         ],
