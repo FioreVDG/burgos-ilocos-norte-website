@@ -1,15 +1,80 @@
 import { ContentService } from 'src/app/services/content/content.service';
 import { Component, OnInit } from '@angular/core';
+import {
+  animate,
+  group,
+  keyframes,
+  query,
+  sequence,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+
+const animation = trigger('animation', [
+  transition('void => vision', [
+    style({ opacity: 0, height: 0, transform: 'translateY(-144px)' }),
+    animate('420ms cubic-bezier(.25,.46,.45,.94)'),
+  ]),
+  transition('vision => mission', [
+    group([
+      query(
+        '.vision:leave',
+        animate(
+          '80ms cubic-bezier(.25,.46,.45,.94)',
+          style({ opacity: 0, height: 0, transform: 'translateY(144px)' })
+        ),
+        { optional: true }
+      ),
+      query(
+        '.mission:enter',
+        [
+          style({ opacity: 0, height: 0, transform: 'translateY(144px)' }),
+          animate(
+            '420ms cubic-bezier(.25,.46,.45,.94)',
+            style({ opacity: 1, height: '*', transform: 'translateY(0)' })
+          ),
+        ],
+        { optional: true }
+      ),
+    ]),
+  ]),
+  transition('mission => vision', [
+    group([
+      query(
+        '.mission:leave',
+        animate(
+          '80ms cubic-bezier(.25,.46,.45,.94)',
+          style({ opacity: 0, height: 0, transform: 'translateY(-144px)' })
+        ),
+        { optional: true }
+      ),
+      query(
+        '.vision:enter',
+        [
+          style({ opacity: 0, height: 0, transform: 'translateY(-144px)' }),
+          animate(
+            '420ms cubic-bezier(.25,.46,.45,.94)',
+            style({ opacity: 1, height: '*', transform: 'translateY(0)' })
+          ),
+        ],
+        { optional: true }
+      ),
+    ]),
+  ]),
+]);
 
 @Component({
   selector: 'app-mission-vision',
   templateUrl: './mission-vision.component.html',
   styleUrls: ['./mission-vision.component.scss'],
+  animations: [animation],
 })
 export class MissionVisionComponent implements OnInit {
   hasExistingMisVis: boolean = false;
   about: any;
-  loading: boolean = false;
+  loading: boolean = true;
   missions: any = [
     'Industrialization;',
     'Tourism;',
@@ -18,6 +83,20 @@ export class MissionVisionComponent implements OnInit {
     'People empowerment; and',
     'Institutional development',
   ];
+
+  screens = [
+    {
+      header: 'OUR VISION',
+      body: `The renewable energy and tourism capital of the North with balanced and climate-resilient community under the stewardship of firm and committed leaders inhabited by empowered and God-fearing citizenry.`,
+    },
+    {
+      header: 'OUR MISSION',
+      body: `Burgos shall improve the quality of life of every Burgoseño through:`,
+      items: [],
+    },
+  ];
+
+  screenIndex = 0;
   constructor(private content: ContentService) {}
 
   ngOnInit(): void {
@@ -26,26 +105,33 @@ export class MissionVisionComponent implements OnInit {
   }
 
   fetchData() {
+    const toHtml = (string: string) => {
+      return this.stringToHTMLconverter(string);
+    };
+
     this.content.getAllMission({}).subscribe(
       (res: any) => {
         console.log(res);
         this.loading = false;
         if (res.env.mission_visions.length) {
-          this.hasExistingMisVis = true;
+          // this.hasExistingMisVis = true;
           this.about = res.env.mission_visions[0];
-          this.about.missionLayout = this.stringToHTMLconverter(
-            this.about.mission
-          );
-          this.about.visionLayout = this.stringToHTMLconverter(
-            this.about.vision
-          );
-          console.log(this.about);
-        }
+
+          this.screens[0].body = toHtml(this.about.mission);
+          this.screens[1].body = toHtml(this.about.vision);
+
+          // console.log(this.about);
+        } else this.screens[1].items = this.missions;
       },
       (err) => {
         console.log(err);
       }
     );
+  }
+
+  changeScreen() {
+    if (this.screenIndex === 1) this.screenIndex -= 1;
+    else this.screenIndex += 1;
   }
 
   stringToHTMLconverter(str: any) {

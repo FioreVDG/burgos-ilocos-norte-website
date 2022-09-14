@@ -28,7 +28,7 @@ export class EmergencyHotlineComponent implements OnInit {
       contact: '0917-874-6227',
     },
     {
-      label: 'AMBULANCE',
+      label: 'Ambulance',
       contact: '0915-616-2201 / 0995-784-9466',
     },
   ];

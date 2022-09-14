@@ -14,6 +14,9 @@ export class TourismComponent implements OnInit {
   loading: boolean = false;
   search: string = '';
   searching: boolean = false;
+
+  activeIndex: number = 0;
+  maxIndex: number;
   constructor(
     private tourist: TourismService,
     private dbx: DropboxService,
@@ -29,6 +32,7 @@ export class TourismComponent implements OnInit {
     this.tourist.getAll({}).subscribe((res: any) => {
       console.log(res);
       this.touristSpots = res.env.tourist_spots;
+      this.maxIndex = this.touristSpots;
       this.touristSpots.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
         el.layout = await this.stringToHTMLconverter(el.description);

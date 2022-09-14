@@ -8,6 +8,7 @@
     url("../../../../assets/images/light-hou.jpg");
   background-size: cover;
   height: 70vh;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: bottom;
   display: flex;
@@ -18,7 +19,6 @@
     position: absolute;
     padding: 0;
     bottom: -6%;
-    left: 4%;
 
     h1 {
       color: var(--accent);
@@ -48,16 +48,16 @@
       position: relative;
       width: auto;
 
-      &::after {
-        content: "";
-        position: absolute;
-        height: 45%;
-        width: 100.5%;
-        bottom: 5%;
-        left: 12px;
-        background-color: rgba(var(--accent-rgb), 0.45);
-        z-index: -1;
-      }
+      // &::after {
+      //   content: "";
+      //   position: absolute;
+      //   height: 45%;
+      //   width: 100.5%;
+      //   bottom: 5%;
+      //   left: 12px;
+      //   background-color: rgba(var(--accent-rgb), 0.45);
+      //   z-index: -1;
+      // }
     }
   }
   p {
@@ -136,13 +136,13 @@
 
     .title > h3 {
       font-size: 24px;
-      &::after {
-        display: none;
-        // height: 105%;
-        // left: 16px;
-        // bottom: 7%;
-        // width: 90%;
-      }
+      // &::after {
+      //   display: none;
+      //   // height: 105%;
+      //   // left: 16px;
+      //   // bottom: 7%;
+      //   // width: 90%;
+      // }
     }
   }
 }

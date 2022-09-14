@@ -1,8 +1,11 @@
 <div (click)="dialogRef.close()" class="back-button">
   <i class="bi bi-arrow-left"></i>
 </div>
-<div class="img-wrap">
-  <img [src]="data.imgUrl" alt="" />
+<div
+  [style.background]="'fixed center / cover no-repeat url(' + data.imgUrl + ')'"
+  class="img-wrap"
+>
+  <!-- <img [src]="data.imgUrl" alt="" /> -->
 </div>
 <div class="container">
   <div class="desc-wrap">

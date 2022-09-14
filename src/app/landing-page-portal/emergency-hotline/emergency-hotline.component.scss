@@ -1,5 +1,44 @@
 .container {
-  padding: 5rem 0rem 2rem;
-  width: 80%;
-  margin: auto;
+  position: relative;
+  width: 100%;
+  max-width: 100% !important;
+  min-height: 100vh;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--primary-300-rgb), 0.88) 25%,
+    var(--primary-400) 100%
+  );
+}
+
+section {
+  width: 100%;
+  padding: 10% 5% 0;
+}
+
+.header {
+  color: white;
+  font-size: 64px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+.hotline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 90%;
+  margin: 16px 0;
+
+  & > * {
+    display: block;
+    margin: 0;
+    color: white;
+    font-size: 24px;
+    letter-spacing: calc(1em 0.01618);
+  }
+
+  span {
+    text-align: right;
+  }
 }

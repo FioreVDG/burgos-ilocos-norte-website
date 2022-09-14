@@ -1,8 +1,28 @@
-<div class="container">
-  <div class="one">
-    <h1>Tourist Spots</h1>
+<div class="hero-landing-container">
+  <!-- <div
+    [style.background]="'rgba(var(--primary-rgb), 0.1)'"
+    class="content"
+  ></div> -->
+  <div
+    [style.background]="
+      touristSpots[activeIndex]
+        ? 'linear-gradient(rgba(0, 0, 0, 0.13), rgba(0, 0, 0, 0.13)), center / cover no-repeat url(' +
+          touristSpots[activeIndex].imgUrl +
+          ')'
+        : 'rgba(0, 0, 0, 0.13)'
+    "
+    class="content"
+  >
+    <p class="loc">{{ touristSpots[activeIndex].location }}</p>
+    <p class="title">{{ touristSpots[activeIndex].title }}</p>
+    <div class="synopsis" [innerHtml]="touristSpots[activeIndex].layout"></div>
+    <button class="btn btn-primary py-2 px-4">Explore More</button>
   </div>
-  <p>The best and most beautiful places here in Burgos, Ilocos Norte</p>
+</div>
+
+<div #searchSpots id="searchSpots" class="container">
+  <p>Go & Discover</p>
+  <h1>Breaktaking Tourist Spots</h1>
 
   <div
     class="d-flex w-100 justify-content-center justify-content-md-end align-items-center"
@@ -44,12 +64,15 @@
         />
         <div class="desc">
           <p class="title">{{ item.title }}</p>
-          <p class="loc">{{ item.location }}</p>
+          <p class="loc">
+            <mat-icon style="margin-right: 4px">location_on</mat-icon
+            >{{ item.location }}
+          </p>
         </div>
       </div>
     </ng-container>
   </div>
   <app-spinner *ngIf="searching"></app-spinner>
+  <app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
+  <app-spinner *ngIf="loading"></app-spinner>
 </div>
-<app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
