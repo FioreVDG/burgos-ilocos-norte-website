@@ -1,3 +1,11 @@
+import {
+  animate,
+  group,
+  query,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TourismService } from './../../services/tourism/tourism.service';
@@ -16,6 +24,7 @@ import { QueryParams } from 'src/app/models/queryparams.interface';
   selector: 'app-tourism',
   templateUrl: './tourism.component.html',
   styleUrls: ['./tourism.component.scss'],
+  animations: [trigger('nice', [])],
 })
 export class TourismComponent implements OnInit, AfterViewInit {
   touristSpots: any = [];
@@ -51,7 +60,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
     this.loop = setInterval(() => {
       // console.log(this.activeIndex);
       this.activeIndex = this.randomizedIndex();
-      // console.log(this.activeIndex);
+      console.log(this.activeIndex);
 
       this.cdr.detectChanges();
     }, 1000 * 20);
@@ -62,26 +71,6 @@ export class TourismComponent implements OnInit, AfterViewInit {
 
     if (generated === this.activeIndex) return this.randomizedIndex();
     else return generated;
-  }
-
-  onGeoInfoChange(action: string) {
-    const maxLength = this.touristSpotsHeroPage.length;
-    switch (action) {
-      case 'prev':
-        if (this.activeIndex - 1 < 0) {
-          this.activeIndex = maxLength - 1;
-        } else this.activeIndex -= 1;
-
-        break;
-      case 'next':
-        if (this.activeIndex + 1 === maxLength) {
-          this.activeIndex = 0;
-        } else this.activeIndex += 1;
-
-        break;
-    }
-    // console.log(this.selectedGeoIndex);
-    this.cdr.detectChanges();
   }
 
   scrollToSearchSpots() {
@@ -104,6 +93,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
         el.layout = await this.stringToHTMLconverter(el.description);
       });
+      // console.log(this.touristSpots[this.activeIndex]);
 
       setTimeout(() => {
         this.touristSpotsHeroPage = JSON.parse(
@@ -112,10 +102,10 @@ export class TourismComponent implements OnInit, AfterViewInit {
 
         this.touristSpotsHeroPage.forEach(async (el: any) => {
           el.layout = await this.stringToHTMLconverter(el.description, true);
+          el.imgUrl = await this.getTempLink(el?.image?.path_display);
         });
 
-        // console.log(this.touristSpotsHeroPage);
-        this.cdr.detectChanges();
+        // console.log(this.touristSpotsHeroPage[this.activeIndex]);
         this.loading = false;
         this.heroSectionCarousel();
       }, 100);

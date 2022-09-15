@@ -2,14 +2,10 @@
 
 <ng-container *ngIf="!loading">
   <div class="hero-landing-container">
-    <!-- <div
-    [style.background]="'rgba(var(--primary-rgb), 0.1)'"
-    class="content"
-  ></div> -->
     <div
       [style.background]="
         touristSpotsHeroPage[activeIndex].imgUrl
-          ? 'linear-gradient(rgba(0, 0, 0, 0.13), rgba(0, 0, 0, 0.13)), center / cover no-repeat url(' +
+          ? 'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
             touristSpotsHeroPage[activeIndex].imgUrl +
             ')'
           : 'linear-gradient(90deg,rgba(var(--primary-300-rgb), 0.88) 25%,var(--primary-400) 100%)'
