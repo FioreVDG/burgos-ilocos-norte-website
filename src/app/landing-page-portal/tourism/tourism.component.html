@@ -1,11 +1,6 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <ng-container *ngIf="!loading">
-  <owl-carousel-o [options]="customOptions">
-    <ng-template carouselSlide>Slide 1</ng-template>
-    <ng-template carouselSlide>Slide 2</ng-template>
-    <ng-template carouselSlide>Slide 3</ng-template>
-  </owl-carousel-o>
   <div class="hero-landing-container">
     <!-- <div
     [style.background]="'rgba(var(--primary-rgb), 0.1)'"
@@ -21,13 +16,19 @@
       "
       class="content"
     >
-      <p class="loc">{{ touristSpotsHeroPage[activeIndex].location }}</p>
-      <p class="title">{{ touristSpotsHeroPage[activeIndex].title }}</p>
+      <div class="header-container">
+        <p class="loc">{{ touristSpotsHeroPage[activeIndex].location }}</p>
+        <p class="title">{{ touristSpotsHeroPage[activeIndex].title }}</p>
+      </div>
       <div
         class="synopsis"
         [innerHtml]="touristSpotsHeroPage[activeIndex].layout"
       ></div>
-      <button class="btn btn-primary py-2 px-4" (click)="scrollToSearchSpots()">
+
+      <button
+        class="explore-more-button py-2 px-4"
+        (click)="scrollToSearchSpots()"
+      >
         Explore More
       </button>
     </div>

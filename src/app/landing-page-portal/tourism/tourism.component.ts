@@ -2,6 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TourismService } from './../../services/tourism/tourism.service';
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -10,39 +11,28 @@ import {
 } from '@angular/core';
 import { ViewerComponent } from 'src/app/shared/modals/viewer/viewer.component';
 import { QueryParams } from 'src/app/models/queryparams.interface';
-import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-tourism',
   templateUrl: './tourism.component.html',
   styleUrls: ['./tourism.component.scss'],
 })
-export class TourismComponent implements OnInit {
+export class TourismComponent implements OnInit, AfterViewInit {
   touristSpots: any = [];
-  touristSpotsHeroPage: any = [];
   loading: boolean = false;
   search: string = '';
   searching: boolean = false;
 
-  activeIndex: number = 0;
   maxIndex: number;
 
-  @ViewChild('searchSpots') searchSpots: ElementRef;
+  touristSpotsHeroPage: any = [];
+  activeIndex: number;
 
-  customOptions: OwlOptions = {
-    loop: true,
-    autoplay: true,
-    autoplayHoverPause: true,
-    autoplayTimeout: 10000,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 3,
-    navText: ['', ''],
-    items: 1,
-    nav: false,
-  };
+  loop: any;
+
+  interval: number = 300;
+
+  @ViewChild('searchSpots') searchSpots: ElementRef;
 
   constructor(
     private tourist: TourismService,
@@ -53,6 +43,45 @@ export class TourismComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  ngAfterViewInit(): void {}
+
+  heroSectionCarousel() {
+    this.loop = setInterval(() => {
+      // console.log(this.activeIndex);
+      this.activeIndex = this.randomizedIndex();
+      // console.log(this.activeIndex);
+
+      this.cdr.detectChanges();
+    }, 1000 * 20);
+  }
+
+  randomizedIndex(): any {
+    let generated = Math.floor(0 + Math.random() * (this.maxIndex - 1 - 0));
+
+    if (generated === this.activeIndex) return this.randomizedIndex();
+    else return generated;
+  }
+
+  onGeoInfoChange(action: string) {
+    const maxLength = this.touristSpotsHeroPage.length;
+    switch (action) {
+      case 'prev':
+        if (this.activeIndex - 1 < 0) {
+          this.activeIndex = maxLength - 1;
+        } else this.activeIndex -= 1;
+
+        break;
+      case 'next':
+        if (this.activeIndex + 1 === maxLength) {
+          this.activeIndex = 0;
+        } else this.activeIndex += 1;
+
+        break;
+    }
+    // console.log(this.selectedGeoIndex);
+    this.cdr.detectChanges();
   }
 
   scrollToSearchSpots() {
@@ -68,7 +97,8 @@ export class TourismComponent implements OnInit {
     this.tourist.getAll({}).subscribe((res: any) => {
       // console.log(res);
       this.touristSpots = res.env.tourist_spots;
-      this.maxIndex = this.touristSpots;
+      this.maxIndex = this.touristSpots.length;
+      this.activeIndex = this.randomizedIndex();
 
       this.touristSpots.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
@@ -85,9 +115,10 @@ export class TourismComponent implements OnInit {
         });
 
         // console.log(this.touristSpotsHeroPage);
-
+        this.cdr.detectChanges();
         this.loading = false;
-      }, 1000);
+        this.heroSectionCarousel();
+      }, 100);
     });
   }
 

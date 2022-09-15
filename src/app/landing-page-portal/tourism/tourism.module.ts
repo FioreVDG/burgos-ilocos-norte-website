@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 
 import { TourismRoutingModule } from './tourism-routing.module';
 import { TourismComponent } from './tourism.component';
-import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [TourismComponent],
@@ -18,7 +17,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     SpinnerModule,
     FormsModule,
     MaterialModule,
-    CarouselModule,
   ],
   exports: [TourismComponent],
 })
