@@ -73,5 +73,8 @@
   "browser": {
     "crypto": false,
     "stream": false
+  },
+  "engines": {
+    "node": "14.0.0"
   }
 }
