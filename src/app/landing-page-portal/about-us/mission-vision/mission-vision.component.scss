@@ -71,6 +71,12 @@
   top: 23%;
   height: 55%;
   overflow: hidden;
+}
+
+.header-container {
+  height: 144px;
+  overflow: hidden;
+  margin-bottom: 32px;
 
   .header {
     font-size: 120px;
@@ -79,25 +85,19 @@
 
     color: white;
   }
+}
+.body-container {
+  min-height: 120px;
+  overflow: hidden;
 
   .body {
     width: 60%;
     position: relative;
     left: 5px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: start;
 
     color: white;
-  }
-
-  .header-container {
-    height: 144px;
-    overflow: hidden;
-    margin-bottom: 48px;
-  }
-  .body-container {
-    min-height: 120px;
-    overflow: hidden;
   }
 }
 
@@ -106,6 +106,64 @@ li {
   font-size: 18px;
   &::marker {
     color: var(--white);
-    font-size: 17px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header-container {
+    height: auto;
+    .header {
+      font-size: 72px;
+    }
+  }
+
+  .body-container {
+    height: auto;
+    .body {
+    }
+  }
+
+  li {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .header-container {
+    margin-bottom: 32px;
+    .header {
+      font-size: 56px;
+      text-align: center;
+    }
+  }
+
+  .body-container {
+    padding: 0 32px;
+    .body {
+      font-size: 14px;
+      text-align: justify;
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  li {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .hero-container {
+    overflow: visible;
+    top: 8%;
+    height: 100%;
+  }
+
+  .header-container {
+    padding: 0 32px;
+  }
+  .body-container {
+    overflow: visible;
   }
 }

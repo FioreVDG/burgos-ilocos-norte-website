@@ -22,10 +22,24 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 0;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 
   img {
     position: absolute;
     width: 80%;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   }
 
   .main-logo {
@@ -46,6 +60,7 @@
     opacity: 0;
   }
 }
+
 .desc-container {
   display: flex;
   flex-direction: column;
@@ -144,7 +159,23 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 992px) {
+  .desc-container {
+    flex-direction: row;
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .img-container {
+    height: calc(34vw + 1rem);
+    width: calc(34vw + 1rem);
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .container {
     width: 90%;
     margin: auto;
@@ -152,15 +183,38 @@
     .wrapper {
       .desc-container {
         padding: 0;
-
-        p {
-          margin-bottom: 1.5rem;
-        }
+      }
+      p {
+        margin-bottom: 24px;
       }
     }
+  }
 
-    ul {
-      margin-left: 1.5rem;
-    }
+  .img-container {
+    height: calc(50vw + 1rem);
+    width: calc(50vw + 1rem);
+  }
+
+  .clickable-card {
+    width: 45%;
+    max-width: none;
+    min-width: 0;
+    margin: 12px auto;
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .desc-container {
+    flex-direction: column;
+  }
+
+  .img-container {
+    height: calc(70vw + 1rem);
+    width: calc(70vw + 1rem);
+  }
+
+  .clickable-card {
+    width: 100%;
   }
 }

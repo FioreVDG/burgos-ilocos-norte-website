@@ -71,6 +71,8 @@
 
   transition: background-color 300ms cubic-bezier(0.17, 0.67, 0.21, 0.99);
 
+  cursor: pointer;
+
   &:hover {
     background-color: var(--primary-200);
   }
@@ -113,8 +115,14 @@
   }
 }
 
-:host ::ng-deep .leaflet-pane {
-  z-index: 1 !important;
+:host ::ng-deep {
+  & .leaflet-container {
+    background: transparent;
+  }
+
+  & .leaflet-pane {
+    z-index: 1 !important;
+  }
 }
 
 @media screen and (max-width: 992px) {

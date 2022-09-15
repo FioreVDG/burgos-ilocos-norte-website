@@ -42,3 +42,48 @@ section {
     text-align: right;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .header {
+    font-size: 48px;
+  }
+
+  .hotline {
+    & > * {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hotline {
+    width: 100%;
+
+    p {
+      width: 35%;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header {
+    font-size: 32px;
+  }
+  .hotline {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & > * {
+      font-size: 14px;
+    }
+
+    p {
+      width: 100%;
+    }
+
+    span {
+      text-align: left;
+    }
+  }
+}

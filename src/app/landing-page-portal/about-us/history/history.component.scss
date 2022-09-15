@@ -196,7 +196,11 @@
 
 .timeline-container {
   position: relative;
-  background: linear-gradient(90deg, #f9f8fd94 73%, #f9f8fd94 60%),
+  background: linear-gradient(
+      90deg,
+      rgba(15, 138, 168, 0.58) 73%,
+      rgba(15, 138, 168, 0.58) 60%
+    ),
     url("../../../../assets/images/mosaic.jpg");
   background-attachment: fixed;
 }
@@ -224,7 +228,7 @@
   min-height: 70px;
 
   &:last-child {
-    min-heignt: 0;
+    min-height: 0;
   }
 
   &:nth-child(even) {
@@ -244,7 +248,7 @@
   &:nth-child(odd) {
     justify-content: flex-end;
 
-    & section::before {
+    & .timeline-card::before {
       left: -7px;
     }
     & .timeline-dot {
@@ -254,7 +258,7 @@
     }
   }
 
-  section {
+  .timeline-card {
     background-color: #fff;
     border-radius: 5px;
     width: calc(50% - 40px);
@@ -288,6 +292,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
+  width: 100%;
 
   .name {
     font-size: 18px;
@@ -297,6 +303,25 @@
   .date {
     font-size: 14px;
     margin: 0;
+  }
+}
+
+.current-president {
+  .timeline-event .timeline-card {
+    height: 150px;
+  }
+
+  .timeline-point-track-container {
+    * {
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .name {
+      font-size: 20px;
+    }
+    .date {
+      font-size: 16px;
+    }
   }
 }
 
@@ -316,14 +341,14 @@
   .timeline-event {
     margin: 30px 0 3px 60px;
 
-    section {
+    .timeline-card {
       width: 100%;
     }
 
     &:nth-child(even) {
       justify-content: flex-start;
 
-      & section::before {
+      & .timeline-card::before {
         left: -7px;
       }
 
@@ -362,8 +387,8 @@
     align-items: flex-start;
   }
   .center-line,
-  .timeline-event section::before,
-  .timeline-event section .timeline-dot {
+  .timeline-event .timeline-card::before,
+  .timeline-event .timeline-card .timeline-dot {
     display: none;
   }
   .timeline-event {

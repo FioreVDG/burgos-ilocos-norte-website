@@ -181,7 +181,7 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
 
         break;
     }
-    console.log(this.selectedGeoIndex);
+    // console.log(this.selectedGeoIndex);
     this.cdr.detectChanges();
   }
 
@@ -193,16 +193,15 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
       zoom: 8,
       minZoom: 8,
       maxZoom: 17,
+      doubleClickZoom: false,
       // scrollWheelZoom: false,
       // dragging: false,
-
-      doubleClickZoom: false,
     });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(this.map);
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   attribution:
+    //     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    // }).addTo(this.map);
 
     this.baseControls = L.control
       .layers({}, {}, { collapsed: false })
@@ -210,9 +209,42 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
 
     this.baseControls.getContainer()?.setAttribute('style', 'display:none');
 
-    this.burgosGeojson = L.geoJSON(BURGOS_GEOJSON);
+    this.burgosGeojson = L.geoJSON(BURGOS_GEOJSON, {
+      style: (feature: any) => {
+        let fillColor: string = 'var(--primary)';
+        let fillOpacity = 1;
+        let dashArray = '4';
+        let weight = 2;
+
+        return {
+          fillColor,
+          fillOpacity,
+          weight,
+          opacity: 1,
+          color: 'var(--white)',
+          dashArray,
+        };
+      },
+
+      onEachFeature: (feature: any, layer: any) => {
+        const name = feature.properties.ADM4_EN;
+        const tooltipStyle = {
+          permanent: true,
+          direction: 'center',
+          interactive: false,
+          className: 'toolTip',
+        };
+
+        const center = layer.getBounds().getCenter();
+
+        layer.bindTooltip(name, tooltipStyle);
+        layer.openTooltip(center);
+      },
+    });
     this.baseControls.addBaseLayer(this.burgosGeojson, 'BURGOS');
     this.burgosGeojson.addTo(this.map);
+
+    this.map.setMaxBounds(this.burgosGeojson.getBounds());
     this.map.fitBounds(this.burgosGeojson.getBounds());
   }
 }

@@ -107,9 +107,12 @@
   <div class="timeline-container">
     <div class="timeline">
       <div class="center-line"></div>
-      <ng-container *ngFor="let mayor of BURGOS_MAYORS">
+      <ng-container *ngFor="let mayor of BURGOS_MAYORS; let first = first">
         <div class="timeline-event">
-          <section>
+          <section
+            class="timeline-card"
+            [ngClass]="{ 'current-president': first }"
+          >
             <div class="timeline-dot"></div>
             <div class="timeline-point-track-container">
               <h5 class="name">{{ mayor.name }}</h5>

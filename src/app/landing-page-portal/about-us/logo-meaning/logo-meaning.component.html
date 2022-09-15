@@ -5,9 +5,9 @@
       The municipality of Burgos is significantly depicted and identified by its
       official seal.
     </p>
-    <div class="row px-3 px-md-0">
+    <div class="row px-3 px-md-0 main-container">
       <div
-        class="col-xl-4 col-lg-4 col-md-4 col-sm-12 order-first order-md-1 img-container"
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-first order-lg-1 img-container"
       >
         <img
           class="main-logo {{ selectedCard ? 'blur' : '' }}"
@@ -22,7 +22,7 @@
       </div>
       <!-- LEFT SECTION -->
       <div
-        class="col-xl-4 col-lg-4 col-md-4 col-sm-12 order-1 order-md-first desc-container"
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-1 order-lg-first desc-container"
       >
         <ng-container *ngFor="let card of cardsSectionLeft">
           <div
@@ -39,7 +39,7 @@
       </div>
       <!-- RIGHT SECTION -->
       <div
-        class="col-xl-4 col-lg-4 col-md-4 col-sm-12 order-last desc-container"
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-last order-md-1 desc-container"
       >
         <ng-container *ngFor="let card of cardsSectionRight">
           <div
