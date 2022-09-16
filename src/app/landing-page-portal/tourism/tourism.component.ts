@@ -2,6 +2,7 @@ import {
   animate,
   group,
   query,
+  state,
   style,
   transition,
   trigger,
@@ -24,7 +25,18 @@ import { QueryParams } from 'src/app/models/queryparams.interface';
   selector: 'app-tourism',
   templateUrl: './tourism.component.html',
   styleUrls: ['./tourism.component.scss'],
-  animations: [trigger('nice', [])],
+  animations: [
+    trigger('test', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1400ms ease-in-out', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ opacity: '1' }),
+        animate('1400ms ease-in-out', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class TourismComponent implements OnInit, AfterViewInit {
   touristSpots: any = [];
@@ -35,7 +47,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
   maxIndex: number;
 
   touristSpotsHeroPage: any = [];
-  activeIndex: number;
+  heroIndex: number;
 
   loop: any;
 
@@ -58,18 +70,18 @@ export class TourismComponent implements OnInit, AfterViewInit {
 
   heroSectionCarousel() {
     this.loop = setInterval(() => {
-      // console.log(this.activeIndex);
-      this.activeIndex = this.randomizedIndex();
-      console.log(this.activeIndex);
+      // console.log(this.heroIndex);
+      this.heroIndex = this.randomizedIndex();
+      console.log(this.heroIndex);
 
       this.cdr.detectChanges();
-    }, 1000 * 20);
+    }, 1000 * 10);
   }
 
   randomizedIndex(): any {
     let generated = Math.floor(0 + Math.random() * (this.maxIndex - 1 - 0));
 
-    if (generated === this.activeIndex) return this.randomizedIndex();
+    if (generated === this.heroIndex) return this.randomizedIndex();
     else return generated;
   }
 
@@ -87,13 +99,13 @@ export class TourismComponent implements OnInit, AfterViewInit {
       // console.log(res);
       this.touristSpots = res.env.tourist_spots;
       this.maxIndex = this.touristSpots.length;
-      this.activeIndex = this.randomizedIndex();
+      this.heroIndex = this.randomizedIndex();
 
       this.touristSpots.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
         el.layout = await this.stringToHTMLconverter(el.description);
       });
-      // console.log(this.touristSpots[this.activeIndex]);
+      // console.log(this.touristSpots[this.heroIndex]);
 
       setTimeout(() => {
         this.touristSpotsHeroPage = JSON.parse(
@@ -105,7 +117,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
           el.imgUrl = await this.getTempLink(el?.image?.path_display);
         });
 
-        // console.log(this.touristSpotsHeroPage[this.activeIndex]);
+        // console.log(this.touristSpotsHeroPage[this.heroIndex]);
         this.loading = false;
         this.heroSectionCarousel();
       }, 100);

@@ -1,33 +1,34 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
 <ng-container *ngIf="!loading">
-  <div class="hero-landing-container">
-    <div
-      [style.background]="
-        touristSpotsHeroPage[activeIndex].imgUrl
-          ? 'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
-            touristSpotsHeroPage[activeIndex].imgUrl +
-            ')'
-          : 'linear-gradient(90deg,rgba(var(--primary-300-rgb), 0.88) 25%,var(--primary-400) 100%)'
-      "
-      class="content"
-    >
-      <div class="header-container">
-        <p class="loc">{{ touristSpotsHeroPage[activeIndex].location }}</p>
-        <p class="title">{{ touristSpotsHeroPage[activeIndex].title }}</p>
-      </div>
-      <div
-        class="synopsis"
-        [innerHtml]="touristSpotsHeroPage[activeIndex].layout"
-      ></div>
+  <div class="hero-landing-container js-hero">
+    <ng-container *ngFor="let hero of touristSpotsHeroPage; let i = index">
+      <div *ngIf="i === heroIndex" [@test]>
+        <div
+          [style.background]="
+            hero.imgUrl
+              ? 'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
+                hero.imgUrl +
+                ')'
+              : 'linear-gradient(90deg,rgba(var(--primary-300-rgb), 0.88) 25%,var(--primary-400) 100%)'
+          "
+          class="content"
+        >
+          <div class="header-container">
+            <p class="loc">{{ hero.location }}</p>
+            <p class="title">{{ hero.title }}</p>
+          </div>
+          <div class="synopsis" [innerHtml]="hero.layout"></div>
 
-      <button
-        class="explore-more-button py-2 px-4"
-        (click)="scrollToSearchSpots()"
-      >
-        Explore More
-      </button>
-    </div>
+          <button
+            class="explore-more-button py-2 px-4"
+            (click)="scrollToSearchSpots()"
+          >
+            Explore More
+          </button>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
   <div #searchSpots id="searchSpots" class="container">

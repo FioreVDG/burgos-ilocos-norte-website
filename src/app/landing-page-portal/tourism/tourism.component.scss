@@ -1,5 +1,5 @@
 .hero-landing-container {
-  min-height: calc(100vh + 1);
+  min-height: calc(100vh + 1rem);
   height: 100vh;
   width: 100%;
 
@@ -7,7 +7,7 @@
     height: 100%;
     width: 100%;
     padding: 3% 5%;
-    position: relative;
+    position: absolute;
   }
 }
 
@@ -15,7 +15,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 50%;
+  margin-left: 5%;
+  margin-top: 5%;
+  width: 60%;
   .title {
     color: white;
     font-weight: 700;
@@ -47,6 +49,7 @@
   border-radius: 5px;
   border: 0;
   margin-top: 24px;
+  margin-left: 5%;
   padding: 16px 48px !important;
   font-weight: bold;
   font-size: 20px;
@@ -69,6 +72,7 @@
 
 .synopsis {
   width: 60%;
+  margin-left: 5%;
 }
 
 .search-button {
