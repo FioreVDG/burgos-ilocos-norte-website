@@ -2,7 +2,10 @@
   <i class="bi bi-arrow-left"></i>
 </div>
 <div
-  [style.background]="'fixed center / cover no-repeat url(' + data.imgUrl + ')'"
+  [style.background]="'url(' + data.imgUrl + ')'"
+  [style.background-position]="'top center'"
+  [style.background-size]="'cover'"
+  [style.background-repeat]="'no-repeat'"
   class="img-wrap"
 >
   <!-- <img [src]="data.imgUrl" alt="" /> -->
