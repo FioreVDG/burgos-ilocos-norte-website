@@ -45,6 +45,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
   searching: boolean = false;
 
   maxIndex: number;
+  lastIndex: number;
 
   touristSpotsHeroPage: any = [];
   heroIndex: number;
@@ -72,16 +73,18 @@ export class TourismComponent implements OnInit, AfterViewInit {
     this.loop = setInterval(() => {
       // console.log(this.heroIndex);
       this.heroIndex = this.randomizedIndex();
-      console.log(this.heroIndex);
+      this.lastIndex = this.heroIndex;
+      // console.log(this.heroIndex);
 
       this.cdr.detectChanges();
-    }, 1000 * 10);
+    }, 1000 * 25);
   }
 
   randomizedIndex(): any {
     let generated = Math.floor(0 + Math.random() * (this.maxIndex - 1 - 0));
 
-    if (generated === this.heroIndex) return this.randomizedIndex();
+    if (generated === this.heroIndex || generated === this.lastIndex)
+      return this.randomizedIndex();
     else return generated;
   }
 
@@ -100,6 +103,7 @@ export class TourismComponent implements OnInit, AfterViewInit {
       this.touristSpots = res.env.tourist_spots;
       this.maxIndex = this.touristSpots.length;
       this.heroIndex = this.randomizedIndex();
+      this.lastIndex = this.heroIndex;
 
       this.touristSpots.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
