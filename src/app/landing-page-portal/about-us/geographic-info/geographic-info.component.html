@@ -5,17 +5,28 @@
 </section>
 <div class="container-fluid">
   <div class="geography-container row">
-    <div class="position-relative col-12 col-lg-3">
-      <div
-        class="mb-5 js-geography-info geography-info order-last order-lg-first"
-        [@swipeAnimation]="selectedGeoIndex"
-      >
-        <h3 class="geography-info-title">
-          {{ geographicalInfo[selectedGeoIndex].title }}
-        </h3>
-        <p class="geography-info-body">
-          {{ geographicalInfo[selectedGeoIndex].body }}
-        </p>
+    <div class="col-12 col-lg-3">
+      <div class="mb-5 geography-info order-last order-lg-first">
+        <div
+          class="position-relative"
+          style="width: 100%; height: 100%"
+          [@slideAnim]="lastAction"
+          (@slideAnim.done)="lastActionReset(); debounceClick = false"
+        >
+          <ng-container *ngFor="let geoInfo of geographicalInfo; let i = index">
+            <div
+              class="geo-content position-absolute"
+              *ngIf="i === selectedGeoIndex"
+            >
+              <h3 class="geography-info-title">
+                {{ geoInfo.title }}
+              </h3>
+              <p class="geography-info-body">
+                {{ geoInfo.body }}
+              </p>
+            </div>
+          </ng-container>
+        </div>
       </div>
       <div class="index-button-container">
         <i

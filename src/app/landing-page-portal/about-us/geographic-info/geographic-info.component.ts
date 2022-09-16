@@ -1,5 +1,6 @@
 import {
   animate,
+  animateChild,
   group,
   query,
   style,
@@ -16,77 +17,72 @@ import {
 import * as L from 'leaflet';
 import { BURGOS_GEOJSON } from 'src/app/data/burgos.geojson';
 
-const left = [
-  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
-    optional: true,
-  }),
-  group([
-    query(
-      ':enter',
-      [
-        style({ transform: 'translateX(-100%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(0%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-    query(
-      ':leave',
-      [
-        style({ transform: 'translateX(0%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(100%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-  ]),
-];
-
-const right = [
-  query(':enter, :leave', style({ position: 'fixed', width: '100%' }), {
-    optional: true,
-  }),
-  group([
-    query(
-      ':enter',
-      [
-        style({ transform: 'translateX(100%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(0%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-    query(
-      ':leave',
-      [
-        style({ transform: 'translateX(0%)' }),
-        animate('.3s ease-out', style({ transform: 'translateX(-100%)' })),
-      ],
-      {
-        optional: true,
-      }
-    ),
-  ]),
-];
-
 @Component({
   selector: 'app-geographic-info',
   templateUrl: './geographic-info.component.html',
   styleUrls: ['./geographic-info.component.scss'],
   animations: [
-    trigger('swipeAnimation', [
-      transition(':increment', right),
-      transition(':decrement', left),
+    trigger('slideAnim', [
+      transition('* => next', [
+        group([
+          query(
+            '.geo-content:leave',
+            [
+              style({ opacity: 1, transform: 'translateX(0)' }),
+              animate(
+                '350ms ease',
+                style({ opacity: 1, transform: 'translateX(-100%)' })
+              ),
+            ],
+            { optional: true }
+          ),
+          query(
+            '.geo-content:enter',
+            [
+              style({ opacity: 0, transform: 'translateX(100%)' }),
+              animate(
+                '350ms ease',
+                style({ opacity: 1, transform: 'translateX(0)' })
+              ),
+            ],
+            { optional: true }
+          ),
+        ]),
+      ]),
+      transition('* => prev', [
+        group([
+          query(
+            '.geo-content:leave',
+            [
+              style({ opacity: 1, transform: 'translateX(0)' }),
+              animate(
+                '350ms ease',
+                style({ opacity: 1, transform: 'translateX(100%)' })
+              ),
+            ],
+            { optional: true }
+          ),
+          query(
+            '.geo-content:enter',
+            [
+              style({ opacity: 0, transform: 'translateX(-100%)' }),
+              animate(
+                '350ms ease',
+                style({ opacity: 1, transform: 'translateX(0)' })
+              ),
+            ],
+            { optional: true }
+          ),
+        ]),
+      ]),
     ]),
   ],
 })
 export class GeographicInfoComponent implements OnInit, AfterViewInit {
   image1: string = '/assets/images/to-be-used/kapurpurawan-2.jpg';
   image2: string = '/assets/images/to-be-used/pagali-natural-pool-2.jpeg';
-
+  lastAction: string;
+  debounceClick: boolean = false;
   geographicalInfo: any = [
     {
       title: 'Geographic Location',
@@ -161,11 +157,19 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
+  lastActionReset() {
+    this.lastAction = 'default';
+    this.cdr.detectChanges();
+  }
+
   ngAfterViewInit() {
     this._initMap();
   }
 
   onGeoInfoChange(action: string) {
+    if (this.debounceClick) return;
+    this.debounceClick = true;
+
     const maxLength = this.geographicalInfo.length;
     switch (action) {
       case 'prev':
@@ -181,6 +185,7 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
 
         break;
     }
+    this.lastAction = action;
     // console.log(this.selectedGeoIndex);
     this.cdr.detectChanges();
   }
