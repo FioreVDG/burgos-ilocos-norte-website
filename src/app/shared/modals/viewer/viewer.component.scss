@@ -10,6 +10,7 @@
 }
 
 .container {
+  padding-bottom: 3%;
   .desc-wrap {
     margin-top: 2rem;
     h3 {
@@ -33,7 +34,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
+  z-index: 10;
   height: 32px;
   width: 32px;
 
@@ -53,8 +56,11 @@
 
   color: var(--white);
 
+  transition: transform 200ms ease-in-out, background-color 200ms ease-in-out;
+
   &:hover {
     background-color: var(--primary-100);
+    transform: scale(1.05);
   }
 }
 
