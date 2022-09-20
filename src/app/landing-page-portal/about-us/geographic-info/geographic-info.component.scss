@@ -132,6 +132,17 @@
   & .leaflet-pane {
     z-index: 1 !important;
   }
+
+  & .leaflet-custom-tooltip {
+    color: white;
+    box-shadow: none;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: calc(1em * 0.01618);
+    background: transparent;
+  }
 }
 
 @media screen and (max-width: 1200px) {

@@ -237,7 +237,7 @@ export class GeographicInfoComponent implements OnInit, AfterViewInit {
           permanent: true,
           direction: 'center',
           interactive: false,
-          className: 'toolTip',
+          className: 'leaflet-custom-tooltip',
         };
 
         const center = layer.getBounds().getCenter();
