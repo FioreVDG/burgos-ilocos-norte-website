@@ -6,7 +6,8 @@
     #00000019 70%,
     #00000000 100%
   );
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   z-index: 99999999;
   padding: 0;
@@ -14,12 +15,18 @@
     .nav-link {
       color: var(--white);
       font-weight: 600;
-      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
       cursor: pointer;
     }
   }
   padding: 0rem 1rem;
 }
+
+.text-shadow {
+  .nav-item > .nav-link {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
 .headers {
   background-image: linear-gradient(
       90deg,
