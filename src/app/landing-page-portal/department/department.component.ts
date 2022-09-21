@@ -13,7 +13,7 @@ export class DepartmentComponent implements OnInit {
   departments: Array<any> = [];
   loading: boolean = false;
 
-  clipArt: string = '/assets/images/clip-art/courthouse.png';
+  clipArt: string = '/assets/images/parliament.png';
   constructor(
     private department: DepartmentService,
     private dialog: MatDialog
