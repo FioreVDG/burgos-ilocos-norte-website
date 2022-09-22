@@ -56,6 +56,11 @@ export const servantDesktop = [
         name: 'HON. RODEL T. DALO',
         position: 'Sangguniang Bayan Member',
       },
+      {
+        img: '/assets/images/sangguniang-bayan/Hon. Ma. Kathrina S. Fulgar.png',
+        name: 'HON. MA. KATHRINA S. FULGAR',
+        position: 'Sangguniang Bayan Member',
+      },
     ],
   },
   {
@@ -142,6 +147,15 @@ export const servantMobile = [
         position: 'Ex-Officio Member/Liga ng Mga Barangay President',
         class: 'mobile-cards-bot',
       },
+      {
+        img: '/assets/images/sangguniang-bayan/Hon. Ma. Kathrina S. Fulgar.png',
+        name: 'HON. MA. KATHRINA S. FULGAR',
+        position: 'Sangguniang Bayan Member',
+      },
+    ],
+  },
+  {
+    content: [
       {
         img: '/assets/images/sangguniang-bayan/Hon. Carl Emil A. Chua.png',
         name: 'HON. CARL EMIL A. CHUA',
