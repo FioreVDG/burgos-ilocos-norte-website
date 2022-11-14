@@ -82,7 +82,7 @@ export class AddDepartmentComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
       }
     );
@@ -95,7 +95,7 @@ export class AddDepartmentComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
       }
     );

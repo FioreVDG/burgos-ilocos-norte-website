@@ -29,19 +29,19 @@ export class CitizenCharterComponent implements OnInit {
       this.citizens.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el.file.path_display);
       });
-      console.log(this.citizens);
+      // console.log(this.citizens);
       this.loading = false;
     });
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }
 
   viewFile(str: any) {
-    console.log(str);
+    // console.log(str);
     this.dialog.open(DocViewerComponent, {
       width: '100%',
       height: '90%',

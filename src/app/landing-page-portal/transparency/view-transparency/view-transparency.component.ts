@@ -15,12 +15,12 @@ export class ViewTransparencyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
     this.data.content.forEach(async (el: any) => {
       el.files = await this.getTempLink(el?.file?.path_display);
       el.layout = await this.stringToHTMLConverter(el?.description);
     });
-    console.log(this.data);
+    // console.log(this.data);
   }
 
   stringToHTMLConverter(str: any) {
@@ -30,7 +30,7 @@ export class ViewTransparencyComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

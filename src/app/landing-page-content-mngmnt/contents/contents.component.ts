@@ -92,9 +92,9 @@ export class ContentsComponent implements OnInit {
       if (res) {
         this.hasLink = true;
         this.loading = false;
-        console.log(res);
+        // console.log(res);
         this.resHolder = res.env.backgrounds;
-        console.log(this.resHolder);
+        // console.log(this.resHolder);
         if (res.env.backgrounds.length) {
           this.fLink = res.env.backgrounds[0].link;
           this.link = this.fLink;
@@ -109,53 +109,53 @@ export class ContentsComponent implements OnInit {
     this.content.getAllMission({}).subscribe(
       (res: any) => {
         if (res.env.mission_visions.length) {
-          console.log(res);
+          // console.log(res);
           this.abouts = res.env.mission_visions;
           this.mission = res.env.mission_visions[0].mission;
           this.vision = res.env.mission_visions[0].vision;
         }
       },
-      (err) => console.log(err)
+      (err) => console.error(err)
     );
   }
 
   set() {
     this.hasLink = true;
     this.fLink = this.transformLink(this.link);
-    console.log(this.fLink);
+    // console.log(this.fLink);
 
     const dataToAdd = {
       link: this.fLink,
     };
     this.content.create(dataToAdd).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
 
   update() {
-    console.log('UPDATE');
+    // console.log('UPDATE');
     this.fLink = this.transformLink(this.link);
-    console.log(this.fLink);
+    // console.log(this.fLink);
     const dataToUpdate = {
       link: this.fLink,
     };
     this.content.update(dataToUpdate, this.id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
 
   transformLink(link: string) {
-    console.log(link);
+    // console.log(link);
     let split = link.split('?v=');
     let newLink = split[0] + `/embed/` + split[1];
     let split2 = newLink.split('/watch');
@@ -179,10 +179,10 @@ export class ContentsComponent implements OnInit {
   updateMission(mission: any) {
     this.content.updateMission(mission, this.abouts[0]._id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -190,9 +190,9 @@ export class ContentsComponent implements OnInit {
   addMission(mission: any) {
     this.content.createMission(mission).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
       },
-      (err) => console.log(err)
+      (err) => console.error(err)
     );
   }
 }

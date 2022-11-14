@@ -58,8 +58,8 @@ export class DropboxService {
           observer.complete();
         })
         .catch((error: any) => {
-          console.log(error);
-          console.log(observer.error(error));
+          console.error(error);
+          console.error(observer.error(error));
         });
     });
   }
@@ -79,8 +79,8 @@ export class DropboxService {
           observer.complete();
         })
         .catch((error: any) => {
-          console.log(error);
-          console.log(observer.error(error));
+          console.error(error);
+          console.error(observer.error(error));
         });
     });
   }
@@ -134,8 +134,8 @@ export class DropboxService {
   }
 
   uploadFile(path: string, filename: string, file: any): Observable<any> {
-    console.log(filename);
-    console.log(file);
+    // console.log(filename);
+    // console.log(file);
     return Observable.create((observer: any) => {
       this.dbx
         .filesUpload({
@@ -149,7 +149,7 @@ export class DropboxService {
           observer.complete();
         })
         .catch((error: any) => {
-          //console.log(error);
+          console.error(error);
           observer.error(error);
         });
     });

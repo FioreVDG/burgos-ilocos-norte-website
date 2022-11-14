@@ -106,7 +106,7 @@ export class AddNewsComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          console.log(fileType);
+          // console.log(fileType);
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');
@@ -124,11 +124,11 @@ export class AddNewsComponent implements OnInit {
     this.news.update(news, this.data._id).subscribe(
       (res: any) => {
         this.saving = false;
-        console.log(res);
+        // console.log(res);
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -142,7 +142,7 @@ export class AddNewsComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }

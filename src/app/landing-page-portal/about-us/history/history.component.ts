@@ -112,7 +112,7 @@ export class HistoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.BURGOS_MAYORS.reverse());
+    // console.log(this.BURGOS_MAYORS.reverse());
   }
 
   onIndexChange(method: string) {

@@ -16,12 +16,12 @@ export class FileViewerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
     // this.extension = this.data.ext.split('.')[1];
     // console.log(this.extension);
   }
   imageLoaded() {
-    console.log('ssss');
+    // console.log('ssss');
     this.isLoaded = true;
   }
 }

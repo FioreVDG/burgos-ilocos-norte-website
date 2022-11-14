@@ -40,7 +40,7 @@ export class TourismComponent implements OnInit {
       page: this.pagination.pageNumber,
     };
     this.tourism.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.tourisms = res.env.tourist_spots;
       this.pagination.totalDocuments = res.total_docs;
       this.tourisms.forEach(async (el: any) => {
@@ -48,7 +48,7 @@ export class TourismComponent implements OnInit {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
       this.loading = false;
-      console.log(this.tourisms);
+      // console.log(this.tourisms);
     });
   }
 
@@ -63,7 +63,7 @@ export class TourismComponent implements OnInit {
     };
 
     this.tourism.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.tourisms = res.env.tourist_spots;
       this.pagination.totalDocuments = res.total_docs;
       this.tourisms.forEach(async (el: any) => {
@@ -74,7 +74,7 @@ export class TourismComponent implements OnInit {
   }
 
   onDelete(id: any) {
-    console.log(id);
+    // console.log(id);
     let message = 'Deleting Tourist Spot';
     this._showSnackBar(message);
     this.tourism.delete(id).subscribe(
@@ -104,7 +104,7 @@ export class TourismComponent implements OnInit {
   }
 
   onUpdateTouristSpot(event: any) {
-    console.log(event);
+    // console.log(event);
     this.dialog
       .open(AddTourismComponent, {
         width: '100%',
@@ -119,7 +119,7 @@ export class TourismComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

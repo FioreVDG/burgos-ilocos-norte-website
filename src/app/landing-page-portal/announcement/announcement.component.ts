@@ -55,9 +55,9 @@ export class AnnouncementComponent implements OnInit {
         (o: any) => o.isPinned === false
       );
       this.loading = false;
-      console.log(this.featuredAnnouncement);
-      console.log(this.announcements);
-      console.log(this.featuredImage);
+      // console.log(this.featuredAnnouncement);
+      // console.log(this.announcements);
+      // console.log(this.featuredImage);
     });
   }
 
@@ -72,14 +72,14 @@ export class AnnouncementComponent implements OnInit {
     };
 
     this.announcement.getAll(query).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.announcements = res.env.announcements;
       this.pagination.totalDocuments = res.total_docs;
     });
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }
@@ -91,7 +91,7 @@ export class AnnouncementComponent implements OnInit {
   }
 
   showMore(data: any) {
-    console.log(data);
+    // console.log(data);
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',

@@ -28,7 +28,7 @@ export class DepartmentComponent implements OnInit {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
 
-      console.log(this.departments);
+      // console.log(this.departments);
       this.loading = false;
     });
   }

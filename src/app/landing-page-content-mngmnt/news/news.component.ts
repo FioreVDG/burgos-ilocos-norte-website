@@ -34,7 +34,7 @@ export class NewsComponent implements OnInit {
 
   fetchData() {
     this.news.getAll({}).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.newsArr = res.env.news;
       this.newsArr.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
@@ -56,7 +56,7 @@ export class NewsComponent implements OnInit {
     };
 
     this.news.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.newsArr = res.env.news;
       this.pagination.totalDocuments = res.total_docs;
       this.newsArr.forEach(async (el: any) => {
@@ -76,7 +76,7 @@ export class NewsComponent implements OnInit {
   }
 
   onUpdateNews(news: any) {
-    console.log(news);
+    // console.log(news);
     this.dialog
       .open(AddNewsComponent, {
         width: '100%',
@@ -111,19 +111,19 @@ export class NewsComponent implements OnInit {
     this.loading = true;
     this.news.markAsPinned(id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         if (res) {
           this.fetchData();
         }
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

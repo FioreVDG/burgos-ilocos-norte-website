@@ -89,12 +89,12 @@ export class AddBidsComponent implements OnInit {
       .subscribe((res: any) => {
         if (res) {
           this.files = res;
-          console.log(res);
+          // console.log(res);
           let findChanges: any = this.files.find(
             (o: any) => o.rootFile !== true
           );
           didChange = this.compareArr(this.filesArrCopy, this.files);
-          console.log(findChanges, didChange);
+          // console.log(findChanges, didChange);
 
           if (findChanges || didChange) {
             this.hasChanges = true;
@@ -118,10 +118,10 @@ export class AddBidsComponent implements OnInit {
       (res: any) => {
         this.saving = false;
         this.dialogRef.close(true);
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -129,12 +129,12 @@ export class AddBidsComponent implements OnInit {
   updateBid(bid: any, id: string) {
     this.bid.update(bid, this.data._id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.saving = false;
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -144,27 +144,27 @@ export class AddBidsComponent implements OnInit {
     const bid = this.bidForm.getRawValue();
     const path = '/burgos-ilocosnorte/bids/';
     const dateNow = Date.now();
-    console.log(bid);
+    // console.log(bid);
     this.saving = true;
     const toSave: any = {
       ...bid,
       files: [],
     };
-    console.log(toSave.files.length, this.files.length);
+    // console.log(toSave.files.length, this.files.length);
     if (this.files.length && !this.data) {
-      console.log(this.files);
+      // console.log(this.files);
       this.files.forEach((el: any) => {
-        console.log(el.imgFile);
+        // console.log(el.imgFile);
         let fileType = el.imgFile.type.split('/')[1];
         let name = el.imgFile.name.split('.')[0];
         const fileName = `${name}-${dateNow}.${fileType}`;
         this.dropbox
           .uploadFile(path, fileName, el.imgFile)
           .subscribe((res: any) => {
-            console.log(res);
+            // console.log(res);
             toSave.files.push({ title: el.title, file: res.result });
             if (this.files.length === toSave.files.length) {
-              console.log(toSave);
+              // console.log(toSave);
               this.createBid(toSave);
             }
           });
@@ -173,13 +173,13 @@ export class AddBidsComponent implements OnInit {
     if (this.data && this.hasChanges) {
       let fileArrCopy: any = [];
       fileArrCopy = this.files;
-      console.log(fileArrCopy);
+      // console.log(fileArrCopy);
       let filterNewFile: any = this.files.filter(
         (f: any) => f.rootFile !== true
       );
       this.files = this.files.filter((o: any) => o.rootFile === true);
-      console.log(filterNewFile);
-      console.log(this.files);
+      // console.log(filterNewFile);
+      // console.log(this.files);
       if (filterNewFile.length) {
         filterNewFile.forEach((el: any) => {
           let fileType = el.imgFile.type.split('/')[1];
@@ -189,13 +189,13 @@ export class AddBidsComponent implements OnInit {
           this.dropbox
             .uploadFile(path, fileName, el.imgFile)
             .subscribe((res: any) => {
-              console.log(res);
+              // console.log(res);
               this.files.push({ title: el.title, file: res.result });
               tempArr.push(el.title);
-              console.log(this.files);
+              // console.log(this.files);
               if (tempArr.length === filterNewFile.length) {
                 toSave.files = this.files;
-                console.log(toSave);
+                // console.log(toSave);
                 this.updateBid(toSave, this.data._id);
               }
             });

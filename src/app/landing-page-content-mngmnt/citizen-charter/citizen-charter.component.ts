@@ -39,14 +39,14 @@ export class CitizenCharterComponent implements OnInit {
       page: this.pagination.pageNumber,
     };
     this.citizen.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.citizenCharters = res.env.citizen_charters;
       this.pagination.totalDocuments = res.total_docs;
       let temp: any = this.stringToHTMLconverter(
         this.citizenCharters[0].description
       );
       this.html = temp;
-      console.log(temp);
+      // console.log(temp);
       this.loading = false;
     });
   }
@@ -68,13 +68,13 @@ export class CitizenCharterComponent implements OnInit {
     };
 
     this.citizen.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.citizenCharters = res.env.citizen_charters;
       this.pagination.totalDocuments = res.total_docs;
     });
   }
   onUpdateCitizenCharter(event: any) {
-    console.log(event);
+    // console.log(event);
     this.dialog
       .open(AddCitizenCharterComponent, {
         width: '100%',
@@ -89,7 +89,7 @@ export class CitizenCharterComponent implements OnInit {
   }
 
   onDelete(id: any) {
-    console.log(id);
+    // console.log(id);
     let message = 'Deleting legislative';
     this._showSnackBar(message);
     this.citizen.delete(id).subscribe(

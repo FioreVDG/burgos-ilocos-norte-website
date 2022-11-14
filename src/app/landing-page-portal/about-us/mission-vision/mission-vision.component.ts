@@ -111,7 +111,7 @@ export class MissionVisionComponent implements OnInit {
 
     this.content.getAllMission({}).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.loading = false;
         if (res.env.mission_visions.length) {
           // this.hasExistingMisVis = true;
@@ -124,7 +124,7 @@ export class MissionVisionComponent implements OnInit {
         } else this.screens[1].items = this.missions;
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }

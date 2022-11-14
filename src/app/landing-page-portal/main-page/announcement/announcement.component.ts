@@ -51,9 +51,9 @@ export class AnnouncementComponent implements OnInit {
         this.announcements.length = 4;
       }
       this.loading = false;
-      console.log(this.featuredAnnouncement);
-      console.log(this.announcements);
-      console.log(this.featuredImage);
+      // console.log(this.featuredAnnouncement);
+      // console.log(this.announcements);
+      // console.log(this.featuredImage);
     });
   }
 
@@ -69,7 +69,7 @@ export class AnnouncementComponent implements OnInit {
   }
 
   showMore(data: any) {
-    console.log(data);
+    // console.log(data);
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',
