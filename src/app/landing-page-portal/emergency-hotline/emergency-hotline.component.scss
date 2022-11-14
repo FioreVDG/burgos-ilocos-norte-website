@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 100%;
+  width: 120%;
   max-width: 100% !important;
   min-height: 100vh;
   background: linear-gradient(
@@ -12,7 +12,7 @@
 
 section {
   width: 100%;
-  padding: 10% 5% 0;
+  padding: 8% 5% 3%;
 }
 
 .header {
@@ -40,6 +40,38 @@ section {
 
   span {
     text-align: right;
+  }
+}
+
+.hotline-table {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  .hotline-table-row {
+    width: 100%;
+    height: 84px;
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 96px;
+    margin: 0;
+    color: white;
+    font-size: 24px;
+    letter-spacing: calc(1em * 0.01618);
+  }
+
+  .value {
+    width: 25%;
+
+    p {
+      margin: 0;
+      color: white;
+      font-size: 24px;
+      letter-spacing: calc(1em * 0.01618);
+    }
   }
 }
 
@@ -195,6 +227,16 @@ section {
       font-size: 18px;
     }
   }
+
+  .hotline-table {
+    .label {
+      font-size: 18px;
+    }
+
+    .value p {
+      font-size: 18px;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -203,6 +245,18 @@ section {
 
     p {
       width: 35%;
+    }
+  }
+
+  .hotline-table {
+    .label {
+      width: 100%;
+      height: unset;
+      padding: 16px 0 8px;
+    }
+    .value {
+      display: block;
+      width: 100%;
     }
   }
 }
