@@ -121,35 +121,53 @@
       </div>
       <div class="col-6">
         <mat-form-field appearance="fill" style="display: block">
-          <mat-label>Eligibility</mat-label>
+          <mat-label>Eligibility & Competency</mat-label>
           <input
             type="text"
             matInput
             formControlName="eligibility"
-            placeholder="Enter eligibility"
+            placeholder="Enter eligibility and competency"
             required
           />
 
           <mat-error
             *ngIf="careerForm.get('eligibility')?.hasError('required')"
           >
-            Please enter Eligibility
+            Please enter Eligibility & Competency
           </mat-error>
         </mat-form-field>
       </div>
-      <div class="col-6">
+      <!-- <div class="col-6">
         <mat-form-field appearance="fill" style="display: block">
           <mat-label>Competency</mat-label>
           <input
             type="text"
             matInput
             formControlName="competency"
-            placeholder="Enter competency"
+            placeholder="Enter Competency"
             required
           />
 
           <mat-error *ngIf="careerForm.get('competency')?.hasError('required')">
             Please enter Competency
+          </mat-error>
+        </mat-form-field>
+      </div> -->
+      <div class="col-6">
+        <mat-form-field appearance="fill" style="display: block">
+          <mat-label>Open Position#</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="openPosition"
+            placeholder="Enter Open Position"
+            required
+          />
+
+          <mat-error
+            *ngIf="careerForm.get('openPosition')?.hasError('required')"
+          >
+            Please enter Open Position
           </mat-error>
         </mat-form-field>
       </div>

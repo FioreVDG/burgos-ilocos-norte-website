@@ -1,12 +1,4 @@
-import {
-  animate,
-  group,
-  query,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { TourismService } from './../../services/tourism/tourism.service';
@@ -26,7 +18,7 @@ import { QueryParams } from 'src/app/models/queryparams.interface';
   templateUrl: './tourism.component.html',
   styleUrls: ['./tourism.component.scss'],
   animations: [
-    trigger('test', [
+    trigger('fade-in-out', [
       transition(':enter', [
         style({ opacity: 0 }),
         animate('1400ms ease-in-out', style({ opacity: 1 })),
@@ -98,34 +90,35 @@ export class TourismComponent implements OnInit, AfterViewInit {
 
   async fetchData() {
     this.loading = true;
-    this.tourist.getAll({}).subscribe((res: any) => {
-      // console.log(res);
-      this.touristSpots = res.env.tourist_spots;
-      this.maxIndex = this.touristSpots.length;
-      this.heroIndex = this.randomizedIndex();
-      this.lastIndex = this.heroIndex;
 
-      this.touristSpots.forEach(async (el: any) => {
-        el.imgUrl = await this.getTempLink(el?.image?.path_display);
-        el.layout = await this.stringToHTMLconverter(el.description);
-      });
-      // console.log(this.touristSpots[this.heroIndex]);
+    if (!this.tourist.getTourismData()) {
+      this.touristSpots = await this.tourist.populateTouristData(true);
+    } else {
+      this.touristSpots = this.tourist.getTourismData();
+    }
 
-      setTimeout(() => {
-        this.touristSpotsHeroPage = JSON.parse(
-          JSON.stringify(this.touristSpots)
-        );
+    this.maxIndex = this.touristSpots.length;
+    this.heroIndex = this.randomizedIndex();
+    this.lastIndex = this.heroIndex;
 
-        this.touristSpotsHeroPage.forEach(async (el: any) => {
-          el.layout = await this.stringToHTMLconverter(el.description, true);
-          el.imgUrl = await this.getTempLink(el?.image?.path_display);
-        });
-
-        // console.log(this.touristSpotsHeroPage[this.heroIndex]);
-        this.loading = false;
-        this.heroSectionCarousel();
-      }, 100);
+    this.touristSpots.forEach(async (el: any) => {
+      el.imgUrl = await this.getTempLink(el?.image?.path_display);
+      el.layout = await this.stringToHTMLconverter(el.description);
     });
+    // console.log(this.touristSpots[this.heroIndex]);
+
+    setTimeout(() => {
+      this.touristSpotsHeroPage = JSON.parse(JSON.stringify(this.touristSpots));
+
+      this.touristSpotsHeroPage.forEach(async (el: any) => {
+        el.layout = await this.stringToHTMLconverter(el.description, true);
+        el.imgUrl = await this.getTempLink(el?.image?.path_display);
+      });
+
+      // console.log(this.touristSpotsHeroPage[this.heroIndex]);
+      this.loading = false;
+      this.heroSectionCarousel();
+    }, 100);
   }
 
   async getTempLink(data: any) {

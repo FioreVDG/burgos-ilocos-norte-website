@@ -5,6 +5,7 @@ import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { BidService } from './../../services/bid/bid.service';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { TourismService } from 'src/app/services/tourism/tourism.service';
 
 @Component({
   selector: 'app-bids-awards',
@@ -29,21 +30,34 @@ export class BidsAwardsComponent implements OnInit {
     pageNumber: 1,
     totalDocuments: 0,
   };
+
+  headerBackground: any;
+
   constructor(
     private bid: BidService,
     private dbx: DropboxService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tourist: TourismService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.loading = true;
+
+    if (!this.tourist.getTourismData()) {
+      await this.tourist.populateTouristData();
+    }
+    const randomTouristSpot = this.tourist.getRandomTourismData();
+    this.headerBackground = await this.getTempLink(
+      randomTouristSpot?.image?.path_display
+    );
+
     const query: QueryParams = {
       find: [],
       limit: this.pagination.pageSize,
       page: this.pagination.pageNumber,
     };
     this.bid.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.bids = res.env.bidsawards;
       this.pagination.totalDocuments = res.total_docs;
       this.bids.forEach((el: any) => {
@@ -52,19 +66,19 @@ export class BidsAwardsComponent implements OnInit {
         });
       });
       this.loading = false;
-      console.log(this.bids);
+      // console.log(this.bids);
     });
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }
 
   openSelectedFile(url: any, ext: any) {
-    console.log(url);
-    console.log(ext);
+    // console.log(url);
+    // console.log(ext);
     this.dialog.open(FileViewerComponent, {
       width: '100%',
       height: '90%',
@@ -73,7 +87,7 @@ export class BidsAwardsComponent implements OnInit {
   }
 
   findType(type: string) {
-    console.log(type);
+    // console.log(type);
     for (let i of this.bidTypes) {
       i.selected = false;
     }
@@ -104,7 +118,7 @@ export class BidsAwardsComponent implements OnInit {
     else this.isBidSelected = false;
 
     this.bid.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.bids = res.env.bidsawards;
       this.pagination.totalDocuments = res.total_docs;
       this.bids.forEach((el: any) => {
@@ -133,7 +147,7 @@ export class BidsAwardsComponent implements OnInit {
 
     this.searching = true;
     this.bid.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.bids = res.env.bidsawards;
       this.pagination.totalDocuments = res.total_docs;
       this.bids.forEach((el: any) => {

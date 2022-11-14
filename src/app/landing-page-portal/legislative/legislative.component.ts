@@ -5,6 +5,7 @@ import { LegislativeService } from './../../services/legislative/legislative.ser
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { QueryParams } from 'src/app/models/queryparams.interface';
+import { TourismService } from 'src/app/services/tourism/tourism.service';
 
 @Component({
   selector: 'app-legislative',
@@ -21,20 +22,30 @@ export class LegislativeComponent implements OnInit {
     pageNumber: 1,
     totalDocuments: 0,
   };
+  headerBackground: any;
   constructor(
     private legislative: LegislativeService,
     private dbx: DropboxService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tourist: TourismService
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.fetchLegislatives();
   }
 
-  fetchLegislatives() {
+  async fetchLegislatives() {
+    this.loading = true;
+    if (!this.tourist.getTourismData()) {
+      await this.tourist.populateTouristData();
+    }
+    const randomTouristSpot = this.tourist.getRandomTourismData();
+    this.headerBackground = await this.getTempLink(
+      randomTouristSpot?.image?.path_display
+    );
+
     this.legislative.getAll({}).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.loading = false;
       this.legislatives = res.env.legislatives;
       this.pagination.totalDocuments = res.total_docs;
@@ -43,7 +54,7 @@ export class LegislativeComponent implements OnInit {
         el.imgUrl = await this.getTempLink(el.file.path_display);
       });
 
-      console.log(this.legislatives);
+      // console.log(this.legislatives);
     });
   }
 
@@ -56,7 +67,7 @@ export class LegislativeComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.search);
+    // console.log(this.search);
     let query;
     if (this.search === 'All')
       query = {
@@ -78,7 +89,7 @@ export class LegislativeComponent implements OnInit {
       };
     this.searching = true;
     this.legislative.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.legislatives = res.env.legislatives;
       this.pagination.totalDocuments = res.total_docs;
       this.legislatives.forEach(async (el: any) => {
@@ -110,7 +121,7 @@ export class LegislativeComponent implements OnInit {
       };
     this.searching = true;
     this.legislatives.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.legislatives = res.env.legislatives;
       this.pagination.totalDocuments = res.total_docs;
       this.legislatives.forEach(async (el: any) => {
@@ -120,7 +131,7 @@ export class LegislativeComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

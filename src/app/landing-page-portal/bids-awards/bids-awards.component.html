@@ -1,5 +1,13 @@
 <section *ngIf="!loading">
-  <section id="bids">
+  <section
+    id="bids"
+    [style.background]="
+      'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
+        headerBackground +
+        ')' ||
+      'background-image: linear-gradient( 90deg, #05bbe842 5%, #05bbe842 42%, #05bbe842 100%), url(../../../assets/images/wind_mill.jpg);'
+    "
+  >
     <div class="container">
       <h1>Bids & Awards Commitee</h1>
     </div>

@@ -3,7 +3,7 @@
 <ng-container *ngIf="!loading">
   <div class="hero-landing-container js-hero">
     <ng-container *ngFor="let hero of touristSpotsHeroPage; let i = index">
-      <div *ngIf="i === heroIndex" [@test]>
+      <div *ngIf="i === heroIndex" [@fade-in-out]>
         <div
           [style.background]="
             hero.imgUrl

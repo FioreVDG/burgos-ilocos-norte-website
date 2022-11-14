@@ -6,6 +6,7 @@ import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
+import { TourismService } from 'src/app/services/tourism/tourism.service';
 
 @Component({
   selector: 'app-services',
@@ -20,11 +21,12 @@ export class ServicesComponent implements OnInit {
   search: string = '';
   searching: boolean = false;
   activeService: any;
-
+  headerBackground: any;
   constructor(
     private service: ServiceService,
     private dbx: DropboxService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tourist: TourismService
   ) {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -32,8 +34,17 @@ export class ServicesComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.loading = true;
+
+    if (!this.tourist.getTourismData()) {
+      await this.tourist.populateTouristData();
+    }
+    const randomTouristSpot = this.tourist.getRandomTourismData();
+    this.headerBackground = await this.getTempLink(
+      randomTouristSpot?.image?.path_display
+    );
+
     this.service.getAll({}).subscribe((res: any) => {
       this.services = res.env.services;
       this.loading = false;

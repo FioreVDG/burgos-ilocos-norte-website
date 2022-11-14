@@ -2,6 +2,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { Component, OnInit } from '@angular/core';
 import { CareerService } from 'src/app/services/career/career.service';
 import { QueryParams } from 'src/app/models/queryparams.interface';
+import { TourismService } from 'src/app/services/tourism/tourism.service';
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 
 @Component({
   selector: 'app-career',
@@ -16,20 +18,37 @@ export class CareerComponent implements OnInit {
     totalDocuments: 0,
   };
   loading: boolean = false;
-  constructor(private career: CareerService) {}
+  headerBackground: any;
+  constructor(
+    private career: CareerService,
+    private dbx: DropboxService,
+    private tourist: TourismService
+  ) {}
 
   ngOnInit(): void {
     this.fetchData();
   }
 
-  fetchData() {
+  async fetchData() {
     this.loading = true;
+    if (!this.tourist.getTourismData()) {
+      await this.tourist.populateTouristData();
+    }
+    const randomTouristSpot = this.tourist.getRandomTourismData();
+    this.headerBackground = await this.getTempLink(
+      randomTouristSpot?.image?.path_display
+    );
     this.career.getAll({}).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.loading = false;
       this.careers = res.env.careers;
       this.pagination.totalDocuments = res.total_dcs;
     });
+  }
+  async getTempLink(data: any) {
+    // console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
   }
 
   onPageChange(event: PageEvent) {
@@ -43,7 +62,7 @@ export class CareerComponent implements OnInit {
     };
 
     this.career.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.careers = res.env.careers;
       this.pagination.totalDocuments = res.total_docs;
     });

@@ -1,5 +1,13 @@
 <div *ngIf="!loading">
-  <section id="career">
+  <section
+    id="career"
+    [style.background]="
+      'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
+        headerBackground +
+        ')' ||
+      'background-image: linear-gradient( 90deg, #05bbe842 5%, #05bbe842 42%, #05bbe842 100%), url(../../../assets/images/wind_mill.jpg);'
+    "
+  >
     <div class="container">
       <h1>Careers</h1>
     </div>
@@ -18,6 +26,10 @@
           </p>
           <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Open Position</b></p>
+              <p>{{ item.openPosition }}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
               <p class="title"><b>Education</b></p>
               <p>{{ item.education }}</p>
             </div>
@@ -25,19 +37,15 @@
               <p class="title"><b>Training</b></p>
               <p>{{ item.training }}</p>
             </div>
+          </div>
+          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
               <p class="title"><b>Experience</b></p>
               <p>{{ item.experience }}</p>
             </div>
-          </div>
-          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-              <p class="title"><b>Eligibility</b></p>
+              <p class="title"><b>Eligibility & Competency</b></p>
               <p>{{ item.eligibility }}</p>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-              <p class="title"><b>Competency</b></p>
-              <p>{{ item.competency }}</p>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
               <p class="title"><b>Publication</b></p>
