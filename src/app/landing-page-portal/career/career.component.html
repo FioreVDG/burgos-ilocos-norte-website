@@ -1,51 +1,62 @@
-<app-no-content *ngIf="!careers.length && !loading"></app-no-content
-><app-spinner *ngIf="loading"></app-spinner>
-<div class="container" *ngIf="!loading && careers.length">
-  <div class="row">
-    <div class="one">
+<div *ngIf="!loading">
+  <section
+    id="career"
+    [style.background]="
+      'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
+        headerBackground +
+        ')' ||
+      'background-image: linear-gradient( 90deg, #05bbe842 5%, #05bbe842 42%, #05bbe842 100%), url(../../../assets/images/wind_mill.jpg);'
+    "
+  >
+    <div class="container">
       <h1>Careers</h1>
     </div>
-
-    <div class="row" style="margin: auto">
-      <div *ngFor="let item of careers" class="career-wrap">
-        <h3>{{ item.title }}</h3>
-        <div style="margin-bottom: 0.6rem">
-          <span>•{{ item.payGrade }}</span>
-          <span style="margin-left: 1.5rem">•{{ item.department }}</span>
+  </section>
+  <div class="container" *ngIf="careers && careers.length > 0">
+    <div class="row">
+      <div class="row" style="margin: auto">
+        <div *ngFor="let item of careers" class="career-wrap">
+          <h3>{{ item.title }}</h3>
+          <div style="margin-bottom: 0.6rem">
+            <span>•{{ item.payGrade }}</span>
+            <span style="margin-left: 1.5rem">•{{ item.department }}</span>
+          </div>
+          <p class="pay">
+            {{ item.monthlySalary | currency: "₱ ":"symbol" }}
+          </p>
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Open Position</b></p>
+              <p>{{ item.openPosition }}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Education</b></p>
+              <p>{{ item.education }}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Training</b></p>
+              <p>{{ item.training }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Experience</b></p>
+              <p>{{ item.experience }}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Eligibility & Competency</b></p>
+              <p>{{ item.eligibility }}</p>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+              <p class="title"><b>Publication</b></p>
+              <p>{{ item.createdAt | date: "mediumDate" }}</p>
+            </div>
+          </div>
+          <hr *ngIf="careers.length > 1" />
         </div>
-        <p class="pay">
-          {{ item.monthlySalary | currency: "₱ ":"symbol" }}
-        </p>
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Education</b></p>
-            <p>{{ item.education }}</p>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Training</b></p>
-            <p>{{ item.training }}</p>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Experience</b></p>
-            <p>{{ item.experience }}</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Eligibility</b></p>
-            <p>{{ item.eligibility }}</p>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Competency</b></p>
-            <p>{{ item.competency }}</p>
-          </div>
-          <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-            <p class="title"><b>Publication</b></p>
-            <p>{{ item.createdAt | date: "mediumDate" }}</p>
-          </div>
-        </div>
-        <hr *ngIf="careers.length > 1" />
       </div>
     </div>
   </div>
+  <app-no-content *ngIf="!careers.length"></app-no-content>
 </div>
+<app-spinner *ngIf="loading"></app-spinner>

@@ -40,7 +40,7 @@ export class LegislativeComponent implements OnInit {
       page: this.pagination.pageNumber,
     };
     this.legislative.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.legislatives = res.env.legislatives;
       this.legislatives.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.file?.path_display);
@@ -62,14 +62,14 @@ export class LegislativeComponent implements OnInit {
     };
 
     this.legislative.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.legislatives = res.env.legislatives;
       this.pagination.totalDocuments = res.total_docs;
     });
   }
 
   onUpdateLegislative(event: any) {
-    console.log(event);
+    // console.log(event);
     this.dialog
       .open(AddLegislativeComponent, {
         width: '100%',
@@ -84,7 +84,7 @@ export class LegislativeComponent implements OnInit {
   }
 
   onDelete(id: any) {
-    console.log(id);
+    // console.log(id);
     let message = 'Deleting legislative';
     this._showSnackBar(message);
     this.legislative.delete(id).subscribe(
@@ -126,7 +126,7 @@ export class LegislativeComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

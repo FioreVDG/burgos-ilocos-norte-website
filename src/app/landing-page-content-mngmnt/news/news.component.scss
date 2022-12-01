@@ -66,7 +66,7 @@
       font-size: 400%;
     }
     &:hover {
-      color: #05bbe8;
+      color: var(--primary);
     }
     h3 {
       font-size: 18px;
@@ -79,7 +79,7 @@
   }
 }
 .icn-top {
-  background-color: #05bbe8;
+  background-color: var(--primary);
   color: #fff;
 }
 .icn-top:hover {

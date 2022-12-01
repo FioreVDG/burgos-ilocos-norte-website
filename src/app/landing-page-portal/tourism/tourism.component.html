@@ -1,11 +1,43 @@
-<div class="container">
-  <div class="one">
-    <h1>Tourist Spots</h1>
+<app-spinner *ngIf="loading"></app-spinner>
+
+<ng-container *ngIf="!loading">
+  <div class="hero-landing-container js-hero">
+    <ng-container *ngFor="let hero of touristSpotsHeroPage; let i = index">
+      <div *ngIf="i === heroIndex" [@fade-in-out]>
+        <div
+          [style.background]="
+            hero.imgUrl
+              ? 'linear-gradient(rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.33)), fixed center / cover no-repeat url(' +
+                hero.imgUrl +
+                ')'
+              : 'linear-gradient(90deg,rgba(var(--primary-300-rgb), 0.88) 25%,var(--primary-400) 100%)'
+          "
+          class="content"
+        >
+          <div class="header-container">
+            <p class="loc">{{ hero.location }}</p>
+            <p class="title">{{ hero.title }}</p>
+          </div>
+          <div class="synopsis" [innerHtml]="hero.layout"></div>
+
+          <button
+            class="explore-more-button py-2 px-4"
+            (click)="scrollToSearchSpots()"
+          >
+            Explore More
+          </button>
+        </div>
+      </div>
+    </ng-container>
   </div>
-  <p>The best and most beautiful places here in Burgos, Ilocos Norte</p>
-  <div class="row">
-    <div class="col-8"></div>
-    <div class="col-3" style="padding-right: 0">
+
+  <div #searchSpots id="searchSpots" class="container">
+    <p>Go & Discover</p>
+    <h1>Breathtaking Tourist Spots</h1>
+
+    <div
+      class="d-flex w-100 justify-content-center justify-content-md-end align-items-center"
+    >
       <mat-form-field style="display: block; font-size: 13px" appearance="fill">
         <mat-label>Search by type</mat-label>
         <mat-select [(ngModel)]="search" required="false">
@@ -14,38 +46,36 @@
           <mat-option value="Festival">Festival</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div class="col">
-      <button
-        style="height: 70%; background-color: #05bbe8"
-        mat-flat-button
-        color="primary"
-        (click)="onSearch()"
-      >
+
+      <button class="search-button" mat-flat-button (click)="onSearch()">
         Search
       </button>
     </div>
-  </div>
-  <div *ngIf="!loading && !searching" class="row">
-    <ng-container *ngFor="let item of touristSpots">
-      <div
-        (click)="showMore(item)"
-        class="img-cards col-lg-4 col-xl-4 col-md-6 col-sm-12"
-      >
-        <img
-          [src]="
-            item.imgUrl ? item.imgUrl : '../../../assets/images/empty-image.png'
-          "
-          alt=""
-        />
-        <div class="desc">
-          <p class="title">{{ item.title }}</p>
-          <p class="loc">{{ item.location }}</p>
+    <div *ngIf="!searching" class="row">
+      <ng-container *ngFor="let item of touristSpots">
+        <div
+          (click)="showMore(item)"
+          class="img-cards col-lg-4 col-xl-4 col-md-6 col-sm-12"
+        >
+          <img
+            [src]="
+              item.imgUrl
+                ? item.imgUrl
+                : '../../../assets/images/empty-image.png'
+            "
+            alt=""
+          />
+          <div class="desc">
+            <p class="title">{{ item.title }}</p>
+            <p class="loc">
+              <mat-icon style="margin-right: 4px">location_on</mat-icon
+              >{{ item.location }}
+            </p>
+          </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+    </div>
+    <app-spinner *ngIf="searching"></app-spinner>
+    <app-no-content *ngIf="!touristSpots?.length"></app-no-content>
   </div>
-  <app-spinner *ngIf="searching"></app-spinner>
-</div>
-<app-no-content *ngIf="!loading && !touristSpots?.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
+</ng-container>

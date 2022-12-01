@@ -76,7 +76,7 @@ export class AddLegislativeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data) {
       this.legislativeForm.controls['title'].setValue(this.data.title);
       this.legislativeForm.controls['legislativeType'].setValue(
@@ -98,10 +98,10 @@ export class AddLegislativeComponent implements OnInit {
       (res: any) => {
         this.saving = false;
         this.dialogRef.close(true);
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -125,7 +125,7 @@ export class AddLegislativeComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          console.log(fileType, file);
+          // console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');
@@ -146,7 +146,7 @@ export class AddLegislativeComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }

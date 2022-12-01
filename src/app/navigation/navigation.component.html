@@ -30,7 +30,10 @@
   </div>
 </div> -->
 <div
-  [class]="router.url === '/welcome' ? 'main-nav' : 'headers'"
+  [class]="
+    ['/welcome', '/tourism'].includes(router.url) ? 'main-nav' : 'headers'
+  "
+  [class.text-shadow]="router.url === '/welcome'"
   [class.header]="showHeader"
 >
   <nav class="p-0 navbar sticky-top navbar-expand-lg justify-content-between">
@@ -181,7 +184,7 @@
             (click)="changeRoute('/career')"
             routerLink="/career"
             routerLinkActive="router-active"
-            >Career</a
+            >Careers</a
           >
         </li>
 

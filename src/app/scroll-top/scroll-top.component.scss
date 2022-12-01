@@ -7,19 +7,25 @@
 }
 .show-scrollTop {
   opacity: 1;
-  background-color: rgba(26, 202, 211, 0.606);
+  background-color: rgba(var(--primary-rgb), 0.606);
   transition: all 0.2s ease-in-out;
   z-index: 999;
   color: #fff;
   border-radius: 5px;
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba(var(--accent-rgb), 0.851);
+    transition: all 0.2s ease-in-out;
+    z-index: 999;
+    color: #fff;
+  }
+
+  .btn:focus {
+    box-shadow: none !important;
+  }
 }
+
 .btn {
-  color: #fff;
-}
-.show-scrollTop:hover {
-  opacity: 1;
-  background-color: rgba(26, 202, 211, 0.851);
-  transition: all 0.2s ease-in-out;
-  z-index: 999;
   color: #fff;
 }

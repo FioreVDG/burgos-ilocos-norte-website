@@ -58,7 +58,7 @@ export class AnnouncementComponent implements OnInit {
     };
 
     this.announcement.getAll(query).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.announcements = res.env.announcements;
       this.pagination.totalDocuments = res.total_docs;
     });
@@ -68,13 +68,13 @@ export class AnnouncementComponent implements OnInit {
     this.loading = true;
     this.announcement.markAsPinned(id).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         if (res) {
           this.fetchData();
         }
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -95,7 +95,7 @@ export class AnnouncementComponent implements OnInit {
   }
 
   onUpdateAnnouncement(announcement: Announcement) {
-    console.log(announcement);
+    // console.log(announcement);
     this.dialog
       .open(AddAnnouncememntComponent, {
         width: '100%',

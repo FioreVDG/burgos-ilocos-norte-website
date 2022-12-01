@@ -26,7 +26,7 @@ export class AddFileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data) {
       this.filesArr = this.data;
     }
@@ -49,11 +49,11 @@ export class AddFileComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          console.log(fileType);
+          // console.log(fileType);
 
           if (this.allowedFileTypes.includes(fileType)) {
             this.imageFile = file;
-            console.log(this.imageFile);
+            // console.log(this.imageFile);
           } else alert('Invalid file type');
         });
       } else alert('Not a file');
@@ -75,17 +75,17 @@ export class AddFileComponent implements OnInit {
       this.fileTitle.setValue('');
       this.imageB64 = '';
     }
-    console.log(this.filesArr);
-  }
-
-  removeFile(item: any) {
-    console.log(item);
-    this.filesArr = this.filesArr.filter((el: any) => el.title !== item.title);
     // console.log(this.filesArr);
   }
 
-  proceedAdding() {
+  removeFile(item: any) {
+    // console.log(item);
+    this.filesArr = this.filesArr.filter((el: any) => el.title !== item.title);
     console.log(this.filesArr);
+  }
+
+  proceedAdding() {
+    // console.log(this.filesArr);
     this.dialogRef.close(this.filesArr);
   }
 

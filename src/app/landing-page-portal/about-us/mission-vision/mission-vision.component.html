@@ -1,51 +1,71 @@
-<section id="about-us" class="about-us">
-  <div class="container">
-    <!-- <div class="one">
-      <h1>About us</h1>
-    </div> -->
-    <section *ngIf="hasExistingMisVis">
-      <h3>Mission</h3>
-      <div [innerHTML]="about.missionLayout"></div>
-      <div style="margin: 2rem 0rem"></div>
-      <h3>Vision</h3>
-      <div [innerHTML]="about.visionLayout"></div>
-    </section>
-    <section *ngIf="!hasExistingMisVis">
-      <div class="row row-about">
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 vision-desc">
-          <h3>Our Vision</h3>
-          <p>
-            The renewable energy and tourism capital of the North with balanced
-            and climate-resilient community under the stewardship of firm and
-            committed leaders inhabited by empowered and God-fearing citizenry.
-          </p>
-        </div>
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container">
-          <img
-            src="../../../../assets/images/undraw_pitching_re_fpgk.svg"
-            alt=""
-          />
-        </div>
+<section id="about-us">
+  <div class="container" *ngIf="!loading">
+    <div class="background-animation-container">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <div
+      class="change-screen-button {{ screenIndex === 0 ? 'bottom' : 'top' }}"
+      (click)="changeScreen()"
+    >
+      <div class="arrow-container">
+        <mat-icon>{{
+          screenIndex === 0 ? "arrow_downward" : "arrow_upward"
+        }}</mat-icon>
       </div>
-      <div class="row row-about">
-        <div
-          class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container right"
-        >
-          <img
-            src="../../../../assets/images/undraw_browsing_online_re_umsa.svg"
-            alt=""
-          />
-        </div>
-        <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 mission-desc">
-          <h3>Our Mission</h3>
-          <p>
-            Burgos shall improve the quality of life of every Burgoseño through:
-          </p>
-          <ul *ngFor="let item of missions">
-            <li>{{ item }}</li>
-          </ul>
-        </div>
+
+      <p class="label">
+        {{ screenIndex === 1 ? screens[0].header : screens[1].header }}
+      </p>
+    </div>
+
+    <div class="hero-container">
+      <div
+        class="header-container"
+        [@animation]="screenIndex === 0 ? 'vision' : 'mission'"
+      >
+        <ng-container *ngIf="screenIndex === 0">
+          <h1 class="vision header">{{ screens[0].header }}</h1>
+        </ng-container>
+
+        <ng-container *ngIf="screenIndex === 1">
+          <h1 class="mission header">{{ screens[1].header }}</h1>
+        </ng-container>
       </div>
-    </section>
+
+      <div
+        class="body-container"
+        [@animation]="screenIndex === 0 ? 'vision' : 'mission'"
+      >
+        <ng-container *ngIf="screenIndex === 0">
+          <p class="vision body">{{ screens[0].body }}</p>
+          <ng-container *ngIf="screens[0].items">
+            <ul class="vision">
+              <li *ngFor="let item of screens[0].items">{{ item }}</li>
+            </ul>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="screenIndex === 1">
+          <p class="mission body">{{ screens[1].body }}</p>
+          <ng-container *ngIf="screens[1].items">
+            <ul class="mission">
+              <li *ngFor="let item of screens[1].items">{{ item }}</li>
+            </ul>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </section>

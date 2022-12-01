@@ -107,11 +107,11 @@ export class AddServiceComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          console.log(fileType);
+          // console.log(fileType);
 
           if (this.allowedFileTypes.includes(fileType)) {
             this.imageFile = file;
-            console.log(this.imageFile);
+            // console.log(this.imageFile);
           } else alert('Invalid file type');
         });
       } else alert('Not a file');
@@ -127,11 +127,11 @@ export class AddServiceComponent implements OnInit {
     this.service.update(service, this.data._id).subscribe(
       (res: any) => {
         this.saving = false;
-        console.log(res);
+        // console.log(res);
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -145,7 +145,7 @@ export class AddServiceComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }

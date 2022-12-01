@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
         if (this.link !== '') {
           this.hasLink = true;
         }
-        console.log(this.link);
+        // console.log(this.link);
       }
     });
   }

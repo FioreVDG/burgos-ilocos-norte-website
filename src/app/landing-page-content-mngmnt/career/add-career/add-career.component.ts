@@ -23,7 +23,8 @@ export class AddCareerComponent implements OnInit {
     training: new FormControl('', [Validators.required]),
     experience: new FormControl('', [Validators.required]),
     eligibility: new FormControl('', [Validators.required]),
-    competency: new FormControl('', [Validators.required]),
+    // competency: new FormControl('', [Validators.required]),
+    openPosition: new FormControl('', [Validators.required]),
   });
   forms = [
     { fcname: 'title' },
@@ -34,7 +35,8 @@ export class AddCareerComponent implements OnInit {
     { fcname: 'training' },
     { fcname: 'experience' },
     { fcname: 'eligibility' },
-    { fcname: 'competency' },
+    // { fcname: 'competency' },
+    { fcname: 'openPosition' },
   ];
 
   saving: boolean = false;
@@ -59,10 +61,10 @@ export class AddCareerComponent implements OnInit {
       (res: any) => {
         this.saving = false;
         this.dialogRef.close(true);
-        console.log(res);
+        // console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -77,7 +79,7 @@ export class AddCareerComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -86,6 +88,7 @@ export class AddCareerComponent implements OnInit {
 
   save() {
     const career = this.careerForm.getRawValue();
+    // console.log(career);
     if (this.data) this.updateCareer(career);
     else this.createCareer(career);
   }

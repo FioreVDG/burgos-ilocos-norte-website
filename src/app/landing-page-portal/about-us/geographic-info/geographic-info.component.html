@@ -1,55 +1,61 @@
 <section id="history">
-    <div class="container">
-      <h1>Geographical Information</h1>
+  <div class="container">
+    <h1>Geographical Information</h1>
+  </div>
+</section>
+<div class="container-fluid">
+  <div class="geography-container row">
+    <div class="col-12 col-lg-3">
+      <div class="mb-5 geography-info order-last order-lg-first">
+        <div
+          class="position-relative"
+          style="width: 100%; height: 100%"
+          [@slideAnim]="lastAction"
+          (@slideAnim.done)="lastActionReset(); debounceClick = false"
+        >
+          <ng-container *ngFor="let geoInfo of geographicalInfo; let i = index">
+            <div
+              class="geo-content position-absolute"
+              *ngIf="i === selectedGeoIndex"
+            >
+              <h3 class="geography-info-title">
+                {{ geoInfo.title }}
+              </h3>
+              <p class="geography-info-body">
+                {{ geoInfo.body }}
+              </p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="index-button-container">
+        <i
+          class="index-button bi bi-arrow-left"
+          (click)="onGeoInfoChange('prev')"
+        ></i>
+        <i
+          class="index-button bi bi-arrow-right"
+          (click)="onGeoInfoChange('next')"
+        ></i>
+      </div>
     </div>
-  </section>
-<div class="container">
-  <div class="wrapper">
-    <h3>Geographic Location</h3>
-    <p>
-      Located in between two growth centers, Laoag City and Bangui, lies the
-      town of Burgos. It is 48 kilometers and 16 kilometers away from Laoag City
-      and Bangui, respectively. It is approximately 540 kilometers north of
-      Manila. It lies 18 degrees, 30 minutes latitude and 120 degrees, 38
-      minutes longtitude. Bounded on the north and west by the West Philippine
-      Sea, on the east by the municipalities of Bangui and Vintar, and on the
-      south by the Municipality of Pasuquin. It is a coastal municipality with a
-      15-kilometer coastline.
-    </p>
 
-    <h3>Topography/Slope</h3>
-    <p>
-      Burgos has rugged terrain. Narrow to broad valley of rolling plains are
-      found at 50 to 180 meters above sea level. These areas are bisected with
-      creeks and gently sloping shallow depression originating from the hill
-      ranges and draining into Baruyen River, the main tributary cutting thru
-      the municipality. Slope ranges from 1% to 60%.
-    </p>
+    <div class="col-12 col-lg-6 order-1 map-container">
+      <div style="height: 100%; width: 100%" id="map"></div>
+    </div>
 
-    <h3>Land Resources</h3>
-    <p>
-      Land Area. The municipality has a total land area of 12,928 hectares more
-      or less based/as provided by the Department of Environment and Natural
-      Resources Community Environment and Natural Resources Office (DENR-CENRO)
-      Bangui, Ilocos Norte.
-    </p>
-
-    <h3>Land Classification</h3>
-    <p>
-      Out of the total land area of the Municipality, about 7,345 hectares or
-      56.81% of the total municipal land are classified as forestlands. The
-      remaining 5,583 hectares or 43.19% are classified as Alienable and
-      Disposable lands (A & D). All barangays, except Brgys. Saoit and Pagali,
-      have forestlands.
-    </p>
-
-    <h3>Barangays</h3>
-    <p>
-      The Municipality of Burgos is a 5th class municipality with eleven (11)
-      barangays namely: Poblacion, Ablan, Agaga, Bayog, Bobon, Buduan, Nagsurot,
-      Paayas, Pagali, Saoit and Tanap. Seven (7) are coastal barangays: Brgys.
-      Paayas, Bobon, Bayog, Ablan, Pagali, Saoit and Poblacion. The remaining
-      are landlocked barangays.
-    </p>
+    <div
+      class="col-12 col-lg-3 order-first order-lg-last d-none d-sm-flex flex-row flex-lg-column justify-content-around justify-content-lg-start justify-content-lg-start my-5 my-lg-0"
+    >
+      <div
+        class="statistic-card d-flex flex-column justify-content-center align-items-center align-items-lg-start"
+        *ngFor="let statistic of statisticalInformation"
+      >
+        <h1 class="statistic-value">{{ statistic.body }}</h1>
+        <p class="statistic-label">
+          <span><i [class]="statistic.icon"></i> </span> {{ statistic.title }}
+        </p>
+      </div>
+    </div>
   </div>
 </div>

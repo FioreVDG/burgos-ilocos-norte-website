@@ -42,7 +42,7 @@ export class BidsComponent implements OnInit {
       this.bids = res.env.bidsawards;
       this.pagination.totalDocuments = res.total_docs;
       this.loading = false;
-      console.log(res);
+      // console.log(res);
     });
   }
 
@@ -57,7 +57,7 @@ export class BidsComponent implements OnInit {
     };
 
     this.bid.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.bids = res.env.bidsawards;
       this.pagination.totalDocuments = res.total_docs;
       // this.newsArr.forEach(async (el: any) => {
@@ -81,7 +81,7 @@ export class BidsComponent implements OnInit {
   }
 
   updateBids(bid: any) {
-    console.log(bid);
+    // console.log(bid);
     this.dialog
       .open(AddBidsComponent, {
         width: '100%',
@@ -106,7 +106,7 @@ export class BidsComponent implements OnInit {
         this._showSnackBar(msg, 'Okay');
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this._showSnackBar(err.error.message);
       }
     );

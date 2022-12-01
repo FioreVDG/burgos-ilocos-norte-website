@@ -35,7 +35,7 @@ export class ServicesComponent implements OnInit {
   fetchData() {
     this.service.getAll({}).subscribe(
       (res: any) => {
-        console.log(res);
+        // console.log(res);
         this.services = res.env.services;
         this.pagination.totalDocuments = res.total_docs;
         // this.services.forEach(async(el:any)=>{
@@ -44,7 +44,7 @@ export class ServicesComponent implements OnInit {
         this.loading = false;
       },
       (err) => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
@@ -60,7 +60,7 @@ export class ServicesComponent implements OnInit {
     };
 
     this.services.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.services = res.env.services;
       this.pagination.totalDocuments = res.total_docs;
       // this.newsArr.forEach(async (el: any) => {
@@ -84,7 +84,7 @@ export class ServicesComponent implements OnInit {
   }
 
   updateService(service: any) {
-    console.log(service);
+    // console.log(service);
     this.dialog
       .open(AddServiceComponent, {
         width: '100%',
@@ -109,7 +109,7 @@ export class ServicesComponent implements OnInit {
         this._showSnackBar(msg, 'Okay');
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this._showSnackBar(err.error.message);
       }
     );
@@ -122,7 +122,7 @@ export class ServicesComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

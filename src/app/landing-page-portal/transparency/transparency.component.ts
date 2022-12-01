@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TransparencyService } from './../../services/transparency/transparency.service';
 import { Component, OnInit } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { TourismService } from 'src/app/services/tourism/tourism.service';
 
 @Component({
   selector: 'app-transparency',
@@ -31,20 +32,31 @@ export class TransparencyComponent implements OnInit {
     { type: 'Awards and Recognition', selected: false },
     { type: 'Annual Procurement Plan', selected: false },
   ];
+
+  headerBackground: any;
   constructor(
     private transparency: TransparencyService,
     private dialog: MatDialog,
-    private dbx: DropboxService
+    private dbx: DropboxService,
+    private tourist: TourismService
   ) {}
 
   ngOnInit(): void {
-    this.loading = true;
     this.fetchData();
   }
 
-  fetchData() {
+  async fetchData() {
+    this.loading = true;
+
+    if (!this.tourist.getTourismData()) {
+      await this.tourist.populateTouristData();
+    }
+    const randomTouristSpot = this.tourist.getRandomTourismData();
+    this.headerBackground = await this.getTempLink(
+      randomTouristSpot?.image?.path_display
+    );
     this.transparency.getAll({}).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.transparencies = res.env.transparencies;
       this.pagination.totalDocuments = res.total_docs;
       this.transparencies.forEach(async (el: any) => {
@@ -58,7 +70,7 @@ export class TransparencyComponent implements OnInit {
   }
 
   findType(type: string) {
-    console.log(type);
+    // console.log(type);
     this.searching = true;
     for (let i of this.types) {
       i.selected = false;
@@ -115,7 +127,7 @@ export class TransparencyComponent implements OnInit {
 
     this.searching = true;
     this.transparency.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.transparencies = res.env.transparencies;
       this.pagination.totalDocuments = res.total_docs;
       this.transparencies.forEach((el: any) => {
@@ -128,7 +140,7 @@ export class TransparencyComponent implements OnInit {
   }
 
   viewTransparency(view: any) {
-    console.log(view);
+    // console.log(view);
     this.dialog.open(ViewTransparencyComponent, {
       height: 'auto',
       width: '100%',
@@ -137,7 +149,7 @@ export class TransparencyComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
+    // console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }

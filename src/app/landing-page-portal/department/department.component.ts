@@ -1,5 +1,7 @@
 import { DepartmentService } from './../../services/department/department.service';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DepartmentInfoDialogComponent } from './department-info-dialog/department-info-dialog.component';
 
 @Component({
   selector: 'app-department',
@@ -10,15 +12,23 @@ export class DepartmentComponent implements OnInit {
   search: string = '';
   departments: Array<any> = [];
   loading: boolean = false;
-  constructor(private department: DepartmentService) {}
+
+  clipArt: string = '/assets/images/parliament.png';
+  constructor(
+    private department: DepartmentService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
     this.department.getAll({}).subscribe((res: any) => {
       this.departments = res.env.departments;
+
       this.departments.forEach(async (el: any) => {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
+
+      // console.log(this.departments);
       this.loading = false;
     });
   }
@@ -29,5 +39,12 @@ export class DepartmentComponent implements OnInit {
     return dom.textContent || dom.innerText || '';
   }
 
-  onSearch(){}
+  openInfoDialog(department: any) {
+    this.dialog.open(DepartmentInfoDialogComponent, {
+      data: { department },
+      width: '80%',
+    });
+  }
+
+  onSearch() {}
 }

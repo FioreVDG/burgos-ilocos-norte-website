@@ -1,41 +1,50 @@
-#history{
-    background-image: linear-gradient(
-      90deg,
-      #05bbe842 5%,
-      #05bbe842 42%,
-      #05bbe842 100%
+#history {
+  background-image: linear-gradient(
+      360deg,
+      rgba(var(--primary-rgb), 0.83) 5%,
+      rgba(var(--primary-rgb), 0.32) 62%,
+      rgba(var(--primary-rgb), 0.14) 100%
     ),
     url("../../../assets/images/light-hou.jpg");
   background-size: cover;
   height: 70vh;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: bottom;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  h1 {
-    color: #fff;
-    text-align: center;
-    font-weight: 700;
-    font-size: 50px;
-}
+  .container {
+    position: absolute;
+    padding: 0;
+    bottom: -6%;
+
+    h1 {
+      color: var(--accent);
+      font-size: 96px;
+      font-weight: 700;
+      letter-spacing: calc(1em * 0.01618);
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.08);
+      text-shadow: -3px 3px 8px rgba(var(--accent-200-rgb), 0.13333);
+    }
+  }
 }
 .container {
-  padding: 2rem 0rem;
+  padding: 5.3rem 0rem;
   h3 {
     margin-top: 2rem;
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
     font-weight: 600;
-    color: #05bbe8;
+    color: var(--primary);
     font-size: 20px;
   }
   p {
-    // text-indent: 6%;
+    text-indent: 6%;
     font-size: 15px;
     color: #767676;
     text-align: justify;
-    margin-bottom: 1.3rem;
+    margin-bottom: 1.7rem;
   }
 
   ul {
@@ -45,13 +54,143 @@
   }
 
   li::marker {
-    color: #05bbe8;
+    color: var(--primary);
     font-size: 17px;
   }
-  .subt {
-    font-size: 12px;
+}
+
+.department-selection {
+  height: 360px;
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  margin: 16px 0;
+
+  cursor: pointer;
+
+  h3 {
     margin: 0;
-    color: #767676;
-    text-align: left;
+    width: 100%;
+  }
+
+  .header {
+    position: relative;
+    width: 100%;
+    height: 45%;
+
+    background: linear-gradient(
+        360deg,
+        rgba(0, 0, 0, 0.53) 5%,
+        rgba(0, 0, 0, 0.23) 62%,
+        rgba(0, 0, 0, 0.08) 100%
+      ),
+      url("../../../assets/images/to-be-used/burgos-municipal.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .logo {
+      background: var(--primary);
+      display: flex;
+      position: absolute;
+      padding: 16px;
+
+      bottom: -43%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.33);
+
+      img {
+        filter: invert(100%);
+        width: 48px;
+      }
+    }
+  }
+
+  .body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 5rem 2rem 2rem;
+
+    button {
+      border-radius: 5px;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      background-color: transparent;
+
+      align-self: flex-end;
+
+      font-weight: 600;
+      padding: 8px 24px;
+
+      transition: background-color 330ms cubic-bezier(0.33, 0.35, 0.47, 1.08);
+
+      &:hover {
+        background-color: var(--primary);
+        color: var(--white);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #history .container {
+    h1 {
+      font-size: 64px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #history {
+    .container {
+      bottom: 0;
+      h1 {
+        font-size: 32px;
+        text-shadow: -3px 3px 8px rgba(var(--accent-200-rgb), 0.25);
+      }
+    }
+  }
+  .container {
+    width: 90%;
+    margin: auto;
+    padding: 3rem 0rem;
+
+    flex-direction: column;
+    ul {
+      margin-left: 1.5rem;
+    }
+  }
+
+  .department-selection {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      width: 100%;
+      align-self: center;
+    }
+
+    img {
+      margin: 0;
+    }
   }
 }

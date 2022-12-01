@@ -38,7 +38,7 @@ export class CareerComponent implements OnInit {
       page: this.pagination.pageNumber,
     };
     this.career.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.loading = false;
       this.careers = res.env.careers;
       this.pagination.totalDocuments = res.total_dcs;
@@ -56,14 +56,14 @@ export class CareerComponent implements OnInit {
     };
 
     this.career.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.careers = res.env.careers;
       this.pagination.totalDocuments = res.total_docs;
     });
   }
 
   onUpdateCareer(event: any) {
-    console.log(event);
+    // console.log(event);
     this.dialog
       .open(AddCareerComponent, {
         width: '100%',
@@ -78,7 +78,7 @@ export class CareerComponent implements OnInit {
   }
 
   onDelete(id: any) {
-    console.log(id);
+    // console.log(id);
     let message = 'Deleting Career';
     this._showSnackBar(message);
     this.career.delete(id).subscribe(

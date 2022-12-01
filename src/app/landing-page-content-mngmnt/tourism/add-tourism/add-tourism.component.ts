@@ -116,7 +116,7 @@ export class AddTourismComponent implements OnInit {
         console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -177,7 +177,7 @@ export class AddTourismComponent implements OnInit {
         console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }

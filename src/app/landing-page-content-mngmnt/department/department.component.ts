@@ -39,7 +39,7 @@ export class DepartmentComponent implements OnInit {
     };
     this.department.getAll(query).subscribe((res: any) => {
       if (res) {
-        console.log(res);
+        // console.log(res);
         this.loading = false;
         this.departments = res.env.departments;
         this.pagination.totalDocuments = res.total_docs;
@@ -58,7 +58,7 @@ export class DepartmentComponent implements OnInit {
     };
 
     this.department.getAll(query).subscribe((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.departments = res.env.departments;
       this.pagination.totalDocuments = res.total_docs;
     });
@@ -80,7 +80,7 @@ export class DepartmentComponent implements OnInit {
   }
 
   updateDepartment(department: any) {
-    console.log(department);
+    // console.log(department);
     this.dialog
       .open(AddDepartmentComponent, {
         width: '100%',

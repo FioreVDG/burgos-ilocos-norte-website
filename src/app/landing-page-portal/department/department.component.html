@@ -5,15 +5,30 @@
     <h1>Our Departments</h1>
   </div>
 </section>
-<div *ngIf="!loading && departments.length" class="container">
-  
-  <div class="wrapper">
-    <div *ngFor="let dept of departments">
+<div *ngIf="!loading && departments.length" class="container grid">
+  <div class="wrapper row">
+    <div
+      *ngFor="let dept of departments"
+      class="d-flex justify-content-center align-items-center col-12 col-md-6 col-lg-4"
+    >
+      <div class="department-selection">
+        <div class="header">
+          <div class="logo">
+            <img [src]="clipArt" alt="" />
+          </div>
+        </div>
+        <div class="body">
+          <h3>{{ dept.title }}</h3>
+          <button (click)="openInfoDialog(dept)">SEE MORE</button>
+        </div>
+      </div>
+    </div>
+    <!-- <div *ngFor="let dept of departments">
       <h3>{{ dept.title }}</h3>
       <p class="subt" *ngIf="dept.person">
         {{ dept.person }} <i>({{ dept.position }})</i> - {{ dept.number }}
       </p>
       <div style="margin-top: 1.2rem" [innerHTML]="dept.layout"></div>
-    </div>
+    </div> -->
   </div>
 </div>

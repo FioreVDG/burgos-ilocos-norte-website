@@ -44,9 +44,9 @@ export class NewsComponent implements OnInit {
       this.newsArr = this.newsArr.filter((o: any) => o.isPinned === false);
 
       this.loading = false;
-      console.log(this.featuredNews);
-      console.log(this.featuredImage);
-      console.log(this.newsArr);
+      // console.log(this.featuredNews);
+      // console.log(this.featuredImage);
+      // console.log(this.newsArr);
     });
   }
 
@@ -62,7 +62,7 @@ export class NewsComponent implements OnInit {
   }
 
   showMore(data: any) {
-    console.log(data);
+    // console.log(data);
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',

@@ -1,15 +1,43 @@
 <div class="container">
-  <div class="one">
-    <h1>Emergency Hotlines</h1>
-  </div>
-  <div class="row" *ngFor="let item of hotlines">
-    <div class="col-12">
-      <p>
-        <b>{{ item.label }}:</b> &nbsp;<span
-          style="color: #616161; font-weight: 500"
-          >{{ item.contact }}</span
-        >
-      </p>
+  <section>
+    <h1 class="header">Emergency Hotlines</h1>
+
+    <!-- <div class="hotline" *ngFor="let item of hotlines">
+      <p class="my-2">{{ item.label }}: &nbsp;</p>
+
+      <span>{{ item.contact }}</span>
+    </div> -->
+
+    <table class="hotline-table">
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      <ng-container *ngFor="let item of hotlines">
+        <tr class="hotline-table-row">
+          <td class="label">{{ item.label }}</td>
+          <td class="value">
+            <ng-container *ngFor="let number of item.contact">
+              <p>{{ number }}</p>
+            </ng-container>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+
+    <div class="background-animation-container">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
-  </div>
+  </section>
 </div>

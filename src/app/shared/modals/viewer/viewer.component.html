@@ -1,6 +1,15 @@
-<i (click)="dialogRef.close()" class="bi bi-arrow-left-square-fill back"></i>
-<div class="img-wrap">
-  <img [src]="data.imgUrl" alt="" />
+<div (click)="dialogRef.close()" class="back-button">
+  <i class="bi bi-arrow-left"></i>
+</div>
+<div
+  [style.background]="'url(' + data.imgUrl + ')'"
+  [style.background-position]="'top center'"
+  [style.background-size]="'cover'"
+  [style.background-attachment]="'fixed'"
+  [style.background-repeat]="'no-repeat'"
+  class="img-wrap"
+>
+  <!-- <img [src]="data.imgUrl" alt="" /> -->
 </div>
 <div class="container">
   <div class="desc-wrap">
@@ -9,11 +18,13 @@
     <p [innerHTML]="data.layout"></p>
   </div>
   <div class="row" *ngIf="data.lon">
-    <div class="col-7"><div class="desc-wrap">
-    <h3>{{ data.title }}</h3>
-    <span>{{ data.createdAt | date: "mediumDate" }}</span>
-    <p [innerHTML]="data.layout"></p>
-  </div></div>
+    <div class="col-7">
+      <div class="desc-wrap">
+        <h3>{{ data.title }}</h3>
+        <span>{{ data.createdAt | date: "mediumDate" }}</span>
+        <p [innerHTML]="data.layout"></p>
+      </div>
+    </div>
     <div class="col-5"></div>
   </div>
 </div>

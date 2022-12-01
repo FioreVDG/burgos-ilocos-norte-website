@@ -7,9 +7,10 @@ import { CommonModule } from '@angular/common';
 
 import { DepartmentRoutingModule } from './department-routing.module';
 import { DepartmentComponent } from './department.component';
+import { DepartmentInfoDialogComponent } from './department-info-dialog/department-info-dialog.component';
 
 @NgModule({
-  declarations: [DepartmentComponent],
+  declarations: [DepartmentComponent, DepartmentInfoDialogComponent],
   imports: [
     CommonModule,
     DepartmentRoutingModule,

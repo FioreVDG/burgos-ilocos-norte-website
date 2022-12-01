@@ -24,7 +24,7 @@
 .tbl-header {
   margin-top: 1rem;
   color: #fff;
-  background-color: #05bbe8;
+  background-color: var(--primary);
   font-weight: 600;
   padding: 1rem 0.5rem;
 }
@@ -44,7 +44,7 @@
   b {
     cursor: pointer;
     &:hover {
-      color: #05bbe8;
+      color: var(--primary);
     }
   }
 }

@@ -14,10 +14,10 @@ export class ViewAnnouncementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
+    // console.log(this.data);
 
     let split = this.data.description.split('.');
-    console.log(split);
+    // console.log(split);
     this.p = split;
   }
 }

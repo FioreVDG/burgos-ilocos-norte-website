@@ -88,7 +88,7 @@ export class AddTransparencyComponent implements OnInit {
         console.log(res);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }
@@ -140,7 +140,7 @@ export class AddTransparencyComponent implements OnInit {
         this.dialogRef.close(true);
       },
       (err) => {
-        console.log(err);
+        console.error(err);
         this.saving = false;
         this.dialogRef.close(true);
       }

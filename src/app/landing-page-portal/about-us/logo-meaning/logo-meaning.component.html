@@ -5,34 +5,54 @@
       The municipality of Burgos is significantly depicted and identified by its
       official seal.
     </p>
-    <div class="row">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 img-container">
-        <img src="../../../../assets/images/burgos-logo.png" alt="" />
+    <div class="row px-3 px-md-0 main-container">
+      <div
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-first order-lg-1 img-container"
+      >
+        <img
+          class="main-logo {{ selectedCard ? 'blur' : '' }}"
+          [src]="burgosLogo"
+          alt=""
+        />
+        <img class="shield" [src]="shield" alt="" />
+        <img class="light" [src]="light" alt="" />
+        <img class="light-house" [src]="lightHouse" alt="" />
+        <img class="mountain" [src]="mountain" alt="" />
+        <img class="sea" [src]="sea" alt="" />
       </div>
-      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 desc-container">
-        <h3>The Shield</h3>
-        <p>
-          It emphasizes that Burgos is one of the municipalities of the province
-          of Ilocos Norte and is under the guidance of the provincial
-          government.
-        </p>
-        <h3>The Lighthouse</h3>
-        <p>
-          It stands for the governing body and the different government agencies
-          stationed within the locality which oversees how the municipality is
-          managed.
-        </p>
-        <h3>The Light</h3>
-        <p>
-          It stands for the different services rendered or offered to the
-          populace.
-        </p>
-        <h3>The Mountain and Sea</h3>
-        <p>
-          They symbolize the geographical location of the municipality for
-          reason that Burgos is a coastal town and surrounded by verdant hills
-          and mountains.
-        </p>
+      <!-- LEFT SECTION -->
+      <div
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-1 order-lg-first desc-container"
+      >
+        <ng-container *ngFor="let card of cardsSectionLeft">
+          <div
+            class="clickable-card"
+            [ngClass]="{
+              selected: selectedCard && selectedCard.title === card.title
+            }"
+            (click)="onPartSelect(card)"
+          >
+            <h3 class="title">{{ card.title }}</h3>
+            <p class="body">{{ card.body.trim() }}</p>
+          </div>
+        </ng-container>
+      </div>
+      <!-- RIGHT SECTION -->
+      <div
+        class="col-xl-4 col-lg-4 col-md-12 col-sm-12 order-last order-md-1 desc-container"
+      >
+        <ng-container *ngFor="let card of cardsSectionRight">
+          <div
+            class="clickable-card"
+            [ngClass]="{
+              selected: selectedCard && selectedCard.title === card.title
+            }"
+            (click)="onPartSelect(card)"
+          >
+            <h3 class="title">{{ card.title }}</h3>
+            <p class="body">{{ card.body.trim() }}</p>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>

@@ -1,60 +1,209 @@
-#history{
-    background-image: linear-gradient(
-      90deg,
-      #05bbe842 5%,
-      #05bbe842 42%,
-      #05bbe842 100%
+#history {
+  background-image: linear-gradient(
+      360deg,
+      rgba(var(--primary-rgb), 0.83) 5%,
+      rgba(var(--primary-rgb), 0.32) 62%,
+      rgba(var(--primary-rgb), 0.14) 100%
     ),
     url("../../../../assets/images/light-hou.jpg");
   background-size: cover;
   height: 70vh;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: bottom;
   display: flex;
   position: relative;
   align-items: center;
   justify-content: center;
-  h1 {
-    color: #fff;
-    text-align: center;
-    font-weight: 700;
-    font-size: 50px;
-}}
-.container {
-  padding: 2rem 0rem;
-  h3 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: #05bbe8;
-    font-size: 20px;
-  }
-  p {
-    text-indent: 6%;
-    font-size: 15px;
-    color: #767676;
-    text-align: justify;
-    margin-bottom: 1.7rem;
-  }
+  .container {
+    position: absolute;
+    padding: 0;
+    bottom: -6%;
+    left: 32px;
 
-  ul {
-    margin-left: 6.5rem;
-    font-size: 15px;
-    color: #767676;
-  }
+    h1 {
+      color: var(--accent);
+      font-size: 96px;
 
-  li::marker {
-    color: #05bbe8;
-    font-size: 17px;
+      font-weight: 700;
+      letter-spacing: calc(1em * 0.01618);
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.08);
+      text-shadow: -3px 3px 8px rgba(var(--accent-200-rgb), 0.13333);
+    }
   }
 }
 
-@media only screen and (max-width: 600px) {
+.geography-container {
+  min-height: 100vh;
+  padding: 6rem 2rem 3rem;
+}
+
+.geography-info {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+
+  & > * {
+    word-break: break-word;
+  }
+  .geography-info-title {
+    font-size: 36px;
+    letter-spacing: calc(1em * 0.01618);
+    margin-bottom: 36px;
+    font-weight: 700;
+  }
+  .geography-info-body {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+.map-container {
+  position: relative;
+  padding: 0 3rem;
+}
+
+.index-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 24px;
+  font-size: 18px;
+  background-color: var(--primary);
+  color: var(--white);
+  box-shadow: 0px 2.1px 15.1px rgba(0, 0, 0, 0.018),
+    0px 6.9px 27.6px rgba(0, 0, 0, 0.042), 0px 31px 50px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+
+  transition: background-color 300ms cubic-bezier(0.17, 0.67, 0.21, 0.99);
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--primary-200);
+  }
+
+  &:active {
+    background-color: var(--primary-100);
+  }
+}
+
+.index-button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.statistic-card {
+  background: white;
+  margin: 16px 0;
+}
+
+.statistic-value {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: calc(1em * 0.025);
+  color: var(--primary);
+}
+
+.statistic-label {
+  display: inline-flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: calc(1em * 0.01618);
+  margin-bottom: 1.6rem;
+
+  span {
+    margin-right: 8px;
+  }
+}
+
+:host ::ng-deep {
+  & .leaflet-container {
+    background: transparent;
+  }
+
+  & .leaflet-pane {
+    z-index: 1 !important;
+  }
+
+  & .leaflet-custom-tooltip {
+    color: white;
+    box-shadow: none;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: calc(1em * 0.01618);
+    background: transparent;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .geography-info .geography-info-title {
+    font-size: 26px;
+  }
+  .geography-info .geography-info-body {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .geography-info {
+    min-height: 300px;
+  }
+  .map-container {
+    height: 50vh;
+    padding: 3rem 1rem;
+  }
+
+  #history .container h1 {
+    font-size: 64px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .geography-info {
+    min-height: 450px;
+  }
+  .geography-info .geography-info-title {
+    font-size: 20px;
+  }
+  .geography-info .geography-info-body {
+    font-size: 14px;
+  }
+
   .container {
-    width: 90%;
-    margin: auto;
-    ul {
-      margin-left: 1.5rem;
-    }
+    left: revert !important;
+  }
+
+  #history .container h1 {
+    font-size: 42px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 324px) {
+  .geography-container {
+    padding: 4rem 0.8rem 2rem;
+  }
+
+  .geography-info .geography-info-title {
+    font-size: 16px;
+  }
+
+  .container {
+    left: revert !important;
+  }
+
+  #history .container h1 {
+    font-size: 30px;
+    text-align: center;
   }
 }

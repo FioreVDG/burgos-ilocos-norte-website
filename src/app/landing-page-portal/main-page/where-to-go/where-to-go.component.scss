@@ -18,7 +18,7 @@
   }
   p {
     text-align: center;
-    color: #05bbe8;
+    color: var(--primary-300);
     font-weight: 600;
     font-size: 16px;
     margin-top: 1rem;
@@ -27,13 +27,13 @@
 .container {
   padding: 2rem 0rem;
   h3 {
-    color: #fff;
+    color: var(--white);
     margin-bottom: 0;
     font-size: 22px;
   }
   h2 {
-    color: #fff;
-    text-shadow: 1px -1px 5px rgba(0, 0, 0, 0.55);
+    color: var(--accent);
+    text-shadow: 1px -1px 5px rgba(43, 43, 43, 0.09);
   }
 }
 
@@ -47,17 +47,17 @@
 button {
   background: none;
   border-radius: 5px;
-  color: #fff;
-  border: 2px solid #fff;
+  color: var(--white);
+  border: 2px solid var(--white);
   outline: none;
   cursor: pointer;
   width: 90%;
-  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px -1px 33px -18px rgba(0, 0, 0, 0.35);
   transition: 0.2s ease-in;
   height: 3rem;
   &:hover {
-    background-color: #fff;
-    color: #05bbe8;
+    background-color: var(--white);
+    color: var(--primary);
   }
 }
 

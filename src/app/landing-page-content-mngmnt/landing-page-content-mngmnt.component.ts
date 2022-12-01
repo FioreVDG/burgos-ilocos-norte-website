@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageContentMngmntComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) {}
-
+  ///
   ngOnInit(): void {}
 
   logout() {

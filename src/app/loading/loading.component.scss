@@ -70,7 +70,7 @@ p {
   position: absolute;
   content: "";
   background-color: #3b8ea5;
-  box-shadow: inset -5px 0 #05bbe8;
+  box-shadow: inset -5px 0 var(--primary-200);
   border: 5px solid #565656;
   width: 15px;
   height: 65px;
