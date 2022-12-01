@@ -1,204 +1,204 @@
 <!-- <div class="container-fluid upper"></div> -->
-<div style="position: sticky; top: 0; background-color: #fff; z-index: 999">
-  <div class="container upper-nav">
-    <div class="row">
-      <div class="col-4">
-        <div class="row">
-          <div class="col-3 img-wrap">
-            <a class="navbar-brand" href="#">
-              <img
-                src="../../assets/images/burgos-logo.png"
-                class="img-fluid"
-                alt=""
-              />
-            </a>
-          </div>
-          <div class="col-9 text-wrapper" style="padding-left: 0">
-            <p class="sm-upper">Republic of the Philippines</p>
-            <h3>Municipality of Burgos</h3>
-            <p class="sm-upper">Ilocos Norte, Philippines</p>
-          </div>
+<!-- <div style="position: sticky; top: 0; background-color: #fff; z-index: 999"> -->
+<!-- <div class="container upper-nav">
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <div class="col-3 img-wrap">
+          <a class="navbar-brand" href="#">
+            <img
+              src="../../assets/images/burgos-logo.png"
+              class="img-fluid"
+              alt=""
+            />
+          </a>
+        </div>
+        <div class="col-9 text-wrapper" style="padding-left: 0">
+          <p class="sm-upper">Republic of the Philippines</p>
+          <h3>Municipality of Burgos</h3>
+          <p class="sm-upper">Ilocos Norte, Philippines</p>
         </div>
       </div>
-      <div class="col-4"></div>
-      <div class="col-4 icon-wrapper">
-        <i class="bi bi-facebook icon-list"></i
-        ><i class="bi bi-instagram icon-list"></i>
-        <i class="bi bi-twitter icon-list"></i>
-        <i class="bi bi-youtube icon-list"></i>
-      </div>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4 icon-wrapper">
+      <i class="bi bi-facebook icon-list"></i
+      ><i class="bi bi-instagram icon-list"></i>
+      <i class="bi bi-twitter icon-list"></i>
+      <i class="bi bi-youtube icon-list"></i>
     </div>
   </div>
-  <nav class="navbar sticky-top navbar-expand-lg nav-list">
-    <div class="container">
-      <button
-        class="navbar-toggler justify-content-end custom-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarTogglerDemo03"
-        aria-controls="navbarTogglerDemo03"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-        style="border-color: #fff"
+</div> -->
+<div
+  [class]="router.url === '/welcome' ? 'main-nav' : 'headers'"
+  [class.header]="showHeader"
+>
+  <nav class="p-0 navbar sticky-top navbar-expand-lg justify-content-between">
+    <a class="navbar-brand" href="#">
+      <img
+        [src]="
+          isMobile
+            ? '../../assets/images/logo.png'
+            : '../../assets/images/burgos-logo-desc.png'
+        "
+        alt=""
+        [width]="isMobile ? 70 : 285"
+      />
+      <!-- <span style="font-size: 32px" *ngIf="!isMobile">
+          <b style="color: #fff">Bytelogs</b><b style="color: #5e5e5e">cbms</b>
+        </span> -->
+    </a>
+    <button
+      class="navbar-toggler justify-content-end custom-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="border-color: #fff"
+    >
+      <span style="border-color: #fff" class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="nav nav-responsive collapse justify-content-end navbar-collapse"
+      id="navbarTogglerDemo03"
+    >
+      <ul
+        style="font-size: 14px"
+        class="nav nav-responsive justify-content-end"
       >
-        <span style="border-color: #fff" class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="nav nav-responsive collapse navbar-collapse"
-        id="navbarTogglerDemo03"
-      >
-        <ul class="nav nav-responsive">
-          <!-- <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+            >About</a
+          >
+          <ul class="dropdown-menu">
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="changeRoute('/about-us/history')"
+                routerLink="/about-us/history"
+                routerLinkActive="router-active"
+                >History</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="changeRoute('/about-us/logo-meaning')"
+                routerLink="/about-us/logo-meaning"
+                routerLinkActive="router-active"
+                >Meaning of logo</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="changeRoute('about-us/geographic-info')"
+                routerLink="/about-us/geographic-info"
+                routerLinkActive="router-active"
+                >Geographical Information</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="changeRoute('about-us/mission-vision')"
+                routerLink="/about-us/mission-vision"
+                routerLinkActive="router-active"
+                >Our Vision/Our Mission</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                (click)="changeRoute('/department')"
+                routerLink="/department"
+                routerLinkActive="router-active"
+                >Departments</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
           <a
             class="nav-link"
-            (click)="changeRoute('/welcome')"
-            routerLink="/welcome"
-            >Home</a
+            (click)="changeRoute('/news')"
+            routerLink="/news"
+            routerLinkActive="router-active"
+            >News</a
           >
-        </li> -->
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              data-bs-toggle="dropdown"
-              >About</a
-            >
-            <ul class="dropdown-menu">
-              <li>
-                <a
-                  class="dropdown-item"
-                  (click)="changeRoute('/about-us/history')"
-                  routerLink="/about-us/history"
-                  routerLinkActive="router-active"
-                  >History</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  (click)="changeRoute('/about-us/logo-meaning')"
-                  routerLink="/about-us/logo-meaning"
-                  routerLinkActive="router-active"
-                  >Meaning of logo</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  (click)="changeRoute('about-us/geographic-info')"
-                  routerLink="/about-us/geographic-info"
-                  routerLinkActive="router-active"
-                  >Geographical Information</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dropdown-item"
-                  (click)="changeRoute('about-us/mission-vision')"
-                  routerLink="/about-us/mission-vision"
-                  routerLinkActive="router-active"
-                  >Mission/Vision</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  (click)="changeRoute('/department')"
-                  routerLink="/department"
-                  routerLinkActive="router-active"
-                  >Departments</a
-                >
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/news')"
-              routerLink="/news"
-              routerLinkActive="router-active"
-              >News</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/tourism')"
-              routerLink="/tourism"
-              routerLinkActive="router-active"
-              >Tourism</a
-            >
-          </li>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/tourism')"
+            routerLink="/tourism"
+            routerLinkActive="router-active"
+            >Tourism</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/bids-awards')"
+            routerLink="/bids-awards"
+            routerLinkActive="router-active"
+            >Bids & Awards</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/transparency')"
+            routerLink="/transparency"
+            routerLinkActive="router-active"
+            >Transparency</a
+          >
+        </li>
 
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/services')"
-              routerLink="/services"
-              routerLinkActive="router-active"
-              >Services</a
-            >
-          </li>
-          <!-- <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/citizen-charter')"
-              routerLink="/citizen-charter"
-              routerLinkActive="router-active"
-              >Citizen's Charter</a
-            >
-          </li> -->
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/legislative')"
-              routerLink="/legislative"
-              routerLinkActive="router-active"
-              >Issuances</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/career')"
-              routerLink="/career"
-              routerLinkActive="router-active"
-              >Career</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/transparency')"
-              routerLink="/transparency"
-              routerLinkActive="router-active"
-              >Transparency</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              (click)="changeRoute('/bids-awards')"
-              routerLink="/bids-awards"
-              routerLinkActive="router-active"
-              >Bids & Awards</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              style="color: rgb(222, 98, 98)"
-              (click)="changeRoute('/emergency-hotline')"
-              routerLink="/emergency-hotline"
-              routerLinkActive="router-active"
-              >Emergency Hotline</a
-            >
-          </li>
-        </ul>
-      </div>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/legislative')"
+            routerLink="/legislative"
+            routerLinkActive="router-active"
+            >Issuances</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/services')"
+            routerLink="/services"
+            routerLinkActive="router-active"
+            >Services</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/career')"
+            routerLink="/career"
+            routerLinkActive="router-active"
+            >Career</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            (click)="changeRoute('/emergency-hotline')"
+            routerLink="/emergency-hotline"
+            routerLinkActive="router-active"
+            >Hotlines</a
+          >
+        </li>
+      </ul>
     </div>
   </nav>
-  <div class="progress-container" *ngIf="router.url === '/welcome'">
-    <div class="progress-bar" [style]="'width:' + width + '%'" id="myBar"></div>
-  </div>
 </div>
+<div class="progress-container" *ngIf="router.url === '/welcome'">
+  <div class="progress-bar" [style]="'width:' + width + '%'" id="myBar"></div>
+</div>
+<!-- </div> -->

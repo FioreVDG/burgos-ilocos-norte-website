@@ -1,3 +1,6 @@
+import { QueryParams } from './../../models/queryparams.interface';
+import { PageEvent } from '@angular/material/paginator';
+import { FileViewerComponent } from './../../shared/modals/file-viewer/file-viewer.component';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { ViewTransparencyComponent } from './view-transparency/view-transparency.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +16,21 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class TransparencyComponent implements OnInit {
   transparencies: any = [];
   loading: boolean = false;
-  newArr: any = [];
+  searching: boolean = false;
+  pagination = {
+    pageSize: 10,
+    pageNumber: 1,
+    totalDocuments: 0,
+  };
+  types: any = [
+    { type: 'All', selected: true },
+    { type: 'Annual Budget', selected: false },
+    { type: 'Full Disclosure Policy', selected: false },
+    { type: 'Annual Investment Plan', selected: false },
+    { type: 'Programs and Projects', selected: false },
+    { type: 'Awards and Recognition', selected: false },
+    { type: 'Annual Procurement Plan', selected: false },
+  ];
   constructor(
     private transparency: TransparencyService,
     private dialog: MatDialog,
@@ -22,16 +39,91 @@ export class TransparencyComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.transparency.getByType().subscribe((res: any) => {
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.transparency.getAll({}).subscribe((res: any) => {
       console.log(res);
-      this.transparencies = res.env.transparency;
-      this.transparencies.forEach((el: any) => {
-        el.content.forEach(async (con: any) => {
-          con.fileUrl = await this.getTempLink(con?.file?.path_display);
+      this.transparencies = res.env.transparencies;
+      this.pagination.totalDocuments = res.total_docs;
+      this.transparencies.forEach(async (el: any) => {
+        el.selected = false;
+        el.files.forEach(async (f: any) => {
+          f.url = await this.getTempLink(f.file.path_display);
         });
       });
-      console.log(this.transparencies);
       this.loading = false;
+    });
+  }
+
+  findType(type: string) {
+    console.log(type);
+    this.searching = true;
+    for (let i of this.types) {
+      i.selected = false;
+    }
+    let query;
+    if (type === 'All')
+      query = {
+        find: [],
+        limit: this.pagination.pageSize,
+        page: this.pagination.pageNumber,
+      };
+    else
+      query = {
+        find: [
+          {
+            field: 'transparencyType',
+            operator: '=',
+            value: type,
+          },
+        ],
+        limit: this.pagination.pageSize,
+        page: this.pagination.pageNumber,
+      };
+
+    let find: any = this.types.find((o: any) => o.type === type);
+    if (find) find.selected = true;
+
+    this.transparency.getAll(query).subscribe((res: any) => {
+      this.transparencies = res.env.transparencies;
+      this.pagination.totalDocuments = res.total_docs;
+      this.transparencies.forEach((el: any) => {
+        el.files.forEach(async (e: any) => {
+          e.url = await this.getTempLink(e.file.path_display);
+        });
+      });
+      this.searching = false;
+    });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pagination.pageSize = event.pageSize;
+    this.pagination.pageNumber = event.pageIndex + 1;
+
+    let findSelected = this.types.find((o: any) => o.selected === true);
+    const query: QueryParams = {
+      find: [
+        {
+          field: 'transparencyType',
+          operator: '=',
+          value: findSelected.type,
+        },
+      ],
+    };
+
+    this.searching = true;
+    this.transparency.getAll(query).subscribe((res: any) => {
+      console.log(res);
+      this.transparencies = res.env.transparencies;
+      this.pagination.totalDocuments = res.total_docs;
+      this.transparencies.forEach((el: any) => {
+        el.files.forEach(async (f: any) => {
+          f.url = await this.getTempLink(f.file.path_display);
+        });
+      });
+      this.searching = false;
     });
   }
 
@@ -48,5 +140,13 @@ export class TransparencyComponent implements OnInit {
     console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
+  }
+
+  openSelectedFile(url: any, ext: any) {
+    this.dialog.open(FileViewerComponent, {
+      width: '100%',
+      height: '100%',
+      data: { url: url, ext: ext },
+    });
   }
 }

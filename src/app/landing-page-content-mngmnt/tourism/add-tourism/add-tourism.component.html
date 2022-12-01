@@ -56,12 +56,8 @@
               matInput
               formControlName="longitude"
               placeholder="Enter Location"
-              required
-            /><mat-error
-              *ngIf="touristForm.get('longitude')?.hasError('required')"
-            >
-              Please enter a Longitude
-            </mat-error>
+              required="false"
+            />
           </mat-form-field>
           <mat-form-field
             class="col-6"
@@ -74,12 +70,8 @@
               matInput
               formControlName="latitude"
               placeholder="Enter Location"
-              required
-            /><mat-error
-              *ngIf="touristForm.get('latitude')?.hasError('required')"
-            >
-              Please enter a Latitude
-            </mat-error>
+              required="false"
+            />
           </mat-form-field>
           <mat-form-field style="display: block" appearance="fill">
             <mat-label>Type</mat-label>
@@ -169,11 +161,11 @@
         </div>
       </div>
 
-      <div style="padding: 1rem">
+      <!-- <div style="padding: 1rem">
         <button (click)="addPhoto()" mat-flat-button class="primary">
           Add Images &nbsp;<mat-icon>add_a_photo</mat-icon>
         </button>
-      </div>
+      </div> -->
 
       <div style="padding: 1rem">
         <button mat-flat-button class="primary" matStepperNext>

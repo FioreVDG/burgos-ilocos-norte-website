@@ -29,92 +29,16 @@
   <app-main></app-main>
 </section>
 
-<!-- <section id="about-us" class="about-us">
-  <div class="container">
-    <div class="one">
-      <h1>About us</h1>
-    </div>
-    <div class="row row-about">
-      <div
-        class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container right"
-      >
-        <img
-          src="../../../assets/images/undraw_browsing_online_re_umsa.svg"
-          alt=""
-        />
-      </div>
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 mission-desc">
-        <h3>Mission</h3>
-        <p>
-          Burgos shall improve the quality of life of every Burgoseño through:
-        </p>
-        <ul *ngFor="let item of missions">
-          <li>{{ item }}</li>
-        </ul>
-      </div>
-    </div>
-    <div class="row row-about">
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 vision-desc">
-        <h3>Vision</h3>
-        <p>
-          The renewable energy and tourism capital of the North with balanced
-          and climate-resilient community under the stewardship of firm and
-          committed leaders inhabited by empowered and God-fearing citizenry.
-        </p>
-      </div>
-      <div class="col-lg-6 col-xl-6 col-sm-12 col-md-12 about-img-container">
-        <img src="../../../assets/images/undraw_pitching_re_fpgk.svg" alt="" />
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <section id="news" class="news">
   <app-news></app-news>
 </section>
 
+<section>
+  <app-info></app-info>
+</section>
+
 <section class="mayor-bg">
   <app-mayor></app-mayor>
-  <!-- <div class="container">
-    <owl-carousel-o [options]="customOptions">
-    <ng-container carouselSlide *ngFor="let item of mayorConf">
-      <div class="one">
-        <h1>{{ item.section }}</h1>
-      </div>
-      <div class="mayor-main">
-        <div class="row">
-          <div class="col-lg-7 col-xl-7 col-sm-12 col-md-12 text-wrapper">
-            <div class="card card-main-upper">
-              <div class="card-body img-card">
-                <img [src]="item.img" class="img-fluid mayor-img" alt="" />
-              </div>
-            </div>
-            <p class="mayor-msg" *ngFor="let msg of item.messages">
-              {{ msg }}
-            </p>
-            <div style="margin-top: 0.7rem" class="mayor-info">
-              <p>
-                <b>{{ item.name }}</b>
-              </p>
-            </div>
-            <div class="mayor-info">
-              <p style="font-size: 12px; color: #6f6f6f">
-                {{ item.position }}
-              </p>
-            </div>
-          </div>
-          <div class="col-lg-5 col-xl-5 col-sm-12 col-md-12">
-            <div class="card card-main">
-              <div class="card-body img-card">
-                <img [src]="item.img" class="img-fluid mayor-img" alt="" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-    </owl-carousel-o>
-  </div> -->
 </section>
 
 <!-- <section id="announcement" class="announcement">

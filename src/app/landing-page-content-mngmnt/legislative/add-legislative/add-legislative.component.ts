@@ -20,15 +20,14 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 })
 export class AddLegislativeComponent implements OnInit {
   isLinear = true;
-  acceptedDocs: string = '.png, .jpeg, .jpg, .pdf';
-  allowedFileTypes = ['png', 'jpeg', 'jpg', 'pdf'];
+  acceptedDocs: string = '.pdf';
+  allowedFileTypes = ['pdf'];
   imageFile: File | null;
   imageB64: string = '';
-  types = ['Internal Procedure', 'Ordinance', 'Resolution'];
+  types = ['Ordinance', 'Resolution', 'Executive Order'];
 
   legislativeForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
     legislativeType: new FormControl('', [Validators.required]),
   });
 
@@ -80,9 +79,6 @@ export class AddLegislativeComponent implements OnInit {
     console.log(this.data);
     if (this.data) {
       this.legislativeForm.controls['title'].setValue(this.data.title);
-      this.legislativeForm.controls['description'].setValue(
-        this.data.description
-      );
       this.legislativeForm.controls['legislativeType'].setValue(
         this.data.legislativeType
       );
@@ -129,7 +125,7 @@ export class AddLegislativeComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          console.log(fileType);
+          console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');

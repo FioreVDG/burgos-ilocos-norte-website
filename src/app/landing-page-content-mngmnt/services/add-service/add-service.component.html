@@ -1,4 +1,4 @@
-<h3 mat-dialog-title>Add Service</h3>
+<h3 mat-dialog-title>{{ data ? "Update Service" : "Add Service" }}</h3>
 <mat-icon (click)="dialogRef.close()" class="close-btn" color="warn"
   >close</mat-icon
 >
@@ -93,7 +93,12 @@
               </div>
 
               <div class="img-container">
-                <img *ngIf="imageB64" [src]="imageB64" alt="" />
+                <img
+                  *ngIf="imageB64"
+                  src="../../../../assets/images/pdf-file (1).png"
+                  alt=""
+                />
+                <p>{{ imageFile?.name }}</p>
                 <p *ngIf="!imageB64">No Image uploaded</p>
               </div>
             </div>

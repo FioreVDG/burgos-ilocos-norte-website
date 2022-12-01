@@ -38,6 +38,9 @@ export class ServicesComponent implements OnInit {
         console.log(res);
         this.services = res.env.services;
         this.pagination.totalDocuments = res.total_docs;
+        // this.services.forEach(async(el:any)=>{
+        //   el.imgUrl = await this.getTempLink(el.file.path_display);
+        // })
         this.loading = false;
       },
       (err) => {
@@ -69,7 +72,11 @@ export class ServicesComponent implements OnInit {
 
   addService() {
     this.dialog
-      .open(AddServiceComponent, { width: 'auto', height: 'auto' })
+      .open(AddServiceComponent, {
+        width: 'auto',
+        height: 'auto',
+        disableClose: true,
+      })
       .afterClosed()
       .subscribe((res: any) => {
         if (res) this.fetchData();
@@ -112,5 +119,11 @@ export class ServicesComponent implements OnInit {
     this.sb.open(message, action, {
       duration: 1500,
     });
+  }
+
+  async getTempLink(data: any) {
+    console.log(data);
+    const response = await this.dbx.getTempLink(data).toPromise();
+    return response.result.link;
   }
 }

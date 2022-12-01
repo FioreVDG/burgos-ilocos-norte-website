@@ -25,6 +25,18 @@ export class AddCareerComponent implements OnInit {
     eligibility: new FormControl('', [Validators.required]),
     competency: new FormControl('', [Validators.required]),
   });
+  forms = [
+    { fcname: 'title' },
+    { fcname: 'payGrade' },
+    { fcname: 'department' },
+    { fcname: 'monthlySalary' },
+    { fcname: 'education' },
+    { fcname: 'training' },
+    { fcname: 'experience' },
+    { fcname: 'eligibility' },
+    { fcname: 'competency' },
+  ];
+
   saving: boolean = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,7 +45,13 @@ export class AddCareerComponent implements OnInit {
     private career: CareerService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.data) {
+      this.forms.forEach((el: any) => {
+        this.careerForm.controls[el.fcname].setValue(this.data[el.fcname]);
+      });
+    }
+  }
 
   createCareer(career: any) {
     this.saving = true;

@@ -26,18 +26,20 @@ export class AddBidsComponent implements OnInit {
     id: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
+    bidStatus: new FormControl(''),
   });
   types = [
     'Invitation to Bid',
     'Request for Quotation',
     'Notice of Award',
-    'Notice to proceed',
+    'Notice to Proceed',
   ];
-
+  bidStatus = ['Close for bidding', 'Open for bidding'];
   files: Array<any> = [];
   filesArr: Array<any> = [];
+  filesArrCopy: Array<any> = [];
   loading: boolean = false;
-
+  hasChanges: boolean = false;
   bidImageForm: FormGroup = this.fb.group({});
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -52,19 +54,21 @@ export class AddBidsComponent implements OnInit {
     let temp: any = [];
     if (this.data) {
       this.loading = true;
+      this.filesArrCopy = this.data.files;
+      this.files = this.data.files;
       this.bidForm.controls['id'].setValue(this.data.id);
       this.bidForm.controls['description'].setValue(this.data.description);
       this.bidForm.controls['type'].setValue(this.data.type);
+      this.bidForm.controls['bidStatus'].setValue(this.data.bidStatus);
 
       if (this.data.files.length) {
         for (let i of this.data.files) {
+          i.rootFile = true;
           this.dropbox
-            .getTempLink(i.file.path_display)
+            .getTempLink(i.file?.path_display)
             .subscribe((res: any) => {
               temp.push({ link: res.result });
-              if (temp.length === this.data.files.length) {
-                this.loading = false;
-              }
+              if (temp.length === this.data.files.length) this.loading = false;
             });
         }
       }
@@ -74,13 +78,39 @@ export class AddBidsComponent implements OnInit {
   addFile() {
     let data: any;
     this.data ? (data = this.data.files) : null;
+    let didChange: boolean = false;
     this.dialog
-      .open(AddFileComponent, { width: '100%', height: 'auto', data: data })
+      .open(AddFileComponent, {
+        width: '100%',
+        height: 'auto',
+        data: data,
+      })
       .afterClosed()
       .subscribe((res: any) => {
-        console.log(res);
-        this.files = res;
+        if (res) {
+          this.files = res;
+          console.log(res);
+          let findChanges: any = this.files.find(
+            (o: any) => o.rootFile !== true
+          );
+          didChange = this.compareArr(this.filesArrCopy, this.files);
+          console.log(findChanges, didChange);
+
+          if (findChanges || didChange) {
+            this.hasChanges = true;
+            this.bidForm.markAsDirty();
+          }
+        }
       });
+  }
+
+  compareArr(arrCopy: any = [], arrExt: any = []) {
+    if (
+      arrCopy.length === arrExt.length &&
+      arrCopy.every((val: any, i: any) => val === arrCopy[i])
+    )
+      return false;
+    else return true;
   }
 
   createBid(bid: any) {
@@ -111,12 +141,18 @@ export class AddBidsComponent implements OnInit {
   }
 
   save() {
+    this.saving = true;
     const bid = this.bidForm.getRawValue();
     const path = '/burgos-ilocosnorte/bids/';
     const dateNow = Date.now();
     console.log(bid);
     this.saving = true;
-    if (this.files.length) {
+    const toSave: any = {
+      ...bid,
+      files: [],
+    };
+    console.log(toSave.files.length, this.files.length);
+    if (this.files.length && !this.data) {
       console.log(this.files);
       this.files.forEach((el: any) => {
         console.log(el.imgFile);
@@ -127,24 +163,56 @@ export class AddBidsComponent implements OnInit {
           .uploadFile(path, fileName, el.imgFile)
           .subscribe((res: any) => {
             console.log(res);
-            delete el.imgFile;
-            delete el.file;
-            el.file = res.result;
-            console.log(this.filesArr);
+            toSave.files.push({ title: el.title, file: res.result });
+            if (this.files.length === toSave.files.length) {
+              console.log(toSave);
+              this.createBid(toSave);
+            }
           });
       });
+    }
+    if (this.data && this.hasChanges) {
+      let fileArrCopy: any = [];
+      fileArrCopy = this.files;
+      console.log(fileArrCopy);
+      let filterNewFile: any = this.files.filter(
+        (f: any) => f.rootFile !== true
+      );
+      this.files = this.files.filter((o: any) => o.rootFile === true);
+      console.log(filterNewFile);
+      console.log(this.files);
+      if (filterNewFile.length) {
+        filterNewFile.forEach((el: any) => {
+          let fileType = el.imgFile.type.split('/')[1];
+          let name = el.imgFile.name.split('.')[0];
+          const fileName = `${name}-${dateNow}.${fileType}`;
+          let tempArr: any = [];
+          this.dropbox
+            .uploadFile(path, fileName, el.imgFile)
+            .subscribe((res: any) => {
+              console.log(res);
+              this.files.push({ title: el.title, file: res.result });
+              tempArr.push(el.title);
+              console.log(this.files);
+              if (tempArr.length === filterNewFile.length) {
+                toSave.files = this.files;
+                console.log(toSave);
+                this.updateBid(toSave, this.data._id);
+              }
+            });
+        });
+      } else {
+        toSave.files = this.files;
+        this.updateBid(toSave, this.data._id);
+      }
+    }
 
-      setTimeout(() => {
-        const toSave = { ...bid, files: this.files };
-        console.log(toSave);
-        if (this.data) {
-        } else this.createBid(toSave);
-      }, 3000);
-    } else {
-      const toSave = { ...bid, files: this.files };
-      console.log(toSave);
-      if (this.data) this.updateBid(toSave, this.data._id);
-      else this.createBid(toSave);
+    if (this.data && !this.hasChanges) {
+      const toSave: any = {
+        ...bid,
+        files: this.files,
+      };
+      this.updateBid(toSave, this.data._id);
     }
   }
 }

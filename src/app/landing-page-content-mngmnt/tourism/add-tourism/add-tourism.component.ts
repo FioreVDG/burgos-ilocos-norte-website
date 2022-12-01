@@ -33,8 +33,8 @@ export class AddTourismComponent implements OnInit {
   touristForm: FormGroup = this.fb.group({
     title: new FormControl('', [Validators.required]),
     location: new FormControl('', [Validators.required]),
-    longitude: new FormControl('', [Validators.required]),
-    latitude: new FormControl('', [Validators.required]),
+    longitude: new FormControl(''),
+    latitude: new FormControl(''),
     type: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
   });
@@ -90,8 +90,13 @@ export class AddTourismComponent implements OnInit {
       this.touristForm.controls['title'].setValue(this.data.title);
       this.touristForm.controls['description'].setValue(this.data.description);
       this.touristForm.controls['location'].setValue(this.data.location);
+      this.touristForm.controls['longitude'].setValue(this.data.longitude);
+      this.touristForm.controls['latitude'].setValue(this.data.latitude);
       this.touristForm.controls['type'].setValue(this.data.type);
 
+      this.touristImageForm.controls['image'].setValue(this.data.image);
+      console.log(this.touristForm);
+      console.log(this.touristImageForm);
       if (this.data.image)
         this.dropbox
           .getTempLink(this.data.image.path_display)
@@ -139,6 +144,8 @@ export class AddTourismComponent implements OnInit {
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');
+
+          console.log(this.imageFile);
         });
       } else alert('Not a file');
     }
@@ -179,11 +186,11 @@ export class AddTourismComponent implements OnInit {
 
   save() {
     this.saving = true;
-    if (this.imageFile) {
+    if (this.touristImageForm.value.image !== '' || this.imageFile) {
       const path = '/burgos-ilocosnorte/tourism/';
-      const fileType = this.imageFile.type.split('/')[1];
+      const fileType = this.imageFile?.type.split('/')[1];
       const dateNow = Date.now();
-      const name = this.imageFile.name.split('.')[0];
+      const name = this.imageFile?.name.split('.')[0];
       const fileName = `${name}-${dateNow}.${fileType}`;
 
       this.dropbox
@@ -214,13 +221,15 @@ export class AddTourismComponent implements OnInit {
                     img: res.result,
                   });
                   if (this.subImages.length === touristData.subImages.length) {
+                    console.log(touristData);
                     if (this.data) this.updateTouristSpot(touristData);
                     else this.createTouristSpot(touristData);
                   }
                 });
             });
           }
-
+          if (this.data) this.updateTouristSpot(touristData);
+          else this.createTouristSpot(touristData);
           console.log(touristData);
         });
     } else {

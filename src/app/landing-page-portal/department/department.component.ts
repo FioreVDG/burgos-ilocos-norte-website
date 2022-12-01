@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./department.component.scss'],
 })
 export class DepartmentComponent implements OnInit {
+  search: string = '';
   departments: Array<any> = [];
   loading: boolean = false;
   constructor(private department: DepartmentService) {}
@@ -14,13 +15,11 @@ export class DepartmentComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.department.getAll({}).subscribe((res: any) => {
-      console.log(res);
       this.departments = res.env.departments;
       this.departments.forEach(async (el: any) => {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
       this.loading = false;
-      console.log(this.departments);
     });
   }
 
@@ -29,4 +28,6 @@ export class DepartmentComponent implements OnInit {
     dom.innerHTML = str;
     return dom.textContent || dom.innerText || '';
   }
+
+  onSearch(){}
 }

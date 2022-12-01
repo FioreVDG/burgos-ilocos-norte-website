@@ -1,148 +1,266 @@
-.upper {
-  height: 0.3rem;
-  background: #05bbe8;
-  z-index: 9999;
-  position: absolute;
-}
-
-.navbar {
-  top: 10%;
-}
-
-.upper-nav {
-  .text-wrapper {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    .sm-upper {
-      margin: 0;
-      font-weight: 300;
-      color: #565656;
-      font-size: 13px;
-    }
-    h3 {
-      margin: 0;
-      font-weight: 700;
-      font-size: 20px;
-      color: #565656;
-    }
-  }
-  .icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    .icon-list {
-      font-size: 23px;
-      cursor: pointer;
-      margin-left: 0.7rem;
-      color: #565656;
-    }
-
-    .icon-list:hover {
-      color: #05bbe8;
-      transition: 0.1s ease-in;
-    }
-  }
-}
-
-.img-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 0;
-  .navbar-brand {
-    margin-right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    img {
-      width: 72%;
-      display: block;
-      margin: auto;
-    }
-  }
-}
-
-.nav-list {
-  background-color: #05bbe8;
-  color: #fff;
-
+.main-nav {
+  // padding: 0.5rem 3.8rem;
   background-image: linear-gradient(
-      90deg,
-      rgba(68, 189, 230, 0.511) 0%,
-      #05bbe8b8 100%
-    ),
-    url("./../../assets/images/mosaic.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover;
+    180deg,
+    rgba(0, 0, 0, 0.751) 0%,
+    #00000019 70%,
+    #00000000 100%
+  );
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  padding: 0;
   .nav-item {
     .nav-link {
       color: #fff;
-      font-weight: 500;
-    }
-    .nav-link:hover {
-      background-color: #1f91ae;
-      font-weight: 500;
-      border-radius: 5px;
+      font-weight: 600;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
     }
   }
+  padding: 0rem 1rem;
 }
-
-.dropdown-menu {
-  background-color: #05bbe88b;
-  color: #fff;
-
+.headers {
   background-image: linear-gradient(
       90deg,
-      rgba(68, 189, 230, 0.511) 0%,
+      rgba(68, 190, 230, 0.747) 0%,
       #05bbe8b8 100%
     ),
     url("./../../assets/images/mosaic.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center center;
-  background-size: cover;
-
-  .dropdown-item {
-    padding: 0.6rem 0.5rem;
-    color: #fff;
-  }
-  .dropdown-item:hover {
-    background-color: #1f91ae;
-  }
-}
-
-.progress-container {
-  width: 100%;
-  height: 9px;
-  background: rgba(204, 204, 204, 0.58);
   position: sticky;
-  top: 17%;
-  z-index: 9999;
+  top: 0;
+  z-index: 99;
+  .navbar {
+    padding: 0rem 1rem;
+  }
+  .nav-item {
+    .nav-link {
+      color: #fff;
+      font-weight: 600;
+      text-shadow: none;
+    }
+  }
+  padding: 0rem 1rem;
 }
+.header {
+  background-image: linear-gradient(
+    90deg,
+    rgba(68, 190, 230, 0.912) 0%,
+    #05bbe8e6 100%
+  );
+  .navbar {
+    padding: 0rem 1rem;
+  }
+  .nav-item {
+    .nav-link {
+      color: #fff;
+      font-weight: 600;
+      text-shadow: none;
+    }
+  }
+}
+// .main-nav:after {
+//   z-index: 777;
+//   content: "";
+//   position: absolute;
+//   background-image: linear-gradient(
+//     90deg,
+//     rgba(0, 0, 0, 0.1) 5%,
+//     rgba(0, 0, 0, 0.1) 42%,
+//     rgba(0, 0, 0, 0.1) 100%
+//   );
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+// }
+// .navigation {
+//   width: 100%;
+//   position: fixed;
+//   z-index: 99999;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   transition: all 0.2s ease-in;
+//   .nav-item {
+//     // margin: 0rem 0.5rem;
+//   }
+// }
+// .logos {
+//   height: 32px;
+// }
+// .header {
+//   width: 100%;
+//   margin: auto;
+//   position: fixed;
+//   z-index: 99999;
+//   left: 0;
+//   right: 0;
+//   top: 0;
+//   // background-color: rgba(255, 255, 255, 0.574);
+//   background: rgb(19, 7, 99);
+//   transition: background-color 100ms ease-out;
+//   color: #5e5e5e;
+//   background: linear-gradient(
+//     90deg,
+//     rgba(19, 7, 99, 0.935) 0%,
+//     rgba(12, 4, 57, 0.939) 100%
+//   );
 
-.progress-bar {
-  height: 8px;
-  background: #05bbe8;
-  width: 0%;
-}
+// .navbar-brand {
+// span {
+//   color: #5e5e5e;
+// }
+// }
+// .nav-item {
+//   color: #5e5e5e;
+// }
+// .nav-link {
+//   color: #5e5e5e;
+// }
+// }
+// .upper {
+//   height: 0.3rem;
+//   background: #05bbe8;
+//   z-index: 9999;
+//   position: absolute;
+// }
+
+// .navbar {
+//   top: 10%;
+// }
+
+// .upper-nav {
+//   .text-wrapper {
+//     display: flex;
+//     align-items: flex-start;
+//     justify-content: center;
+//     flex-direction: column;
+//     .sm-upper {
+//       margin: 0;
+//       font-weight: 300;
+//       color: #565656;
+//       font-size: 11.5px;
+//       line-height: 0.7rem;
+//     }
+//     h3 {
+//       margin: 0;
+//       font-weight: 700;
+//       font-size: 15px;
+//       color: #565656;
+//     }
+//   }
+//   .icon-wrapper {
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-end;
+
+//     .icon-list {
+//       font-size: 23px;
+//       cursor: pointer;
+//       margin-left: 0.7rem;
+//       color: #565656;
+//     }
+
+//     .icon-list:hover {
+//       color: #05bbe8;
+//       transition: 0.1s ease-in;
+//     }
+//   }
+// }
+
+// .img-wrap {
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-end;
+//   padding-right: 0;
+//   .navbar-brand {
+//     margin-right: 0;
+//     display: flex;
+//     align-items: center;
+//     justify-content: flex-start;
+//     img {
+//       width: 60%;
+//       display: block;
+//       margin: auto;
+//     }
+//   }
+// }
+
+// .nav-list {
+//   background-color: #05bbe8;
+//   color: #fff;
+
+//   background-image: linear-gradient(
+//       90deg,
+//       rgba(68, 189, 230, 0.511) 0%,
+//       #05bbe8b8 100%
+//     ),
+//     url("./../../assets/images/mosaic.jpg");
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+//   background-position: center center;
+//   background-size: cover;
+//   .nav-item {
+//     .nav-link {
+//       color: #fff;
+//       font-weight: 500;
+//     }
+//     .nav-link:hover {
+//       background-color: #1f91ae;
+//       font-weight: 500;
+//       border-radius: 5px;
+//     }
+//   }
+// }
+
+// .dropdown-menu {
+//   background-color: #05bbe88b;
+//   color: #fff;
+
+//   background-image: linear-gradient(
+//       90deg,
+//       rgba(68, 189, 230, 0.511) 0%,
+//       #05bbe8b8 100%
+//     ),
+//     url("./../../assets/images/mosaic.jpg");
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+//   background-position: center center;
+//   background-size: cover;
+
+//   .dropdown-item {
+//     padding: 0.6rem 0.5rem;
+//     color: #fff;
+//   }
+//   .dropdown-item:hover {
+//     background-color: #1f91ae;
+//   }
+// }
+
+// .progress-container {
+//   width: 100%;
+//   height: 5px;
+//   background: rgba(204, 204, 204, 0.58);
+//   position: sticky;
+//   top: 17%;
+//   z-index: 9999;
+// }
+
+// .progress-bar {
+//   height: 5px;
+//   background: #05bbe8;
+//   width: 0%;
+// }
 
 @media only screen and (max-width: 600px) {
-  .nav {
-    flex-direction: column;
+  .main-nav {
+    padding: 0;
+    padding: 0rem 1rem;
   }
-  .upper-nav {
-    display: none;
-  }
-  .navbar {
-    top: 0%;
-  }
-  .progress-container {
-    top: 8.5%;
+  .header {
+    padding: 0;
+    padding: 0rem 1rem;
   }
 } /* Set the border color */
 

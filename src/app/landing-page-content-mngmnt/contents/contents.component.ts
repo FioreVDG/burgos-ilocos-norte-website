@@ -160,7 +160,10 @@ export class ContentsComponent implements OnInit {
     let newLink = split[0] + `/embed/` + split[1];
     let split2 = newLink.split('/watch');
     let finalLink = split2[0] + split2[1];
-    return finalLink + '?autoplay=1&controls=0&showinfo=0&muted=1';
+    return (
+      finalLink +
+      '?rel=0&autohide=1&autoplay=1&controls=0&showinfo=0&muted=1&modestbranding=1'
+    );
   }
 
   secure(url: string) {

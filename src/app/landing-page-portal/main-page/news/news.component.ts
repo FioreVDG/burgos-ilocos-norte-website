@@ -34,7 +34,7 @@ export class NewsComponent implements OnInit {
       this.newsArr = res.env.news;
       this.newsArr.forEach(async (el: any) => {
         el.imgUrl = await this.getTempLink(el?.image?.path_display);
-        el.layout = await this.stringToHTMLconverter(el.description);
+        el.layout = await this.stringToHTMLconverter(el.description);  
       });
       this.featuredNews = this.newsArr.find((o: any) => o.isPinned === true);
       this.featuredImage = await this.getTempLink(
@@ -48,9 +48,6 @@ export class NewsComponent implements OnInit {
         this.newsArr.length = 4;
       }
       this.loading = false;
-      console.log(this.featuredNews);
-      console.log(this.featuredImage);
-      console.log(this.newsArr);
     });
   }
 
@@ -66,7 +63,6 @@ export class NewsComponent implements OnInit {
   }
 
   showMore(data: any) {
-    console.log(data);
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',

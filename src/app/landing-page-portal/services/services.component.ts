@@ -19,6 +19,7 @@ export class ServicesComponent implements OnInit {
   filteredOptions: Observable<any[]>;
   search: string = '';
   searching: boolean = false;
+  activeService: any;
 
   constructor(
     private service: ServiceService,
@@ -34,15 +35,27 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.service.getAll({}).subscribe((res: any) => {
-      console.log(res);
       this.services = res.env.services;
-      console.log(this.services);
       this.loading = false;
       this.services.forEach(async (el: any) => {
+        el.selected = false;
         el.layout = await this.stringToHTMLconverter(el.description);
         el.tempFile = await this.getTempLink(el?.file?.path_display);
       });
+      this.activeService = res.env.services[0];
+      this.activeService.selected = true;
     });
+  }
+
+  onSelect(value: string) {
+    for (let i of this.services) {
+      i.selected = false;
+    }
+    let findActive: any = this.services.find((o: any) => o.title === value);
+    if (findActive) {
+      this.activeService = findActive;
+      findActive.selected = true;
+    }
   }
 
   _filter(value: any) {
@@ -53,7 +66,6 @@ export class ServicesComponent implements OnInit {
   }
 
   async getTempLink(data: any) {
-    console.log(data);
     const response = await this.dbx.getTempLink(data).toPromise();
     return response.result.link;
   }
@@ -66,7 +78,6 @@ export class ServicesComponent implements OnInit {
   }
 
   openFile(url: string, ext: any) {
-    console.log(url);
     this.dialog.open(FileViewerComponent, {
       height: '90%',
       width: '100%',
@@ -75,7 +86,6 @@ export class ServicesComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.search);
     let query;
     if (this.myControl.value === '') query = { find: [] };
     else
@@ -85,7 +95,6 @@ export class ServicesComponent implements OnInit {
     this.searching = true;
     this.service.getAll(query).subscribe((res: any) => {
       this.services = res.env.services;
-      console.log(this.services);
       this.services.forEach(async (el: any) => {
         el.layout = await this.stringToHTMLconverter(el.description);
         el.tempFile = await this.getTempLink(el?.file?.path_display);

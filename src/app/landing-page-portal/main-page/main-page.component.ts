@@ -2,7 +2,7 @@ import { QueryParams } from './../../models/queryparams.interface';
 import { AnnouncementService } from './../../services/announcement/announcement.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare let google: any;
-import { OwlOptions, SlidesOutputData } from 'ngx-owl-carousel-o';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { MAYOR_MSG } from './mayor-config';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
@@ -101,7 +101,6 @@ export class MainPageComponent implements OnInit {
     };
     this.announcement.getAll(query).subscribe(
       (res: any) => {
-        console.log(res);
         if (res) {
           // this.loading = false;
           this.pinnedAnnouncement = res.env.announcements[0];

@@ -1,3 +1,4 @@
+import { InfoModule } from './info/info.module';
 import { MayorModule } from './mayor/mayor.module';
 import { MainModule } from './main/main.module';
 import { AnnouncementModule } from './announcement/announcement.module';
@@ -25,6 +26,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     MayorModule,
     CarouselModule,
     MainModule,
+    InfoModule,
   ],
   exports: [MainPageComponent],
 })

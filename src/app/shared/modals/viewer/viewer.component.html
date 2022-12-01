@@ -8,4 +8,12 @@
     <span>{{ data.createdAt | date: "mediumDate" }}</span>
     <p [innerHTML]="data.layout"></p>
   </div>
+  <div class="row" *ngIf="data.lon">
+    <div class="col-7"><div class="desc-wrap">
+    <h3>{{ data.title }}</h3>
+    <span>{{ data.createdAt | date: "mediumDate" }}</span>
+    <p [innerHTML]="data.layout"></p>
+  </div></div>
+    <div class="col-5"></div>
+  </div>
 </div>

@@ -8,3 +8,14 @@
   background-color: #05bbe8;
   color: #fff;
 }
+.cards {
+  border: 1px solid #5656568e;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}

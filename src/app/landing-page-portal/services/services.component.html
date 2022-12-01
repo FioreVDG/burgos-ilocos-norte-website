@@ -1,60 +1,30 @@
-<app-no-content *ngIf="!loading && !services?.length"></app-no-content>
-<app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="!loading && services.length" class="container">
-  <div class="one">
-    <h1>Services</h1>
-  </div>
-
-  <div class="row">
-    <div class="col-3">
-      <form class="example-form">
-        <mat-form-field style="width: 100%" appearance="fill">
-          <mat-label>Search</mat-label>
-          <input
-            type="text"
-            matInput
-            [formControl]="myControl"
-            [matAutocomplete]="auto"
-            required="false"
-          />
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of filteredOptions | async"
-              [value]="option.title"
-            >
-              {{ option.title }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-      </form>
+<section *ngIf="!loading">
+  <section id="service">
+    <div class="container">
+      <h1>Services</h1>
     </div>
-    <div class="col">
-      <button
-        style="height: 70%; background-color: #05bbe8"
-        mat-flat-button
-        color="primary"
-        (click)="onSearch()"
-      >
-        Search
-      </button>
-    </div>
-  </div>
-  <app-spinner *ngIf="searching"></app-spinner>
-  <div class="container" *ngIf="!searching">
+  </section>
+  <div style="padding: 1.5rem 0rem; padding-bottom: 2rem" class="container">
     <div class="row">
-      <div class="col-12">
-        <div class="service-wrap" *ngFor="let item of services">
-          <h3>{{ item.title }}</h3>
-          <p [innerHTML]="item.layout"></p>
+      <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 type-nav">
+        <ng-container *ngFor="let item of services">
           <p
-            *ngIf="item.file"
-            class="btns"
-            (click)="openFile(item.tempFile, item.file.path_display)"
+            (click)="onSelect(item.title)"
+            [class]="item.selected ? 'navs-selected' : 'navs'"
           >
-            View Document
+            <b><i class="bi bi-chevron-right"></i>&nbsp;{{ item.title }}</b>
           </p>
-        </div>
+        </ng-container>
+      </div>
+      <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12">
+        <h3 class="title">{{ activeService.title }}</h3>
+        <div [innerHTML]="activeService.layout"></div>
+        <div style="padding: 1rem"></div>
+        <a *ngIf="activeService.tempFile" [href]="activeService.tempFile"
+          >Download Attached File for {{ activeService.title }}</a
+        >
       </div>
     </div>
   </div>
-</div>
+</section>
+<app-spinner *ngIf="loading"></app-spinner>

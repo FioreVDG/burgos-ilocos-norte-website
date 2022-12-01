@@ -24,12 +24,12 @@ export const servantDesktop = [
     content: [
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. JELSON G. ESPEJO',
+        name: 'HON. RUSSEL JENALD N. GARCIA',
         position: 'Sangguniang Bayan Member',
       },
       {
         img: '../../../../assets/images/profile-female.jpg',
-        name: 'HON. SUSAN G. SANTIAGO',
+        name: 'HON. TRINAH S. FULGAR',
         position: 'Sangguniang Bayan Member',
       },
       {
@@ -39,7 +39,7 @@ export const servantDesktop = [
       },
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. FLORENTINO A. CAMPAÑANO',
+        name: 'HON. JELSON G. ESPEJO',
         position: 'Sangguniang Bayan Member',
       },
     ],
@@ -48,7 +48,12 @@ export const servantDesktop = [
     content: [
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. KERVIN G. GUINTO',
+        name: 'HON. GLENN JOY R. GERVACIO',
+        position: 'Sangguniang Bayan Member',
+      },
+      {
+        img: '../../../../assets/images/Blank-Profile.png',
+        name: 'HON. EMMANUEL JACKSON A. CALAPINI',
         position: 'Sangguniang Bayan Member',
       },
       {
@@ -58,12 +63,7 @@ export const servantDesktop = [
       },
       {
         img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. EFREN A. SAGUITGUIT',
-        position: 'Sangguniang Bayan Member',
-      },
-      {
-        img: '../../../../assets/images/Blank-Profile.png',
-        name: 'HON. ARISTEDES M. PANTE',
+        name: 'HON. FLORENTINO A. CAMPAÑANO',
         position: 'Sangguniang Bayan Member',
       },
     ],
@@ -78,7 +78,7 @@ export const servantDesktop = [
       {
         img: '../../../../assets/images/Blank-Profile.png',
         name: 'HON. CARL EMIL A. CHUA',
-        position: 'Ex-Officio Member/Liga ng Mga Barangay President',
+        position: 'Sangguniang Kabataan President',
       },
     ],
   },
@@ -182,7 +182,7 @@ export const servantMobile = [
       {
         img: '../../../../assets/images/Blank-Profile.png',
         name: 'HON. CARL EMIL A. CHUA',
-        position: 'Ex-Officio Member/Liga ng Mga Barangay President',
+        position: 'Sangguniang Kabataan President',
         class: 'mobile-cards-bot',
       },
     ],

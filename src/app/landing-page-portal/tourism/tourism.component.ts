@@ -50,6 +50,7 @@ export class TourismComponent implements OnInit {
   }
   showMore(data: any) {
     console.log(data);
+    data.type = 'Tourism';
     this.dialog.open(ViewerComponent, {
       minWidth: '100vw',
       height: '100%',
