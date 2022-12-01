@@ -13,7 +13,7 @@ export class LandingPageContentMngmntComponent implements OnInit {
   ngOnInit(): void {}
 
   logout() {
-    localStorage.removeItem('SESSION_TOKEN');
+    localStorage.removeItem('SESSION_CSURF_TOKEN');
     localStorage.removeItem('SESSION_AUTH');
     setTimeout(() => {
       this.router.navigate(['/admin-login']);

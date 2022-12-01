@@ -22,8 +22,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   loginForm: FormGroup = this.fb.group({
-    username: new FormControl('mevistacorps1', [Validators.required]),
-    password: new FormControl('Password123!', [Validators.required]),
+    // username: new FormControl('mevistacorps1', [Validators.required]),
+    // password: new FormControl('Password123!', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   ngOnInit(): void {}
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   onLoginClick() {
     this.loading = true;
     const { username, password } = this.loginForm.getRawValue();
+    console.log(username, password);
 
     this.auth.login(username, password).subscribe((res: any) => {
       console.log(res);
