@@ -84,6 +84,7 @@ export class AddBidsComponent implements OnInit {
   }
 
   createBid(bid: any) {
+    console.log(bid);
     this.bid.create(bid).subscribe(
       (res: any) => {
         this.saving = false;
