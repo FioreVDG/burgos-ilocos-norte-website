@@ -115,6 +115,7 @@ export class AddBidsComponent implements OnInit {
 
   createBid(bid: any) {
     console.log(bid);
+    if (bid.bidStatus == '' || bid.bidStatus == undefined) delete bid.bidStatus;
     this.bid.create(bid).subscribe(
       (res: any) => {
         this.saving = false;
