@@ -29,6 +29,30 @@ export class ContentService {
   }
 
   updateMission(body: Object, id: string) {
-    return this.http.start('put', `/background/${id}`, body);
+    return this.http.start('put', `/missions/${id}`, body);
+  }
+
+  createHotline(body: Object) {
+    return this.http.start('post', '/hotline', body);
+  }
+
+  getAllHotline(query: QueryParams) {
+    return this.http.start('get', '/hotline', {}, query);
+  }
+
+  updateHotline(body: Object, id: string) {
+    return this.http.start('put', `/hotline/${id}`, body);
+  }
+
+  createGeographic(body: Object) {
+    return this.http.start('post', '/geographic', body);
+  }
+
+  getAllGeographic(query: QueryParams) {
+    return this.http.start('get', '/geographic', {}, query);
+  }
+
+  updateGeographic(body: Object, id: string) {
+    return this.http.start('put', `/geographic/${id}`, body);
   }
 }

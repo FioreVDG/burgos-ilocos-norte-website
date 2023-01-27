@@ -310,3 +310,13 @@ li {
     overflow: visible;
   }
 }
+
+.mission-inner {
+  color: white !important;
+
+  ::ng-deep li,
+  ::ng-deep li span,
+  ::ng-deep li::marker {
+    color: white !important;
+  }
+}

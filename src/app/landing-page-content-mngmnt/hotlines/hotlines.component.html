@@ -1,0 +1,84 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div class="hotline" *ngIf="!loading">
+  <div class="one">
+    <h1>Manage Hotlines</h1>
+  </div>
+  <div [formGroup]="contacts">
+    <ng-container formArrayName="hotlines">
+      <ng-container
+        *ngFor="let contact of getHotlines().controls; let i = index"
+        [formGroupName]="i"
+      >
+        <br />
+
+        <mat-card>
+          <mat-form-field style="width: 90%" appearance="standard">
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+
+          <button
+            style="position: absolute; top: 13px; right: 17px"
+            class="delete-btn"
+            (click)="deleteHotline(i)"
+          >
+            <mat-icon>delete</mat-icon><span>Delete hotline</span>
+          </button>
+
+          <ng-container formArrayName="contact_nums">
+            <ng-container
+              *ngFor="let num of number(i).controls; let num_index = index"
+              [formGroupName]="num_index"
+            >
+              <mat-form-field
+                style="display: inline-block"
+                appearance="standard"
+              >
+                <input
+                  matInput
+                  placeholder="Number"
+                  formControlName="numbers"
+                  type="text"
+                  required="true"
+                />
+              </mat-form-field>
+              <button
+                style="display: inline-block"
+                mat-menu-item
+                (click)="removeNum(i, num_index)"
+                class="delete-btn"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+          </ng-container>
+          <button
+            style="position: absolute; right: 1.5rem; bottom: 20px"
+            matFlatButton
+            (click)="addNumber(i)"
+            class="add-btn"
+          >
+            <mat-icon class="add">add_circle</mat-icon><span>Add Number</span>
+          </button></mat-card
+        >
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="buttons">
+    <button style="float: left" class="add-btn mb-4" (click)="addHotline()">
+      <mat-icon>add_circle</mat-icon><span>Add Hotline</span>
+    </button>
+    <button class="submit-btn mt-3 mb-4" mat-stroked-button (click)="submit()">
+      Submit
+    </button>
+  </div>
+
+  <!-- <button mat-stroked-button (click)="getAll()">Get All H</button> -->
+
+  <!-- {{ this.contacts.value | json }} -->
+</div>

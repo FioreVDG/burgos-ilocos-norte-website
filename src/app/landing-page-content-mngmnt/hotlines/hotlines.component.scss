@@ -1,0 +1,66 @@
+.hotline {
+  margin: 0 2rem 0 3rem;
+}
+mat-card {
+  border-radius: 10px;
+  background: #e0dcdf85;
+}
+.add-btn,
+.delete-btn {
+  border: none;
+  background-color: transparent;
+}
+mat-form-field {
+  width: 300px;
+  padding: 20px;
+}
+.add-btn {
+  margin-top: 30px;
+  mat-icon {
+    color: #3e692f;
+  }
+}
+.add-btn:hover {
+  mat-icon {
+    color: #4f853b;
+  }
+  span {
+    color: #35512b;
+  }
+}
+
+.delete-btn {
+  mat-icon {
+    color: #d0392b;
+  }
+}
+
+.delete-btn:hover {
+  mat-icon {
+    color: #f84535;
+  }
+  span {
+    color: #7c534f;
+  }
+}
+span {
+  position: relative;
+  bottom: 6px;
+  left: 8px;
+}
+.buttons {
+  padding-bottom: 85px;
+}
+.submit-btn {
+  float: right;
+  width: 10%;
+  background-color: #f1eef085;
+}
+.submit-btn:hover {
+  background-color: #cff0f7f9;
+}
+@media screen and (max-width: 481px) {
+  mat-form-field {
+    width: 200px;
+  }
+}

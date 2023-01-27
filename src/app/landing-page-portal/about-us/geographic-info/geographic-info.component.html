@@ -13,7 +13,12 @@
           [@slideAnim]="lastAction"
           (@slideAnim.done)="lastActionReset(); debounceClick = false"
         >
-          <ng-container *ngFor="let geoInfo of geographicalInfo; let i = index">
+          <ng-container
+            *ngFor="
+              let geoInfo of geographicalInfo.geographical_info;
+              let i = index
+            "
+          >
             <div
               class="geo-content position-absolute"
               *ngIf="i === selectedGeoIndex"
@@ -47,13 +52,29 @@
     <div
       class="col-12 col-lg-3 order-first order-lg-last d-none d-sm-flex flex-row flex-lg-column justify-content-around justify-content-lg-start justify-content-lg-start my-5 my-lg-0"
     >
+      <!-- *ngFor="let statistic of statisticalInformation" -->
       <div
         class="statistic-card d-flex flex-column justify-content-center align-items-center align-items-lg-start"
-        *ngFor="let statistic of statisticalInformation"
       >
-        <h1 class="statistic-value">{{ statistic.body }}</h1>
+        <h1 class="statistic-value">
+          {{ geographicalInfo.population | number : "1.0" }}
+        </h1>
         <p class="statistic-label">
-          <span><i [class]="statistic.icon"></i> </span> {{ statistic.title }}
+          <span><i [class]="statistic[0]"></i> </span> Population({{
+            geographicalInfo.year
+          }})
+        </p>
+        <h1 class="statistic-value">
+          {{ geographicalInfo.barangay | number : "1.0" }}
+        </h1>
+        <p class="statistic-label">
+          <span><i [class]="statistic[1]"></i> </span> Barangays
+        </p>
+        <h1 class="statistic-value">
+          {{ geographicalInfo.totalLandArea | number : "1.0" }}
+        </h1>
+        <p class="statistic-label">
+          <span><i [class]="statistic[2]"></i> </span>Total Land Area
         </p>
       </div>
     </div>
