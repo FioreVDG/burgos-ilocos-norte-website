@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
 
 @Component({
@@ -14,13 +15,14 @@ import { ContentService } from 'src/app/services/content/content.service';
   styleUrls: ['./geographic-info.component.scss'],
 })
 export class GeographicInfoComponent implements OnInit {
-  constructor(private fb: FormBuilder, private content: ContentService) {}
-  year: any;
+  loading: boolean = true;
+  constructor(
+    private fb: FormBuilder,
+    private content: ContentService,
+    private sb: MatSnackBar
+  ) {}
   ngOnInit(): void {
-    // this.geographic.get('year')?.valueChanges.subscribe((data: any) => {
-    //   this.year = data;
-    //   // console.log(this.year);
-    // });
+    this.getGeographicInfo();
   }
 
   geographic = new FormGroup({
@@ -55,6 +57,26 @@ export class GeographicInfoComponent implements OnInit {
     console.log('geographic', this.geographic.getRawValue());
     this.content.createGeographic(body).subscribe((res: any) => {
       console.log(res);
+      this.sb.open('Saved successfully', 'ok', {
+        duration: 5000,
+        panelClass: ['snackbar'],
+      });
+    });
+  }
+
+  getGeographicInfo() {
+    this.content.getAllGeographic({}).subscribe((res: any) => {
+      if (res.env.geographics[0]) {
+        console.log(res.env.geographics[0]);
+        let geoInfo = res.env.geographics[0];
+        // console.log(geoInfo.geographical_info.length);
+        for (let i in geoInfo.geographical_info) {
+          this.addGeoInfo();
+        }
+        this.geographic.patchValue(geoInfo);
+      }
+
+      this.loading = false;
     });
   }
 }

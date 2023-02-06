@@ -22,6 +22,7 @@ export class ContentsComponent implements OnInit {
   configMission: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
+    uploadUrl: '',
     height: '25rem',
     minHeight: '25rem',
     placeholder: 'Enter description here...',
@@ -178,6 +179,7 @@ export class ContentsComponent implements OnInit {
     const toAddData = { mission: this.mission, vision: this.vision };
     // if (this.abouts.length) console.log('update');
     // else console.log('create');
+    console.log(toAddData);
     if (this.abouts.length) this.updateMission(toAddData);
     else this.addMission(toAddData);
   }

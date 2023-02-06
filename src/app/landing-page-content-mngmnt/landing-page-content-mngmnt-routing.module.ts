@@ -82,6 +82,25 @@ const routes: Routes = [
             (m) => m.GeographicInfoModule
           ),
       },
+      {
+        path: 'update-contactUs',
+        loadChildren: () =>
+          import('./contact-us/contact-us.module').then(
+            (m) => m.ContactUsModule
+          ),
+      },
+      {
+        path: 'update-logo_meaning',
+        loadChildren: () =>
+          import('./meaning-logo/meaning-logo.module').then(
+            (m) => m.MeaningLogoModule
+          ),
+      },
+      {
+        path: 'update-history',
+        loadChildren: () =>
+          import('./history/history.module').then((m) => m.HistoryModule),
+      },
     ],
   },
 ];

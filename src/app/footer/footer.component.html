@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer" *ngIf="!loading">
   <div class="container footer-upper">
     <div class="row">
       <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
@@ -10,16 +10,48 @@
       </div>
       <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
         <p class="header">About</p>
-        <p class="content">Mayor's message</p>
+        <ng-container *ngFor="let a of about">
+          <ng-container *ngFor="let content of a.About; let i = index">
+            <p class="content">
+              <a [href]="content.path">{{ content.title }}</a>
+            </p>
+          </ng-container>
+        </ng-container>
+        <!-- <p class="content">Mayor's message</p>
         <p class="content">Elected officials</p>
         <p class="content">News</p>
         <p class="content">Careers</p>
         <p class="content">Departments</p>
-        <p class="content">About us</p>
+        <p class="content">About us</p> -->
       </div>
       <div class="col-lg-4 col-xl-4 col-md-4 col-sm-12">
         <p class="header">Contact Us</p>
         <p class="content">
+          <i class="bi bi-telephone-fill"></i
+          ><ng-container *ngFor="let mail of contacts.numbers; let i = index">
+            +(63){{ mail.number }}
+            <span *ngIf="i < contacts.numbers.length - 1">/</span>
+          </ng-container>
+        </p>
+        <p class="content">
+          <i class="bi bi-envelope-fill"></i
+          ><ng-container *ngFor="let mail of contacts.emails">
+            {{ mail.email }}
+          </ng-container>
+        </p>
+        <p class="content">
+          <i class="bi bi-geo-alt-fill"></i> {{ contacts.address }}
+        </p>
+
+        <!-- <ng-container *ngFor="let mail of contacts.emails">
+          <p class="content">
+            <i class="bi bi-envelope-fill"></i
+            >&nbsp;{{mail}}<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mo_burgosilocosnorte@yahoo.com
+          </p>
+        </ng-container> -->
+
+        <!-- <p class="content">
           <i class="bi bi-telephone-fill"></i>&nbsp;+(63) 915 434 9313 / +(63)
           970 814 8413
         </p>
@@ -32,7 +64,7 @@
           <i class="bi bi-geo-alt-fill"></i>&nbsp;Municipal Hall, Poblacion,
           <br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Burgos, Ilocos Norte, Philippines
-        </p>
+        </p> -->
       </div>
     </div>
     <hr />

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ContentService } from 'src/app/services/content/content.service';
 
 @Component({
   selector: 'app-logo-meaning',
@@ -14,45 +15,65 @@ export class LogoMeaningComponent implements OnInit {
   sea: string = '/assets/images/burgos-logo/sea.png';
 
   selectedCard: any;
+  cardsSectionLeft: any = [];
+  cardsSectionRight: any = [];
+  parts = [['shield'], ['light-house'], ['light'], ['mountain', 'sea']];
+  // cardsSectionLeft: any = [
+  //   {
+  //     title: 'The Shield',
+  //     body: `It emphasizes that Burgos is one of the municipalities of the province of Ilocos Norte and is under the guidance of the provincial government.`,
+  //     parts: ['shield'],
+  //     section: 'right',
+  //   },
+  //   {
+  //     title: 'The Lighthouse',
+  //     body: `It stands for the governing body and the different government
+  //           agencies stationed within the locality which oversees how the
+  //           municipality is managed.`,
+  //     section: 'right',
+  //     parts: ['light-house'],
+  //   },
+  // ];
 
-  cardsSectionLeft: any = [
-    {
-      title: 'The Shield',
-      body: `It emphasizes that Burgos is one of the municipalities of the province of Ilocos Norte and is under the guidance of the provincial government.`,
-      parts: ['shield'],
-      section: 'right',
-    },
-    {
-      title: 'The Lighthouse',
-      body: `It stands for the governing body and the different government
-            agencies stationed within the locality which oversees how the
-            municipality is managed.`,
-      section: 'right',
-      parts: ['light-house'],
-    },
-  ];
+  // cardsSectionRight: any = [
+  //   {
+  //     title: 'The Light',
+  //     body: `It stands for the different services rendered or offered to the
+  //           populace.`,
+  //     section: 'left',
+  //     parts: ['light'],
+  //   },
+  //   {
+  //     title: 'The Mountain and Sea',
+  //     body: `They symbolize the geographical location of the municipality for
+  //           reason that Burgos is a coastal town and surrounded by verdant hills
+  //           and mountains.`,
+  //     section: 'left',
+  //     parts: ['mountain', 'sea'],
+  //   },
+  // ];
 
-  cardsSectionRight: any = [
-    {
-      title: 'The Light',
-      body: `It stands for the different services rendered or offered to the
-            populace.`,
-      section: 'left',
-      parts: ['light'],
-    },
-    {
-      title: 'The Mountain and Sea',
-      body: `They symbolize the geographical location of the municipality for
-            reason that Burgos is a coastal town and surrounded by verdant hills
-            and mountains.`,
-      section: 'left',
-      parts: ['mountain', 'sea'],
-    },
-  ];
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private content: ContentService
+  ) {}
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  ngOnInit(): void {
+    this.content.getAllLogoMeaning({}).subscribe((res: any) => {
+      // console.log(res.env.logo[0].cards);
+      let cards = res.env.logo[0].cards;
+      let leftSection = Math.round(cards.length / 2);
 
-  ngOnInit(): void {}
+      for (let c of cards) {
+        c.parts = this.parts[cards.indexOf(c)];
+        if (cards.indexOf(c) < leftSection) {
+          this.cardsSectionLeft.push(c);
+        } else {
+          this.cardsSectionRight.push(c);
+        }
+      }
+    });
+  }
 
   onPartSelect(card: any) {
     let offsetX = 0;

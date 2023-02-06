@@ -1,0 +1,52 @@
+.add-btn,
+.delete-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #d0392b;
+}
+
+.delete-btn:hover {
+  color: #f84535;
+}
+
+.add-btn {
+  mat-icon {
+    color: #3e692f;
+  }
+}
+.add-btn:hover {
+  mat-icon {
+    color: #4f853b;
+  }
+  span {
+    color: #35512b;
+  }
+}
+span {
+  position: relative;
+  bottom: 6px;
+  left: 8px;
+}
+mat-form-field {
+  padding: 20px;
+  width: 100%;
+}
+.buttons {
+  padding-bottom: 65px;
+}
+.save-btn {
+  border: 2px solid #0f8aa8;
+}
+.card {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #e3e3e3, #ffffff);
+  box-shadow: 5px 5px 10px #d7d6d6, -5px -5px 10px #ffffff;
+}

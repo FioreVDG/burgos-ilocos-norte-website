@@ -51,6 +51,11 @@
   }
 }
 
+a {
+  text-decoration: none;
+  color: #565656;
+}
+
 //FOR MOBILE DEVICE
 @media only screen and (max-width: 600px) {
   .footer {

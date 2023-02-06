@@ -1,0 +1,56 @@
+// .contacts {
+//   text-align: center;
+// }
+button {
+  border: none;
+  background-color: transparent;
+}
+span {
+  position: relative;
+}
+.delete-btn {
+  mat-icon {
+    color: #d0392b;
+  }
+}
+.delete-btn:hover {
+  mat-icon {
+    color: #f84535;
+  }
+  span {
+    color: #7c534f;
+  }
+}
+.add-btn {
+  mat-icon {
+    color: #3e692f;
+  }
+}
+.add-btn:hover {
+  mat-icon {
+    color: #4f853b;
+  }
+  span {
+    color: #35512b;
+  }
+}
+
+.card {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: #ffff;
+  box-shadow: 5px 5px 10px #bfc7c9;
+}
+.save-btn {
+  padding: 5px 12px;
+  border: 2px solid #0f8aa8;
+  border-radius: 5px;
+  float: right;
+}
+.save-btn:hover {
+  background-color: #d1eef5;
+}
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent !important;
+  background: none;
+}

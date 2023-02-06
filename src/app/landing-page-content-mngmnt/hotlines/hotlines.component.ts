@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
 
 @Component({
@@ -14,7 +15,11 @@ import { ContentService } from 'src/app/services/content/content.service';
   styleUrls: ['./hotlines.component.scss'],
 })
 export class HotlinesComponent implements OnInit {
-  constructor(private fb: FormBuilder, private content: ContentService) {}
+  constructor(
+    private fb: FormBuilder,
+    private content: ContentService,
+    private sb: MatSnackBar
+  ) {}
   hotlines: any;
   loading: boolean = true;
 
@@ -28,14 +33,14 @@ export class HotlinesComponent implements OnInit {
 
   get numbers(): FormGroup {
     return this.fb.group({
-      name: '',
+      name: new FormControl('', [Validators.required]),
       contact_nums: new FormArray([]),
     });
   }
 
   get contact(): FormGroup {
     return this.fb.group({
-      numbers: '',
+      numbers: new FormControl('', [Validators.required]),
     });
   }
   getHotlines(): any {
@@ -68,6 +73,10 @@ export class HotlinesComponent implements OnInit {
 
     this.content.createHotline(body).subscribe((res: any) => {
       console.log(res);
+      this.sb.open('Saved successfully', 'ok', {
+        duration: 5000,
+        panelClass: ['snackbar'],
+      });
     });
 
     // this.content
@@ -80,19 +89,23 @@ export class HotlinesComponent implements OnInit {
   getAllHotlines() {
     this.content.getAllHotline({}).subscribe((res: any) => {
       console.log(res);
+      if (res.env.hotlines[0]) {
+        this.hotlines = res.env.hotlines[0];
+        console.log(this.hotlines._id);
 
-      this.hotlines = res.env.hotlines[0];
-      console.log(this.hotlines._id);
-
-      for (let i in this.hotlines.hotlines) {
-        this.addHotline();
-        for (let j in this.hotlines.hotlines[i].contact_nums) {
-          this.addNumber(Number(i));
+        for (let i in this.hotlines.hotlines) {
+          this.addHotline();
+          for (let j in this.hotlines.hotlines[i].contact_nums) {
+            this.addNumber(Number(i));
+          }
         }
+
+        this.contacts.get('hotlines')?.patchValue(this.hotlines.hotlines);
       }
+
       this.loading = false;
-      this.contacts.get('hotlines')?.patchValue(this.hotlines.hotlines);
-      this.contacts.getRawValue();
+
+      // this.contacts.getRawValue();
     });
   }
 }

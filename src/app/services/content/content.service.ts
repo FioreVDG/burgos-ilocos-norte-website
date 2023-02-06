@@ -55,4 +55,28 @@ export class ContentService {
   updateGeographic(body: Object, id: string) {
     return this.http.start('put', `/geographic/${id}`, body);
   }
+
+  createContactUs(body: Object) {
+    return this.http.start('post', '/contactUs', body);
+  }
+
+  getAllContactUs(query: QueryParams) {
+    return this.http.start('get', '/contactUs', {}, query);
+  }
+
+  createLogoMeaning(body: Object) {
+    return this.http.start('post', '/logo-meaning', body);
+  }
+
+  getAllLogoMeaning(query: QueryParams) {
+    return this.http.start('get', '/logo-meaning', {}, query);
+  }
+
+  createHistory(body: Object) {
+    return this.http.start('post', '/history', body);
+  }
+
+  getAllHistory(query: QueryParams) {
+    return this.http.start('get', '/history', {}, query);
+  }
 }

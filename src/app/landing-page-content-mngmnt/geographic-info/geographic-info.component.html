@@ -1,7 +1,9 @@
-<div class="one">
-  <h1>Manage Geographical Information</h1>
-</div>
-<div [formGroup]="geographic" class="geo mt-4">
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div [formGroup]="geographic" class="geo mt-4" *ngIf="!loading">
+  <div class="one">
+    <h1>Manage Geographical Information</h1>
+  </div>
   <div class="card pl-4">
     <mat-form-field appearance="fill" style="width: 93%">
       <mat-label>Year</mat-label>
@@ -68,7 +70,7 @@
         >
           <textarea
             matInput
-            placeholder="Info"
+            placeholder="Information"
             formControlName="body"
             type="text"
             required="true"
@@ -78,14 +80,14 @@
       </div>
     </ng-container>
   </div>
-</div>
-<div class="buttons pb-5">
-  <button class="add-btn addH-btn" (click)="addGeoInfo()">
-    <mat-icon>add</mat-icon><span>Geographic Info</span>
-  </button>
-  <button class="submit-btn" mat-stroked-button (click)="submit()">
-    Submit
-  </button>
+  <div class="buttons pb-5">
+    <button class="add-btn addH-btn" (click)="addGeoInfo()">
+      <mat-icon>add</mat-icon><span>Geographic Info</span>
+    </button>
+    <button class="submit-btn" mat-stroked-button (click)="submit()">
+      Save
+    </button>
+  </div>
 </div>
 
 <!-- {{ this.geographic.value | json }} -->
