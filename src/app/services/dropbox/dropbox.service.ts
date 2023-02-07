@@ -6,14 +6,14 @@ declare var require: any;
   providedIn: 'root',
 })
 export class DropboxService {
-  // accessToken =
-  //   'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
+  accessToken =
+    'sl.BYUgLQ8weWAHW0W1IFP2pFQtapfhgHCt2Dlh2UFF54lmB847YP0G0P66Rj4y9_M8adeStHrhgUCs7CSk3BiDhpLEq56EKaRIvxxg5_DRnR4pF_PQjuB4tr31t2Y42JoY7vhl8pYU';
   dbx: any;
 
-  accessTokenShortLived =
-    'sl.BYWWATTBlqnaVr8n8pjldApNb6-ybZQr4EKvPixheMcBvhCfaBUA4ZbqBF0_xgqorzQDcYNa9JDSJZjIpfnikq9by3KySydY6jq9Lr2rlADyxl7zmdoCoEJLcrvtuGh4TYOkzEmj';
-  refreshToken =
-    '_JHRJ0QLIk4AAAAAAAAAAdqPZOJxjkgOMnnVi_QDifSz1UA9LBJokXj6HERHwsei';
+  // accessTokenShortLived =
+  //   'sl.BYWWATTBlqnaVr8n8pjldApNb6-ybZQr4EKvPixheMcBvhCfaBUA4ZbqBF0_xgqorzQDcYNa9JDSJZjIpfnikq9by3KySydY6jq9Lr2rlADyxl7zmdoCoEJLcrvtuGh4TYOkzEmj';
+  // refreshToken =
+  //   '_JHRJ0QLIk4AAAAAAAAAAdqPZOJxjkgOMnnVi_QDifSz1UA9LBJokXj6HERHwsei';
 
   clientId = 'wz1dvqojdo5y8bt';
   clientSecret = '6urbz1oiuhtzbpy';
@@ -23,8 +23,9 @@ export class DropboxService {
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
+      accessToken: this.accessToken,
       // accessToken: this.accessTokenShortLived,
-      refreshToken: this.refreshToken,
+      // refreshToken: this.refreshToken,
       clientId: this.clientId,
       clientSecret: this.clientSecret,
     });
