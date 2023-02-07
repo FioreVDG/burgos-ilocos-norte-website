@@ -11,9 +11,9 @@ export class DropboxService {
   dbx: any;
 
   accessTokenShortLived =
-    'sl.BYWHcf1Ws8zEH6QKL1C6So5aaZl5Db0hnrCvMW6Fthfoh4pZghtXhecHTKFRgZVu1LkKI_qRC_BKUnKiQTVqTPQj1m1Gnc3BC7lX8EON2dxJoV639jzJRW_sVJBVl41QcuVM1qd8';
+    'sl.BYUeOaSaxgEPnMa0iU9GViQkhKUOJsNTf3CqknsPLKYMYks-eoljijjU2X8c6ynPbt8DsJiijkINL2isRfliwAKZJDAyDzby3a38fRv_4qjFwFVHWa0U9EThR4Ike0xDOR-Z9mP9';
   refreshToken =
-    '1SESFlae05oAAAAAAAAAAc7r0FL6Xv5Pj0J3TodP47kjqmKyrcdo0IxDlUyNEp5Q';
+    'vdqZYCccoKQAAAAAAAAAAVLb3UR1Y44lIj8hQ2FilaRcPvmv9HHoFFtf7EIhiy5y';
 
   clientId = 'wz1dvqojdo5y8bt';
   clientSecret = '6urbz1oiuhtzbpy';
