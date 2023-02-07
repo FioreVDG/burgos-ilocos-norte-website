@@ -1,0 +1,77 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div *ngIf="!loading">
+  <div class="one">
+    <h1>Manage Contact Us</h1>
+  </div>
+  <div [formGroup]="contactUs" class="contacts">
+    <mat-form-field
+      appearance="fill"
+      style="width: 100%; padding: 0px 20px 0px 20px"
+      class="card"
+    >
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" required="true" type="text" />
+    </mat-form-field>
+    <div class="card">
+      <div formArrayName="numbers">
+        <button class="add-btn" mat-stroked-button (click)="addNumbers()">
+          <mat-icon>add</mat-icon> <span>Number</span>
+        </button>
+        <br />
+        <ng-container
+          *ngFor="let num of getNumbers().controls; let num_index = index"
+          [formGroupName]="num_index"
+        >
+          <mat-form-field appearance="fill" style="margin-left: 30px">
+            <mat-label>Number</mat-label>
+            <input
+              matInput
+              formControlName="number"
+              required="true"
+              type="number"
+            />
+          </mat-form-field>
+
+          <button
+            class="delete-btn"
+            mat-stroked-button
+            (click)="deleteNum(num_index)"
+          >
+            <mat-icon>delete</mat-icon><span>Delete Number</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+    <div class="card">
+      <div formArrayName="emails">
+        <button class="add-btn" mat-stroked-button (click)="addEmails()">
+          <mat-icon>add</mat-icon><span>Email</span>
+        </button>
+        <br />
+        <ng-container
+          *ngFor="let email of getEmails().controls; let mail_index = index"
+          [formGroupName]="mail_index"
+        >
+          <mat-form-field appearance="fill" style="margin-left: 30px">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              required="true"
+              type="email"
+            />
+          </mat-form-field>
+          <button
+            class="delete-btn"
+            mat-stroked-button
+            (click)="deleteMail(mail_index)"
+          >
+            <mat-icon>delete</mat-icon><span>Delete Email</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <button class="save-btn" (click)="save()">Save</button>
+</div>

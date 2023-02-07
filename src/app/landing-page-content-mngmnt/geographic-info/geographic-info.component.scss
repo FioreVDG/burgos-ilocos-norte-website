@@ -1,0 +1,73 @@
+.geo {
+  // margin: 0 2rem 0 3rem;
+  text-align: center;
+}
+
+.add-btn,
+.delete-btn {
+  border: none;
+  background-color: transparent;
+}
+.delete-btn {
+  position: absolute;
+  top: 13px;
+  right: 17px;
+
+  mat-icon {
+    color: #d0392b;
+  }
+}
+.delete-btn:hover {
+  mat-icon {
+    color: #f84535;
+  }
+  span {
+    color: #7c534f;
+  }
+}
+.add-btn {
+  // margin-top: 30px;
+  mat-icon {
+    color: #3e692f;
+  }
+}
+.add-btn:hover {
+  mat-icon {
+    color: #4f853b;
+  }
+  span {
+    color: #35512b;
+  }
+}
+.geo-info {
+  margin: 0px 30px 0px 30px;
+}
+span {
+  position: relative;
+  bottom: 6px;
+  left: 8px;
+}
+
+.card {
+  margin: auto;
+  width: 90%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background: linear-gradient(145deg, #ffffff, #edecec);
+  box-shadow: 5px 5px 10px #d9d2d2, -5px -5px 10px #ffffff;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent !important;
+  background: none;
+}
+.buttons {
+  .addH-btn {
+    float: left;
+    margin-left: 4%;
+  }
+  .submit-btn {
+    float: right;
+    margin-right: 5%;
+  }
+}

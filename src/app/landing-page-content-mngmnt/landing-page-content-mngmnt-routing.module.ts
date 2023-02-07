@@ -70,6 +70,37 @@ const routes: Routes = [
         loadChildren: () =>
           import('./bids/bids.module').then((m) => m.BidsModule),
       },
+      {
+        path: 'add-hotlines',
+        loadChildren: () =>
+          import('./hotlines/hotlines.module').then((m) => m.HotlinesModule),
+      },
+      {
+        path: 'add-geographic-info',
+        loadChildren: () =>
+          import('./geographic-info/geographic-info.module').then(
+            (m) => m.GeographicInfoModule
+          ),
+      },
+      {
+        path: 'update-contactUs',
+        loadChildren: () =>
+          import('./contact-us/contact-us.module').then(
+            (m) => m.ContactUsModule
+          ),
+      },
+      {
+        path: 'update-logo_meaning',
+        loadChildren: () =>
+          import('./meaning-logo/meaning-logo.module').then(
+            (m) => m.MeaningLogoModule
+          ),
+      },
+      {
+        path: 'update-history',
+        loadChildren: () =>
+          import('./history/history.module').then((m) => m.HistoryModule),
+      },
     ],
   },
 ];

@@ -1,0 +1,45 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div [formGroup]="officials" *ngIf="!loading">
+  <div class="one">
+    <h1>Manage Mayors' List</h1>
+  </div>
+  <div class="buttons">
+    <button class="add-btn" (click)="addMayor()">
+      <mat-icon>add</mat-icon><span>Mayor</span>
+    </button>
+    <button class="submit-btn" mat-stroked-button (click)="submit()">
+      Save
+    </button>
+  </div>
+  <div formArrayName="mayors" class="mayors">
+    <ng-container
+      *ngFor="let mayor of getMayors().controls; let i = index"
+      [formGroupName]="i"
+      ><br />
+      <div class="card">
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Name"
+            required="true"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Year</mat-label>
+          <input
+            matInput
+            formControlName="date"
+            placeholder="Year"
+            required="true"
+          />
+        </mat-form-field>
+        <button (click)="deleteMayor(i)" class="delete-btn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<!-- {{ this.officials.value | json }} -->

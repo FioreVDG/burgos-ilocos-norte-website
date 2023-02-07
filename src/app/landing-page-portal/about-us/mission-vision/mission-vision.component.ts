@@ -1,5 +1,5 @@
 import { ContentService } from 'src/app/services/content/content.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import {
   animate,
   group,
@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { DomSanitizer } from '@angular/platform-browser';
 
 const animation = trigger('animation', [
   transition('void => vision', [
@@ -97,7 +98,11 @@ export class MissionVisionComponent implements OnInit {
   ];
 
   screenIndex = 0;
-  constructor(private content: ContentService) {}
+  test: any;
+  constructor(
+    private content: ContentService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
@@ -111,16 +116,20 @@ export class MissionVisionComponent implements OnInit {
 
     this.content.getAllMission({}).subscribe(
       (res: any) => {
-        // console.log(res);
+        console.log('mission/vis', res);
         this.loading = false;
         if (res.env.mission_visions.length) {
           // this.hasExistingMisVis = true;
           this.about = res.env.mission_visions[0];
+          console.log(this.about);
+          this.test = this.sanitizer.bypassSecurityTrustHtml(
+            toHtml(this.about.mission)
+          );
+          console.log(this.test);
 
-          this.screens[0].body = toHtml(this.about.mission);
-          this.screens[1].body = toHtml(this.about.vision);
-
-          // console.log(this.about);
+          this.screens[1].body = toHtml(this.about.mission);
+          this.screens[0].body = toHtml(this.about.vision);
+          console.log(this.screens);
         } else this.screens[1].items = this.missions;
       },
       (err) => {

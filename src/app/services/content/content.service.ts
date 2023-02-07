@@ -29,6 +29,54 @@ export class ContentService {
   }
 
   updateMission(body: Object, id: string) {
-    return this.http.start('put', `/background/${id}`, body);
+    return this.http.start('put', `/missions/${id}`, body);
+  }
+
+  createHotline(body: Object) {
+    return this.http.start('post', '/hotline', body);
+  }
+
+  getAllHotline(query: QueryParams) {
+    return this.http.start('get', '/hotline', {}, query);
+  }
+
+  updateHotline(body: Object, id: string) {
+    return this.http.start('put', `/hotline/${id}`, body);
+  }
+
+  createGeographic(body: Object) {
+    return this.http.start('post', '/geographic', body);
+  }
+
+  getAllGeographic(query: QueryParams) {
+    return this.http.start('get', '/geographic', {}, query);
+  }
+
+  updateGeographic(body: Object, id: string) {
+    return this.http.start('put', `/geographic/${id}`, body);
+  }
+
+  createContactUs(body: Object) {
+    return this.http.start('post', '/contactUs', body);
+  }
+
+  getAllContactUs(query: QueryParams) {
+    return this.http.start('get', '/contactUs', {}, query);
+  }
+
+  createLogoMeaning(body: Object) {
+    return this.http.start('post', '/logo-meaning', body);
+  }
+
+  getAllLogoMeaning(query: QueryParams) {
+    return this.http.start('get', '/logo-meaning', {}, query);
+  }
+
+  createHistory(body: Object) {
+    return this.http.start('post', '/history', body);
+  }
+
+  getAllHistory(query: QueryParams) {
+    return this.http.start('get', '/history', {}, query);
   }
 }

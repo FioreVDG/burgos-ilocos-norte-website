@@ -15,10 +15,10 @@
       </tr>
       <ng-container *ngFor="let item of hotlines">
         <tr class="hotline-table-row">
-          <td class="label">{{ item.label }}</td>
+          <td class="label">{{ item.name }}</td>
           <td class="value">
-            <ng-container *ngFor="let number of item.contact">
-              <p>{{ number }}</p>
+            <ng-container *ngFor="let number of item.contact_nums">
+              <p>{{ number.numbers }}</p>
             </ng-container>
           </td>
         </tr>

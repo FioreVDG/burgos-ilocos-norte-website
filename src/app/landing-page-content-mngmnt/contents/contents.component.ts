@@ -22,6 +22,7 @@ export class ContentsComponent implements OnInit {
   configMission: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
+    uploadUrl: '',
     height: '25rem',
     minHeight: '25rem',
     placeholder: 'Enter description here...',
@@ -92,7 +93,7 @@ export class ContentsComponent implements OnInit {
       if (res) {
         this.hasLink = true;
         this.loading = false;
-        // console.log(res);
+        console.log(res);
         this.resHolder = res.env.backgrounds;
         // console.log(this.resHolder);
         if (res.env.backgrounds.length) {
@@ -104,14 +105,18 @@ export class ContentsComponent implements OnInit {
     });
     this.getAbouts();
   }
-
+  test: any;
   getAbouts() {
     this.content.getAllMission({}).subscribe(
       (res: any) => {
         if (res.env.mission_visions.length) {
-          // console.log(res);
+          console.log(res);
           this.abouts = res.env.mission_visions;
+          console.log('this.about', this.abouts);
           this.mission = res.env.mission_visions[0].mission;
+          this.test = this.sanitizer.bypassSecurityTrustHtml(this.mission);
+
+          console.log();
           this.vision = res.env.mission_visions[0].vision;
         }
       },
@@ -172,6 +177,9 @@ export class ContentsComponent implements OnInit {
 
   missionVision() {
     const toAddData = { mission: this.mission, vision: this.vision };
+    // if (this.abouts.length) console.log('update');
+    // else console.log('create');
+    console.log(toAddData);
     if (this.abouts.length) this.updateMission(toAddData);
     else this.addMission(toAddData);
   }
@@ -179,7 +187,7 @@ export class ContentsComponent implements OnInit {
   updateMission(mission: any) {
     this.content.updateMission(mission, this.abouts[0]._id).subscribe(
       (res: any) => {
-        // console.log(res);
+        console.log(res);
       },
       (err) => {
         console.error(err);
@@ -190,7 +198,7 @@ export class ContentsComponent implements OnInit {
   addMission(mission: any) {
     this.content.createMission(mission).subscribe(
       (res: any) => {
-        // console.log(res);
+        console.log(res);
       },
       (err) => console.error(err)
     );

@@ -58,7 +58,8 @@
         </ng-container>
 
         <ng-container *ngIf="screenIndex === 1">
-          <p class="mission body">{{ screens[1].body }}</p>
+          <div class="mission-inner" [innerHTML]="test"></div>
+          <!-- <p class="mission body">{{ screens[1].body }}</p> -->
           <ng-container *ngIf="screens[1].items">
             <ul class="mission">
               <li *ngFor="let item of screens[1].items">{{ item }}</li>
