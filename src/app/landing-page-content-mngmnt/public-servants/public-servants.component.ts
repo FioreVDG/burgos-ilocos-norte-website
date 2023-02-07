@@ -79,6 +79,10 @@ export class PublicServantsComponent implements OnInit {
     this.getMembers().removeAt(index);
   }
 
+  // check() {
+  //   const a = this.getMembers().at(0).get('name').value;
+  //   console.log(a);
+  // }
   save() {
     // let body = this.officials.getRawValue();
     // this.content.createOfficial(body).subscribe((res: any) => {

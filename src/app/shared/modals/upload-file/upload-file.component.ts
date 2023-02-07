@@ -40,7 +40,11 @@ export class UploadFileComponent implements OnInit {
 
           if (this.allowedFileTypes.includes(fileType)) {
             console.log(file);
-            this.imageFile = file;
+            // this.imageFile = file;
+            const path = '/burgos-ilocosnorte/publicServants/';
+            const fileType = file.type.split('/')[1];
+            const name = file.name.split('.')[0];
+
             this.dialogRef.close(file);
           } else alert('Invalid file type');
         });
