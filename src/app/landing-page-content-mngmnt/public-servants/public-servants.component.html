@@ -1,0 +1,126 @@
+<div [formGroup]="officials">
+  <div formArrayName="mayor">
+    <ng-container
+      *ngFor="let mayor of getMayor().controls; let m = index"
+      [formGroupName]="m"
+    >
+      <div class="card mb-3">
+        <button (click)="upload()">Upload</button>
+        <!-- <ngx-file-drop
+          dropZoneLabel="Drop files here"
+          (onFileDrop)="onFileUpload($event)"
+        >
+          <ng-template
+            ngx-file-drop-content-tmp
+            let-openFileSelector="openFileSelector"
+          >
+            <button type="button" (click)="openFileSelector()">
+              Browse Files
+            </button>
+          </ng-template>
+        </ngx-file-drop> -->
+
+        <mat-form-field appearance="standard" style="padding-left: 15px">
+          <mat-label>Mayor</mat-label>
+          <input
+            matInput
+            placeholder="Name of Mayor"
+            formControlName="name"
+            type="text"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
+  <div formArrayName="viceMayor">
+    <ng-container
+      *ngFor="let mayor of getViceMayor().controls; let v = index"
+      [formGroupName]="v"
+    >
+      <div class="card mb-3">
+        <!-- <ngx-file-drop
+          dropZoneLabel="Drop files here"
+          (onFileDrop)="onFileUpload($event)"
+        >
+          <ng-template
+            ngx-file-drop-content-tmp
+            let-openFileSelector="openFileSelector"
+          >
+            <button type="button" (click)="openFileSelector()">
+              Browse Files
+            </button>
+          </ng-template>
+        </ngx-file-drop> -->
+        <mat-form-field appearance="standard" style="padding-left: 15px">
+          <mat-label>Vice Mayor</mat-label>
+          <input
+            matInput
+            placeholder="Name of Vice Mayor"
+            formControlName="name"
+            type="text"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
+  <div formArrayName="members">
+    <!-- <button class="add-btn" (click)="addMember()">
+      <mat-icon>add</mat-icon><span>Add Member</span>
+    </button> -->
+    <ng-container
+      *ngFor="let mayor of getMembers().controls; let mem_i = index"
+      [formGroupName]="mem_i"
+      ><br />
+      <div class="card">
+        <!-- <ngx-file-drop
+          dropZoneLabel="Drop files here"
+          (onFileDrop)="onFileUpload($event)"
+        >
+          <ng-template
+            ngx-file-drop-content-tmp
+            let-openFileSelector="openFileSelector"
+          >
+            <button type="button" (click)="openFileSelector()">
+              Browse Files
+            </button>
+          </ng-template>
+        </ngx-file-drop> -->
+        <div style="padding-left: 15px">
+          <mat-form-field appearance="standard" style="width: 100%">
+            <mat-label>Member</mat-label>
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="standard" style="width: 100%">
+            <mat-label>Position</mat-label>
+            <input
+              matInput
+              placeholder="Position"
+              formControlName="position"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <button class="delete-btn" (click)="removeMember(mem_i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="buttons pt-4 mb-4">
+  <button class="add-btn" (click)="addMember()">
+    <mat-icon>add</mat-icon><span>Mayor</span>
+  </button>
+  <button class="submit-btn" mat-stroked-button (click)="save()">Save</button>
+</div>
+<!-- {{ this.officials.value | json }} -->

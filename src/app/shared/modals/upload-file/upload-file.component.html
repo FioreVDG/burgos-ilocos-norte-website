@@ -1,0 +1,13 @@
+<p>upload-file works!</p>
+<button (click)="onClose()"><mat-icon>close</mat-icon></button>
+<ngx-file-drop
+  dropZoneLabel="Drop files here"
+  (onFileDrop)="onFileUpload($event)"
+>
+  <ng-template
+    ngx-file-drop-content-tmp
+    let-openFileSelector="openFileSelector"
+  >
+    <button type="button" (click)="openFileSelector()">Browse Files</button>
+  </ng-template>
+</ngx-file-drop>

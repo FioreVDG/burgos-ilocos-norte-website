@@ -8,12 +8,15 @@ import { ViewerComponent } from './viewer/viewer.component';
 import { FileViewerComponent } from './file-viewer/file-viewer.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
     AlertAreYouSureComponent,
     ViewerComponent,
     FileViewerComponent,
+    UploadFileComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     NgxDocViewerModule,
     SpinnerModule,
     LeafletModule,
+    NgxFileDropModule,
   ],
   exports: [],
 })

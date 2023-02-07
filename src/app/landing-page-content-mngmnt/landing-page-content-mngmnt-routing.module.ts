@@ -97,6 +97,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'update-public_servant',
+        loadChildren: () =>
+          import('./public-servants/public-servants.module').then(
+            (m) => m.PublicServantsModule
+          ),
+      },
+      {
         path: 'update-history',
         loadChildren: () =>
           import('./history/history.module').then((m) => m.HistoryModule),
