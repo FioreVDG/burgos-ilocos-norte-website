@@ -11,9 +11,9 @@ export class DropboxService {
   dbx: any;
 
   accessTokenShortLived =
-    'sl.BYUeOaSaxgEPnMa0iU9GViQkhKUOJsNTf3CqknsPLKYMYks-eoljijjU2X8c6ynPbt8DsJiijkINL2isRfliwAKZJDAyDzby3a38fRv_4qjFwFVHWa0U9EThR4Ike0xDOR-Z9mP9';
+    'sl.BYWWATTBlqnaVr8n8pjldApNb6-ybZQr4EKvPixheMcBvhCfaBUA4ZbqBF0_xgqorzQDcYNa9JDSJZjIpfnikq9by3KySydY6jq9Lr2rlADyxl7zmdoCoEJLcrvtuGh4TYOkzEmj';
   refreshToken =
-    'vdqZYCccoKQAAAAAAAAAAVLb3UR1Y44lIj8hQ2FilaRcPvmv9HHoFFtf7EIhiy5y';
+    '_JHRJ0QLIk4AAAAAAAAAAdqPZOJxjkgOMnnVi_QDifSz1UA9LBJokXj6HERHwsei';
 
   clientId = 'wz1dvqojdo5y8bt';
   clientSecret = '6urbz1oiuhtzbpy';
@@ -23,7 +23,7 @@ export class DropboxService {
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
-      accessToken: this.accessTokenShortLived,
+      // accessToken: this.accessTokenShortLived,
       refreshToken: this.refreshToken,
       clientId: this.clientId,
       clientSecret: this.clientSecret,
