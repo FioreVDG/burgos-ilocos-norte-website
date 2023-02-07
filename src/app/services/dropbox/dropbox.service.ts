@@ -6,16 +6,27 @@ declare var require: any;
   providedIn: 'root',
 })
 export class DropboxService {
-  accessToken =
-    'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
+  // accessToken =
+  //   'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
+
+  accessTokenShortLived =
+    'sl.BYX2gy390inCU1NNJGs7uFHlmc6fvAlTajj_hYvGFpmm7dCc4Lt_xTYrJDpzu8K-WTtH3brW7EML0HN0-1dGfX2GuFZiSHByMsQPP9SI0cUa1yCUi5m0GMr8w2asPibr586M_K-z';
+  refreshToken =
+    'bVD9zOSldDsAAAAAAAAAAUPtJcKaq2Tp2PbXBNt_R6aFRBrkRTXS0kqShgqGYJru';
+
+  clientId = 'wz1dvqojdo5y8bt';
+  clientSecret = '6urbz1oiuhtzbpy';
 
   constructor() {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
-      accessToken: this.accessToken,
+      accessToken: this.accessTokenShortLived,
+      refreshToken: this.refreshToken,
+      clientId: this.clientId,
+      clientSecret: this.clientSecret,
     });
   }
 
@@ -29,20 +40,6 @@ export class DropboxService {
         })
         .catch((error: any) => {
           observer.error(error);
-        });
-    });
-  }
-
-  checkPath(): Observable<any> {
-    return Observable.create((observer: any) => {
-      this.dbx
-        .filesListFolder({ path: '/docketph' })
-        .then((response: any) => {
-          observer.next(response);
-          observer.complete();
-        })
-        .catch((error: any) => {
-          console.error(error);
         });
     });
   }
