@@ -7,7 +7,7 @@ declare var require: any;
 })
 export class DropboxService {
   accessToken =
-    'sl.BYUgLQ8weWAHW0W1IFP2pFQtapfhgHCt2Dlh2UFF54lmB847YP0G0P66Rj4y9_M8adeStHrhgUCs7CSk3BiDhpLEq56EKaRIvxxg5_DRnR4pF_PQjuB4tr31t2Y42JoY7vhl8pYU';
+    'sl.BYVSSYlPUSGsZRJ4o2pdOmAiHBBXXGxyxepUgcvQppDIfjhzBbiWQQE5EwEfo3f6l7YPywBgpR2LzdTF7iDZa7DNIPuQ3OUj-bbq19LjEU6aMGInspHN0Ukinvge_ZKrVPF6_JG5';
   dbx: any;
 
   // accessTokenShortLived =
@@ -26,8 +26,8 @@ export class DropboxService {
       accessToken: this.accessToken,
       // accessToken: this.accessTokenShortLived,
       // refreshToken: this.refreshToken,
-      clientId: this.clientId,
-      clientSecret: this.clientSecret,
+      // clientId: this.clientId,
+      // clientSecret: this.clientSecret,
     });
   }
 
