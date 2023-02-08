@@ -11,9 +11,9 @@ export class DropboxService {
   dbx: any;
 
   accessTokenShortLived =
-    'sl.BYX2gy390inCU1NNJGs7uFHlmc6fvAlTajj_hYvGFpmm7dCc4Lt_xTYrJDpzu8K-WTtH3brW7EML0HN0-1dGfX2GuFZiSHByMsQPP9SI0cUa1yCUi5m0GMr8w2asPibr586M_K-z';
+    'sl.BYZ3m3UOphCzYgiXq1CdWHUdZSr8DXxMMX43gRIF-m6bqOBbMd5Fec7TYNom8yWDqlARul2iSwt13i1MSLbIx6aJb2GVh3QH9gZslDns-fL4CD0geJhopMIVNxzjJaQQeJRufRAa';
   refreshToken =
-    'bVD9zOSldDsAAAAAAAAAAUPtJcKaq2Tp2PbXBNt_R6aFRBrkRTXS0kqShgqGYJru';
+    'TTccdZQieYUAAAAAAAAAAcrL_FLwWeko6EZ7EPEW2UArq0zBuq6dQqNkP_iMK9Hs';
 
   clientId = 'wz1dvqojdo5y8bt';
   clientSecret = '6urbz1oiuhtzbpy';
@@ -31,10 +31,11 @@ export class DropboxService {
   }
 
   checkAccount(): Observable<any> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .usersGetCurrentAccount()
         .then((response: any) => {
+          console.log(response);
           observer.next(response);
           observer.complete();
         })
@@ -44,25 +45,27 @@ export class DropboxService {
     });
   }
 
-  getTempLink(path: string): Observable<any> {
-    return Observable.create((observer: any) => {
+  getTempLink(path?: string): Observable<any> {
+    return new Observable((observer: any) => {
       this.dbx
         .filesGetTemporaryLink({
           path,
         })
         .then((response: any) => {
+          console.log('YES CONGRATS: ', path);
           observer.next(response);
           observer.complete();
         })
         .catch((error: any) => {
-          console.error(error);
+          console.log(error);
           console.error(observer.error(error));
+          console.log(path);
         });
     });
   }
 
   downloadFile(path: string): Observable<any> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .filesGetTemporaryLink({ path })
         .then((response: any) => {
@@ -84,7 +87,7 @@ export class DropboxService {
 
   getThumbnail(path: String): Observable<any> {
     let format = 'jpeg';
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .filesGetThumbnail({
           path: path,
@@ -103,7 +106,7 @@ export class DropboxService {
   }
 
   getPreview(path: string): Observable<any> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .filesGetPreview({ path })
         .then((response: any) => {
@@ -117,7 +120,7 @@ export class DropboxService {
   }
 
   getMetaData(path: string): Observable<any> {
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .filesGetMetadata({ path })
         .then((response: any) => {
@@ -133,7 +136,7 @@ export class DropboxService {
   uploadFile(path: string, filename: string, file: any): Observable<any> {
     // console.log(filename);
     // console.log(file);
-    return Observable.create((observer: any) => {
+    return new Observable((observer: any) => {
       this.dbx
         .filesUpload({
           path: path + filename,

@@ -14,9 +14,7 @@ export class UploadFileComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<UploadFileComponent>) {}
 
   ngOnInit(): void {}
-  // onFileUpload(event: any) {
-  //   console.log(event);
-  // }
+
   onFileUpload(files: NgxFileDropEntry[]) {
     console.log(files[0]);
     const selectedFirstFile = files[0];
@@ -29,23 +27,32 @@ export class UploadFileComponent implements OnInit {
         fileEntry.file((file: File) => {
           const reader = new FileReader();
 
-          reader.onload = () => {
-            this.imageB64 = reader.result as string;
-          };
-
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
           console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) {
-            console.log(file);
-            // this.imageFile = file;
-            const path = '/burgos-ilocosnorte/publicServants/';
-            const fileType = file.type.split('/')[1];
-            const name = file.name.split('.')[0];
+            reader.onload = () => {
+              this.imageB64 = reader.result as string;
+              console.log(file);
 
-            this.dialogRef.close(file);
+              // console.log(this.imageB64);
+              const path = '/burgos-ilocosnorte/officials/';
+              const fileType = file.type.split('/')[1];
+              const dateNow = Date.now();
+              const name = file.name.split('.')[0];
+              const fileName = `${name}-${dateNow}.${fileType}`;
+
+              let body = {
+                image: this.imageB64,
+                path,
+                fileName,
+                file,
+              };
+              console.log('body', body);
+              this.dialogRef.close(body);
+            };
           } else alert('Invalid file type');
         });
       } else alert('Not a file');

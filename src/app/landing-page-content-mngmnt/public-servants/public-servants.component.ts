@@ -10,8 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
 import { ContentService } from 'src/app/services/content/content.service';
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { UploadFileComponent } from 'src/app/shared/modals/upload-file/upload-file.component';
-
+import { UploadFileDropBox } from 'src/app/models/api/announcement-service.interface';
 @Component({
   selector: 'app-public-servants',
   templateUrl: './public-servants.component.html',
@@ -32,7 +33,8 @@ export class PublicServantsComponent implements OnInit {
     private fb: FormBuilder,
     private content: ContentService,
     private sb: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dropbox: DropboxService
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +49,7 @@ export class PublicServantsComponent implements OnInit {
 
   public_servant(info: any): FormGroup {
     return this.fb.group({
-      // image:new FormControl(''),
+      image: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       position: info.position,
       misc: info.misc,
@@ -56,7 +58,7 @@ export class PublicServantsComponent implements OnInit {
 
   get members(): FormGroup {
     return this.fb.group({
-      // image:new FormControl(''),
+      image: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       position: new FormControl('', [Validators.required]),
     });
@@ -79,11 +81,33 @@ export class PublicServantsComponent implements OnInit {
     this.getMembers().removeAt(index);
   }
 
-  // check() {
-  //   const a = this.getMembers().at(0).get('name').value;
-  //   console.log(a);
-  // }
   save() {
+    //loop through arrays then mag upload sa db before saving sa database
+    for (let mayor of this.getMayor().controls) {
+      // console.log(mayor.value.image.file);
+      // console.log(mayor.value.image.path);
+      // console.log(mayor.value.image.fileName);
+
+      let file = mayor.value.image.file;
+      let filename = mayor.value.image.fileName;
+      let path = mayor.value.image.path;
+
+      this.uploadDropbox(file, path, filename);
+    }
+
+    // for (let mayor of this.getViceMayor().controls) {
+    //   console.log(mayor.value.image.file);
+    //   console.log(mayor.value.image.path);
+    //   console.log(mayor.value.image.fileName);
+    // }
+
+    // for (let mayor of this.getMembers().controls) {
+    //   console.log(mayor.value.image.file);
+    //   console.log(mayor.value.image.path);
+    //   console.log(mayor.value.image.fileName);
+    // }
+
+    // this.dropbox.uploadFile()
     // let body = this.officials.getRawValue();
     // this.content.createOfficial(body).subscribe((res: any) => {
     //   console.log(res);
@@ -96,12 +120,30 @@ export class PublicServantsComponent implements OnInit {
     console.log(this.officials.getRawValue());
   }
 
-  upload() {
+  uploadDropbox(file: any, path: string, filename: string) {
+    this.dropbox
+      .uploadFile(path, filename, file)
+      .subscribe((res: UploadFileDropBox) => {
+        console.log(res);
+        let result = res.result;
+      });
+  }
+
+  upload(source: string, index: number) {
     this.dialog
       .open(UploadFileComponent, {})
       .afterClosed()
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
+
+        if (source === 'mayor') {
+          this.getMayor().at(index).get('image').patchValue(res);
+          // console.log(this.getMayor().at(index).get('image').value.image);
+        } else if (source === 'viceMayor') {
+          this.getViceMayor().at(index).get('image').patchValue(res);
+        } else if (source === 'members') {
+          this.getMembers().at(index).get('image').patchValue(res);
+        }
       });
   }
 

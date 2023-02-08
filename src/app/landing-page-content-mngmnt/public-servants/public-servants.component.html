@@ -4,21 +4,19 @@
       *ngFor="let mayor of getMayor().controls; let m = index"
       [formGroupName]="m"
     >
-      <div class="card mb-3">
-        <button (click)="upload()">Upload</button>
-        <!-- <ngx-file-drop
-          dropZoneLabel="Drop files here"
-          (onFileDrop)="onFileUpload($event)"
-        >
-          <ng-template
-            ngx-file-drop-content-tmp
-            let-openFileSelector="openFileSelector"
-          >
-            <button type="button" (click)="openFileSelector()">
-              Browse Files
-            </button>
-          </ng-template>
-        </ngx-file-drop> -->
+      <div class="card mb-3 pt-4">
+        <button class="upload-btn" (click)="upload('mayor', m)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <!-- <div class="card"> -->
+        <div>
+          <img
+            class="img"
+            [src]="mayor.value.image.image"
+            alt=""
+            *ngIf="mayor.value.image.image"
+          />
+        </div>
 
         <mat-form-field appearance="standard" style="padding-left: 15px">
           <mat-label>Mayor</mat-label>
@@ -31,27 +29,27 @@
           />
         </mat-form-field>
       </div>
+      <!-- </div> -->
     </ng-container>
   </div>
   <div formArrayName="viceMayor">
     <ng-container
-      *ngFor="let mayor of getViceMayor().controls; let v = index"
+      *ngFor="let vm of getViceMayor().controls; let v = index"
       [formGroupName]="v"
     >
-      <div class="card mb-3">
-        <!-- <ngx-file-drop
-          dropZoneLabel="Drop files here"
-          (onFileDrop)="onFileUpload($event)"
-        >
-          <ng-template
-            ngx-file-drop-content-tmp
-            let-openFileSelector="openFileSelector"
-          >
-            <button type="button" (click)="openFileSelector()">
-              Browse Files
-            </button>
-          </ng-template>
-        </ngx-file-drop> -->
+      <div class="card mb-3 pt-4">
+        <button class="upload-btn" (click)="upload('viceMayor', v)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <div>
+          <img
+            class="img"
+            [src]="vm.value.image.image"
+            alt=""
+            *ngIf="vm.value.image.image"
+          />
+        </div>
+
         <mat-form-field appearance="standard" style="padding-left: 15px">
           <mat-label>Vice Mayor</mat-label>
           <input
@@ -70,23 +68,23 @@
       <mat-icon>add</mat-icon><span>Add Member</span>
     </button> -->
     <ng-container
-      *ngFor="let mayor of getMembers().controls; let mem_i = index"
+      *ngFor="let mem of getMembers().controls; let mem_i = index"
       [formGroupName]="mem_i"
       ><br />
-      <div class="card">
-        <!-- <ngx-file-drop
-          dropZoneLabel="Drop files here"
-          (onFileDrop)="onFileUpload($event)"
-        >
-          <ng-template
-            ngx-file-drop-content-tmp
-            let-openFileSelector="openFileSelector"
-          >
-            <button type="button" (click)="openFileSelector()">
-              Browse Files
-            </button>
-          </ng-template>
-        </ngx-file-drop> -->
+
+      <div class="card pt-4">
+        <button class="upload-btn" (click)="upload('members', mem_i)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <div>
+          <img
+            class="img1"
+            [src]="mem.value.image.image"
+            alt=""
+            *ngIf="mem.value.image.image"
+          />
+        </div>
+
         <div style="padding-left: 15px">
           <mat-form-field appearance="standard" style="width: 100%">
             <mat-label>Member</mat-label>

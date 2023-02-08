@@ -35,12 +35,15 @@ export class NewsComponent implements OnInit {
         el.layout = await this.stringToHTMLconverter(el.description);
       });
       this.featuredNews = this.newsArr.find((o: any) => o.isPinned === true);
-      this.featuredImage = await this.getTempLink(
-        this.featuredNews?.image?.path_display
-      );
-      this.featuredDesc = await this.stringToHTMLconverter(
-        this.featuredNews?.description
-      );
+      if (this.featuredNews) {
+        this.featuredImage = await this.getTempLink(
+          this.featuredNews?.image?.path_display
+        );
+        this.featuredDesc = await this.stringToHTMLconverter(
+          this.featuredNews?.description
+        );
+      }
+
       this.newsArr = this.newsArr.filter((o: any) => o.isPinned === false);
 
       this.loading = false;
