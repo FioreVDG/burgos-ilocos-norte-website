@@ -7,7 +7,7 @@ declare var require: any;
 })
 export class DropboxService {
   // accessToken =
-  //   'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
+  //   'sl.BYVSSYlPUSGsZRJ4o2pdOmAiHBBXXGxyxepUgcvQppDIfjhzBbiWQQE5EwEfo3f6l7YPywBgpR2LzdTF7iDZa7DNIPuQ3OUj-bbq19LjEU6aMGInspHN0Ukinvge_ZKrVPF6_JG5';
   dbx: any;
 
   accessTokenShortLived =
@@ -23,6 +23,7 @@ export class DropboxService {
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
+      // accessToken: this.accessToken,
       accessToken: this.accessTokenShortLived,
       refreshToken: this.refreshToken,
       clientId: this.clientId,
