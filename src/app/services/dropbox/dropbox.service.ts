@@ -17,7 +17,7 @@ export class DropboxService {
 
   // clientId = 'wz1dvqojdo5y8bt';
   // clientSecret = '6urbz1oiuhtzbpy';
-  //
+
   constructor() {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
