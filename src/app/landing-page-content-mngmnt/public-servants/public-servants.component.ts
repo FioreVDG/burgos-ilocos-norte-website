@@ -76,11 +76,17 @@ export class PublicServantsComponent implements OnInit {
     return this.officials.get('members') as FormArray;
   }
 
-  addMember() {
-    this.getMembers().push(this.members);
+  addOffical(position: string) {
+    if (position === 'mayor')
+      this.getMayor().push(this.public_servant(this.pServants[0]));
+    else if (position === 'viceMayor')
+      this.getViceMayor().push(this.public_servant(this.pServants[1]));
+    else if (position === 'member') this.getMembers().push(this.members);
   }
-  removeMember(index: number) {
-    this.getMembers().removeAt(index);
+  removeOfficial(index: number, position: string) {
+    if (position === 'mayor') this.getMayor().removeAt(index);
+    else if (position === 'viceMayor') this.getViceMayor().removeAt(index);
+    else if (position === 'member') this.getMembers().removeAt(index);
   }
 
   save() {
@@ -104,7 +110,7 @@ export class PublicServantsComponent implements OnInit {
 
   upload(source: string, index: number) {
     this.dialog
-      .open(UploadFileComponent, {})
+      .open(UploadFileComponent, { disableClose: true })
       .afterClosed()
       .subscribe(async (res: any) => {
         console.log(res.path_display);
@@ -132,18 +138,50 @@ export class PublicServantsComponent implements OnInit {
   }
 
   getOfficials() {
-    this.content.getAllOfficials({}).subscribe((res: any) => {
+    this.content.getAllOfficials({}).subscribe(async (res: any) => {
+      // console.log(res);
+
       if (res.env.officials[0]) {
-        console.log(res.env.officials[0]);
-        for (let r of res.env.officials[0].members) {
-          this.addMember();
+        let result = res.env.officials[0];
+
+        this.officials.get('mayor')?.patchValue(result.mayor);
+        this.officials.get('viceMayor')?.patchValue(result.viceMayor);
+        let positions = ['mayor', 'viceMayor', 'members'];
+
+        for (let p of positions) {
+          let index = 0;
+          for (let r of result[p]) {
+            let tempImg = await this.getTempLink(r.image.path_display);
+
+            if (p == 'mayor') {
+              console.log(this.getMayor().at(index).get('url'));
+              this.getMayor().at(index).get('url').patchValue(tempImg);
+            } else if (p === 'viceMayor') {
+              this.getViceMayor().at(index).get('url').patchValue(tempImg);
+            }
+            if (p === 'members') {
+              this.addOffical('member');
+              this.officials.get('members')?.patchValue(result.members);
+              this.getMembers().at(index).get('url').patchValue(tempImg);
+            }
+            index++;
+          }
         }
 
-        this.officials.get('mayor')?.patchValue(res.env.officials[0].mayor);
-        this.officials
-          .get('viceMayor')
-          ?.patchValue(res.env.officials[0].viceMayor);
-        this.officials.get('members')?.patchValue(res.env.officials[0].members);
+        // for(let r of result.mayor){
+        //   console.log(result.image.path_display)
+        // }
+        // for(let r of result.mayor){
+        //   console.log(result.image.path_display)
+        // }
+        // // console.log(result.mayor[0].image.path_display);
+        // // console.log(result.members[0]);
+        // console.log();
+        // for (let r of result.members) {
+        //   console.log(r.image.path_display);
+        //   this.addMember();
+        // }
+
         // this.loading = false;
       }
     });

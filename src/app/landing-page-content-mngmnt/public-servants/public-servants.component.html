@@ -1,5 +1,8 @@
 <div [formGroup]="officials">
   <div formArrayName="mayor">
+    <button class="add-btn" (click)="addOffical('mayor')">
+      <mat-icon>add</mat-icon><span>Mayor</span>
+    </button>
     <ng-container
       *ngFor="let mayor of getMayor().controls; let m = index"
       [formGroupName]="m"
@@ -27,10 +30,16 @@
             required="true"
           />
         </mat-form-field>
+        <button class="delete-btn" (click)="removeOfficial(m, 'mayor')">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </ng-container>
   </div>
   <div formArrayName="viceMayor">
+    <button class="add-btn" (click)="addOffical('viceMayor')">
+      <mat-icon>add</mat-icon><span>Vice Mayor</span>
+    </button>
     <ng-container
       *ngFor="let vm of getViceMayor().controls; let v = index"
       [formGroupName]="v"
@@ -53,13 +62,13 @@
             required="true"
           />
         </mat-form-field>
+        <button class="delete-btn" (click)="removeOfficial(v, 'viceMayor')">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </ng-container>
   </div>
   <div formArrayName="members">
-    <!-- <button class="add-btn" (click)="addMember()">
-      <mat-icon>add</mat-icon><span>Add Member</span>
-    </button> -->
     <ng-container
       *ngFor="let mem of getMembers().controls; let mem_i = index"
       [formGroupName]="mem_i"
@@ -100,7 +109,7 @@
               required="true"
             />
           </mat-form-field>
-          <button class="delete-btn" (click)="removeMember(mem_i)">
+          <button class="delete-btn" (click)="removeOfficial(mem_i, 'member')">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -109,8 +118,8 @@
   </div>
 </div>
 <div class="buttons pt-4 mb-4">
-  <button class="add-btn" (click)="addMember()">
-    <mat-icon>add</mat-icon><span>Mayor</span>
+  <button class="add-btn" (click)="addOffical('member')">
+    <mat-icon>add</mat-icon><span>Members</span>
   </button>
   <button class="submit-btn" mat-stroked-button (click)="save()">Save</button>
 </div>

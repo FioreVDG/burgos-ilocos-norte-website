@@ -75,6 +75,7 @@
     "stream": false
   },
   "engines": {
-    "node": "^14"
+    "node": "^14",
+    "npm": "^6"
   }
 }

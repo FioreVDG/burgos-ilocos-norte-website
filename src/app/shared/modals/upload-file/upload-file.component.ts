@@ -9,6 +9,7 @@ import { UploadFileDropBox } from 'src/app/models/api/announcement-service.inter
   styleUrls: ['./upload-file.component.scss'],
 })
 export class UploadFileComponent implements OnInit {
+  uploading: boolean = true;
   imageFile: File | null;
   imageB64: string = '';
   allowedFileTypes = ['jpg', 'png'];
@@ -53,19 +54,9 @@ export class UploadFileComponent implements OnInit {
               .uploadFile(path, fileName, file)
               .subscribe((res: UploadFileDropBox) => {
                 console.log(res.result);
+                this.uploading = false;
                 this.dialogRef.close(res.result);
               });
-
-            // reader.onload = () => {
-            //   this.imageB64 = reader.result as string;
-            //   // console.log(file);
-
-            //   // console.log(this.imageB64);
-            //
-
-            //   // console.log('body', body);
-            //
-            // };
           } else alert('Invalid file type');
         });
       } else alert('Not a file');
