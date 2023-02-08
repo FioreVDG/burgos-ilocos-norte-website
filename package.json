@@ -72,7 +72,13 @@
   },
   "browser": {
     "crypto": false,
-    "stream": false
+    "stream": false,
+    "fs": false,
+    "zlib": false,
+    "constants": false,
+    "assert": false,
+    "child_process": false,
+    "os": false
   },
   "engines": {
     "node": "^14",
