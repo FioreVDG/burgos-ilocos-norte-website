@@ -8,13 +8,12 @@
         <button class="upload-btn" (click)="upload('mayor', m)">
           <mat-icon>cloud_upload</mat-icon><span>Upload</span>
         </button>
-        <!-- <div class="card"> -->
         <div>
           <img
             class="img"
-            [src]="mayor.value.image.image"
+            [src]="mayor.value.url"
             alt=""
-            *ngIf="mayor.value.image.image"
+            *ngIf="mayor.value.url"
           />
         </div>
 
@@ -29,7 +28,6 @@
           />
         </mat-form-field>
       </div>
-      <!-- </div> -->
     </ng-container>
   </div>
   <div formArrayName="viceMayor">
@@ -42,12 +40,7 @@
           <mat-icon>cloud_upload</mat-icon><span>Upload</span>
         </button>
         <div>
-          <img
-            class="img"
-            [src]="vm.value.image.image"
-            alt=""
-            *ngIf="vm.value.image.image"
-          />
+          <img class="img" [src]="vm.value.url" alt="" *ngIf="vm.value.url" />
         </div>
 
         <mat-form-field appearance="standard" style="padding-left: 15px">
@@ -79,9 +72,9 @@
         <div>
           <img
             class="img1"
-            [src]="mem.value.image.image"
+            [src]="mem.value.url"
             alt=""
-            *ngIf="mem.value.image.image"
+            *ngIf="mem.value.url"
           />
         </div>
 
