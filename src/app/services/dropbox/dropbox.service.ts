@@ -22,7 +22,7 @@ export class DropboxService {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
-      fetch: fetch,
+      // fetch: fetch,
       accessToken: this.accessToken,
       // accessToken: this.accessTokenShortLived,
       // refreshToken: this.refreshToken,
