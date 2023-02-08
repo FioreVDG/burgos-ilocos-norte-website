@@ -125,7 +125,7 @@ export class AddLegislativeComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
-          // console.log(fileType, file);
+          console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) this.imageFile = file;
           else alert('Invalid file type');

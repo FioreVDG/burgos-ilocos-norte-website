@@ -1,0 +1,124 @@
+<div [formGroup]="officials">
+  <div formArrayName="mayor">
+    <ng-container
+      *ngFor="let mayor of getMayor().controls; let m = index"
+      [formGroupName]="m"
+    >
+      <div class="card mb-3 pt-4">
+        <button class="upload-btn" (click)="upload('mayor', m)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <!-- <div class="card"> -->
+        <div>
+          <img
+            class="img"
+            [src]="mayor.value.image.image"
+            alt=""
+            *ngIf="mayor.value.image.image"
+          />
+        </div>
+
+        <mat-form-field appearance="standard" style="padding-left: 15px">
+          <mat-label>Mayor</mat-label>
+          <input
+            matInput
+            placeholder="Name of Mayor"
+            formControlName="name"
+            type="text"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+      <!-- </div> -->
+    </ng-container>
+  </div>
+  <div formArrayName="viceMayor">
+    <ng-container
+      *ngFor="let vm of getViceMayor().controls; let v = index"
+      [formGroupName]="v"
+    >
+      <div class="card mb-3 pt-4">
+        <button class="upload-btn" (click)="upload('viceMayor', v)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <div>
+          <img
+            class="img"
+            [src]="vm.value.image.image"
+            alt=""
+            *ngIf="vm.value.image.image"
+          />
+        </div>
+
+        <mat-form-field appearance="standard" style="padding-left: 15px">
+          <mat-label>Vice Mayor</mat-label>
+          <input
+            matInput
+            placeholder="Name of Vice Mayor"
+            formControlName="name"
+            type="text"
+            required="true"
+          />
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
+  <div formArrayName="members">
+    <!-- <button class="add-btn" (click)="addMember()">
+      <mat-icon>add</mat-icon><span>Add Member</span>
+    </button> -->
+    <ng-container
+      *ngFor="let mem of getMembers().controls; let mem_i = index"
+      [formGroupName]="mem_i"
+      ><br />
+
+      <div class="card pt-4">
+        <button class="upload-btn" (click)="upload('members', mem_i)">
+          <mat-icon>cloud_upload</mat-icon><span>Upload</span>
+        </button>
+        <div>
+          <img
+            class="img1"
+            [src]="mem.value.image.image"
+            alt=""
+            *ngIf="mem.value.image.image"
+          />
+        </div>
+
+        <div style="padding-left: 15px">
+          <mat-form-field appearance="standard" style="width: 100%">
+            <mat-label>Member</mat-label>
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="standard" style="width: 100%">
+            <mat-label>Position</mat-label>
+            <input
+              matInput
+              placeholder="Position"
+              formControlName="position"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <button class="delete-btn" (click)="removeMember(mem_i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="buttons pt-4 mb-4">
+  <button class="add-btn" (click)="addMember()">
+    <mat-icon>add</mat-icon><span>Mayor</span>
+  </button>
+  <button class="submit-btn" mat-stroked-button (click)="save()">Save</button>
+</div>
+<!-- {{ this.officials.value | json }} -->

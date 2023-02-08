@@ -1,0 +1,93 @@
+.add-btn,
+.delete-btn,
+.upload-btn {
+  border: none;
+  background-color: transparent;
+}
+.upload-btn {
+  top: 6px;
+  position: absolute;
+  left: 17px;
+}
+
+.upload-btn:hover {
+  mat-icon {
+    color: #0f8aa8;
+  }
+  // span {
+  //   color: #4e97a9;
+  // }
+}
+.delete-btn {
+  position: absolute;
+  top: 13px;
+  right: 17px;
+
+  mat-icon {
+    color: #d0392b;
+  }
+}
+
+.delete-btn:hover {
+  mat-icon {
+    color: #f84535;
+  }
+  span {
+    color: #7c534f;
+  }
+}
+.add-btn {
+  float: left;
+  mat-icon {
+    color: #3e692f;
+  }
+}
+.add-btn:hover {
+  mat-icon {
+    color: #4f853b;
+  }
+  span {
+    color: #35512b;
+  }
+}
+img,
+.img1 {
+  margin-top: 10px;
+  height: 95px;
+  width: 100%;
+  position: relative;
+}
+.img1 {
+  height: 130px !important;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  border-radius: 5px;
+  background: #ffff;
+  box-shadow: 5px 5px 10px #bfc7c9;
+  width: 100%;
+  padding: 0px 20px 0px 20px;
+}
+.submit-btn {
+  float: right;
+  border: 2px solid #0f8aa8;
+}
+span {
+  position: relative;
+  bottom: 6px;
+  left: 8px;
+}
+
+.buttons {
+  padding-bottom: 65px;
+}
+.mayors {
+  padding-bottom: 20px;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent !important;
+  background: none;
+}
