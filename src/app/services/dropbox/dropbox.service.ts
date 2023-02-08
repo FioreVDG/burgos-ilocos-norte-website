@@ -10,24 +10,24 @@ export class DropboxService {
     'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
 
-  accessTokenShortLived =
-    'sl.BYZgE1BMIBrDqDXC_ffzfjOlJaO1HFOuXkmm3huuhi696D1yVkzwndZwKkxpEZYr189HAGg2eTKL7aqbEuYmZnAjfs5okrB1zj1Mwvsy6UL3sejRHbSq-DzbRRCf1O_LHGE_waHw';
-  refreshToken =
-    'D2PsY6z7DdQAAAAAAAAAAQ_bdlcYLeXmHu6nMScYaMvGd0gCbjDXe26wb_Qsi70L';
+  // accessTokenShortLived =
+  //   'sl.BYZgE1BMIBrDqDXC_ffzfjOlJaO1HFOuXkmm3huuhi696D1yVkzwndZwKkxpEZYr189HAGg2eTKL7aqbEuYmZnAjfs5okrB1zj1Mwvsy6UL3sejRHbSq-DzbRRCf1O_LHGE_waHw';
+  // refreshToken =
+  //   'D2PsY6z7DdQAAAAAAAAAAQ_bdlcYLeXmHu6nMScYaMvGd0gCbjDXe26wb_Qsi70L';
 
-  clientId = 'wz1dvqojdo5y8bt';
-  clientSecret = '6urbz1oiuhtzbpy';
+  // clientId = 'wz1dvqojdo5y8bt';
+  // clientSecret = '6urbz1oiuhtzbpy';
 
   constructor() {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
-      // accessToken: this.accessToken,
-      accessToken: this.accessTokenShortLived,
-      refreshToken: this.refreshToken,
-      clientId: this.clientId,
-      clientSecret: this.clientSecret,
+      accessToken: this.accessToken,
+      // accessToken: this.accessTokenShortLived,
+      // refreshToken: this.refreshToken,
+      // clientId: this.clientId,
+      // clientSecret: this.clientSecret,
     });
   }
 
