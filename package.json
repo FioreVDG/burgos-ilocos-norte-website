@@ -38,7 +38,7 @@
     "chart.js": "^2.5.0",
     "crypto-browserify": "^3.12.0",
     "crypto-js": "^4.1.1",
-    "dropbox": "^10.23.0",
+    "dropbox": "^10.34.0",
     "express": "^4.17.3",
     "hammerjs": "^2.0.8",
     "isomorphic-fetch": "^3.0.0",
