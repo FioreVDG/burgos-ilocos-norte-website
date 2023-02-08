@@ -6,28 +6,28 @@ declare var require: any;
   providedIn: 'root',
 })
 export class DropboxService {
-  // accessToken =
-  //   'sl.BYVSSYlPUSGsZRJ4o2pdOmAiHBBXXGxyxepUgcvQppDIfjhzBbiWQQE5EwEfo3f6l7YPywBgpR2LzdTF7iDZa7DNIPuQ3OUj-bbq19LjEU6aMGInspHN0Ukinvge_ZKrVPF6_JG5';
+  accessToken =
+    'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
 
-  accessTokenShortLived =
-    'sl.BYXaj8tuB2eLd8gI4DG4p1N9116C7POX0JNVIboA2suSZ_xzRqww0k8FEAazhnxVQKnGkRr2th9rl1p4Iz85as-66Mw7wP9oxx1ZaRxwRbdF7R8-9EEEsCnXxtj8xURRaXoaxB_W';
-  refreshToken =
-    'qjdMIk3CYasAAAAAAAAAAeY33qdWecLufvaDeFfFtgrEpc88Ui0c4O04jEA4jX8_';
+  // accessTokenShortLived =
+  //   'sl.BYZ3m3UOphCzYgiXq1CdWHUdZSr8DXxMMX43gRIF-m6bqOBbMd5Fec7TYNom8yWDqlARul2iSwt13i1MSLbIx6aJb2GVh3QH9gZslDns-fL4CD0geJhopMIVNxzjJaQQeJRufRAa';
+  // refreshToken =
+  //   'TTccdZQieYUAAAAAAAAAAcrL_FLwWeko6EZ7EPEW2UArq0zBuq6dQqNkP_iMK9Hs';
 
-  clientId = 'wz1dvqojdo5y8bt';
-  clientSecret = '6urbz1oiuhtzbpy';
+  // clientId = 'wz1dvqojdo5y8bt';
+  // clientSecret = '6urbz1oiuhtzbpy';
 
   constructor() {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
     this.dbx = new Dropbox({
       fetch: fetch,
-      // accessToken: this.accessToken,
-      accessToken: this.accessTokenShortLived,
-      refreshToken: this.refreshToken,
-      clientId: this.clientId,
-      clientSecret: this.clientSecret,
+      accessToken: this.accessToken,
+      // accessToken: this.accessTokenShortLived,
+      // refreshToken: this.refreshToken,
+      // clientId: this.clientId,
+      // clientSecret: this.clientSecret,
     });
   }
 
