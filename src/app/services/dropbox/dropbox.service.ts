@@ -6,8 +6,8 @@ declare var require: any;
   providedIn: 'root',
 })
 export class DropboxService {
-  accessToken =
-    'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
+  // accessToken =
+  //   'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
 
   accessTokenShortLived =
@@ -15,19 +15,21 @@ export class DropboxService {
   refreshToken =
     'm9lHRvMO848AAAAAAAAAAcmf11ocbP0vOer-3qpon4WqFW8FJBKG5PQU6W7er0H5';
 
-  // clientId = 'wz1dvqojdo5y8bt';
-  // clientSecret = '6urbz1oiuhtzbpy';
+  clientId = 'wz1dvqojdo5y8bt';
+  clientSecret = '6urbz1oiuhtzbpy';
 
   constructor() {
     let fetch = require('isomorphic-fetch');
     let Dropbox = require('dropbox').Dropbox;
+    let DropboxAuth = require('dropbox').DropboxAuth;
+
     this.dbx = new Dropbox({
-      // fetch: fetch,
-      accessToken: this.accessToken,
-      // accessToken: this.accessTokenShortLived,
-      // refreshToken: this.refreshToken,
-      // clientId: this.clientId,
-      // clientSecret: this.clientSecret,
+      fetch: fetch,
+      authType: 'token',
+      // accessToken: this.accessToken,
+      refreshToken: this.refreshToken,
+      clientId: this.clientId,
+      clientSecret: this.clientSecret,
     });
   }
 
