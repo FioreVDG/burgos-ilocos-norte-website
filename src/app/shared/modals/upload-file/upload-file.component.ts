@@ -12,7 +12,7 @@ export class UploadFileComponent implements OnInit {
   uploading: boolean = true;
   imageFile: File | null;
   imageB64: string = '';
-  allowedFileTypes = ['jpg', 'png'];
+  allowedFileTypes = ['jpg', 'png', 'jpeg'];
   constructor(
     public dialogRef: MatDialogRef<UploadFileComponent>,
     private dropbox: DropboxService
@@ -35,6 +35,7 @@ export class UploadFileComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
+          console.log(fileType);
           console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) {
@@ -49,12 +50,12 @@ export class UploadFileComponent implements OnInit {
               fileName,
               file,
             };
-
+            this.uploading = false;
             this.dropbox
               .uploadFile(path, fileName, file)
               .subscribe((res: UploadFileDropBox) => {
-                console.log(res.result);
-                this.uploading = false;
+                // console.log(res.result);
+
                 this.dialogRef.close(res.result);
               });
           } else alert('Invalid file type');

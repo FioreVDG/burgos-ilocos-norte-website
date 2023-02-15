@@ -139,7 +139,7 @@ export class PublicServantsComponent implements OnInit {
 
   getOfficials() {
     this.content.getAllOfficials({}).subscribe(async (res: any) => {
-      // console.log(res);
+      console.log(res);
 
       if (res.env.officials[0]) {
         let result = res.env.officials[0];
@@ -152,9 +152,8 @@ export class PublicServantsComponent implements OnInit {
           let index = 0;
           for (let r of result[p]) {
             let tempImg = await this.getTempLink(r.image.path_display);
-
             if (p == 'mayor') {
-              console.log(this.getMayor().at(index).get('url'));
+              // console.log(this.getMayor().at(index).get('url'));
               this.getMayor().at(index).get('url').patchValue(tempImg);
             } else if (p === 'viceMayor') {
               this.getViceMayor().at(index).get('url').patchValue(tempImg);
@@ -167,20 +166,6 @@ export class PublicServantsComponent implements OnInit {
             index++;
           }
         }
-
-        // for(let r of result.mayor){
-        //   console.log(result.image.path_display)
-        // }
-        // for(let r of result.mayor){
-        //   console.log(result.image.path_display)
-        // }
-        // // console.log(result.mayor[0].image.path_display);
-        // // console.log(result.members[0]);
-        // console.log();
-        // for (let r of result.members) {
-        //   console.log(r.image.path_display);
-        //   this.addMember();
-        // }
 
         // this.loading = false;
       }

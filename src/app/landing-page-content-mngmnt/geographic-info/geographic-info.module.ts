@@ -17,5 +17,6 @@ import { SpinnerModule } from 'src/app/spinner/spinner.module';
     MaterialModule,
     SpinnerModule,
   ],
+  entryComponents: [GeographicInfoComponent],
 })
 export class GeographicInfoModule {}

@@ -1,5 +1,5 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div [formGroup]="logo" *ngIf="!loading">
+<!--<div [formGroup]="logo" *ngIf="!loading">
   <div class="one">
     <h1>Manage Logo Meaning</h1>
   </div>
@@ -58,4 +58,81 @@
       Save
     </button>
   </div>
+</div> -->
+
+<div class="one">
+  <h1>Manage Logo Meaning</h1>
 </div>
+<button style="float: left" class="add-btn" (click)="addCards()">
+  <mat-icon>add_circle</mat-icon><span>Meaning</span>
+</button>
+<div [formGroup]="logo">
+  <div *ngIf="!loading" class="container" formArrayName="cards">
+    <div class="grid row pt-4">
+      <div
+        *ngFor="let card of getCards().controls; let i = index"
+        [formGroupName]="i"
+        class="col-4 md:col-6 lg:col-3"
+      >
+        <div
+          class="card"
+          style="
+            margin: auto;
+
+            margin: 1.5rem 0;
+            position: relative;
+          "
+        >
+          <!-- style="position: absolute; top: 6px; right: 6px" -->
+
+          <div class="card-body">
+            <button
+              mat-stroked-button
+              class="delete-btn"
+              (click)="deleteCards(i)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <div class="img">
+              <ng-container *ngFor="let image of images[i]">
+                <img class="imgs" [src]="image" height="200px" />
+              </ng-container>
+            </div>
+
+            <mat-form-field style="width: 90%">
+              <input
+                matInput
+                placeholder="Title"
+                formControlName="title"
+                type="text"
+                required="true"
+              />
+            </mat-form-field>
+
+            <br />
+            <mat-form-field style="width: 90%">
+              <textarea
+                matInput
+                placeholder="Description"
+                formControlName="body"
+                type="text"
+                required="true"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      [disabled]="!logo.valid"
+      mat-stroked-button
+      class="save-btn"
+      (click)="onSave()"
+    >
+      Save
+    </button>
+  </div>
+</div>
+
+<!-- {{ logo.value | json }} -->

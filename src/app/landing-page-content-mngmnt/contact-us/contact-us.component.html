@@ -5,25 +5,22 @@
     <h1>Manage Contact Us</h1>
   </div>
   <div [formGroup]="contactUs" class="contacts">
-    <mat-form-field
-      appearance="fill"
-      style="width: 100%; padding: 0px 20px 0px 20px"
-      class="card"
-    >
-      <mat-label>Address</mat-label>
-      <input matInput formControlName="address" required="true" type="text" />
-    </mat-form-field>
     <div class="card">
+      <mat-form-field
+        appearance="fill"
+        style="width: 100%; padding: 20px 20px 0px 20px"
+      >
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" required="true" type="text" />
+      </mat-form-field>
+      <hr />
       <div formArrayName="numbers">
-        <button class="add-btn" mat-stroked-button (click)="addNumbers()">
-          <mat-icon>add</mat-icon> <span>Number</span>
-        </button>
         <br />
         <ng-container
           *ngFor="let num of getNumbers().controls; let num_index = index"
           [formGroupName]="num_index"
         >
-          <mat-form-field appearance="fill" style="margin-left: 30px">
+          <mat-form-field appearance="outline">
             <mat-label>Number</mat-label>
             <input
               matInput
@@ -31,45 +28,51 @@
               required="true"
               type="number"
             />
-          </mat-form-field>
 
-          <button
-            class="delete-btn"
-            mat-stroked-button
-            (click)="deleteNum(num_index)"
-          >
-            <mat-icon>delete</mat-icon><span>Delete Number</span>
-          </button>
+            <span matPrefix class="prefix-num">(+63)</span>
+            <mat-icon
+              *ngIf="num.get('number').value.toString().length"
+              style="color: red"
+              (click)="deleteNum(num_index)"
+              matSuffix
+              >close</mat-icon
+            >
+          </mat-form-field>
         </ng-container>
-      </div>
-    </div>
-    <div class="card">
-      <div formArrayName="emails">
-        <button class="add-btn" mat-stroked-button (click)="addEmails()">
-          <mat-icon>add</mat-icon><span>Email</span>
+        <button class="add-btn" mat-stroked-button (click)="addNumbers()">
+          <mat-icon>add_box</mat-icon> <span>Number</span>
         </button>
+      </div>
+      <hr />
+
+      <div formArrayName="emails">
         <br />
         <ng-container
           *ngFor="let email of getEmails().controls; let mail_index = index"
           [formGroupName]="mail_index"
         >
-          <mat-form-field appearance="fill" style="margin-left: 30px">
+          <mat-form-field style="width: 350px" appearance="outline">
             <mat-label>Email</mat-label>
             <input
+              style="margin-left: 8px"
               matInput
               formControlName="email"
               required="true"
               type="email"
             />
+            <mat-icon matPrefix class="prefix">mail</mat-icon>
+            <mat-icon
+              *ngIf="email.get('email').value.length > 0"
+              class="delete-btn"
+              (click)="deleteMail(mail_index)"
+              matSuffix
+              >close</mat-icon
+            >
           </mat-form-field>
-          <button
-            class="delete-btn"
-            mat-stroked-button
-            (click)="deleteMail(mail_index)"
-          >
-            <mat-icon>delete</mat-icon><span>Delete Email</span>
-          </button>
         </ng-container>
+        <button class="add-btn" mat-stroked-button (click)="addEmails()">
+          <mat-icon>add_box</mat-icon><span>Email</span>
+        </button>
       </div>
     </div>
   </div>

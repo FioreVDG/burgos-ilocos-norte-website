@@ -2,8 +2,10 @@
   margin: 0 2rem 0 3rem;
 }
 mat-card {
+  width: 100%;
   border-radius: 10px;
-  background: #e0dcdf85;
+  background: #fff;
+  border: 2px solid rgba(222, 219, 221, 0.522);
 }
 .add-btn,
 .delete-btn {
@@ -11,8 +13,7 @@ mat-card {
   background-color: transparent;
 }
 mat-form-field {
-  width: 300px;
-  padding: 20px;
+  width: 240px;
 }
 .add-btn {
   margin-top: 30px;
@@ -49,16 +50,22 @@ span {
   left: 8px;
 }
 .buttons {
-  padding-bottom: 85px;
+  padding-bottom: 50px;
 }
 .submit-btn {
   float: right;
   width: 10%;
   background-color: #f1eef085;
+  border: 2px solid #0f8aa8;
 }
 .submit-btn:hover {
   background-color: #cff0f7f9;
 }
+
+.input {
+  margin-right: 30px;
+}
+
 @media screen and (max-width: 481px) {
   mat-form-field {
     width: 200px;

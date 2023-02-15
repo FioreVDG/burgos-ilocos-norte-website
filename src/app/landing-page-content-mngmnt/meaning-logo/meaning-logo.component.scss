@@ -16,6 +16,9 @@
 }
 
 .add-btn {
+  // position: absolute;
+  // left: 50px;
+  // padding-left: 50px; // padding-left: 50px;
   mat-icon {
     color: #3e692f;
   }
@@ -33,20 +36,52 @@ span {
   bottom: 6px;
   left: 8px;
 }
-mat-form-field {
-  padding: 20px;
-  width: 100%;
-}
+
 .buttons {
   padding-bottom: 65px;
 }
 .save-btn {
+  left: 20px;
   border: 2px solid #0f8aa8;
+  width: 180px;
+  margin-bottom: 20px;
 }
+
 .card {
-  display: grid;
-  grid-template-columns: 15% 85%;
-  border-radius: 15px;
-  background: linear-gradient(145deg, #e3e3e3, #ffffff);
-  box-shadow: 5px 5px 10px #d7d6d6, -5px -5px 10px #ffffff;
+  position: relative;
+  border-radius: 9px;
+  background: #ffffff;
+  box-shadow: 5px 5px 10px #bdbdbd, -5px -5px 10px #ffffff;
+}
+.card-title {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.add-news {
+  height: 26.5rem;
+  width: 90%;
+  margin: auto;
+  margin: 1.5rem 0;
+  .card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+textarea {
+  width: 300px;
+  height: 100px;
+}
+.imgs {
+  text-align: center;
+  align-items: center;
+  display: inline-block;
+}
+.img {
+  text-align: center;
+  align-items: center;
 }
