@@ -3,12 +3,15 @@
   <div class="one">
     <h1>Manage Hotlines</h1>
   </div>
-  <div class="buttons">
-    <button style="float: left" class="add-btn mb-4" (click)="addHotline()">
-      <mat-icon>add_circle</mat-icon><span>Add Hotline</span>
-    </button>
-    <button class="submit-btn mt-3 mb-4" mat-stroked-button (click)="submit()">
-      Save
+  <div>
+    <button mat-raised-button color="primary" (click)="submit()">Save</button>
+    <button
+      mat-raised-button
+      class="add-btn"
+      style="float: right"
+      (click)="addHotline()"
+    >
+      <mat-icon>add_circle</mat-icon> Add Hotline
     </button>
   </div>
   <div [formGroup]="contacts">
@@ -32,10 +35,11 @@
 
           <button
             style="position: absolute; top: 13px; right: 34px; color: #f84535"
-            class="delete-btn"
+            mat-stroked-button
+            color="warn"
             (click)="deleteHotline(i)"
           >
-            <span>Delete</span>
+            Delete
           </button>
 
           <ng-container formArrayName="contact_nums">
@@ -43,11 +47,7 @@
               *ngFor="let num of number(i).controls; let num_index = index"
               [formGroupName]="num_index"
             >
-              <mat-form-field
-                class="input"
-                style="display: inline-block"
-                appearance="outline"
-              >
+              <mat-form-field class="input" appearance="standard">
                 <mat-label>Number</mat-label>
 
                 <input
@@ -56,10 +56,8 @@
                   formControlName="numbers"
                   required="true"
                 />
-
-                <mat-icon matPrefix class="prefix">phone</mat-icon>
+                <mat-icon matPrefix>phone</mat-icon>
                 <mat-icon
-                  *ngIf="num.get('numbers').value.length > 0"
                   style="color: #f84535"
                   matSuffix
                   (click)="removeNum(i, num_index)"
@@ -67,8 +65,8 @@
                 >
               </mat-form-field>
             </ng-container>
-            <button matFlatButton (click)="addNumber(i)" class="add-btn">
-              <mat-icon class="add">add_circle</mat-icon><span>Add Number</span>
+            <button class="add-btn" mat-stroked-button (click)="addNumber(i)">
+              <mat-icon>add_box</mat-icon> Add Number
             </button>
           </ng-container>
         </mat-card>

@@ -1,8 +1,16 @@
 .geo {
   // margin: 0 2rem 0 3rem;
   text-align: center;
-
   background-size: cover;
+  margin: 0 2rem 0 3rem;
+  padding-bottom: 5rem;
+}
+mat-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 1rem;
 }
 
 .add-btn,
@@ -12,38 +20,16 @@
 }
 .delete-btn {
   position: absolute;
-  top: 13px;
-  right: 17px;
+  top: 90%;
+  right: 5%;
   z-index: 2;
+  color: #d0392b;
+}
 
-  mat-icon {
-    color: #d0392b;
-  }
-}
-.delete-btn:hover {
-  mat-icon {
-    color: #f84535;
-  }
-  span {
-    color: #7c534f;
-  }
-}
 .add-btn {
-  // margin-top: 30px;
   mat-icon {
     color: #3e692f;
   }
-}
-.add-btn:hover {
-  mat-icon {
-    color: #4f853b;
-  }
-  span {
-    color: #35512b;
-  }
-}
-.geo-info {
-  margin: 0px 30px 0px 30px;
 }
 
 span {
@@ -52,25 +38,6 @@ span {
   left: 8px;
 }
 
-.card,
-.card1 {
-  margin: auto;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  border: 2px solid #ceddd9;
-  // background: radial-gradient(circle, rgba(255, 255, 255, 1) 6%, #f0f0f5 100%);
-  background: radial-gradient(circle, rgba(255, 255, 255, 1) 12%, #edf3f1 90%);
-  box-shadow: 5px 5px 10px #dddcdc, -5px -5px 10px #ffffff;
-}
-
-.card1 {
-  border: 2px solid #efeadd;
-  background: radial-gradient(circle, rgb(245, 244, 244) 6%, #f7f6f3 50%);
-}
-::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: transparent !important;
-  background: none;
-}
 .buttons {
   .addH-btn {
     float: left;

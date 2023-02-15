@@ -1,68 +1,26 @@
-mat-form-field {
-  margin-left: 30px;
+.contacts {
+  margin: 0 2rem 0 3rem;
+  padding-bottom: 5rem;
 }
-button {
-  border: none;
-  background-color: transparent;
+mat-card {
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
 }
 span {
   position: relative;
   padding-left: 4px;
 }
-.delete-btn {
-  color: #d0392b;
-}
-.delete-btn:hover {
-  mat-icon {
-    color: #f84535;
-  }
-  span {
-    color: #7c534f;
-  }
-}
+
 .add-btn {
   mat-icon {
     color: #3e692f;
   }
 }
-.add-btn:hover {
-  mat-icon {
-    color: #4f853b;
-  }
-  span {
-    color: #35512b;
-  }
-}
 
-.card {
-  margin: 20px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  background: #ffff;
-  box-shadow: 5px 5px 10px #bfc7c9;
-}
 .save-btn {
-  margin-right: 22px;
-  padding: 5px 12px;
-  border: 2px solid #0f8aa8;
-  border-radius: 5px;
-  float: right;
+  padding-bottom: 1rem;
 }
-.save-btn:hover {
-  background-color: #d1eef5;
-}
-::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: transparent !important;
-  background: none;
-}
-hr {
-  border: 1px solid #dcdede;
-  size: 2px;
-}
-.prefix-num {
-  place-self: center;
-  // bottom: 5px;
-}
-mat-label {
-  font-weight: 550;
+.input {
+  margin-right: 30px;
 }

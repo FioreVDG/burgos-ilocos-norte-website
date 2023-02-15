@@ -49,6 +49,7 @@
     "ngx-owl-carousel-o": "^7.0.2",
     "ngx-skeleton-loader": "^5.0.0",
     "path": "^0.12.7",
+    "primeflex": "^3.3.0",
     "rxjs": "~6.6.0",
     "swiper": "^8.0.7",
     "tslib": "^2.2.0",

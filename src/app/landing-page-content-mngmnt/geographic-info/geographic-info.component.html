@@ -1,14 +1,14 @@
 <app-spinner *ngIf="loading"></app-spinner>
 
-<div [formGroup]="geographic" class="geo mt-4" *ngIf="!loading">
+<div [formGroup]="geographic" class="geo" *ngIf="!loading">
   <div class="one">
     <h1>Manage Geographical Information</h1>
   </div>
 
-  <div class="container">
-    <div class="row card1">
-      <div class="col-md-6">
-        <mat-form-field appearance="fill">
+  <mat-card>
+    <div class="grid">
+      <div class="col-3">
+        <mat-form-field appearance="outline">
           <mat-label>Year</mat-label>
           <input
             matInput
@@ -19,8 +19,8 @@
         </mat-form-field>
       </div>
 
-      <div class="col-md-6">
-        <mat-form-field appearance="fill">
+      <div class="col-3">
+        <mat-form-field appearance="outline">
           <mat-label
             >Total No. of Population as of
             {{ geographic.get("year")?.value }}</mat-label
@@ -33,8 +33,8 @@
           />
         </mat-form-field>
       </div>
-      <div class="col-md-6">
-        <mat-form-field appearance="fill">
+      <div class="col-3">
+        <mat-form-field appearance="outline">
           <mat-label>No. of Barangays</mat-label>
           <input
             matInput
@@ -44,8 +44,8 @@
           />
         </mat-form-field>
       </div>
-      <div class="col-md-6">
-        <mat-form-field appearance="fill">
+      <div class="col-3">
+        <mat-form-field appearance="outline">
           <mat-label>Total Land Area</mat-label>
           <input
             matInput
@@ -56,87 +56,54 @@
         </mat-form-field>
       </div>
     </div>
-  </div>
+  </mat-card>
 
-  <div formArrayName="geographical_info" class="container">
-    <div class="grid row">
-      <div class="col-4 md:col-6 lg:col-3">
-        <div
-          (click)="addGeoInfo()"
-          class="card add-geoInfo"
-          style="
-            margin: auto;
-            height: 392px;
-            margin: 1.5rem 0;
-            position: relative;
-          "
-        >
-          <div class="card-body">
-            <div class="add-container">
-              <mat-icon>add_circle</mat-icon>
-              <h3>Add Geographic Information</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <div formArrayName="geographical_info">
+    <div class="grid">
       <div
         *ngFor="let card of getGeoInfo().controls; let i = index"
         [formGroupName]="i"
-        class="col-4 md:col-6"
+        class="col"
       >
-        <div
-          class="card"
-          style="
-            margin: auto;
-
-            margin: 1.5rem 0;
-            position: relative;
-          "
-        >
-          <div class="card-body">
-            <button
-              mat-stroked-button
-              class="delete-btn"
-              (click)="removeGeoInfo(i)"
+        <mat-card>
+          <mat-form-field appearance="outline">
+            <input
+              style="font-weight: 550"
+              matInput
+              placeholder="Title"
+              formControlName="title"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>Information</mat-label>
+            <textarea
+              matInput
+              placeholder="Information"
+              formControlName="body"
+              type="text"
+              required="true"
             >
-              <mat-icon>delete</mat-icon>
-            </button>
-
-            <mat-form-field
-              appearance="outline"
-              class="geo-info"
-              style="width: 90%"
-            >
-              <input
-                style="font-weight: 550"
-                matInput
-                placeholder="Title"
-                formControlName="title"
-                type="text"
-                required="true"
-              />
-            </mat-form-field>
-
-            <br />
-
-            <mat-form-field
-              appearance="outline"
-              class="geo-info"
-              style="width: 90%; padding-right: 20px"
-            >
-              <mat-label>Information</mat-label>
-              <textarea
-                matInput
-                placeholder="Information"
-                formControlName="body"
-                type="text"
-                required="true"
-              >
-              </textarea>
-            </mat-form-field>
+            </textarea>
+          </mat-form-field>
+          <button
+            mat-stroked-button
+            class="delete-btn"
+            (click)="removeGeoInfo(i)"
+          >
+            Delete
+          </button>
+        </mat-card>
+      </div>
+      <div class="col">
+        <mat-card (click)="addGeoInfo()" class="add-geoInfo">
+          <div class="add-container">
+            <mat-icon>add_circle</mat-icon>
+            <h3>Add Geographic Information</h3>
           </div>
-        </div>
+        </mat-card>
       </div>
     </div>
   </div>
