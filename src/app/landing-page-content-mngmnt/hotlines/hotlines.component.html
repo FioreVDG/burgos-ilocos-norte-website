@@ -3,6 +3,14 @@
   <div class="one">
     <h1>Manage Hotlines</h1>
   </div>
+  <div class="buttons">
+    <button style="float: left" class="add-btn mb-4" (click)="addHotline()">
+      <mat-icon>add_circle</mat-icon><span>Add Hotline</span>
+    </button>
+    <button class="submit-btn mt-3 mb-4" mat-stroked-button (click)="submit()">
+      Save
+    </button>
+  </div>
   <div [formGroup]="contacts">
     <ng-container formArrayName="hotlines">
       <ng-container
@@ -11,7 +19,8 @@
       >
         <br />
         <mat-card>
-          <mat-form-field style="width: 90%" appearance="standard">
+          <mat-form-field style="width: 100%" appearance="standard">
+            <mat-label>Name</mat-label>
             <input
               matInput
               placeholder="Name"
@@ -22,11 +31,11 @@
           </mat-form-field>
 
           <button
-            style="position: absolute; top: 13px; right: 17px"
+            style="position: absolute; top: 13px; right: 34px; color: #f84535"
             class="delete-btn"
             (click)="deleteHotline(i)"
           >
-            <mat-icon>delete</mat-icon><span>Delete hotline</span>
+            <span>Delete</span>
           </button>
 
           <ng-container formArrayName="contact_nums">
@@ -35,47 +44,35 @@
               [formGroupName]="num_index"
             >
               <mat-form-field
+                class="input"
                 style="display: inline-block"
-                appearance="standard"
+                appearance="outline"
               >
+                <mat-label>Number</mat-label>
+
                 <input
                   matInput
                   placeholder="Number"
                   formControlName="numbers"
-                  type="text"
                   required="true"
                 />
+
+                <mat-icon matPrefix class="prefix">phone</mat-icon>
+                <mat-icon
+                  *ngIf="num.get('numbers').value.length > 0"
+                  style="color: #f84535"
+                  matSuffix
+                  (click)="removeNum(i, num_index)"
+                  >close</mat-icon
+                >
               </mat-form-field>
-              <button
-                style="display: inline-block"
-                mat-menu-item
-                (click)="removeNum(i, num_index)"
-                class="delete-btn"
-              >
-                <mat-icon>delete</mat-icon>
-              </button>
             </ng-container>
+            <button matFlatButton (click)="addNumber(i)" class="add-btn">
+              <mat-icon class="add">add_circle</mat-icon><span>Add Number</span>
+            </button>
           </ng-container>
-          <button
-            style="position: absolute; right: 1.5rem; bottom: 20px"
-            matFlatButton
-            (click)="addNumber(i)"
-            class="add-btn"
-          >
-            <mat-icon class="add">add_circle</mat-icon><span>Add Number</span>
-          </button></mat-card
-        >
+        </mat-card>
       </ng-container>
     </ng-container>
   </div>
-  <div class="buttons">
-    <button style="float: left" class="add-btn mb-4" (click)="addHotline()">
-      <mat-icon>add_circle</mat-icon><span>Add Hotline</span>
-    </button>
-    <button class="submit-btn mt-3 mb-4" mat-stroked-button (click)="submit()">
-      Save
-    </button>
-  </div>
-
-  <!-- {{ this.contacts.value | json }} -->
 </div>

@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FileSystemFileEntry, NgxFileDropEntry } from 'ngx-file-drop';
-
+import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
+import { UploadFileDropBox } from 'src/app/models/api/announcement-service.interface';
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.scss'],
 })
 export class UploadFileComponent implements OnInit {
+  uploading: boolean = true;
   imageFile: File | null;
   imageB64: string = '';
-  allowedFileTypes = ['jpg', 'png'];
-  constructor(public dialogRef: MatDialogRef<UploadFileComponent>) {}
+  allowedFileTypes = ['jpg', 'png', 'jpeg'];
+  constructor(
+    public dialogRef: MatDialogRef<UploadFileComponent>,
+    private dropbox: DropboxService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -30,29 +35,29 @@ export class UploadFileComponent implements OnInit {
           reader.readAsDataURL(file);
 
           const fileType = file.type.split('/')[1];
+          console.log(fileType);
           console.log(fileType, file);
 
           if (this.allowedFileTypes.includes(fileType)) {
-            reader.onload = () => {
-              this.imageB64 = reader.result as string;
-              console.log(file);
-
-              // console.log(this.imageB64);
-              const path = '/burgos-ilocosnorte/officials/';
-              const fileType = file.type.split('/')[1];
-              const dateNow = Date.now();
-              const name = file.name.split('.')[0];
-              const fileName = `${name}-${dateNow}.${fileType}`;
-
-              let body = {
-                image: this.imageB64,
-                path,
-                fileName,
-                file,
-              };
-              console.log('body', body);
-              this.dialogRef.close(body);
+            const path = '/burgos-ilocosnorte/officials/';
+            const fileType = file.type.split('/')[1];
+            const dateNow = Date.now();
+            const name = file.name.split('.')[0];
+            const fileName = `${name}-${dateNow}.${fileType}`;
+            let body = {
+              image: this.imageB64,
+              path,
+              fileName,
+              file,
             };
+            this.uploading = false;
+            this.dropbox
+              .uploadFile(path, fileName, file)
+              .subscribe((res: UploadFileDropBox) => {
+                // console.log(res.result);
+
+                this.dialogRef.close(res.result);
+              });
           } else alert('Invalid file type');
         });
       } else alert('Not a file');

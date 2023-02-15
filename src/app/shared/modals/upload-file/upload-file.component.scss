@@ -11,3 +11,54 @@
   float: left;
   cursor: pointer;
 }
+
+// loading
+.wrapper {
+  span {
+    display: block;
+  }
+  .icon {
+    color: #05bbe8 !important;
+    position: relative;
+    text-align: center;
+    mat-icon {
+      text-align: center;
+      position: relative;
+      font-size: 65px;
+      right: 21px;
+    }
+  }
+}
+
+.loader {
+  display: inline-block;
+  font-size: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: rgb(4, 87, 142);
+  position: relative;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  left: 76px;
+  bottom: 18px;
+  // left: 34px;
+  // bottom: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid rgb(179, 179, 179);
+  border-bottom-color: rgb(116, 114, 114);
+  box-sizing: border-box;
+  animation: rotation 0.6s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

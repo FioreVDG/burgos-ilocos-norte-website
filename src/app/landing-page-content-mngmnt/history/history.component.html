@@ -1,21 +1,25 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div [formGroup]="officials" *ngIf="!loading">
+<div [formGroup]="officials" *ngIf="!loading" class="container">
   <div class="one">
     <h1>Manage Mayors' List</h1>
   </div>
-  <div class="buttons">
+  <div class="pb-4">
     <button class="add-btn" (click)="addMayor()">
-      <mat-icon>add</mat-icon><span>Mayor</span>
+      <mat-icon>add_circle</mat-icon><span>Mayor</span>
     </button>
     <button class="submit-btn" mat-stroked-button (click)="submit()">
       Save
     </button>
   </div>
-  <div formArrayName="mayors" class="mayors">
-    <ng-container
+  <div formArrayName="mayors" class="row mayors">
+    <div
       *ngFor="let mayor of getMayors().controls; let i = index"
       [formGroupName]="i"
-      ><br />
+      class="col-lg-6 col-md-12"
+    >
+      <!-- <div class="line"></div> -->
+      <br />
+
       <div class="card">
         <mat-form-field appearance="fill">
           <mat-label>Name</mat-label>
@@ -26,6 +30,7 @@
             required="true"
           />
         </mat-form-field>
+        <!-- <div class="line"></div> -->
         <mat-form-field appearance="fill">
           <mat-label>Year</mat-label>
           <input
@@ -39,7 +44,10 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-    </ng-container>
+    </div>
   </div>
+  <!-- <div class="buttons">
+    <p>&nbsp;</p>
+  </div> -->
 </div>
 <!-- {{ this.officials.value | json }} -->

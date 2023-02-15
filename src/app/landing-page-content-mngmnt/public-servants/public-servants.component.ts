@@ -49,6 +49,7 @@ export class PublicServantsComponent implements OnInit {
 
   public_servant(info: any): FormGroup {
     return this.fb.group({
+      url: new FormControl(''),
       image: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       position: info.position,
@@ -58,6 +59,7 @@ export class PublicServantsComponent implements OnInit {
 
   get members(): FormGroup {
     return this.fb.group({
+      url: new FormControl(''),
       image: new FormControl(''),
       name: new FormControl('', [Validators.required]),
       position: new FormControl('', [Validators.required]),
@@ -74,91 +76,97 @@ export class PublicServantsComponent implements OnInit {
     return this.officials.get('members') as FormArray;
   }
 
-  addMember() {
-    this.getMembers().push(this.members);
+  addOffical(position: string) {
+    if (position === 'mayor')
+      this.getMayor().push(this.public_servant(this.pServants[0]));
+    else if (position === 'viceMayor')
+      this.getViceMayor().push(this.public_servant(this.pServants[1]));
+    else if (position === 'member') this.getMembers().push(this.members);
   }
-  removeMember(index: number) {
-    this.getMembers().removeAt(index);
+  removeOfficial(index: number, position: string) {
+    if (position === 'mayor') this.getMayor().removeAt(index);
+    else if (position === 'viceMayor') this.getViceMayor().removeAt(index);
+    else if (position === 'member') this.getMembers().removeAt(index);
   }
 
   save() {
-    //loop through arrays then mag upload sa db before saving sa database
-    for (let mayor of this.getMayor().controls) {
-      // console.log(mayor.value.image.file);
-      // console.log(mayor.value.image.path);
-      // console.log(mayor.value.image.fileName);
+    let body = this.officials.getRawValue();
 
-      let file = mayor.value.image.file;
-      let filename = mayor.value.image.fileName;
-      let path = mayor.value.image.path;
-
-      this.uploadDropbox(file, path, filename);
+    let positions = ['mayor', 'viceMayor', 'members'];
+    for (let p of positions) {
+      body[p].forEach((e: any) => delete e.url);
     }
 
-    // for (let mayor of this.getViceMayor().controls) {
-    //   console.log(mayor.value.image.file);
-    //   console.log(mayor.value.image.path);
-    //   console.log(mayor.value.image.fileName);
-    // }
-
-    // for (let mayor of this.getMembers().controls) {
-    //   console.log(mayor.value.image.file);
-    //   console.log(mayor.value.image.path);
-    //   console.log(mayor.value.image.fileName);
-    // }
-
-    // this.dropbox.uploadFile()
-    // let body = this.officials.getRawValue();
-    // this.content.createOfficial(body).subscribe((res: any) => {
-    //   console.log(res);
-    //   this.sb.open('Saved successfully', 'ok', {
-    //     duration: 5000,
-    //     panelClass: ['snackbar'],
-    //   });
-    // });
-
-    console.log(this.officials.getRawValue());
-  }
-
-  uploadDropbox(file: any, path: string, filename: string) {
-    this.dropbox
-      .uploadFile(path, filename, file)
-      .subscribe((res: UploadFileDropBox) => {
-        console.log(res);
-        let result = res.result;
+    this.content.createOfficial(body).subscribe((res: any) => {
+      console.log(res);
+      this.sb.open('Saved successfully', 'ok', {
+        duration: 5000,
+        panelClass: ['snackbar'],
       });
+    });
+
+    console.log(body);
   }
 
   upload(source: string, index: number) {
     this.dialog
-      .open(UploadFileComponent, {})
+      .open(UploadFileComponent, { disableClose: true })
       .afterClosed()
-      .subscribe((res: any) => {
-        // console.log(res);
+      .subscribe(async (res: any) => {
+        console.log(res.path_display);
+
+        let tempImg = await this.getTempLink(res.path_display);
+        console.log(tempImg);
 
         if (source === 'mayor') {
+          this.getMayor().at(index).get('url').patchValue(tempImg);
           this.getMayor().at(index).get('image').patchValue(res);
           // console.log(this.getMayor().at(index).get('image').value.image);
         } else if (source === 'viceMayor') {
+          this.getViceMayor().at(index).get('url').patchValue(tempImg);
           this.getViceMayor().at(index).get('image').patchValue(res);
         } else if (source === 'members') {
+          this.getMembers().at(index).get('url').patchValue(tempImg);
           this.getMembers().at(index).get('image').patchValue(res);
         }
       });
   }
 
+  async getTempLink(data: any) {
+    const response = await this.dropbox.getTempLink(data).toPromise();
+    return response.result.link;
+  }
+
   getOfficials() {
-    this.content.getAllOfficials({}).subscribe((res: any) => {
+    this.content.getAllOfficials({}).subscribe(async (res: any) => {
+      console.log(res);
+
       if (res.env.officials[0]) {
-        for (let r of res.env.officials[0].members) {
-          this.addMember();
+        let result = res.env.officials[0];
+
+        this.officials.get('mayor')?.patchValue(result.mayor);
+        this.officials.get('viceMayor')?.patchValue(result.viceMayor);
+        let positions = ['mayor', 'viceMayor', 'members'];
+
+        for (let p of positions) {
+          let index = 0;
+          for (let r of result[p]) {
+            let tempImg = await this.getTempLink(r.image.path_display);
+            if (p == 'mayor') {
+              // console.log(this.getMayor().at(index).get('url'));
+              this.getMayor().at(index).get('url').patchValue(tempImg);
+            } else if (p === 'viceMayor') {
+              this.getViceMayor().at(index).get('url').patchValue(tempImg);
+            }
+            if (p === 'members') {
+              this.addOffical('member');
+              this.officials.get('members')?.patchValue(result.members);
+              this.getMembers().at(index).get('url').patchValue(tempImg);
+            }
+            index++;
+          }
         }
 
-        this.officials.get('mayor')?.patchValue(res.env.officials[0].mayor);
-        this.officials
-          .get('viceMayor')
-          ?.patchValue(res.env.officials[0].viceMayor);
-        this.officials.get('members')?.patchValue(res.env.officials[0].members);
         // this.loading = false;
       }
     });

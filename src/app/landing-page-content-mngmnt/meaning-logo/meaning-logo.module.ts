@@ -14,8 +14,8 @@ import { SpinnerModule } from 'src/app/spinner/spinner.module';
     MeaningLogoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
     SpinnerModule,
+    MaterialModule,
   ],
 })
 export class MeaningLogoModule {}

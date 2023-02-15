@@ -1,5 +1,8 @@
 <div [formGroup]="officials">
   <div formArrayName="mayor">
+    <button class="add-btn" (click)="addOffical('mayor')">
+      <mat-icon>add</mat-icon><span>Mayor</span>
+    </button>
     <ng-container
       *ngFor="let mayor of getMayor().controls; let m = index"
       [formGroupName]="m"
@@ -8,13 +11,12 @@
         <button class="upload-btn" (click)="upload('mayor', m)">
           <mat-icon>cloud_upload</mat-icon><span>Upload</span>
         </button>
-        <!-- <div class="card"> -->
         <div>
           <img
             class="img"
-            [src]="mayor.value.image.image"
+            [src]="mayor.value.url"
             alt=""
-            *ngIf="mayor.value.image.image"
+            *ngIf="mayor.value.url"
           />
         </div>
 
@@ -28,11 +30,16 @@
             required="true"
           />
         </mat-form-field>
+        <button class="delete-btn" (click)="removeOfficial(m, 'mayor')">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
-      <!-- </div> -->
     </ng-container>
   </div>
   <div formArrayName="viceMayor">
+    <button class="add-btn" (click)="addOffical('viceMayor')">
+      <mat-icon>add</mat-icon><span>Vice Mayor</span>
+    </button>
     <ng-container
       *ngFor="let vm of getViceMayor().controls; let v = index"
       [formGroupName]="v"
@@ -42,12 +49,7 @@
           <mat-icon>cloud_upload</mat-icon><span>Upload</span>
         </button>
         <div>
-          <img
-            class="img"
-            [src]="vm.value.image.image"
-            alt=""
-            *ngIf="vm.value.image.image"
-          />
+          <img class="img" [src]="vm.value.url" alt="" *ngIf="vm.value.url" />
         </div>
 
         <mat-form-field appearance="standard" style="padding-left: 15px">
@@ -60,13 +62,13 @@
             required="true"
           />
         </mat-form-field>
+        <button class="delete-btn" (click)="removeOfficial(v, 'viceMayor')">
+          <mat-icon>delete</mat-icon>
+        </button>
       </div>
     </ng-container>
   </div>
   <div formArrayName="members">
-    <!-- <button class="add-btn" (click)="addMember()">
-      <mat-icon>add</mat-icon><span>Add Member</span>
-    </button> -->
     <ng-container
       *ngFor="let mem of getMembers().controls; let mem_i = index"
       [formGroupName]="mem_i"
@@ -79,9 +81,9 @@
         <div>
           <img
             class="img1"
-            [src]="mem.value.image.image"
+            [src]="mem.value.url"
             alt=""
-            *ngIf="mem.value.image.image"
+            *ngIf="mem.value.url"
           />
         </div>
 
@@ -107,7 +109,7 @@
               required="true"
             />
           </mat-form-field>
-          <button class="delete-btn" (click)="removeMember(mem_i)">
+          <button class="delete-btn" (click)="removeOfficial(mem_i, 'member')">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -116,8 +118,8 @@
   </div>
 </div>
 <div class="buttons pt-4 mb-4">
-  <button class="add-btn" (click)="addMember()">
-    <mat-icon>add</mat-icon><span>Mayor</span>
+  <button class="add-btn" (click)="addOffical('member')">
+    <mat-icon>add</mat-icon><span>Members</span>
   </button>
   <button class="submit-btn" mat-stroked-button (click)="save()">Save</button>
 </div>

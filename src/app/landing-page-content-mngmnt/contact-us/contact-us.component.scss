@@ -1,17 +1,16 @@
-// .contacts {
-//   text-align: center;
-// }
+mat-form-field {
+  margin-left: 30px;
+}
 button {
   border: none;
   background-color: transparent;
 }
 span {
   position: relative;
+  padding-left: 4px;
 }
 .delete-btn {
-  mat-icon {
-    color: #d0392b;
-  }
+  color: #d0392b;
 }
 .delete-btn:hover {
   mat-icon {
@@ -36,12 +35,14 @@ span {
 }
 
 .card {
+  margin: 20px;
   margin-bottom: 20px;
   border-radius: 5px;
   background: #ffff;
   box-shadow: 5px 5px 10px #bfc7c9;
 }
 .save-btn {
+  margin-right: 22px;
   padding: 5px 12px;
   border: 2px solid #0f8aa8;
   border-radius: 5px;
@@ -53,4 +54,15 @@ span {
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: transparent !important;
   background: none;
+}
+hr {
+  border: 1px solid #dcdede;
+  size: 2px;
+}
+.prefix-num {
+  place-self: center;
+  // bottom: 5px;
+}
+mat-label {
+  font-weight: 550;
 }

@@ -54,7 +54,8 @@ span {
 }
 
 .buttons {
-  padding-bottom: 20px;
+  padding-bottom: 30px;
+  // margin-right: 7rem;
 }
 ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: transparent !important;
@@ -62,4 +63,7 @@ span {
 }
 .mayors {
   padding-bottom: 20px;
+}
+.line {
+  border: 2px solid black;
 }

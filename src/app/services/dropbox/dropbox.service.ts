@@ -10,8 +10,10 @@ export class DropboxService {
   //   'grG-786_nYcAAAAAAAAAASZmkKtn8u4U73zIEwMUfUMsl4vqhoEXmrSL68uswJ4I';
   dbx: any;
 
+  accessTokenShortLived =
+    'sl.BYb2MhxLi1yA9pwHQReY_dEPjbdq1pP-cYZq9SfUHyXxRb4JJg1YLgOmS3rrZkgzxHeXpTUcaYxJ8xljWULTdPbmkHFG_hfpiXl_zWjqEOxET58Ncr-QvAYEbbcS2eRuAzu1cFjM';
   refreshToken =
-    'dXSfK4D9PF8AAAAAAAAAARGw8-THPbHWLAX0gMtyequtDSSV7quSWOrH6Ymx3uEK';
+    'm9lHRvMO848AAAAAAAAAAcmf11ocbP0vOer-3qpon4WqFW8FJBKG5PQU6W7er0H5';
 
   clientId = 'wz1dvqojdo5y8bt';
   clientSecret = '6urbz1oiuhtzbpy';
