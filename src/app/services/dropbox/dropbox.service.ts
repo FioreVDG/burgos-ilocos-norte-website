@@ -22,7 +22,7 @@ export class DropboxService {
     let DropboxAuth = require('dropbox').DropboxAuth;
 
     this.dbx = new Dropbox({
-      fetch: fetch,
+      // fetch: fetch,
       authType: 'token',
       // accessToken: this.accessToken,
       refreshToken: this.refreshToken,
