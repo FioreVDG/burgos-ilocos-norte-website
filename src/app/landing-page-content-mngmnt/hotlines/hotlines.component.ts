@@ -55,10 +55,13 @@ export class HotlinesComponent implements OnInit {
     this.number(index).push(this.contact);
   }
 
-  addHotline() {
-    this.getHotlines().push(this.numbers);
+  addHotlineBelow(index: number) {
+    this.getHotlines().insert(index + 1, this.numbers);
   }
 
+  addHotlineAbove() {
+    this.getHotlines().insert(0, this.numbers);
+  }
   deleteHotline(index: number) {
     this.getHotlines().removeAt(index);
   }
@@ -94,7 +97,7 @@ export class HotlinesComponent implements OnInit {
         console.log(this.hotlines._id);
 
         for (let i in this.hotlines.hotlines) {
-          this.addHotline();
+          this.getHotlines().push(this.numbers);
           for (let j in this.hotlines.hotlines[i].contact_nums) {
             this.addNumber(Number(i));
           }

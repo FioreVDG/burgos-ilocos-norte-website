@@ -1,4 +1,4 @@
-<app-spinner *ngIf="loading"></app-spinner>
+<!-- <app-spinner *ngIf="loading"></app-spinner>
 <div [formGroup]="officials" *ngIf="!loading" class="container">
   <div class="one">
     <h1>Manage Mayors' List</h1>
@@ -17,7 +17,6 @@
       [formGroupName]="i"
       class="col-lg-6 col-md-12"
     >
-      <!-- <div class="line"></div> -->
       <br />
 
       <div class="card">
@@ -30,7 +29,7 @@
             required="true"
           />
         </mat-form-field>
-        <!-- <div class="line"></div> -->
+     
         <mat-form-field appearance="fill">
           <mat-label>Year</mat-label>
           <input
@@ -46,8 +45,127 @@
       </div>
     </div>
   </div>
-  <!-- <div class="buttons">
-    <p>&nbsp;</p>
-  </div> -->
+</div> -->
+
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div [formGroup]="officials" class="mayor" *ngIf="!loading">
+  <div class="one">
+    <h1>Manage Mayors' List</h1>
+  </div>
+  <div style="padding-bottom: 50px">
+    <button
+      style="float: left"
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+    >
+      Save
+    </button>
+    <button
+      style="float: right"
+      mat-raised-button
+      class="add-btn"
+      (click)="addMayor()"
+    >
+      Add Mayor
+    </button>
+  </div>
+
+  <div formArrayName="mayors">
+    <!-- <div class="grid">
+      <div class="col">
+        <mat-card (click)="addMayor()" class="add-mayorInfo">
+          <div class="add-container">
+            <mat-icon>add_circle</mat-icon>
+            <h3>Add Mayor</h3>
+          </div>
+        </mat-card>
+      </div>
+
+      <div
+        *ngFor="let mayor of getMayors().controls; let i = index"
+        [formGroupName]="i"
+        class="col"
+      >
+        <mat-card>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              placeholder="Name"
+              formControlName="name"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <br />
+          <mat-form-field appearance="outline">
+            <mat-label>Year</mat-label>
+            <input
+              matInput
+              placeholder="Year"
+              formControlName="date"
+              type="text"
+              required="true"
+            />
+          </mat-form-field>
+          <button
+            mat-stroked-button
+            class="delete-btn"
+            (click)="deleteMayor(i)"
+          >
+            Delete
+          </button>
+        </mat-card>
+      </div>
+    </div> -->
+
+    <div class="timeline-container">
+      <div class="timeline">
+        <div class="center-line"></div>
+        <ng-container
+          *ngFor="let mayor of getMayors().controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div class="timeline-event">
+            <section class="timeline-card">
+              <div class="timeline-dot"></div>
+              <button
+                class="delete-btn"
+                style="float: right"
+                (click)="deleteMayor(i)"
+              >
+                Delete
+              </button>
+              <div class="timeline-point-track-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input
+                    matInput
+                    placeholder="Name"
+                    formControlName="name"
+                    type="text"
+                    required="true"
+                  />
+                </mat-form-field>
+                <br />
+                <br />
+                <mat-form-field appearance="outline">
+                  <mat-label>Year</mat-label>
+                  <input
+                    matInput
+                    placeholder="Year"
+                    formControlName="date"
+                    type="text"
+                    required="true"
+                  />
+                </mat-form-field>
+              </div>
+            </section>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- {{ this.officials.value | json }} -->

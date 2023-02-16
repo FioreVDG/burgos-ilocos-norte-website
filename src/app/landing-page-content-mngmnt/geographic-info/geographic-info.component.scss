@@ -57,7 +57,12 @@ textarea {
   height: 200px;
 }
 .add-container {
-  margin-top: 130px;
+  // margin-top: 130px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   mat-icon {
     text-shadow: 2px 2px 10px #a3c0c7;
     color: #0f8aa8;
@@ -71,4 +76,8 @@ textarea {
 
 .add-geoInfo:hover {
   cursor: pointer;
+}
+
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px !important;
 }

@@ -4,7 +4,16 @@
   <div class="one">
     <h1>Manage Geographical Information</h1>
   </div>
-
+  <div style="padding-bottom: 50px">
+    <button
+      style="float: left"
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+    >
+      Save
+    </button>
+  </div>
   <mat-card>
     <div class="grid">
       <div class="col-3">
@@ -106,10 +115,5 @@
         </mat-card>
       </div>
     </div>
-  </div>
-  <div class="buttons pb-5">
-    <button class="submit-btn" mat-stroked-button (click)="submit()">
-      Save
-    </button>
   </div>
 </div>

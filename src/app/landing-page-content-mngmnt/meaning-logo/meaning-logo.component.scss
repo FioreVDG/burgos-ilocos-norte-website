@@ -1,87 +1,141 @@
-.add-btn,
+// .add-btn,
+// .delete-btn {
+//   border: none;
+//   background-color: transparent;
+// }
+
+// .delete-btn {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   color: #d0392b;
+// }
+
+// .delete-btn:hover {
+//   color: #f84535;
+// }
+
+// .add-btn {
+//   // position: absolute;
+//   // left: 50px;
+//   // padding-left: 50px; // padding-left: 50px;
+//   mat-icon {
+//     color: #3e692f;
+//   }
+// }
+// .add-btn:hover {
+//   mat-icon {
+//     color: #4f853b;
+//   }
+//   span {
+//     color: #35512b;
+//   }
+// }
+// span {
+//   position: relative;
+//   bottom: 6px;
+//   left: 8px;
+// }
+
+// .buttons {
+//   padding-bottom: 65px;
+// }
+// .save-btn {
+//   left: 20px;
+//   border: 2px solid #0f8aa8;
+//   width: 180px;
+//   margin-bottom: 20px;
+// }
+
+// .card {
+//   position: relative;
+//   border-radius: 9px;
+//   background: #ffffff;
+//   box-shadow: 5px 5px 10px #bdbdbd, -5px -5px 10px #ffffff;
+// }
+// .card-title {
+//   font-size: 19px;
+//   font-weight: 500;
+// }
+
+// .add-news {
+//   height: 26.5rem;
+//   width: 90%;
+//   margin: auto;
+//   margin: 1.5rem 0;
+//   .card-body {
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     flex-direction: column;
+//     text-align: center;
+//   }
+// }
+
+// textarea {
+//   width: 300px;
+//   height: 100px;
+// }
+// .imgs {
+//   text-align: center;
+//   align-items: center;
+//   display: inline-block;
+// }
+// .img {
+//   text-align: center;
+//   align-items: center;
+// }
+
+/// new
+.logo {
+  text-align: center;
+  background-size: cover;
+  margin: 0 2rem 0 3rem;
+  padding-bottom: 5rem;
+}
+mat-card {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
 .delete-btn {
   border: none;
   background-color: transparent;
-}
-
-.delete-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 92%;
+  right: 5%;
+  z-index: 2;
   color: #d0392b;
 }
 
-.delete-btn:hover {
-  color: #f84535;
+textarea {
+  height: 200px;
 }
+.add-container {
+  // margin-top: 130px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-.add-btn {
-  // position: absolute;
-  // left: 50px;
-  // padding-left: 50px; // padding-left: 50px;
   mat-icon {
-    color: #3e692f;
+    text-shadow: 2px 2px 10px #a3c0c7;
+    color: #0f8aa8;
+    font-size: 40px;
   }
-}
-.add-btn:hover {
-  mat-icon {
-    color: #4f853b;
-  }
-  span {
-    color: #35512b;
-  }
-}
-span {
-  position: relative;
-  bottom: 6px;
-  left: 8px;
-}
-
-.buttons {
-  padding-bottom: 65px;
-}
-.save-btn {
-  left: 20px;
-  border: 2px solid #0f8aa8;
-  width: 180px;
-  margin-bottom: 20px;
-}
-
-.card {
-  position: relative;
-  border-radius: 9px;
-  background: #ffffff;
-  box-shadow: 5px 5px 10px #bdbdbd, -5px -5px 10px #ffffff;
-}
-.card-title {
-  font-size: 19px;
-  font-weight: 500;
-}
-
-.add-news {
-  height: 26.5rem;
-  width: 90%;
-  margin: auto;
-  margin: 1.5rem 0;
-  .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  h3 {
+    color: rgb(35, 34, 34);
     text-align: center;
   }
 }
 
-textarea {
-  width: 300px;
-  height: 100px;
-}
-.imgs {
-  text-align: center;
-  align-items: center;
-  display: inline-block;
-}
-.img {
-  text-align: center;
-  align-items: center;
+.add-logo:hover {
+  cursor: pointer;
 }

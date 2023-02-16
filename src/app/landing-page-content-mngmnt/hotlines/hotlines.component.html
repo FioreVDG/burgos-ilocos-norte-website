@@ -9,9 +9,9 @@
       mat-raised-button
       class="add-btn"
       style="float: right"
-      (click)="addHotline()"
+      (click)="addHotlineAbove()"
     >
-      <mat-icon>add_circle</mat-icon> Add Hotline
+      <mat-icon>add_circle</mat-icon> Add Hotline Above
     </button>
   </div>
   <div [formGroup]="contacts">
@@ -33,14 +33,21 @@
             />
           </mat-form-field>
 
-          <button
-            style="position: absolute; top: 13px; right: 34px; color: #f84535"
-            mat-stroked-button
+          <mat-icon
             color="warn"
-            (click)="deleteHotline(i)"
+            style="position: absolute; top: 13px; right: 34px; color: #f84535"
+            [matMenuTriggerFor]="menu"
+            >more_vert</mat-icon
           >
-            Delete
-          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteHotline(i)">
+              <span>Delete</span>
+            </button>
+            <button mat-menu-item (click)="addHotlineBelow(i)">
+              <span>Add Hotline Below</span>
+            </button>
+          </mat-menu>
 
           <ng-container formArrayName="contact_nums">
             <ng-container
