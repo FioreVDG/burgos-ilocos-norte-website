@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { NavigationRoutingModule } from './navigation-routing.module';
 import { NavigationComponent } from './navigation.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [NavigationComponent],
-  imports: [CommonModule, NavigationRoutingModule, FontAwesomeModule],
+  imports: [CommonModule, NavigationRoutingModule],
   exports: [NavigationComponent],
 })
 export class NavigationModule {}

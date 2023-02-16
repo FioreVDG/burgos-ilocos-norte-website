@@ -6,7 +6,6 @@ import {
   EventEmitter,
   HostListener,
 } from '@angular/core';
-import {} from '@fortawesome/free-solid-svg-icons';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
