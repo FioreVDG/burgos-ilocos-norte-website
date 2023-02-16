@@ -15,6 +15,7 @@ import { ContentService } from 'src/app/services/content/content.service';
   styleUrls: ['./hotlines.component.scss'],
 })
 export class HotlinesComponent implements OnInit {
+  //
   constructor(
     private fb: FormBuilder,
     private content: ContentService,
