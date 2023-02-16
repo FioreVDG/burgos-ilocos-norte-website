@@ -1,139 +1,3 @@
-<!--<div [formGroup]="logo" *ngIf="!loading">
-  <div class="one">
-    <h1>Manage Logo Meaning</h1>
-  </div>
-
-  <div formArrayName="cards">
-    <ng-container
-      *ngFor="let card of getCards().controls; let i = index"
-      [formGroupName]="i"
-    >
-      <br />
-      <div class="card">
-        <div class="img">
-          <ng-container *ngFor="let image of images[i]">
-            <img [src]="image" height="200px" />
-          </ng-container>
-        </div>
-        <div class="info">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Title"
-              formControlName="title"
-              type="text"
-              required="true"
-            />
-          </mat-form-field>
-          <br />
-          <mat-form-field>
-            <textarea
-              matInput
-              placeholder="Description"
-              formControlName="body"
-              type="text"
-              required="true"
-            ></textarea>
-          </mat-form-field>
-        </div>
-        <button mat-stroked-button class="delete-btn" (click)="deleteCards(i)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-    </ng-container>
-  </div>
-  <div class="buttons mt-3">
-    <button style="float: left" class="add-btn mb-4" (click)="addCards()">
-      <mat-icon>add_circle</mat-icon><span>Meaning</span>
-    </button>
-
-    <button
-      [disabled]="!logo.valid"
-      style="float: right"
-      mat-stroked-button
-      class="save-btn"
-      (click)="onSave()"
-    >
-      Save
-    </button>
-  </div>
-</div> -->
-<!-- 
-<div class="one">
-  <h1>Manage Logo Meaning</h1>
-</div>
-<button style="float: left" class="add-btn" (click)="addCards()">
-  <mat-icon>add_circle</mat-icon><span>Meaning</span>
-</button>
-<div [formGroup]="logo">
-  <div *ngIf="!loading" class="container" formArrayName="cards">
-    <div class="grid row pt-4">
-      <div
-        *ngFor="let card of getCards().controls; let i = index"
-        [formGroupName]="i"
-        class="col-4 md:col-6 lg:col-3"
-      >
-        <div
-          class="card"
-          style="
-            margin: auto;
-
-            margin: 1.5rem 0;
-            position: relative;
-          "
-        >
-          <div class="card-body">
-            <button
-              mat-stroked-button
-              class="delete-btn"
-              (click)="deleteCards(i)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-
-            <div class="img">
-              <ng-container *ngFor="let image of images[i]">
-                <img class="imgs" [src]="image" height="200px" />
-              </ng-container>
-            </div>
-
-            <mat-form-field style="width: 90%">
-              <input
-                matInput
-                placeholder="Title"
-                formControlName="title"
-                type="text"
-                required="true"
-              />
-            </mat-form-field>
-
-            <br />
-            <mat-form-field style="width: 90%">
-              <textarea
-                matInput
-                placeholder="Description"
-                formControlName="body"
-                type="text"
-                required="true"
-              ></textarea>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      [disabled]="!logo.valid"
-      mat-stroked-button
-      class="save-btn"
-      (click)="onSave()"
-    >
-      Save
-    </button>
-  </div>
-</div>
-
-{{ logo.value | json }} -->
-
 <app-spinner *ngIf="loading"></app-spinner>
 
 <div [formGroup]="logo" class="logo" *ngIf="!loading">
@@ -142,12 +6,12 @@
   </div>
   <div style="padding-bottom: 50px">
     <button
-      style="float: left"
+      style="background-color: #0f8aa8; color: #fff; float: left"
       mat-raised-button
       color="primary"
       (click)="onSave()"
     >
-      Save
+      SAVE
     </button>
   </div>
 
@@ -156,7 +20,7 @@
       <div
         *ngFor="let card of getCards().controls; let i = index"
         [formGroupName]="i"
-        class="col"
+        class="col-6"
       >
         <mat-card>
           <mat-form-field appearance="outline">
@@ -186,21 +50,6 @@
             >
             </textarea>
           </mat-form-field>
-          <button
-            mat-stroked-button
-            class="delete-btn"
-            (click)="deleteCards(i)"
-          >
-            Delete
-          </button>
-        </mat-card>
-      </div>
-      <div class="col">
-        <mat-card (click)="addCards()" class="add-logo">
-          <div class="add-container">
-            <mat-icon>add_circle</mat-icon>
-            <h3>Add Logo Meaning</h3>
-          </div>
         </mat-card>
       </div>
     </div>

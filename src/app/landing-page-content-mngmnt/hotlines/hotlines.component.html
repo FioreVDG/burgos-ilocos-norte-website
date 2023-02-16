@@ -4,7 +4,14 @@
     <h1>Manage Hotlines</h1>
   </div>
   <div>
-    <button mat-raised-button color="primary" (click)="submit()">Save</button>
+    <button
+      mat-raised-button
+      style="background-color: #0f8aa8; color: #fff"
+      (click)="submit()"
+      [disabled]="!contacts.dirty"
+    >
+      SAVE
+    </button>
     <button
       mat-raised-button
       class="add-btn"
@@ -42,9 +49,11 @@
 
           <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="deleteHotline(i)">
+              <mat-icon style="color: #f84535">delete</mat-icon>
               <span>Delete</span>
             </button>
             <button mat-menu-item (click)="addHotlineBelow(i)">
+              <mat-icon style="color: #3e692f">add</mat-icon>
               <span>Add Hotline Below</span>
             </button>
           </mat-menu>
