@@ -3,7 +3,6 @@ import { AnnouncementService } from './../../services/announcement/announcement.
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare let google: any;
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import { MAYOR_MSG } from './mayor-config';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 @Component({
@@ -18,7 +17,6 @@ export class MainPageComponent implements OnInit {
   @ViewChild('top') top!: ElementRef;
 
   @ViewChild('vid') vid: any;
-  faChevronCircleUp = faChevronCircleUp;
   element: any;
   mayorConf = MAYOR_MSG;
   missions: any = [

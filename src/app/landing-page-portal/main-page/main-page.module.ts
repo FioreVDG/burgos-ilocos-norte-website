@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 
 import { MainPageRoutingModule } from './main-page-routing.module';
 import { MainPageComponent } from './main-page.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     MainPageRoutingModule,
-    FontAwesomeModule,
     PublicServantsModule,
     WhereToGoModule,
     NewsModule,
