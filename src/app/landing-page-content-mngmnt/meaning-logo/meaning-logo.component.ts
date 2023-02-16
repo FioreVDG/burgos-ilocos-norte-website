@@ -6,8 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
+import { AlertAreYouSureComponent } from 'src/app/shared/modals/alert-are-you-sure/alert-are-you-sure.component';
 
 @Component({
   selector: 'app-meaning-logo',
@@ -18,7 +20,8 @@ export class MeaningLogoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private content: ContentService,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   cards: any;
@@ -29,6 +32,7 @@ export class MeaningLogoComponent implements OnInit {
   lightHouse: string = '/assets/images/burgos-logo/lighthouse.png';
   mountain: string = '/assets/images/burgos-logo/mountain.png';
   sea: string = '/assets/images/burgos-logo/sea.png';
+  edited: boolean = false;
 
   images = [
     [this.shield],
@@ -71,19 +75,48 @@ export class MeaningLogoComponent implements OnInit {
     this.getCards().push(this.meaning);
   }
 
-  deleteCards(i: number) {
-    this.getCards().removeAt(i);
+  // deleteCards(i: number) {
+  //   this.dialog
+  //     .open(AlertAreYouSureComponent, {
+  //       data: {
+  //         title: 'Delete',
+  //         message: 'Are you sure you want to delete this?',
+  //       },
+  //     })
+  //     .afterClosed()
+  //     .subscribe((res: any) => {
+  //       if (res) {
+  //         this.getCards().removeAt(i);
+  //       }
+  //     });
+  // }
+  onChange() {
+    this.edited = true;
   }
 
   onSave() {
     let body = this.logo.getRawValue();
-    console.log(this.logo.getRawValue());
-    this.content.createLogoMeaning(body).subscribe((res: any) => {
-      console.log(res);
-      this.sb.open('Saved successfully', 'ok', {
-        duration: 5000,
-        panelClass: ['snackbar'],
+
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Save',
+          message: 'Are you sure you want to save changes?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          console.log(this.logo.getRawValue());
+          this.content.createLogoMeaning(body).subscribe((res: any) => {
+            console.log(res);
+            this.sb.open('Saved successfully', 'ok', {
+              duration: 5000,
+              panelClass: ['snackbar'],
+            });
+            this.edited = false;
+          });
+        }
       });
-    });
   }
 }

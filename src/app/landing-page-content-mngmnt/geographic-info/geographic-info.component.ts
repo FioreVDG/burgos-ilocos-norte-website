@@ -6,9 +6,11 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
+import { AlertAreYouSureComponent } from 'src/app/shared/modals/alert-are-you-sure/alert-are-you-sure.component';
 
 @Component({
   selector: 'app-geographic-info',
@@ -17,10 +19,12 @@ import { ContentService } from 'src/app/services/content/content.service';
 })
 export class GeographicInfoComponent implements OnInit {
   loading: boolean = true;
+  edited: boolean = false;
   constructor(
     private fb: FormBuilder,
     private content: ContentService,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dialog: MatDialog
   ) {}
   ngOnInit(): void {
     this.getGeographicInfo();
@@ -47,22 +51,49 @@ export class GeographicInfoComponent implements OnInit {
 
   addGeoInfo() {
     this.getGeoInfo().push(this.geo_info);
+    this.geographic.markAsDirty();
   }
 
   removeGeoInfo(index: number) {
-    this.getGeoInfo().removeAt(index);
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Delete',
+          message: 'Are you sure you want to delete this information?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.getGeoInfo().removeAt(index);
+          this.geographic.markAsDirty();
+        }
+      });
   }
 
   submit() {
     let body = this.geographic.getRawValue();
-    console.log('geographic', this.geographic.getRawValue());
-    this.content.createGeographic(body).subscribe((res: any) => {
-      console.log(res);
-      this.sb.open('Saved successfully', 'ok', {
-        duration: 5000,
-        panelClass: ['snackbar'],
+
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Save',
+          message: 'Are you sure you want to save changes?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.content.createGeographic(body).subscribe((res: any) => {
+            console.log(res);
+            this.sb.open('Saved successfully', 'ok', {
+              duration: 5000,
+              panelClass: ['snackbar'],
+            });
+            this.edited = false;
+          });
+        }
       });
-    });
   }
 
   getGeographicInfo() {
@@ -70,14 +101,19 @@ export class GeographicInfoComponent implements OnInit {
       if (res.env.geographics[0]) {
         console.log(res.env.geographics[0]);
         let geoInfo = res.env.geographics[0];
-        // console.log(geoInfo.geographical_info.length);
+
         for (let i in geoInfo.geographical_info) {
-          this.addGeoInfo();
+          this.getGeoInfo().push(this.geo_info);
         }
         this.geographic.patchValue(geoInfo);
       }
 
       this.loading = false;
     });
+  }
+
+  onChange() {
+    console.log('changeee');
+    this.edited = true;
   }
 }

@@ -6,8 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
+import { AlertAreYouSureComponent } from 'src/app/shared/modals/alert-are-you-sure/alert-are-you-sure.component';
 
 @Component({
   selector: 'app-history',
@@ -18,9 +20,11 @@ export class HistoryComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private content: ContentService,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dialog: MatDialog
   ) {}
   loading: boolean = true;
+  edited: boolean = false;
   ngOnInit(): void {
     this.getBurgos_Mayors();
   }
@@ -42,22 +46,54 @@ export class HistoryComponent implements OnInit {
 
   addMayor() {
     this.getMayors().insert(0, this.mayor);
+    this.officials.markAsDirty();
     // this.getMayors().push(this.mayor);
   }
 
   deleteMayor(index: number) {
-    this.getMayors().removeAt(index);
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Delete',
+          message: 'Are you sure you want to delete this?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.getMayors().removeAt(index);
+          this.officials.markAsDirty();
+        }
+      });
   }
 
   submit() {
     let body = this.officials.getRawValue();
-    this.content.createHistory(body).subscribe((res: any) => {
-      console.log(res);
-      this.sb.open('Saved successfully', 'ok', {
-        duration: 5000,
-        panelClass: ['snackbar'],
+
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Submit',
+          message: 'Are you sure you want to save changes?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.content.createHistory(body).subscribe((res: any) => {
+            console.log(res);
+            this.sb.open('Saved successfully', 'ok', {
+              duration: 5000,
+              panelClass: ['snackbar'],
+            });
+            this.edited = false;
+          });
+        }
       });
-    });
+  }
+
+  onChange() {
+    this.edited = true;
   }
 
   getBurgos_Mayors() {
@@ -65,7 +101,7 @@ export class HistoryComponent implements OnInit {
       // console.log(res.env.history[0].mayors);
       if (res.env.history[0]) {
         for (let r of res.env.history[0].mayors) {
-          this.addMayor();
+          this.getMayors().push(this.mayor);
         }
 
         this.officials.get('mayors')?.patchValue(res.env.history[0].mayors);

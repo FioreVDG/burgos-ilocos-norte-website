@@ -1,36 +1,48 @@
-@use "~@angular/material" as mat;
+@use "@angular/material" as mat;
 @import "~@angular/material/theming";
 @include mat-core();
 
 $primary: (
+  100: #05bbe8,
   300: #05bbe8,
   500: #05bbe8,
+  700: #05bbe8,
   900: #05bbe8,
   contrast: (
+    100: #fff,
     300: #fff,
     500: #fff,
+    700: #fff,
     900: #fff,
   ),
 );
 
 $accent: (
+  100: #1d1d1d,
   300: #1d1d1d,
   500: #1d1d1d,
+  700: #1d1d1d,
   900: #1d1d1d,
   contrast: (
+    100: #fff,
     300: #fff,
     500: #fff,
+    700: #fff,
     900: #fff,
   ),
 );
 
 $warn: (
+  100: #e55353,
   300: #e55353,
   500: #e55353,
+  700: #e55353,
   900: #e55353,
   contrast: (
+    100: #fff,
     300: #fff,
     500: #fff,
+    700: #fff,
     900: #fff,
   ),
 );

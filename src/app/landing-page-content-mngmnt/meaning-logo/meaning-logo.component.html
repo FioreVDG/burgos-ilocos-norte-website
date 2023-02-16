@@ -6,10 +6,11 @@
   </div>
   <div style="padding-bottom: 50px">
     <button
-      style="background-color: #0f8aa8; color: #fff; float: left"
+      style="float: left"
       mat-raised-button
       color="primary"
       (click)="onSave()"
+      [disabled]="!edited"
     >
       SAVE
     </button>
@@ -31,6 +32,7 @@
               formControlName="title"
               type="text"
               required="true"
+              (change)="onChange()"
             />
           </mat-form-field>
           <div class="img">
@@ -47,6 +49,7 @@
               formControlName="body"
               type="text"
               required="true"
+              (change)="onChange()"
             >
             </textarea>
           </mat-form-field>

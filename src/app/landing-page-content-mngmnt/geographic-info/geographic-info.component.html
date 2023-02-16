@@ -6,10 +6,12 @@
   </div>
   <div style="padding-bottom: 50px">
     <button
-      style="background-color: #0f8aa8; color: #fff; float: left"
+      color="primary"
+      style="float: left"
       mat-raised-button
       color="primary"
       (click)="submit()"
+      [disabled]="!geographic.dirty && !edited"
     >
       SAVE
     </button>
@@ -22,8 +24,8 @@
           <input
             matInput
             formControlName="year"
-            type="number"
             required="true"
+            (change)="onChange()"
           />
         </mat-form-field>
       </div>
@@ -37,7 +39,7 @@
           <input
             matInput
             formControlName="population"
-            type="number"
+            (change)="onChange()"
             required="true"
           />
         </mat-form-field>
@@ -48,7 +50,7 @@
           <input
             matInput
             formControlName="barangay"
-            type="number"
+            (change)="onChange()"
             required="true"
           />
         </mat-form-field>
@@ -59,7 +61,7 @@
           <input
             matInput
             formControlName="totalLandArea"
-            type="number"
+            (change)="onChange()"
             required="true"
           />
         </mat-form-field>
@@ -83,6 +85,7 @@
               formControlName="title"
               type="text"
               required="true"
+              (change)="onChange()"
             />
           </mat-form-field>
           <br />
@@ -94,10 +97,12 @@
               formControlName="body"
               type="text"
               required="true"
+              (change)="onChange()"
             >
             </textarea>
           </mat-form-field>
           <button
+            color="warn"
             mat-stroked-button
             class="delete-btn"
             (click)="removeGeoInfo(i)"
