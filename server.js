@@ -1,12 +1,19 @@
 const express = require("express");
 const path = require("path");
 
+import sslRedirect from "heroku-ssl-redirect";
+
 const app = express();
 
-app.use(express.static("./dist/burgos-ilocos-norte-website"));
+// enable ssl redirect
+app.use(sslRedirect());
 
-app.get("*/", (req, res) =>
-  res.sendFile("index.html", { root: "dist/burgos-ilocos-norte-website/" })
-);
+app.use(express.static(__dirname + "/dist/burgos-ilocos-norte-website"));
+
+app.get("/*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname + "/dist/burgos-ilocos-norte-website/index.html")
+  );
+});
 
 app.listen(process.env.PORT || 6969);
