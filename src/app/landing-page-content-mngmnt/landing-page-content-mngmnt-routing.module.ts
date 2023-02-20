@@ -104,6 +104,11 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'update-officials',
+        loadChildren: () =>
+          import('./officials/officials.module').then((m) => m.OfficialsModule),
+      },
+      {
         path: 'update-history',
         loadChildren: () =>
           import('./history/history.module').then((m) => m.HistoryModule),

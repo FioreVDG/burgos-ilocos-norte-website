@@ -86,4 +86,10 @@ export class ContentService {
   getAllOfficials(query: QueryParams) {
     return this.http.start('get', '/officials', {}, query);
   }
+  createPubServant(body: Object) {
+    return this.http.start('post', '/public-servants', body);
+  }
+  getAllPubServant(query: QueryParams) {
+    return this.http.start('get', '/public-servants', {}, query);
+  }
 }

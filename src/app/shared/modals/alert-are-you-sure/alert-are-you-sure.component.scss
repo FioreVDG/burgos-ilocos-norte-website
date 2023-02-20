@@ -4,13 +4,48 @@
   float: right;
   cursor: pointer;
 }
-.okay-btn {
-  // float: right;
-  background-color: #17a5c9;
+
+.header {
+  height: 11vh;
+  padding: 1.5rem 0rem;
+  background-image: linear-gradient(to right, #179fc1, #52c8e6, #83daf0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    color: rgb(43, 43, 43);
+  }
 }
-.cancel-btn {
-  // float: left;
+
+.contents {
+  width: 90%;
+  margin: auto;
+
+  p {
+    margin-top: 10px;
+    text-align: center;
+  }
 }
-mat-dialog-content {
-  text-align: center;
+
+.btn-container {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .okay-btn {
+    background: #17a5c9;
+  }
+  .cancel-btn {
+    background: #efeeee;
+  }
+}
+
+button {
+  cursor: pointer;
+  margin: 0rem 1rem;
+  width: 40%;
+  height: 3rem;
+  outline: none;
+  border: none;
 }

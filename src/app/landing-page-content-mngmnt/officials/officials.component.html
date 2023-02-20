@@ -1,0 +1,105 @@
+<app-spinner *ngIf="loading"></app-spinner>
+
+<div *ngIf="!loading">
+  <button
+    style="float: right"
+    (click)="display()"
+    mat-raised-button
+    color="primary"
+  >
+    Submit
+  </button>
+  <button (click)="addRow()" mat-raised-button>
+    <mat-icon style="color: #3e692f">add_box</mat-icon> <span>Add row</span>
+  </button>
+  <div [formGroup]="officials">
+    <div formArrayName="content">
+      <div
+        *ngFor="let content of getContent().controls; let i = index"
+        [formGroupName]="i"
+      >
+        <mat-card class="mb-3 mt-3 card">
+          <button
+            style="float: right"
+            color="warn"
+            mat-stroked-button
+            (click)="removeRow(i)"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+
+          <button
+            style="float: left"
+            (click)="addCol(i)"
+            [disabled]="this.getContent().at(i).length === 4"
+          >
+            <mat-icon>add_box</mat-icon>
+          </button>
+          <div class="grid">
+            <div
+              *ngFor="let d of getRows(i).controls; let j = index"
+              [formGroupName]="j"
+              class="col content"
+            >
+              <mat-card class="col-card mb-3 mt-3">
+                <button class="upload-btn" (click)="upload(i, j)">
+                  <mat-icon>cloud_upload</mat-icon
+                  ><span style="bottom: 6px">Upload</span>
+                </button>
+                <div>
+                  <img
+                    class="img"
+                    alt=""
+                    [src]="d.value.url"
+                    *ngIf="d.value.url"
+                  />
+                </div>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input
+                    style="font-weight: 550"
+                    matInput
+                    placeholder="Name"
+                    formControlName="name"
+                    type="text"
+                    required="true"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Position</mat-label>
+                  <input
+                    matInput
+                    placeholder="Position"
+                    formControlName="position"
+                    type="text"
+                    required="true"
+                  />
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                  <mat-label>Misc</mat-label>
+                  <input
+                    matInput
+                    placeholder="Misc"
+                    formControlName="misc"
+                    type="text"
+                    placeholder="(optional)"
+                    required="false"
+                  />
+                </mat-form-field>
+                <br />
+                <button
+                  mat-stroked-button
+                  (click)="removeCol(i, j)"
+                  color="warn"
+                >
+                  Delete
+                </button>
+              </mat-card>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
