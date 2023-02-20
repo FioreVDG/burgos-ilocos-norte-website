@@ -4,14 +4,27 @@
     <h1>Manage Contact Us</h1>
   </div>
   <div class="save-btn">
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button
+      color="primary"
+      mat-raised-button
+      (click)="save()"
+      [disabled]="!edited && !contactUs.dirty"
+    >
+      SAVE
+    </button>
   </div>
 
   <div [formGroup]="contactUs">
     <mat-card>
       <mat-form-field appearance="standard" style="width: 100%">
         <mat-label>Address</mat-label>
-        <input matInput formControlName="address" required="true" type="text" />
+        <input
+          matInput
+          formControlName="address"
+          required="true"
+          type="text"
+          (change)="onChange()"
+        />
       </mat-form-field>
 
       <ng-container formArrayName="numbers">
@@ -25,14 +38,11 @@
               matInput
               formControlName="number"
               required="true"
-              type="number"
+              (change)="onChange()"
             />
 
             <span matPrefix class="prefix-num">(+63)</span>
-            <mat-icon
-              style="color: red"
-              (click)="deleteNum(num_index)"
-              matSuffix
+            <mat-icon color="warn" (click)="deleteNum(num_index)" matSuffix
               >close
             </mat-icon>
           </mat-form-field>
@@ -60,12 +70,10 @@
               formControlName="email"
               required="true"
               type="email"
+              (change)="onChange()"
             />
             <mat-icon matPrefix>mail</mat-icon>
-            <mat-icon
-              style="color: red"
-              (click)="deleteMail(mail_index)"
-              matSuffix
+            <mat-icon color="warn" (click)="deleteMail(mail_index)" matSuffix
               >close
             </mat-icon>
           </mat-form-field>

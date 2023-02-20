@@ -4,14 +4,21 @@
     <h1>Manage Hotlines</h1>
   </div>
   <div>
-    <button mat-raised-button color="primary" (click)="submit()">Save</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+      [disabled]="!contacts.dirty && !edited"
+    >
+      SAVE
+    </button>
     <button
       mat-raised-button
       class="add-btn"
       style="float: right"
-      (click)="addHotline()"
+      (click)="addHotlineAbove()"
     >
-      <mat-icon>add_circle</mat-icon> Add Hotline
+      <mat-icon>add_circle</mat-icon> Add Hotline Above
     </button>
   </div>
   <div [formGroup]="contacts">
@@ -30,17 +37,27 @@
               formControlName="name"
               type="text"
               required="true"
+              (change)="onChange()"
             />
           </mat-form-field>
 
-          <button
-            style="position: absolute; top: 13px; right: 34px; color: #f84535"
-            mat-stroked-button
+          <mat-icon
             color="warn"
-            (click)="deleteHotline(i)"
+            style="position: absolute; top: 13px; right: 34px; color: #f84535"
+            [matMenuTriggerFor]="menu"
+            >more_vert</mat-icon
           >
-            Delete
-          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteHotline(i)">
+              <mat-icon color="warn">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+            <button mat-menu-item (click)="addHotlineBelow(i)">
+              <mat-icon style="color: #3e692f">add</mat-icon>
+              <span>Add Hotline Below</span>
+            </button>
+          </mat-menu>
 
           <ng-container formArrayName="contact_nums">
             <ng-container
@@ -55,10 +72,11 @@
                   placeholder="Number"
                   formControlName="numbers"
                   required="true"
+                  (change)="onChange()"
                 />
                 <mat-icon matPrefix>phone</mat-icon>
                 <mat-icon
-                  style="color: #f84535"
+                  color="warn"
                   matSuffix
                   (click)="removeNum(i, num_index)"
                   >close</mat-icon

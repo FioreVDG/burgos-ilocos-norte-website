@@ -1,53 +1,83 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div [formGroup]="officials" *ngIf="!loading" class="container">
+
+<div [formGroup]="officials" class="mayor" *ngIf="!loading">
   <div class="one">
     <h1>Manage Mayors' List</h1>
   </div>
-  <div class="pb-4">
-    <button class="add-btn" (click)="addMayor()">
-      <mat-icon>add_circle</mat-icon><span>Mayor</span>
+  <div style="padding-bottom: 50px">
+    <button
+      color="primary"
+      style="float: left"
+      mat-raised-button
+      color="primary"
+      (click)="submit()"
+      [disabled]="!officials.dirty && !edited"
+    >
+      SAVE
     </button>
-    <button class="submit-btn" mat-stroked-button (click)="submit()">
-      Save
+    <button
+      style="float: right"
+      mat-raised-button
+      class="add-btn"
+      (click)="addMayor()"
+    >
+      <mat-icon style="color: #3e692f; margin-right: 2px">add_circle</mat-icon>
+      <span>Add Mayor</span>
     </button>
   </div>
-  <div formArrayName="mayors" class="row mayors">
-    <div
-      *ngFor="let mayor of getMayors().controls; let i = index"
-      [formGroupName]="i"
-      class="col-lg-6 col-md-12"
-    >
-      <!-- <div class="line"></div> -->
-      <br />
 
-      <div class="card">
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            formControlName="name"
-            placeholder="Name"
-            required="true"
-          />
-        </mat-form-field>
-        <!-- <div class="line"></div> -->
-        <mat-form-field appearance="fill">
-          <mat-label>Year</mat-label>
-          <input
-            matInput
-            formControlName="date"
-            placeholder="Year"
-            required="true"
-          />
-        </mat-form-field>
-        <button (click)="deleteMayor(i)" class="delete-btn">
-          <mat-icon>delete</mat-icon>
-        </button>
+  <div formArrayName="mayors">
+    <div class="timeline-container">
+      <div class="timeline">
+        <div class="center-line"></div>
+        <ng-container
+          *ngFor="let mayor of getMayors().controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div class="timeline-event">
+            <section class="timeline-card">
+              <div class="timeline-dot"></div>
+              <button
+                color="warn"
+                mat-stroked-button
+                class="delete-btn"
+                style="float: right"
+                (click)="deleteMayor(i)"
+              >
+                Delete
+              </button>
+              <div class="timeline-point-track-container">
+                <mat-form-field appearance="outline">
+                  <mat-label>Name</mat-label>
+                  <input
+                    style="color: black"
+                    matInput
+                    placeholder="Name"
+                    formControlName="name"
+                    type="text"
+                    required="true"
+                    (change)="onChange()"
+                  />
+                </mat-form-field>
+                <br />
+                <br />
+                <mat-form-field appearance="outline">
+                  <mat-label>Year</mat-label>
+                  <input
+                    style="color: black"
+                    matInput
+                    placeholder="Year"
+                    formControlName="date"
+                    type="text"
+                    required="true"
+                    (change)="onChange()"
+                  />
+                </mat-form-field>
+              </div>
+            </section>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
-  <!-- <div class="buttons">
-    <p>&nbsp;</p>
-  </div> -->
 </div>
-<!-- {{ this.officials.value | json }} -->

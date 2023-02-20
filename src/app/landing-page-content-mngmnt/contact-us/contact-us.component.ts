@@ -6,8 +6,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
+import { AlertAreYouSureComponent } from 'src/app/shared/modals/alert-are-you-sure/alert-are-you-sure.component';
 
 @Component({
   selector: 'app-contact-us',
@@ -16,10 +18,12 @@ import { ContentService } from 'src/app/services/content/content.service';
 })
 export class ContactUsComponent implements OnInit {
   loading: boolean = true;
+  edited: boolean = false;
   constructor(
     private fb: FormBuilder,
     private content: ContentService,
-    private sb: MatSnackBar
+    private sb: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -53,28 +57,75 @@ export class ContactUsComponent implements OnInit {
 
   addNumbers() {
     this.getNumbers().push(this.contactNum);
+    this.contactUs.markAsDirty();
   }
 
   addEmails() {
     this.getEmails().push(this.mail);
+    this.contactUs.markAsDirty();
   }
 
   deleteNum(i: number) {
-    this.getNumbers().removeAt(i);
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Delete',
+          message: 'Are you sure you want to delete this number?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.getNumbers().removeAt(i);
+          this.contactUs.markAsDirty();
+        }
+      });
   }
   deleteMail(i: number) {
-    this.getEmails().removeAt(i);
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Delete',
+          message: 'Are you sure you want to delete this email?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.getEmails().removeAt(i);
+          this.contactUs.markAsDirty();
+        }
+      });
+  }
+
+  onChange() {
+    this.edited = true;
   }
 
   save() {
     let body = this.contactUs.getRawValue();
-    this.content.createContactUs(body).subscribe((res: any) => {
-      console.log(res);
-      this.sb.open('Saved successfully', 'ok', {
-        duration: 5000,
-        panelClass: ['snackbar'],
+
+    this.dialog
+      .open(AlertAreYouSureComponent, {
+        data: {
+          title: 'Submit',
+          message: 'Are you sure you want to save changes?',
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          console.log('saveeeddd');
+          this.content.createContactUs(body).subscribe((res: any) => {
+            console.log(res);
+            this.sb.open('Saved successfully', 'ok', {
+              duration: 5000,
+              panelClass: ['snackbar'],
+            });
+            this.edited = false;
+          });
+        }
       });
-    });
   }
 
   getContactUs() {
@@ -83,10 +134,10 @@ export class ContactUsComponent implements OnInit {
       if (res.env.contacts[0]) {
         let contacts = res.env.contacts[0];
         for (let mail of contacts.emails) {
-          this.addEmails();
+          this.getEmails().push(this.mail);
         }
         for (let num of contacts.numbers) {
-          this.addNumbers();
+          this.getNumbers().push(this.contactNum);
         }
         this.contactUs.patchValue(contacts);
       }
