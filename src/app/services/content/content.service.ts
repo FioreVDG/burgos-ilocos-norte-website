@@ -79,13 +79,7 @@ export class ContentService {
   getAllHistory(query: QueryParams) {
     return this.http.start('get', '/history', {}, query);
   }
-  createOfficial(body: Object) {
-    return this.http.start('post', '/officials', body);
-  }
 
-  getAllOfficials(query: QueryParams) {
-    return this.http.start('get', '/officials', {}, query);
-  }
   createPubServant(body: Object) {
     return this.http.start('post', '/public-servants', body);
   }

@@ -73,6 +73,7 @@ export class HotlinesComponent implements OnInit {
   deleteHotline(index: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this hotline?',
@@ -90,6 +91,7 @@ export class HotlinesComponent implements OnInit {
   removeNum(hotlineNum: number, num_index: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this number?',
@@ -111,6 +113,7 @@ export class HotlinesComponent implements OnInit {
 
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to save?',
@@ -121,7 +124,7 @@ export class HotlinesComponent implements OnInit {
         if (res) {
           this.content.createHotline(body).subscribe((res: any) => {
             console.log(res);
-            this.sb.open('Saved successfully', 'ok', {
+            this.sb.open('Saved successfully', 'okay', {
               duration: 5000,
               panelClass: ['snackbar'],
             });
@@ -139,12 +142,10 @@ export class HotlinesComponent implements OnInit {
       console.log(res);
       if (res.env.hotlines[0]) {
         this.hotlines = res.env.hotlines[0];
-        console.log(this.hotlines._id);
 
         for (let i in this.hotlines.hotlines) {
           this.getHotlines().push(this.numbers);
           for (let j in this.hotlines.hotlines[i].contact_nums) {
-            // this.addNumber(Number(i));
             this.number(Number(i)).push(this.contact);
           }
         }
@@ -153,8 +154,6 @@ export class HotlinesComponent implements OnInit {
       }
 
       this.loading = false;
-
-      // this.contacts.getRawValue();
     });
   }
 }

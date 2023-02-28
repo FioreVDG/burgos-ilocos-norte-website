@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onLoginClick() {
+    console.log('login');
     this.loading = true;
     const { username, password } = this.loginForm.getRawValue();
     console.log(username, password);

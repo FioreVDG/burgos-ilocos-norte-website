@@ -54,10 +54,11 @@
             </mat-form-field>
 
             <button
-              mat-button
+              mat-raised-button
               color="primary"
               (click)="onLoginClick()"
               style="width: 100%"
+              [disabled]="loading"
             >
               {{ loading ? "Logging in" : "Login" }}
             </button>

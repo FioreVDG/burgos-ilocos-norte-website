@@ -26,16 +26,6 @@
     font-weight: 500;
     font-size: 20px;
   }
-  button {
-    background-color: var(--primary-300);
-    color: #fff;
-    width: 30%;
-
-    &:hover {
-      background-color: var(--primary-100);
-      transition: background-color 100ms ease-in;
-    }
-  }
 }
 
 .img-login {

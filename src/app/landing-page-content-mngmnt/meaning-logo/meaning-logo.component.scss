@@ -1,4 +1,3 @@
-/// new
 .logo {
   text-align: center;
   background-size: cover;
@@ -7,7 +6,6 @@
 }
 mat-card {
   width: 100%;
-  height: 100%;
   border-radius: 10px;
   background: #fff;
   margin-bottom: 1rem;
@@ -31,7 +29,6 @@ textarea {
   height: 80px;
 }
 .add-container {
-  // margin-top: 130px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -50,4 +47,12 @@ textarea {
 
 .add-logo:hover {
   cursor: pointer;
+}
+.save-btn {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 25px;
+  button {
+    float: left;
+  }
 }

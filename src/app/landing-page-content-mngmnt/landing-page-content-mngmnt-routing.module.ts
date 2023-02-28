@@ -96,13 +96,7 @@ const routes: Routes = [
             (m) => m.MeaningLogoModule
           ),
       },
-      {
-        path: 'update-public_servant',
-        loadChildren: () =>
-          import('./public-servants/public-servants.module').then(
-            (m) => m.PublicServantsModule
-          ),
-      },
+
       {
         path: 'update-officials',
         loadChildren: () =>

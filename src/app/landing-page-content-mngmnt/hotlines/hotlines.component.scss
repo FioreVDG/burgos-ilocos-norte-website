@@ -14,11 +14,14 @@ mat-card {
   }
 }
 
-// .delete-btn {
-//   mat-icon {
-//     color: #d0392b;
-//   }
-// }
+.buttons {
+  display: flex;
+  justify-content: center;
+
+  button {
+    margin-left: 10px;
+  }
+}
 
 .submit-btn {
   float: right;

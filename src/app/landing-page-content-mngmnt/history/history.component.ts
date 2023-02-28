@@ -53,6 +53,7 @@ export class HistoryComponent implements OnInit {
   deleteMayor(index: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this?',
@@ -72,6 +73,7 @@ export class HistoryComponent implements OnInit {
 
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Submit',
           message: 'Are you sure you want to save changes?',
@@ -82,7 +84,7 @@ export class HistoryComponent implements OnInit {
         if (res) {
           this.content.createHistory(body).subscribe((res: any) => {
             console.log(res);
-            this.sb.open('Saved successfully', 'ok', {
+            this.sb.open('Saved successfully', 'okay', {
               duration: 5000,
               panelClass: ['snackbar'],
             });
@@ -98,7 +100,6 @@ export class HistoryComponent implements OnInit {
 
   getBurgos_Mayors() {
     this.content.getAllHistory({}).subscribe((res: any) => {
-      // console.log(res.env.history[0].mayors);
       if (res.env.history[0]) {
         for (let r of res.env.history[0].mayors) {
           this.getMayors().push(this.mayor);

@@ -57,6 +57,7 @@ export class GeographicInfoComponent implements OnInit {
   removeGeoInfo(index: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this information?',
@@ -76,6 +77,7 @@ export class GeographicInfoComponent implements OnInit {
 
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Save',
           message: 'Are you sure you want to save changes?',
@@ -86,7 +88,7 @@ export class GeographicInfoComponent implements OnInit {
         if (res) {
           this.content.createGeographic(body).subscribe((res: any) => {
             console.log(res);
-            this.sb.open('Saved successfully', 'ok', {
+            this.sb.open('Saved successfully', 'okay', {
               duration: 5000,
               panelClass: ['snackbar'],
             });
@@ -113,7 +115,6 @@ export class GeographicInfoComponent implements OnInit {
   }
 
   onChange() {
-    console.log('changeee');
     this.edited = true;
   }
 }

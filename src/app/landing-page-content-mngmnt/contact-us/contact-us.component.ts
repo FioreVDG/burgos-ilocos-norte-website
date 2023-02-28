@@ -68,6 +68,7 @@ export class ContactUsComponent implements OnInit {
   deleteNum(i: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this number?',
@@ -84,6 +85,7 @@ export class ContactUsComponent implements OnInit {
   deleteMail(i: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this email?',
@@ -107,6 +109,7 @@ export class ContactUsComponent implements OnInit {
 
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Submit',
           message: 'Are you sure you want to save changes?',
@@ -118,7 +121,7 @@ export class ContactUsComponent implements OnInit {
           console.log('saveeeddd');
           this.content.createContactUs(body).subscribe((res: any) => {
             console.log(res);
-            this.sb.open('Saved successfully', 'ok', {
+            this.sb.open('Saved successfully', 'okay', {
               duration: 5000,
               panelClass: ['snackbar'],
             });

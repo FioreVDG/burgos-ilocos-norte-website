@@ -1,7 +1,5 @@
 .geo {
-  // margin: 0 2rem 0 3rem;
   text-align: center;
-  background-size: cover;
   margin: 0 2rem 0 3rem;
   padding-bottom: 5rem;
 }
@@ -13,41 +11,29 @@ mat-card {
   margin-bottom: 1rem;
 }
 
-.add-btn,
 .delete-btn {
   border: none;
   background-color: transparent;
-}
-.delete-btn {
   position: absolute;
   top: 90%;
   right: 5%;
   z-index: 2;
 }
 
-.add-btn {
-  mat-icon {
-    color: #3e692f;
+.save-btn {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+  button {
+    float: left;
   }
 }
-
 span {
   position: relative;
   bottom: 6px;
   left: 8px;
 }
 
-.buttons {
-  .addH-btn {
-    float: left;
-    margin-left: 4%;
-  }
-  .submit-btn {
-    border: 2px solid #0f8aa8;
-    float: right;
-    margin-right: 5%;
-  }
-}
 .mat-form-field {
   width: 100%;
 }
@@ -56,7 +42,6 @@ textarea {
   height: 200px;
 }
 .add-container {
-  // margin-top: 130px;
   position: absolute;
   top: 50%;
   left: 50%;

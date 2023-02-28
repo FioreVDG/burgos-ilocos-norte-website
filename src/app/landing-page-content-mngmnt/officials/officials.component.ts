@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from 'src/app/services/content/content.service';
 import { DropboxService } from 'src/app/services/dropbox/dropbox.service';
 import { AlertAreYouSureComponent } from 'src/app/shared/modals/alert-are-you-sure/alert-are-you-sure.component';
@@ -22,7 +23,8 @@ export class OfficialsComponent implements OnInit {
     private fb: FormBuilder,
     private content: ContentService,
     private dropbox: DropboxService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sb: MatSnackBar
   ) {}
   loading: boolean = true;
   officials_data: any;
@@ -59,15 +61,23 @@ export class OfficialsComponent implements OnInit {
 
   addRow() {
     this.getContent().push(this.rows);
+    this.officials.markAsDirty();
+  }
+
+  addRowBelow(index: number) {
+    this.getContent().insert(index + 1, this.rows);
+    this.officials.markAsDirty();
   }
 
   addCol(index: number) {
     this.getContent().at(index).push(this.official);
+    this.officials.markAsDirty();
   }
 
   removeRow(index: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this entire row?',
@@ -78,6 +88,7 @@ export class OfficialsComponent implements OnInit {
         if (res) {
           //removes the entire row
           this.getContent().removeAt(index);
+          this.officials.markAsDirty();
         }
       });
   }
@@ -85,6 +96,7 @@ export class OfficialsComponent implements OnInit {
   removeCol(rowNum: number, colNum: number) {
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Delete',
           message: 'Are you sure you want to delete this information?',
@@ -94,11 +106,12 @@ export class OfficialsComponent implements OnInit {
       .subscribe((res: any) => {
         if (res) {
           this.getContent().at(rowNum).removeAt(colNum);
+          this.officials.markAsDirty();
         }
       });
   }
 
-  display() {
+  save() {
     let body = this.officials.getRawValue();
 
     for (let row of body.content) {
@@ -107,8 +120,11 @@ export class OfficialsComponent implements OnInit {
       }
     }
 
+    console.log(body);
+
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Save',
           message: 'Are you sure you want to save this information?',
@@ -119,6 +135,10 @@ export class OfficialsComponent implements OnInit {
         if (res) {
           this.content.createPubServant(body).subscribe((res: any) => {
             console.log(res);
+            this.sb.open('Saved successfully', 'okay', {
+              duration: 5000,
+              panelClass: ['snackbar'],
+            });
           });
         }
       });
@@ -146,12 +166,15 @@ export class OfficialsComponent implements OnInit {
     this.content.getAllPubServant({}).subscribe(async (res: any) => {
       this.officials_data = res.env.officials[0];
       console.log(this.officials_data);
+
+      this.loading = false;
       let i = 0;
       let j = 0;
       for (let row of this.officials_data.content) {
-        if (i != 0) this.addRow(); // will not add at first, since by default the array contains 1 formgroup already
+        if (i != 0) this.getContent().push(this.rows); // will not add at first, since by default the array contains 1 formgroup already
         for (let col of row) {
-          if (j != 0) this.addCol(i);
+          if (j != 0) this.getContent().at(i).push(this.official);
+          this.officials.patchValue(this.officials_data);
           let tempImg = await this.getTempLink(col.image.path_display);
           this.getRows(i).at(j).get('url').patchValue(tempImg);
           j = j + 1;
@@ -159,9 +182,6 @@ export class OfficialsComponent implements OnInit {
         i = i + 1;
         j = 0;
       }
-
-      this.officials.patchValue(this.officials_data);
-      this.loading = false;
     });
   }
 }

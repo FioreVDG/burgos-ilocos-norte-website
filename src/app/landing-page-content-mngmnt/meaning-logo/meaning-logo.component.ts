@@ -99,6 +99,7 @@ export class MeaningLogoComponent implements OnInit {
 
     this.dialog
       .open(AlertAreYouSureComponent, {
+        disableClose: true,
         data: {
           title: 'Save',
           message: 'Are you sure you want to save changes?',
@@ -108,9 +109,10 @@ export class MeaningLogoComponent implements OnInit {
       .subscribe((res: any) => {
         if (res) {
           console.log(this.logo.getRawValue());
+
           this.content.createLogoMeaning(body).subscribe((res: any) => {
             console.log(res);
-            this.sb.open('Saved successfully', 'ok', {
+            this.sb.open('Saved successfully', 'okay', {
               duration: 5000,
               panelClass: ['snackbar'],
             });
